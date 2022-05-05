@@ -168,7 +168,7 @@
           </div>
           <div class="col-md-6 infodiv">
             <label class="labelings">NSO Barcode Number</label>
-            <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
+            <input id="nsonum" required type="text" name="nsonum" class="form-control"value="<?php
               if (isset($_GET['nsonum'])) {
                 echo $_GET['nsonum'];
                 $_SESSION['nsonumber'] = $_GET['nsonum'];
@@ -196,7 +196,7 @@
           <div class="row">
             <div class="col-12 infodiv">
               <label class="Bday">Address</label>
-              <input id="address" type="text" name="address" class="form-control">
+              <input id="address" type="text" name="address" class="form-control" required>
             </div>
           </div>
 
@@ -211,7 +211,12 @@
             </div>
             <div class="col-md-6 infodiv">
               <label class="labelings">Register SIM number</label>
-              <input id="simnum" type="tel" name="simnum" class="form-control" placeholder="ex: +639175901234" required>
+              <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">+63</div>
+              </div>
+              <input type="tel" class="form-control" id="simnum" name="simnum" required pattern="[0-9]{10}" title="Input 10 digits only">
+            </div>
             </div>
           </div>
 
@@ -224,7 +229,7 @@
 
             <div class="col-md-6 infodiv">
               <label class="labelings">Registration Site</label>
-              <input id="regisite" type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+              <input id="regisite" type="text" name="regisite" class="form-control" placeholder="ex: Cavite" required>
             </div>
 
           </div>
@@ -296,7 +301,7 @@
          </div>
          <div class="col-md-6 infodiv">
            <label class="labelings">NSO Barcode Number</label>
-           <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
+           <input id="nsonum" required type="text" name="nsonum" class="form-control"value="<?php
              if (isset($_GET['nsonum'])) {
                echo $_GET['nsonum'];
              }
@@ -322,7 +327,7 @@
        <div class="row">
          <div class="col-12 infodiv">
            <label class="Bday">Address</label>
-           <input id="address" type="text" name="address" class="form-control">
+           <input id="address" type="text" name="address" class="form-control" required>
          </div>
        </div>
 
@@ -337,7 +342,12 @@
          </div>
          <div class="col-md-6 infodiv">
            <label class="labelings">Register SIM number</label>
-           <input id="simnum" type="tel" name="simnum" class="form-control" placeholder="ex: +639175901234" required>
+           <div class="input-group mb-2">
+           <div class="input-group-prepend">
+             <div class="input-group-text">+63</div>
+           </div>
+           <input type="tel" class="form-control" id="simnum" name="simnum" required pattern="[0-9]{10}" title="Input 10 digits only">
+         </div>
          </div>
        </div>
 
@@ -350,7 +360,7 @@
 
          <div class="col-md-6 infodiv">
            <label class="labelings">Registration Site</label>
-           <input id="regisite" type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+           <input id="regisite" type="text" name="regisite" class="form-control" placeholder="ex: Cavite" required>
          </div>
 
        </div>

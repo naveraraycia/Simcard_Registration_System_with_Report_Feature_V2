@@ -1,10 +1,10 @@
 <?php
   require "navbar.php";
   include_once 'dbh/EndUser.inc.php';
-  if (empty($_SESSION['UserNumber'])){
-    header("Location: index.php");
-    exit();
-  }
+  // if (empty($_SESSION['UserNumber'])){
+  //   header("Location: index.php");
+  //   exit();
+  // }
   $SimCardNumber = $_SESSION['UserNumber'] ;
   $LastName      = $_SESSION['UserLast']  ;
   $FirstName     = $_SESSION['UserFirst']  ;
@@ -56,7 +56,7 @@
       };
 
       echo "
-
+<br><br>
     <form class='' id='form' action='UserprofileBackEnd/BackEnd_Report.php' method='post' enctype='multipart/form-data'>
     <div class='row'>
       <div class='col-md-6 iconn'>
@@ -76,8 +76,12 @@
 
           <div class='infodiv1'>
             <p class='labelings'>Mobile Number to be reported</p>
-            <input type='tel' name='ReportedNumber' value='' id='reportedMobilenumber' class='form-control' placeholder='Enter the SIM number you want to report' required>
-
+          <div class='input-group mb-2'>
+            <div class='input-group-prepend'>
+              <div class='input-group-text'>+63</div>
+            </div>
+            <input type='tel' class='form-control' id='reportedMobilenumber' name='ReportedNumber' required pattern='[0-9]{10}' title='Input 10 digits only'>
+          </div>
           </div>
 
         <!-- </form> -->

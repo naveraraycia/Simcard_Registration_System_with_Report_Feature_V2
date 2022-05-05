@@ -162,7 +162,7 @@
        <div class="row srow">
          <div class="col-md-12 ">
            <label class="">Passport Number</label>
-           <input type="text" name="passnum" class="form-control" value="<?php
+           <input type="text" required name="passnum" class="form-control" value="<?php
            if (isset($_GET['passnum'])) {
              echo $_GET['passnum'];
              $_SESSION['passportnumber'] = $_GET['passnum'];
@@ -188,7 +188,7 @@
             <div class="row">
               <div class="col-md-12 ">
                 <label class="">Address</label>
-                <input type="text" name="address" class="form-control" value="" required>
+                <input type="text" name="address" class="form-control" value="" required placeholder="N/A if not applicable">
               </div>
             </div>
 
@@ -203,7 +203,12 @@
               </div>
               <div class="col-md-6 infodiv">
                 <label class="labelings">Register SIM number</label>
-                <input type="tel" name="simnum" class="form-control" placeholder="ex: +639175901234" required>
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">+63</div>
+                </div>
+                <input type="tel" class="form-control" id="simnum" name="simnum" required pattern="[0-9]{10}" title="Input 10 digits only">
+              </div>
               </div>
             </div>
             <div class="row srow">
@@ -213,7 +218,7 @@
               </div>
               <div class="col-md-6 infodiv">
                 <label class="labelings">Registration Site</label>
-                <input type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+                <input type="text" name="regisite" class="form-control" placeholder="ex: Cavite" required>
               </div>
 
             </div>
@@ -291,7 +296,7 @@
     <div class="row srow">
       <div class="col-md-12 infodiv ">
         <label class="">Passport Number</label>
-        <input type="text" name="passnum" class="form-control" value="<?php
+        <input type="text" required name="passnum" class="form-control" value="<?php
         if (isset($_GET['passnum'])) {
           echo $_GET['passnum'];
         }
@@ -317,7 +322,7 @@
     <div class="row">
       <div class="col-md-12 ">
         <label class="">Address</label>
-        <input type="text" name="address" class="form-control" value="" required>
+        <input type="text" name="address" class="form-control" value="" required placeholder="N/A if not applicable">
       </div>
     </div>
     <div class="row">
@@ -331,8 +336,16 @@
       </div>
       <div class="col-md-6 infodiv">
         <label class="labelings">Register SIM number</label>
-        <input type="tel" name="simnum" class="form-control" placeholder="ex: +639175901234" required>
+
+        <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">+63</div>
+        </div>
+        <input type="tel" class="form-control" id="simnum" name="simnum" required pattern="[0-9]{10}" title="Input 10 digits only">
       </div>
+      </div>
+
+
 
     </div>
     <div class="row srow">
@@ -343,7 +356,7 @@
 
       <div class="col-md-6 infodiv">
         <label class="labelings">Registration Site</label>
-        <input type="text" name="regisite" class="form-control" placeholder="Cavite" required>
+        <input type="text" name="regisite" class="form-control" placeholder="ex: Cavite" required>
       </div>
 
     </div>

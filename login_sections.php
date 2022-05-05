@@ -127,9 +127,14 @@
 
           //Second half of login page
           echo "
-          <input type='tel' name='IndexNumber' id='userMobileNum' class='input-retail' placeholder='Mobile Number ex: +639176578905' required>
+          <div class='input-group mb-2'>
+          <div class='input-group-prepend end-user-log'>
+            <div class='input-group-text end-user-p'>+63</div>
+          </div>
+          <input type='tel' class='form-control' required id='userMobileNum' name='IndexNumber' pattern='[0-9]{10}' title='Input 10 digits only'>
+        </div>
           <button type='Submit' name='indexButton' class='btn'>Submit</button>
-        
+
           <div class='edit-margin links-users'>
           <a href='login_sections.php' class='aF'>
           <p class='simuser-type'>Sim User</p>

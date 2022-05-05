@@ -13,6 +13,15 @@ body {
   /* left: 14px; */
 }
 
+.form-control-file, .form-control-range {
+    width: 187px!important;
+}
+
+.form-control:focus {
+  border-color: #c1ebe2!important;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #c1ebe2!important;
+}
 
 .upload-btn-wrapper input[type=file] {
   font-size: 20px;

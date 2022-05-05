@@ -8,6 +8,13 @@ body {
   table-layout: fixed;
 }
 
+.form-control:focus {
+  border-color: #c1ebe2!important;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #c1ebe2!important;
+}
+
+
 
 .navbar-collapse {
   justify-content: right;
