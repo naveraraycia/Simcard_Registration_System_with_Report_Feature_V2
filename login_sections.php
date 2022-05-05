@@ -131,9 +131,9 @@
           <div class='input-group-prepend end-user-log'>
             <div class='input-group-text end-user-p'>+63</div>
           </div>
-          <input type='tel' class='form-control' required id='userMobileNum' name='IndexNumber' pattern='[0-9]{10}' title='Input 10 digits only'>
+          <input type='tel' class='form-control' id='userMobileNum' name='IndexNumber'>
         </div>
-          <button type='Submit' name='indexButton' class='btn'>Submit</button>
+          <button type='Submit' name='indexButton' class='btn submit_btn' style='display: flex; justify-content: center; align-items: center;'>Submit</button>
 
           <div class='edit-margin links-users'>
           <a href='login_sections.php' class='aF'>
@@ -159,6 +159,14 @@
 
 
     </div>
+
+    <script>
+      const submit_btn = document.querySelector('.submit_btn');
+      submit_btn.onclick = function () {
+        this.innerHTML = "<div class='loader'></div>";
+      }
+
+    </script>
 
         <script src="./sim-registration-otp/requestOtp.js"></script>
 

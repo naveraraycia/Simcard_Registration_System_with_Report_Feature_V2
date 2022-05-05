@@ -4,6 +4,26 @@ body {
   padding: 5% 5rem;
 }
 
+.loader {
+  pointer-events: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  animation: an1 1s ease infinite;
+}
+
+@keyframes an1 {
+  0% {
+    transform: rotate(0turn);
+  }
+
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
 
 
 .errormessage{
@@ -267,6 +287,11 @@ p {
     padding: 4rem 3rem;
   }
 
+  .loader {
+    width: 25px;
+    height: 25px;
+  }
+
   .brand-part {
     display: flex !important;
     justify-content: center;
@@ -416,7 +441,7 @@ p {
   .btn {
     background-color: #2f5a62;
     color: white;
-    height: 30px;
+    height: 40px;
     font-size: 12px;
     font-family: 'League Spartan', sans-serif !important;
     font-weight: 300;
@@ -490,8 +515,8 @@ p {
   .btn {
     background-color: #2f5a62;
     color: white;
-    height: 25px;
-    font-size: 10px;
+    height: 40px;
+    font-size: 12px;
     font-family: 'League Spartan', sans-serif !important;
     font-weight: 300;
     text-transform: uppercase;
