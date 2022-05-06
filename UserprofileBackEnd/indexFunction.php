@@ -10,43 +10,39 @@
    return $result;
  };
 
-
- function Noplus($UserLoginNumberPHP){
+ function StringEx($UserLoginNumberPHP){  // ERROR HANDLERS FOR NOT NUMBERS/INTEGERS
    $result;
-   if(!preg_match('/^[+]/',$UserLoginNumberPHP)){
-     $result = true;  // CAUSE ERRROR
+   if (!preg_match('/^[0-9]*$/',$UserLoginNumberPHP)){
+     $result = true;
    }else{
-     if (!preg_match("/[a-zA-Z +-]/", $UserLoginNumberPHP)){
-       $result = true; //CAUSE ERROR
-     }else{
-       $result = false; //NO ERROR
-     }
+     $result = false;
+   }
+   return $result;
+ }
+
+ function WrongLen($UserLoginNumberPHP){ //ERROR HANDLERS FOR WRONG LENGTH OF NPUTS
+   $result;
+   $length = strlen($UserLoginNumberPHP);
+   if(($length)==10){
+     $result = false;
+   }else{
+     $result = true;
    }
    return $result;
  };
-
- function InvalidCharIndex($UserLoginNumberPHP){ //ERROR FOR INVALID CHARACTERS
-  $result;
-  if (!preg_match("/^[a-zA-Z]*$/", $UserLoginNumberPHP)){
-    $result = false; //NO ERROR
-  }else{
-    $result = true; //CAUSE ERROR
-  }
-  return $result;
-};
 
 //CHECK IF THERE IF THE NUMBER EXIST
  function CheckNumber($conn, $UserLoginNumberPHP){
       $sql = "SELECT*FROM registered_simusers_db WHERE simnum = ?;";
       $stmt = mysqli_stmt_init($conn);
-
+      include_once "../dbh/EndUser.inc.php";
       //CHECK CONNECTION IF WORKING
       if(!mysqli_stmt_prepare($stmt,$sql)){
           header("Location: ../login_sections.php?errornumber=stmtfailed");
           exit();
       }
-
-      mysqli_stmt_bind_param($stmt,"i", $UserLoginNumberPHP);
+      $BUserLoginNumberPHP = "+63". $UserLoginNumberPHP;
+      mysqli_stmt_bind_param($stmt,"i", $BUserLoginNumberPHP);
       mysqli_stmt_execute($stmt);
       $resultData = mysqli_stmt_get_result($stmt);
       if ($row = mysqli_fetch_assoc($resultData)){
@@ -55,7 +51,7 @@
           $sql = "SELECT * FROM registered_simusers_db WHERE simnum=?;";
           $stmt              = mysqli_stmt_init($conn);
           if (mysqli_stmt_prepare($stmt,$sql)){
-            mysqli_stmt_bind_param($stmt,"s",$UserLoginNumberPHP);
+            mysqli_stmt_bind_param($stmt,"s",$BUserLoginNumberPHP);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             session_start();

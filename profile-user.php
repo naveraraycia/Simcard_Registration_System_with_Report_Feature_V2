@@ -34,7 +34,7 @@
 
       $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
       if (strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=InvalidFormat") == true){
-          echo "<p class= 'errormessage'> Incorrect reported mobile number input format. Please use the +63 format and input digits only</p>";
+          echo "<p class= 'errormessage'> Invalid characters detected. input digits only</p>";
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=InvalidInput") == true){
           echo "<p class= 'errormessage'> Invalid characters detected. Please enter numbers only</p>";
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=imageempty") == true){
@@ -50,7 +50,7 @@
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=imageformaterror") == true){
           echo "<p class= 'errormessage'> Please upload your screenshot in .jpg, .jpeg, or .png only</p>";
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=numberlength") == true){
-          echo "<p class= 'errormessage'> Incorrect reported mobile number input format. Please make sure the digit length is correct </p>";
+          echo "<p class= 'errormessage'> Incorrect digit length. Please make sure the digit length is correct </p>";
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=success") == true){
           echo "<p class= 'successmsg'>Your report has been successfully sent</p>";
       };
@@ -80,7 +80,7 @@
             <div class='input-group-prepend'>
               <div class='input-group-text'>+63</div>
             </div>
-            <input type='tel' class='form-control' id='reportedMobilenumber' name='ReportedNumber' required pattern='[0-9]{10}' title='Input 10 digits only'>
+            <input type='tel' class='form-control' id='reportedMobilenumber' name='ReportedNumber'>
           </div>
           </div>
 

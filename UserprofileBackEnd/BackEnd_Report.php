@@ -51,17 +51,14 @@ if(isset($_POST['reportbutton'])){
             header("Location: ../profile-user.php?reportPage&ReportStatus=empty");
             exit();
           }else{
-            $zeroReported_Num2 = str_replace("+","",$Reported_Num);
-            if(preg_match("/^[a-zA-Z_ -]*$/",$zeroReported_Num2)){ //not number /invalid characters
-              header("Location:../profile-user.php?reportPage&ReportStatus=InvalidInput");
-              exit();
-            }else{
-              if(!preg_match("/[a-zA-Z +-]/",$Reported_Num)){ //invalid format/not number
+              if(!preg_match('/^[0-9]*$/',$Reported_Num)){ //ERROR HANDLERS FOR NOT INTEGER/NUMBER 
                 header("Location:../profile-user.php?reportPage&ReportStatus=InvalidFormat");
                 exit();
               }else{
-                $numbercount = strlen($zeroReported_Num2);
-                if($numbercount == 12){
+                $numbercount = strlen($Reported_Num);
+                if($numbercount == 10){  //ERROR HANDLERS FOR INCORRECT DIGITS/CHARACTERS LENGTH
+
+
                   //enter image error handlers
                   //////////////////////  IMAGE ERRORS  /////////////////////
                   if($fileSize==0){   //ERROR 404 for no file added
@@ -100,6 +97,7 @@ if(isset($_POST['reportbutton'])){
                                   if(!mysqli_stmt_prepare($stmt,$sql)){ //ERROR 404 for unable to upload
                                       header("Location:../profile-user.php?reportPage&ReportStatus=uploaderror");
                                   }else{
+                                      $Reported_Num = "+63". $Reported_Num;
                                       //uploading the Data
                                       mysqli_stmt_bind_param($stmt,"sssssss",$Victim_Num,$Victim_Name_B,$Reported_Num,$Message,$ImageFullName,$Name_ReportImage,$DateTime);
                                       mysqli_stmt_execute($stmt); //FILE SENT
@@ -134,7 +132,7 @@ if(isset($_POST['reportbutton'])){
                           exit();
                         } //line 123 end
                       } //line 62 end
-                    } // line 58 end
+                     // line 58 end
                   } // line 53 end
         }  //line 4 end
 ?>

@@ -115,14 +115,14 @@
           $fulUrl="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
           if (strpos($fulUrl,"errornumber=notexist") == true){
             echo "<p class= 'errormessage'>This number is not registered</p>";
-          }else if(strpos($fulUrl,"errornumber=invalid") == true){
+          }else if(strpos($fulUrl,"errornumber=NotNumbers") == true){
               echo "<p class= 'errormessage'>Please enter digits only</p>";
           }else if(strpos($fulUrl,"errornumber=empty") == true){
               echo "<p class= 'errormessage'>Please fill up the input field</p>";
           }else if(strpos($fulUrl,"errornumber=stmtfailed") == true){
               echo "<p class= 'errormessage'>Connection error. Try again</p>";
-          }else if(strpos($fulUrl,"errornumber=noplus") == true){
-              echo "<p class= 'errormessage'>Incorrect input detected</p>";
+          }else if(strpos($fulUrl,"errornumber=wrongLength") == true){
+              echo "<p class= 'errormessage'>Incorrect digit length</p>";
           };
 
           //Second half of login page
@@ -166,9 +166,9 @@
         this.innerHTML = "<div class='loader'></div>";
       }
 
-    </script>
+  </script>
 
-        <script src="./sim-registration-otp/requestOtp.js"></script>
+      <script src="./sim-registration-otp/requestOtp.js"></script>
 
 </body>
 </html>
