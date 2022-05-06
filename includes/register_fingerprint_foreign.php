@@ -100,19 +100,21 @@ if(isset($_POST['register'])){
                    //enter mobile number error handlers
                    //////////////////////  MOBILE NUMBER ERRORS  /////////////////////
                      $noplusnum = str_replace("+","",$simnum); //remove "+"
-                     if(preg_match("/^[a-zA-Z_ -]*$/", $noplusnum)){ // ERROR 404 for not being number
+                     if(!preg_match("/^[0-9]*$/", $simnum)){ // ERROR 404 for not being number
                          header("Location: ../register-users-foreign.php?error=wrongchars");
                          exit();
-                 }else{
-                   if(!preg_match("/[a-zA-Z +]/",$simnum)){   //ERROR 404 for lack of + plus
-                     header("Location: ../register-users-foreign.php?error=missplus");
-                     exit();
-                  }else{
+                 }
+                 // else{
+                 //   if(!preg_match("/[a-zA-Z +]/",$simnum)){   //ERROR 404 for lack of + plus
+                 //     header("Location: ../register-users-foreign.php?error=missplus");
+                 //     exit();
+                  else{
                      $countnumber = strlen($simnum);
-                     if($countnumber != 13){
+                     if($countnumber != 10){
                          header("Location: ../register-users-foreign.php?error=incorrectNum"); //error for wrong count
                          exit();
                    }else{
+                     $simnum = "+63". $simnum;
                      mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
                      // RUN PARAMETER INDSIDE DATABASE
                      mysqli_stmt_execute($stmt);
@@ -123,7 +125,7 @@ if(isset($_POST['register'])){
                      header("Location: ../register-users-foreign.php?signup=success");
                    }
                  }
-               }
+               // }
              }
            }
          }

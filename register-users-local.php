@@ -215,7 +215,7 @@
               <div class="input-group-prepend">
                 <div class="input-group-text">+63</div>
               </div>
-              <input type="tel" class="form-control" id="simnum" name="simnum" required pattern="[0-9]{10}" title="Input 10 digits only">
+              <input type="tel" class="form-control" id="simnum" name="simnum" required>
             </div>
             </div>
           </div>
@@ -301,11 +301,11 @@
          </div>
          <div class="col-md-6 infodiv">
            <label class="labelings">NSO Barcode Number</label>
-           <input id="nsonum" required type="text" name="nsonum" class="form-control"value="<?php
+           <input id="nsonum" type="text" name="nsonum" required class="form-control"value="<?php
              if (isset($_GET['nsonum'])) {
                echo $_GET['nsonum'];
              }
-            ?>" >
+            ?>">
          </div>
 
        </div>
@@ -346,7 +346,7 @@
            <div class="input-group-prepend">
              <div class="input-group-text">+63</div>
            </div>
-           <input type="tel" class="form-control" id="simnum" name="simnum" required pattern="[0-9]{10}" title="Input 10 digits only">
+           <input type="tel" class="form-control" id="simnum" name="simnum" required>
          </div>
          </div>
        </div>

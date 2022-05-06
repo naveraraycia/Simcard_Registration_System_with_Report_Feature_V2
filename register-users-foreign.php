@@ -207,7 +207,7 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text">+63</div>
                 </div>
-                <input type="tel" class="form-control" id="simnum" name="simnum" required pattern="[0-9]{10}" title="Input 10 digits only">
+                <input type="tel" class="form-control" id="simnum" name="simnum" required>
               </div>
               </div>
             </div>
@@ -341,7 +341,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text">+63</div>
         </div>
-        <input type="tel" class="form-control" id="simnum" name="simnum" required pattern="[0-9]{10}" title="Input 10 digits only">
+        <input type="tel" class="form-control" id="simnum" name="simnum" required>
       </div>
       </div>
 
