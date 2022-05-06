@@ -80,13 +80,19 @@ body {
 }
 
 .search-btn {
-  border: solid 2px white !important;
-  color: white !important;
-  border-radius: 8px !important;
-  margin-right: 25px;
-  right: 50px;
-  height: 40px;
+    border: solid 3px #2f5a62 !important;
+    color: #2f5a62 !important;
+    border-radius: 8px !important;
+    margin-right: 25px;
+    right: 50px;
+    height: 40px;
 }
+
+.search-btn:hover{
+  background-color: #2f5a62 !important;
+  color: white !important;
+}
+
 
 .nav-link:hover {
   color: white !important;
@@ -307,25 +313,100 @@ h2 {
   margin-top: 3rem;
 }
 
-.ad-title {
+.row-table-head {
+
+  padding-left: 5rem;
+  background-color: white;
 
 }
+
+.row-head {
+  position: relative;
+  top: 5px;
+}
+
+.search-input {
+  width: 75%!important;
+}
+
+
+
+
 /* MEDIA QUERY FOR NAV BAR */
 @media only screen and (max-width: 1024px) {}
 
 @media only screen and (max-width: 991px) {
   .form-inline {
-    margin-bottom: 1rem !important;
+    margin-bottom: 0rem !important;
   }
+
+  .col-md-3 {
+    flex: 0 0 55%;
+    max-width: 55%;
 }
+
+.col-md-9 {
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+
+.search-input {
+    width: 50%!important;
+}
+
+}
+
+@media only screen and (max-width: 790px) {
+  .col-md-3 {
+    text-align: center;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+
+.col-md-9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-left: 30px;
+}
+
+.row-table-head {
+    padding-left: 0rem;
+}
+
+.form-inline {
+      justify-content: center;
+}
+
+.search-input {
+    width: 50%!important;
+}
+
+.row-table-head {
+  display: flex;
+  justify-content: center
+  align-items: center
+}
+}
+
 
 @media only screen and (max-width: 768px) {
   .log-button {
     margin-bottom: 1rem;
   }
 
-  .header {
-  text-align: center!important;
+  .first-row {
+    width: 50%!important;
+  }
+
+  .first-row p, .row-second p {
+    font-size: 17px;
+  }
+
+  .row-second {
+    width: 50%!important;
+    padding-left: 0rem!important;
   }
 
   .navbar {
@@ -335,6 +416,13 @@ h2 {
 
 
 }
+
+
+@media only screen and (max-width: 680px) {
+
+
+}
+
 
 @media only screen and (max-width: 570px) {
   .brandname {
@@ -347,6 +435,10 @@ h2 {
     right: 40px!important;
 }
 
+.row-head {
+  font-size: 18px;
+}
+
   .form-control {
     width: 50%!important;
   }
@@ -354,6 +446,20 @@ h2 {
   .navbar {
     padding: 0rem 2rem !important;
   }
+
+
+    .first-row {
+      width: 60%!important;
+    }
+
+    .first-row p, .row-second p {
+      font-size: 16px;
+    }
+
+    .row-second {
+      width: 40%!important;
+      padding-left: 0rem!important;
+    }
 }
 
 @media only screen and (max-width: 430px) {
@@ -364,6 +470,42 @@ h2 {
   .form-inline {
     margin-bottom: 5px !important;
 }
+
+.form-control, .search-btn {
+  font-size: 14px;
+}
+
+.search-btn {
+  height: 30px!important;
+  font-size: 12px !important;
+}
+
+.row-head {
+  font-size: 16px;
+}
+
+.header {
+    font-size: 16px!important;
+}
+
+
+
+  .first-row {
+    width: 60%!important;
+  }
+
+  .first-row p, .row-second p {
+    font-size: 14px!important;
+  }
+
+  .row-second {
+    width: 40%!important;
+    padding-left: 0rem!important;
+  }
+
+  tr, td {
+    font-size: 12px!important;
+  }
 }
 
 @media only screen and (max-width: 380px) {
@@ -394,11 +536,13 @@ h2 {
     font-size: 16px !important;
   }
 
-  .search-btn {
-    height: 35px;
-  }
   .form-inline {
     margin-bottom: 5px !important;
+}
+
+.search-btn {
+  height: 30px;
+  font-size: 12px !important;
 }
 }
 
@@ -411,10 +555,6 @@ h2 {
 
 @media only screen and (max-width: 320px) {
 
-  .search-btn {
-    height: 30px;
-    font-size: 12px !important;
-  }
 
   .search-btn:hover{
     height: 30px !important;
@@ -448,7 +588,7 @@ h2 {
   }
 
   .header {
-    font-size: 18px!important;
+    font-size: 16px!important;
   }
 
 }

@@ -5,36 +5,6 @@ body {
 }
 
 
-h2 {
-  font-weight: bold;
-  color: #2f5a62;
-  font-size: 25px;
-  margin-bottom: 3rem;
-}
-
-.header {
-  display: flex;
-  justify-content: center;
-}
-
-.infodiv1 {
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  position: relative;
-}
-
-.hovclass:hover {
-  color: #2f5a62 !important;
-}
-
-textarea {
-  resize: none;
-}
-
-.profilepic {
-  width: 100px;
-}
-
 .nameLabel {
   font-weight: bold;
   color: #2f5a62;
@@ -80,44 +50,6 @@ textarea {
   color: #2f5a62;
 }
 
-/* SCRENESHOT BUTTON WITH HIDDEN CHOOSE FILE */
-.upload-btn-wrapper {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-  top: 1rem;
-  /* left: 14px; */
-}
-
-.upload-btn-wrapper input[type=file] {
-  font-size: 20px;
-  position: absolute;
-  top: 2.5px;
-  left: 3px;
-  width: 100%;
-  opacity: 0;
-}
-
-.upload-btn-wrapper input[type=file]:hover {
-  cursor: pointer;
-}
-
-.ss-btn {
-  background-color: #2f5a62;
-  color: white;
-  font-weight: bold;
-  width: 100%;
-  height: 40px;
-  border-radius: 6px 6px 6px 6px;
-  position: relative;
-  margin-top: 44px;
-}
-
-.ss-btn:hover {
-  background-color: #c1ebe2;
-  cursor: pointer;
-  color: #2f5a62;
-}
 
 .send-btn {
   background-color: #2f5a62;
@@ -136,6 +68,7 @@ textarea {
   cursor: pointer;
   color: #2f5a62;
 }
+
 
 /* minimized navbar button collapse */
 .custom-toggler .navbar-toggler-icon {
@@ -159,10 +92,11 @@ textarea {
 }
 
 .nav-link {
-  margin-right: 5rem;
+  margin-right: 1rem;
   font-weight: bold;
-  color: #c1ebe2;
+  color: #C1EBE3;
 }
+
 
 .brandname {
   position: relative;
@@ -182,14 +116,23 @@ textarea {
 }
 
 .log-button {
-    /* padding: 0; */
-    border: none;
-    background: none;
-    font-weight: bold;
-    color: #C1EBE3;
-    position: relative;
-    right: 6px;
-    margin-top: 5px;
+  /* padding: 0; */
+  border: none;
+  background: none;
+  font-weight: bold;
+  color: #C1EBE3;
+  position: relative;
+  right: 0px;
+  margin-top: 5px;
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
+
+.logbtn {
+  border: none;
+  background: none;
+  font-weight: bold;
+  color: #C1EBE3;
 }
 
 /* .logbtn {
@@ -200,13 +143,19 @@ textarea {
 } */
 
 .search-btn {
-  border: solid 2px white !important;
-  color: white !important;
-  border-radius: 8px !important;
-  margin-right: 25px;
-  right: 50px;
-  height: 40px;
+    border: solid 3px #2f5a62 !important;
+    color: #2f5a62 !important;
+    border-radius: 8px !important;
+    margin-right: 25px;
+    right: 50px;
+    height: 40px;
 }
+
+.search-btn:hover{
+  background-color: #2f5a62 !important;
+  color: white !important;
+}
+
 
 .nav-link:hover {
   color: white !important;
@@ -371,6 +320,10 @@ textarea {
     font-size: 16px;
   }
 
+  .nav-link, .search-btn {
+    font-size: 16px !important;
+  }
+
 }
 
 @media only screen and (max-width: 345px) {
@@ -390,27 +343,26 @@ textarea {
     font-size: 12px;
   }
 
-  h2 {
-    font-size: 13px;
-  }
+
 
   .infodiv {
     margin-bottom: 1rem;
   }
 
-    /* .nav-link {
-      padding: 3px;
-    } */
 
     .brandname {
       font-size: 0px;
     }
 
     .navbar-nav .nav-link, .log-button {
-      font-size: 16px!important;
+      font-size: 13px!important;
     }
 
     .send-btn {
       font-size: 13px;
+    }
+
+    .nav-link {
+      padding: 3px;
     }
 }

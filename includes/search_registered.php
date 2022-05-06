@@ -65,14 +65,11 @@
                   <button type="submit" name="btn-primary" class="nav-link logbtn">Logout</button>
                 </form>
               </li>
+
+              <li class='nav-item'>
+                <a class='nav-link selected' style="cursor: context-menu;">Admin: <?php echo "$AdminFName $AdminLName";?></a>
+              </li>
             </ul>
-
-
-
-          <form class="form-inline" action="search_registered.php" method="POST">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="input-search">
-            <button class="log-button search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
-          </form>
 
         </div>
       </nav>
@@ -80,14 +77,18 @@
 
 <!-- INBOX PART -->
 
-<div class="row admin-row" style="background-color: white;">
-  <div class="col-md-6" style="padding-left: 2rem;">
-    <p class="header text-truncate">Administrator: <?php echo "$AdminFName $AdminLName";?></p>
+
+
+<div class="row row-table-head" style="padding-bottom: 15px;">
+  <div class="col-md-3">
+  <p class="header row-head" style="margin-bottom: 0px; align-self: center;">Registered Users</p>
   </div>
 
-  <div class="col-md-6" style="padding-left: 2rem;">
-    <p class="header text-truncate">Registered SIM Card Users</p>
-
+  <div class="col-md-9">
+    <form class="form-inline" action="search_registered.php" method="POST">
+      <input class="form-control mr-sm-2 search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" >
+      <button class="log-button search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
+    </form>
   </div>
 
 </div>
@@ -117,16 +118,15 @@
         <?php
         if (isset($_POST['submit-search'])) :
           $searchInput = mysqli_real_escape_string($conn, $_POST['input-search']);
-          $sql = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%'; ";
+          $sql = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
           $result = mysqli_query($conn, $sql);
           $queryResult = mysqli_num_rows($result);
           if ($queryResult > 0):
               while($row = mysqli_fetch_assoc($result)):
         ?>
 
-        <!-- <tr class="canHov" onclick="window.location='reported-message-content.php';"> -->
 
-      <tr class="canHov">
+      <tr>
 
                   <th scope="row" class="text-truncate"><?php echo $row['lastname']; ?></th>
                   <td class="text-truncate"><?php echo $row['firstname']; ?></td>

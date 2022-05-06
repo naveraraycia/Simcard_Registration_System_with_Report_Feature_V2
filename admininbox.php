@@ -66,38 +66,37 @@ $AdminPass  = $_SESSION['AdminPassword'];
                   <button type="submit" name="btn-primary" class="nav-link logbtn">Logout</button>
                 </form>
               </li>
+
+              <li class='nav-item'>
+                <a class='nav-link selected' style="cursor: context-menu;">Admin: <?php echo "$AdminFName $AdminLName";?></a>
+              </li>
             </ul>
 
-
-
-          <form class="form-inline" action="includes/search.php" method="POST">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="input-search">
-            <button class="log-button search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
-          </form>
 
         </div>
       </nav>
     </header>
 
-<!-- INBOX PART -->
+    <div class="row row-table-head" style="padding-bottom: 15px;">
+      <div class="col-md-3">
+      <p class="header row-head" style="margin-bottom: 0px; align-self: center;">Reported Messages</p>
+      </div>
 
-<div class="row admin-row" style="background-color: white;">
-  <div class="col-md-6" style="padding-left: 2rem;">
-    <p class="header text-truncate">Administrator: <?php echo "$AdminFName $AdminLName";?></p>
-  </div>
+      <div class="col-md-9">
+        <form class="form-inline" action="includes/search.php" method="POST">
+          <input class="form-control mr-sm-2 search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" >
+          <button class="log-button search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
+        </form>
+      </div>
 
-  <div class="col-md-6" style="padding-left: 2rem;">
-    <p class="header text-truncate">Reported Messages</p>
+    </div>
 
-  </div>
 
-</div>
-<!-- <div class="table-responsive"> -->
     <table class="table table-striped inboxtable">
       <thead>
         <tr>
           <th class="f-column text-truncate" scope="col">#</th>
-          <th class="f-column text-truncate" scope="col">Recepient</th>
+          <th class="f-column text-truncate" scope="col">Recipient</th>
           <th class="f-column text-truncate" scope="col">Message</th>
           <th class="f-column text-truncate" scope="col">Date</th>
         </tr>

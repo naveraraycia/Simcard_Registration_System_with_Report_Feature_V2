@@ -66,45 +66,32 @@ $AdminPass  = $_SESSION['AdminPassword'];
                   <button type="submit" name="btn-primary" class="nav-link logbtn">Logout</button>
                 </form>
               </li>
+
+              <li class='nav-item'>
+                <a class='nav-link selected' style="cursor: context-menu;">Admin: <?php echo "$AdminFName $AdminLName";?></a>
+              </li>
+
             </ul>
-
-
-
-          <form class="form-inline" action="includes/search_registered.php" method="POST">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="input-search">
-            <button class="log-button search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
-          </form>
 
         </div>
       </nav>
     </header>
 
-<!-- INBOX PART -->
-
-<!--
-    <div class="row header">
-      <div class="title-cont">
-      <div class="col-md-6">
-        <h4>Administrator: <?php echo "$AdminFName $AdminLName";?></h4>
-      </div>
-        <div class="col-md-6">
-        <h4 class="rep-message">Registered SIM Card Users</h4>
-        </div>
-
-    </div>
-
-    </div> -->
-    <div class="row admin-row" style="background-color: white;">
-      <div class="col-md-6" style="padding-left: 2rem;">
-        <p class="header text-truncate">Administrator: <?php echo "$AdminFName $AdminLName";?></p>
+    <div class="row row-table-head" style="padding-bottom: 15px;">
+      <div class="col-md-3">
+      <p class="header row-head" style="margin-bottom: 0px; align-self: center;">Registered Users</p>
       </div>
 
-      <div class="col-md-6" style="padding-left: 2rem;">
-        <p class="header text-truncate">Registered SIM Card Users</p>
-
+      <div class="col-md-9">
+        <form class="form-inline" action="includes/search_registered.php" method="POST">
+          <input class="form-control mr-sm-2 search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" >
+          <button class="log-button search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
+        </form>
       </div>
 
     </div>
+
+
     <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -132,7 +119,7 @@ $AdminPass  = $_SESSION['AdminPassword'];
               while($row = mysqli_fetch_assoc($result)):
         ?>
 
-        <tr class="canHov">
+        <tr>
 
           <th scope="row" class="text-truncate"><?php echo $row['lastname']; ?></th>
           <td class="text-truncate"><?php echo $row['firstname']; ?></td>

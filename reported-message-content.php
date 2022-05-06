@@ -62,12 +62,17 @@
             <li class='nav-item'>
               <a class='nav-link selected' href='admininbox.php'>Inbox</a>
             </li>
-            </ul>
 
-  
+            <li class="nav-item">
               <form class="form-btnn" action="Logout/logoutprocess_Admin.php" method="POST">
-                <button type="submit" name="btn-primary" class="log-button">Logout</button>
+                <button type="submit" name="btn-primary" class="nav-link logbtn">Logout</button>
               </form>
+            </li>
+
+            <li class='nav-item'>
+              <a class='nav-link selected' style="cursor: context-menu;">Admin: <?php echo "$AdminFName $AdminLName";?></a>
+            </li>
+            </ul>
 
       </div>
     </nav>
