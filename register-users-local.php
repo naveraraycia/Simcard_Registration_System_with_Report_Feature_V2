@@ -90,7 +90,7 @@
         elseif(strpos($fulUrl, "no-result") == true){
           echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
         }
-        elseif(strpos($fulUrl, "Status=empty") == true){
+        elseif(strpos($fulUrl, "nsoempty")==true){
           echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
         }
 

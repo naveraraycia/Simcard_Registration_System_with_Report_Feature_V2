@@ -85,7 +85,8 @@
         }
         elseif(strpos($fulUrl, "no-result") == true){
           echo "<p class= 'nsoexist'>USER NOT FOUND ON DATABASE</p>";
-        }elseif(strpos($fulUrl, "Status=empty") == true){
+        }
+        elseif(strpos($fulUrl, "passempty")==true){
           echo "<p class= 'nsoexist'>PASSPORT NUMBER IS EMPTY</p>";
         }
 
@@ -113,6 +114,7 @@
           elseif(strpos($fulUrl, "imageformaterror") == true){
             echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
           }
+
 
 ?>
 <?php

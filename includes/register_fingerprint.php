@@ -8,6 +8,11 @@ if(isset($_POST['register'])){
   $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
 
   $nso = $_SESSION['nsonumber'];
+  if(empty($nso)){
+    header("Location: ../register-users-local.php?Status=nsoempty");
+  }else{
+    header("Location: ../register-users-local.php?nsonum=.$nso.&button=no-result");
+  }
   $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
   $result = mysqli_query($conn,$query);
 
@@ -115,11 +120,11 @@ if(isset($_POST['register'])){
                   $simnum = "+63". $simnum;
                   mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$nationality,$address,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
                   // RUN PARAMETER INDSIDE DATABASE
-
                   mysqli_stmt_execute($stmt);
                   $result = mysqli_stmt_get_result($stmt);
                   $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
                   move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
+                  unset($_SESSION['nsonumber']);
                   header("Location: ../register-users-local.php?signup=success");
                   // echo "<script> window.location.href='../register-users-local.php?signup=success'; </script>";
                 }
@@ -131,6 +136,4 @@ if(isset($_POST['register'])){
       mysqli_stmt_close($stmt);
       mysqli_close($conn);
     }
-  }else{
-    header("Location: ../register-users-local.php?nsonum=.$nso.&button=no-result");
   }

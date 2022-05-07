@@ -8,8 +8,14 @@ if(isset($_POST['register'])){
   $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
 
   $passport = $_SESSION['passportnumber'];
+  if(empty($passport)){
+    header("Location: ../register-users-foreign.php?Status=passempty");
+  }else{
+    header("Location: ../register-users-foreign.php?nsonum=.$nso.&button=no-result");
+  }
      $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
      $result = mysqli_query($conn,$query);
+
 
      if (mysqli_num_rows($result) > 0) {
        // if there is a result
@@ -120,7 +126,7 @@ if(isset($_POST['register'])){
                      $result = mysqli_stmt_get_result($stmt);
                      $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
                      move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
-                     // echo "<script> window.location.href='../register-users-foreign.php?signup=success'; </script>";
+                     unset($_SESSION['passportnumber']);
                      header("Location: ../register-users-foreign.php?signup=success");
                    }
                  }
@@ -132,6 +138,3 @@ if(isset($_POST['register'])){
          mysqli_close($conn);
        }
      }
-     else{
-      header("Location: ../register-users-foreign.php?nsonum=.$nso.&button=no-result");
-  }
