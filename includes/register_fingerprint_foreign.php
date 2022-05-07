@@ -5,6 +5,7 @@ session_start();
 
 
 if(isset($_POST['register'])){
+  $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
 
   $passport = $_SESSION['passportnumber'];
      $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
@@ -23,8 +24,6 @@ if(isset($_POST['register'])){
          $nationality = $row['nationality'];
 
        }
-
-
 
      // DATA FROM REGIS
      $address = $_POST['address'];
@@ -57,8 +56,8 @@ if(isset($_POST['register'])){
        $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
        $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
 
-
-         $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnum';";
+        $simnumber = "+63".$simnum;
+         $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
          $result = mysqli_query($conn, $sqlnso);
          $resultsCheck = mysqli_num_rows($result);
          if($resultsCheck == 1){
@@ -132,6 +131,10 @@ if(isset($_POST['register'])){
          mysqli_stmt_close($stmt);
          mysqli_close($conn);
        }
-     }else{
+     }
+     if(empty($nso)){
+         header("Location: ../register-users-local.php?Status=empty");
+       }
+     else{
       header("Location: ../register-users-foreign.php?nsonum=.$nso.&button=no-result");
   }

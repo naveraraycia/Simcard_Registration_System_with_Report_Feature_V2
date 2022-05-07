@@ -90,6 +90,9 @@
         elseif(strpos($fulUrl, "no-result") == true){
           echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
         }
+        elseif(strpos($fulUrl, "Status=empty") == true){
+          echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
+        }
 
         // error message for mobile number
         elseif(strpos($fulUrl, "incorrectNum")==true){
@@ -168,12 +171,12 @@
           </div>
           <div class="col-md-6 infodiv">
             <label class="labelings">NSO Barcode Number</label>
-            <input id="nsonum" required type="text" name="nsonum" class="form-control"value="<?php
+            <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
               if (isset($_GET['nsonum'])) {
                 echo $_GET['nsonum'];
                 $_SESSION['nsonumber'] = $_GET['nsonum'];
               }
-             ?>" >
+             ?>" required >
           </div>
 
         </div>
@@ -257,7 +260,7 @@
    }
   } else {
     // header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
-    header("Location: ../Sim_Card_Registration_System_Final_Version/register-users-local.php?no-result=nsonum='.$nso.'&button");
+    header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/register-users-local.php?no-result=nsonum='.$nso.'&button");
     // echo "NO RESULT";
 
   }
@@ -301,11 +304,11 @@
          </div>
          <div class="col-md-6 infodiv">
            <label class="labelings">NSO Barcode Number</label>
-           <input id="nsonum" type="text" name="nsonum" required class="form-control"value="<?php
+           <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
              if (isset($_GET['nsonum'])) {
                echo $_GET['nsonum'];
              }
-            ?>">
+            ?>" required>
          </div>
 
        </div>

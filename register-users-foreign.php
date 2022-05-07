@@ -246,7 +246,7 @@
            <?php
          }
        } else {
-         header("Location: ../Sim_Card_Registration_System_Final_Version/register-users-foreign.php?no-result=nsonum='.$passport.'&button");
+         header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/register-users-foreign.php?no-result=nsonum='.$passport.'&button");
          // echo "No results !";
        }
 } else {
