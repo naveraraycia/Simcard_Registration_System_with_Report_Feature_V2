@@ -6,9 +6,6 @@ session_start();
 
 if(isset($_POST['register'])){
   $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
-  if(empty($nso)){
-
-
 
   $nso = $_SESSION['nsonumber'];
   $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
@@ -67,8 +64,6 @@ if(isset($_POST['register'])){
     // header("Location: Sim_Card_Registration_System_Final_Version/register-users-local.php?error=simnum-already-exist");
     // echo "<script> window.location.href='../register-users-local.php?error=simnum-already-exist'; </script>";
 
-  }if(empty($nso)){
-    header("Location: ../register-users-local.php?Status=empty");
   }else{
     $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,nationality,address,simcard, simnum,regisite,dateofregis,time,fingerprint_File_Format, fingerprint_File_Name)
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
@@ -136,15 +131,6 @@ if(isset($_POST['register'])){
       mysqli_stmt_close($stmt);
       mysqli_close($conn);
     }
-  }header("Location: ../register-users-local.php?Status=empty");
-  exit();
-  else {
-    header("Location: ../register-users-local.php?signup=success");
-  }
   }else{
     header("Location: ../register-users-local.php?nsonum=.$nso.&button=no-result");
   }
-
-  // if(empty($nso)){
-  //     header("Location: ../register-users-local.php?Status=empty");
-  //   }

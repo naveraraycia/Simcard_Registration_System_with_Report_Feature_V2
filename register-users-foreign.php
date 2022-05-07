@@ -85,7 +85,10 @@
         }
         elseif(strpos($fulUrl, "no-result") == true){
           echo "<p class= 'nsoexist'>USER NOT FOUND ON DATABASE</p>";
+        }elseif(strpos($fulUrl, "Status=empty") == true){
+          echo "<p class= 'nsoexist'>PASSPORT NUMBER IS EMPTY</p>";
         }
+
           // error message for mobile number
           elseif(strpos($fulUrl, "incorrectNum")==true){
           echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";

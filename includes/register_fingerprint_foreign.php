@@ -132,9 +132,6 @@ if(isset($_POST['register'])){
          mysqli_close($conn);
        }
      }
-     if(empty($nso)){
-         header("Location: ../register-users-local.php?Status=empty");
-       }
      else{
       header("Location: ../register-users-foreign.php?nsonum=.$nso.&button=no-result");
   }
