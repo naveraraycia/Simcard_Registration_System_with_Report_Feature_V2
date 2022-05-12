@@ -57,7 +57,7 @@ if(isset($_POST['reportbutton'])){
               }else{
                 if(empty($Message)){
                   header("Location: ../profile-user.php?reportPage&ReportStatus=NoMessage");
-                }else{
+                }else{ 
                 $numbercount = strlen($Reported_Num);
                 if($numbercount == 10){  //ERROR HANDLERS FOR INCORRECT DIGITS/CHARACTERS LENGTH
 
