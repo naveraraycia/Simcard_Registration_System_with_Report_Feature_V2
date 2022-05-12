@@ -53,6 +53,8 @@
           echo "<p class= 'errormessage'> Incorrect digit length. Please make sure the digit length is correct </p>";
       }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=success") == true){
           echo "<p class= 'successmsg'>Your report has been successfully sent</p>";
+      }elseif(strpos($fulUrl,"profile-user.php?reportPage&ReportStatus=empty") == true){
+          echo "<p class= 'successmsg'>Your report has been successfully sent</p>";
       };
 
       echo "
