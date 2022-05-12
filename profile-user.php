@@ -1,10 +1,10 @@
 <?php
   require "navbar.php";
   include_once 'dbh/EndUser.inc.php';
-  // if (empty($_SESSION['UserNumber'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+  if (empty($_SESSION['UserNumber'])){
+    header("Location: index.php");
+    exit();
+  }
   $SimCardNumber = $_SESSION['UserNumber'] ;
   $LastName      = $_SESSION['UserLast']  ;
   $FirstName     = $_SESSION['UserFirst']  ;
