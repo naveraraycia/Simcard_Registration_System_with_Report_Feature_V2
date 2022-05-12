@@ -25,8 +25,8 @@ if(isset($_POST['reportbutton'])){
   $UserSuffix        = $_SESSION['UserSuffix'];
   $UserSuffix_B      = ", ".$UserSuffix;
   $Middle            = substr($UserMiddlename,0,1);
-  $Victim_Name       = $LastName.", ".$FirstName." ".$Middle.$UserSuffix_B;
-  $Victim_Name_B     = $LastName.", ".$FirstName." ".$Middle.$UserSuffix;
+  $Victim_Name       = $LastName.", ".$FirstName." ".$Middle." ".$UserSuffix_B;
+  $Victim_Name_B     = $LastName.", ".$FirstName." ".$Middle." ".$UserSuffix;
   $Victim_Image_Name = $LastName."-".$FirstName."_".$Middle;
   $Victim_Num        = $SimCardNumber;
    ///////////////////////////////// GETTING IMAGE DETAILS  /////////////////////////////////
@@ -51,7 +51,7 @@ if(isset($_POST['reportbutton'])){
             header("Location: ../profile-user.php?reportPage&ReportStatus=empty");
             exit();
           }else{
-              if(!preg_match('/^[0-9]*$/',$Reported_Num)){ //ERROR HANDLERS FOR NOT INTEGER/NUMBER 
+              if(!preg_match('/^[0-9]*$/',$Reported_Num)){ //ERROR HANDLERS FOR NOT INTEGER/NUMBER
                 header("Location:../profile-user.php?reportPage&ReportStatus=InvalidFormat");
                 exit();
               }else{
