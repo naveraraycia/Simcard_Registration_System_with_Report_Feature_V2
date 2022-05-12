@@ -55,6 +55,9 @@ if(isset($_POST['reportbutton'])){
                 header("Location:../profile-user.php?reportPage&ReportStatus=InvalidFormat");
                 exit();
               }else{
+                if(empty($Message)){
+                  header("Location: ../profile-user.php?reportPage&ReportStatus=NoMessage");
+                }else{
                 $numbercount = strlen($Reported_Num);
                 if($numbercount == 10){  //ERROR HANDLERS FOR INCORRECT DIGITS/CHARACTERS LENGTH
 
@@ -66,6 +69,7 @@ if(isset($_POST['reportbutton'])){
                     exit();
                   }else{
                     if(in_array($fileActualExt,$allowed)){   //IF FILE IS JPG,PNG,JPEG
+                      if(empty())
                           if($fileError === 0){                  //IF FILE HAS A PROBLEM
                               if($fileSize<20000000){              // IF FILE SIZE IS NOT LARGE
                   //////////////////////////////////////// INITIALIZING THE INPUTS TO DATABASE  ////////////////////////////////////////
@@ -131,6 +135,7 @@ if(isset($_POST['reportbutton'])){
                           header("Location:../profile-user.php?reportPage&ReportStatus=numberlength");
                           exit();
                         } //line 123 end
+                      }
                       } //line 62 end
                      // line 58 end
                   } // line 53 end
