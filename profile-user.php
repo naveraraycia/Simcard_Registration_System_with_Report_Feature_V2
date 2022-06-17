@@ -1,25 +1,25 @@
 <?php
   require "navbar.php";
   include_once 'dbh/EndUser.inc.php';
-  if (empty($_SESSION['UserNumber'])){
-    header("Location: index.php");
-    exit();
-  }
-  $SimCardNumber = $_SESSION['UserNumber'] ;
-  $LastName      = $_SESSION['UserLast']  ;
-  $FirstName     = $_SESSION['UserFirst']  ;
-  $Gender        = $_SESSION['UserGender']  ;
-  $Birthdate     = $_SESSION['UserBirthdate'];
-  $Address       = $_SESSION['UserAddress']  ;
-  $Nationality   = $_SESSION['UserNationality'];
-  $TypeofUser    = $_SESSION['UserType'] ;
-  $DateofRegist  = $_SESSION['UserDatReg'];
-  $TimeofReg     = $_SESSION['UserTimeReg'];
-  $RegSite       = $_SESSION['UserRegSite'] ;
-  $SimCard       = $_SESSION['UserSimCard']  ;
-  $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
-  $Suffix        = " ".$_SESSION['UserSuffix']." ";
-  $MiddleName    = $MiddleName.".";
+  // if (empty($_SESSION['UserNumber'])){
+  //   header("Location: index.php");
+  //   exit();
+  // }
+  // $SimCardNumber = $_SESSION['UserNumber'] ;
+  // $LastName      = $_SESSION['UserLast']  ;
+  // $FirstName     = $_SESSION['UserFirst']  ;
+  // $Gender        = $_SESSION['UserGender']  ;
+  // $Birthdate     = $_SESSION['UserBirthdate'];
+  // $Address       = $_SESSION['UserAddress']  ;
+  // $Nationality   = $_SESSION['UserNationality'];
+  // $TypeofUser    = $_SESSION['UserType'] ;
+  // $DateofRegist  = $_SESSION['UserDatReg'];
+  // $TimeofReg     = $_SESSION['UserTimeReg'];
+  // $RegSite       = $_SESSION['UserRegSite'] ;
+  // $SimCard       = $_SESSION['UserSimCard']  ;
+  // $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
+  // $Suffix        = " ".$_SESSION['UserSuffix']." ";
+  // $MiddleName    = $MiddleName.".";
 
 ?>
 
@@ -133,29 +133,29 @@
 
         <div class='infodiv'>
           <p class='labelings'>Name</p>
-          <p class='information'>$FirstName $LastName $MiddleName $Suffix</p>
+          <p class='information'>Jasmin Liz Duenas</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Gender</p>
-          <p class='information'>$Gender</p>
+          <p class='information'>F</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Birthdate</p>
-          <p class='information'>$Birthdate</p>
+          <p class='information'>1999-10-11</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Address</p>
-          <p class='information'>$Address</p>
+          <p class='information'>Earth, Philippines</p>
         </div>
 
 
 
         <div class='infodiv'>
           <p class='labelings'>Nationality</p>
-          <p class='information'>$Nationality</p>
+          <p class='information'>Filipino</p>
         </div>
 
       </div>
@@ -164,38 +164,64 @@
         <!-- INFO COLUMN 2 -->
         <div class='infodiv'>
           <p class='labelings'>Sim Card Number</p>
-          <p class='information'>$SimCardNumber</p>
+          <p class='information'>+639000000000</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Type of User</p>
-          <p class='information'>$TypeofUser</p>
+          <p class='information'>Local</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Date of Registration</p>
-          <p class='information'>$DateofRegist</p>
+          <p class='information'>2021-04-18</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Time of Registration</p>
-          <p class='information'>$TimeofReg</p>
+          <p class='information'>lorem ipsum</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Registration Site</p>
-          <p class='information'>$RegSite</p>
+          <p class='information'>Cavite SIM shop</p>
         </div>
       </div>
 
       <div class='col-md-4 infocol3'>
         <div class='infodiv'>
           <p class='labelings'>Sim Card Type</p>
-          <p class='information'>$SimCard</p>
+          <p class='information'>existing prepaid user</p>
+        </div>
+
+        <div class='infodiv'>
+          <p class='labelings'>SIM status</p>
+          <p class='information'>first offense</p>
+        </div>
+
+        <div class='infodiv'>
+          <p class='labelings'>Penalty</p>
+          <p class='information'>1</p>
+        </div>
+
+        <div class='infodiv'>
+          <p class='labelings'>Date Blocked</p>
+          <p class='information'>2022-11-04</p>
+        </div>
+
+        <div class='infodiv'>
+          <p class='labelings'>End of Block Period</p>
+          <p class='information'>2023-01-04</p>
+        </div>
+
+        <div class='infodiv'>
+          <p class='labelings'>Registered by SIM retailer</p>
+          <p class='information'>Jennie Kim</p>
         </div>
       </div>
     </div>
     </form>";
+
   }
   ?>
 
