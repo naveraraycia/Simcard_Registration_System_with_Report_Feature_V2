@@ -117,12 +117,14 @@
           echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
         }
         elseif(strpos($fulUrl, "no-result") == true){
-          echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
+          echo "<p class= 'nsoexist'>USER NOT FOUND ON PASSPORT DATABASE</p>";
         }
         elseif(strpos($fulUrl, "nsoempty")==true){
           echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
         }
-
+        elseif(strpos($fulUrl, "exceed")==true){
+          echo "<p class= 'nsoexist'>YOU HAVE ALREADY REGISTERED 3 SIM CARDS</p>";
+        }
         // error message for mobile number
         elseif(strpos($fulUrl, "incorrectNum")==true){
         echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
@@ -158,7 +160,11 @@
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
-        // if there is a result
+        include 'SellerError.php';
+        $exceed= checkPenalty($conn,$passport);
+        if($exceed == true){
+          header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-passport.php?exceed");
+        }
         foreach ($result as $row) {
           ?>
           <div class="row">

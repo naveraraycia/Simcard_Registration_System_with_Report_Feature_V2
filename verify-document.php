@@ -122,7 +122,9 @@
         elseif(strpos($fulUrl, "nsoempty")==true){
           echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
         }
-
+        elseif(strpos($fulUrl, "exceed")==true){
+          echo "<p class= 'nsoexist'>YOU HAVE ALREADY REGISTERED 3 SIM CARDS</p>";
+        }
         // error message for mobile number
         elseif(strpos($fulUrl, "incorrectNum")==true){
         echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
@@ -154,13 +156,18 @@
 ?>
 <?php
 // BUTTON CLICKED : WITH RESULTS
+// ========================================================== NAG PRESS NA =========================================================
   if(isset($_GET['nsonum'])){
     $nso = $_GET['nsonum'];
     $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
-        // if there is a result
+        include 'SellerError.php';
+        $exceed= checkPenalty($conn,$nso);
+        if($exceed == true){
+          header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?exceed");
+        }
         foreach ($result as $row) {
           ?>
         <!-- FIRST ROW -->
