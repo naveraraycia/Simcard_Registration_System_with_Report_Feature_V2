@@ -103,10 +103,10 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #c8ece4;">
       <div class="row header">
-            <h2>Verify NSO Document</h2>
+            <h2>Verify Passport Document</h2>
           </div>
 
-          <form class="" action="verify-document.php" method="GET">
+          <form class="" action="verify-passport.php" method="GET">
 <?php
         $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -149,72 +149,71 @@
         }
 
 
-
-
 ?>
 <?php
 // BUTTON CLICKED : WITH RESULTS
-  if(isset($_GET['nsonum'])){
-    $nso = $_GET['nsonum'];
-    $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
+  if(isset($_GET['passnum'])){
+    $passport = $_GET['passnum'];
+    $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
         // if there is a result
         foreach ($result as $row) {
           ?>
-        <!-- FIRST ROW -->
-        <div class="row">
-
-          <div class="col-md-3 infodiv">
-            <label class="labelings">Last Name</label>
-            <input id="lastname" type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>" disabled>
+          <div class="row">
+            <div class="col-md-3">
+              <label class="labelings">Last Name</label>
+              <input type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>" disabled>
+            </div>
+            <div class="col-md-3">
+              <label class="labelings">First Name</label>
+              <input type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>" disabled>
+            </div>
+            <div class="col-md-3">
+              <label class="labelings">Middle Name</label>
+              <input type="text" name="midname" class="form-control"  value="<?= $row['midname'] ?>" disabled>
+            </div>
+            <div class="col-md-3">
+              <label class="labelings">Suffix</label>
+              <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>" disabled>
+            </div>
           </div>
 
-          <div class="col-md-3 infodiv">
-            <label class="labelings">First Name</label>
-            <input id="firstname" type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>" disabled>
-          </div>
+          <!-- SECOND ROW -->
+          <div class="row srow">
+            <div class="col-md-3">
+              <label class="labelings">Date of Birth</label>
+              <input type="date" name="dateofbirth" class="form-control"  value="<?= $row['dateofbirth'] ?>" disabled>
+            </div>
+            <div class="col-md-3 ">
+              <label class="labelings">Gender</label>
+              <input type="text" name="Gender" class="Gender form-control"  value="<?= $row['gender'] ?>" disabled>
+            </div>
+           <div class="col-md-6">
+             <label class="labelings">Nationality</label>
+             <input type="text" name="nationality" class="form-control" value="<?= $row['nationality'] ?>" disabled>
+           </div>
+         </div>
 
-          <div class="col-md-3 infodiv">
-            <label class="labelings">Middle Name</label>
-            <input id="midname" type="text" name="midname" class="form-control" value="<?= $row['midname'] ?>" disabled>
-          </div>
-
-          <div class="col-md-3">
-            <label class="labelings">Suffix</label>
-            <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>" disabled>
-          </div>
-
-        </div>
-
-        <!-- SECOND ROW -->
-        <div class="row srow">
-          <div class="col-md-3 infodiv">
-            <label class="labelings">Date of Birth</label>
-            <input id="dateofbirth" type="date" name="dateofbirth"  class="form-control" value="<?= $row['dateofbirth'] ?>" disabled>
-          </div>
-          <div class="col-md-3">
-            <label class="labelings">Gender</label>
-            <input  type="text" name="Gender"  class="Gender form-control" value="<?= $row['gender'] ?>" disabled>
-          </div>
-          <div class="col-md-6 infodiv">
-            <label class="labelings">NSO Barcode Number</label>
-            <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
-              if (isset($_GET['nsonum'])) {
-                echo $_GET['nsonum'];
-                $_SESSION['nsonumber'] = $_GET['nsonum'];
-              }
+         <!-- THIRD ROW -->
+         <div class="row srow">
+           <div class="col-md-12 ">
+             <label class="">Passport Number</label>
+             <input type="text" required name="passnum" class="form-control" value="<?php
+             if (isset($_GET['passnum'])) {
+               echo $_GET['passnum'];
+               $_SESSION['passportnumber'] = $_GET['passnum'];
+             }
              ?>" disabled>
-          </div>
-
-        </div>
+           </div>
+         </div>
 
 
         <!-- BUTTON ROW -->
         <div class="row srow nsobutton" style="display:none;">
           <div class="col-12 infodiv">
-          <button type="submit" name="button" class="send-btn db" onclick="verify-document.php">Search Database</button>
+          <button type="submit" name="button" class="send-btn db" onclick="verify-passport.php">Search Database</button>
         </div>
 
 
@@ -224,13 +223,13 @@
 
 <div class="row" style="margin-top: 2rem;">
   <div class="col-6 infodiv" style="padding-left: 0px;">
-    <a href="verify-document.php">
-    <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php" >Go back</button></a>
+    <a href="verify-passport.php">
+    <button type="submit" name="button" class="send-btn db" onclick="verify-passport.php" >Go back</button></a>
 </div>
 
   <div class="col-6 infodiv" style="padding-left: 0px;">
-    <a href="register-users-local.php">
-    <button type="submit" name="button" class="send-btn db" onclick="register-users-local.php" >Proceed to registration</button></a>
+    <a href="register-users-foreign.php">
+    <button type="submit" name="button" class="send-btn db" onclick="register-users-foreign.php" >Proceed to registration</button></a>
 </div>
 
 
@@ -240,66 +239,70 @@
        <?php
    }
   } else {
-    // header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
-    header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?no-result=nsonum='.$nso.'&button");
+    header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-passport.php?no-result=nsonum='.$passport.'&button");
+    // header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?no-result=nsonum='.$nso.'&button");
     // echo "NO RESULT";
 
   }
 } else {
   // INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD
 ?>
-<form class="" action="register-users-local.php" method="GET">
- <div class="row">
-  <div class="col-md-3">
-     <label class="labelings">Last Name</label>
-     <input type="text" name="lastname" class="form-control" disabled>
+<form class="" action="register-users-foreign.php" method="GET">
 
-     </div>
+  <div class="row">
+    <div class="col-md-3">
+      <label class="labelings">Last Name</label>
+      <input type="text" name="lastname" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label class="labelings">First Name</label>
+      <input type="text" name="firstname" class="form-control" disabled>
+    </div>
+    <div class="col-md-3">
+      <label class="labelings">Middle Name</label>
+      <input type="text" name="midname" class="form-control"  disabled>
+    </div>
+    <div class="col-md-3">
+      <label class="labelings">Suffix</label>
+      <input type="text" name="suffix" class="form-control" disabled>
+    </div>
+  </div>
 
-     <div class="col-md-3">
-     <label class="labelings">First Name</label>
-     <input type="text" name="firstname" class="form-control" disabled>
-     </div>
+  <!-- SECOND ROW -->
+  <div class="row srow">
+    <div class="col-md-3">
+      <label class="labelings">Date of Birth</label>
+      <input type="date" name="dateofbirth" class="form-control"  disabled>
+    </div>
+    <div class="col-md-3 ">
+      <label class="labelings">Gender</label>
+      <input type="text" name="Gender" class="Gender form-control" disabled>
+    </div>
+   <div class="col-md-6">
+     <label class="labelings">Nationality</label>
+     <input type="text" name="nationality" class="form-control" disabled>
+   </div>
+ </div>
 
-     <div class="col-md-3">
-     <label class="labelings">Middle Name</label>
-     <input type="text" name="midname" class="form-control" disabled>
-     </div>
-
-     <div class="col-md-3">
-     <label class="labelings">Suffix</label>
-     <input type="text" name="suffix" class="form-control" disabled>
-     </div>
-
-     </div>
-
-     <!-- SECOND ROW -->
-     <div class="row srow">
-       <div class="col-md-3 infodiv">
-         <label class="labelings">Date of Birth</label>
-         <input id="dateofbirth" type="date" name="dateofbirth"  class="form-control" disabled>
-       </div>
-       <div class="col-md-3">
-         <label class="labelings">Gender</label>
-         <input  type="text" name="Gender"  class="Gender form-control" disabled>
-       </div>
-       <div class="col-md-6 infodiv">
-         <label class="labelings">NSO Barcode Number</label>
-         <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?php
-           if (isset($_GET['nsonum'])) {
-             echo $_GET['nsonum'];
-           }
-          ?>" required>
-       </div>
-
-     </div>
+ <!-- THIRD ROW -->
+ <div class="row srow">
+   <div class="col-md-12 ">
+     <label class="">Passport Number</label>
+     <input type="text" required name="passnum" class="form-control" value="<?php
+     if (isset($_GET['passnum'])) {
+       echo $_GET['passnum'];
+       $_SESSION['passportnumber'] = $_GET['passnum'];
+     }
+     ?>" >
+   </div>
+ </div>
 
 
 
      <!-- BUTTON ROW -->
      <div class="row srow nsobutton">
        <div class="col-12 infodiv">
-       <button type="submit" name="button" class="send-btn db" onclick="verify-document.php">Search Database</button>
+       <button type="submit" name="button" class="send-btn db" onclick="verify-passport.php">Search Database</button>
      </div>
      </div>
 

@@ -167,7 +167,7 @@
   </div>
 
   <div class="col-md-3">
-    <a href="#"><button type="button" name="button" class="send-btn">Foreign user</button></a>
+    <a href="verify-passport.php"><button type="button" name="button" class="send-btn">Foreign user</button></a>
   </div>
 
   <div class="col-md-3">
