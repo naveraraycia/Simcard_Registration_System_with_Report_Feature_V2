@@ -93,7 +93,7 @@
                 </li>
 
                 <li class='nav-item'>
-                  <a class='nav-link' href='#'>Profile</a>
+                  <a class='nav-link' href='seller-profile.php'>Profile</a>
                 </li>
 
               </ul>

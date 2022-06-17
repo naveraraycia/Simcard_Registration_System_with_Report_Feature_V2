@@ -81,12 +81,13 @@
                 <a class='nav-link selected' href='data-privacy-act.php'>Register User</a>
               </li>
 
+
               <li class='nav-item'>
                 <a class='nav-link' href='seller-home.php'>Home</a>
               </li>
 
               <li class='nav-item'>
-                <a class='nav-link' href='#'>Profile</a>
+                <a class='nav-link' href='seller-profile.php'>Profile</a>
               </li>
 
             </ul>
