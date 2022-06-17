@@ -73,23 +73,40 @@
     </nav>
   </header>
 
-<!-- INBOX PART -->
+    <div class="row" style="padding-bottom: 15px;">
+      <div class="col-md-12">
+      <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;">SIMs registered by your shop</p>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 2px; margin-top: 1rem;">
+
+            <form class="form-inline" action="seller-SIM-list-search.php" method="POST">
+              <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width: 375px;">
+              <button class="log-buttons search-btn" type="submit" name="submit-search">Search</button>
+            </form>
 
 
-
-<div class="row row-table-head" style="padding-bottom: 15px;">
-  <div class="col-md-3">
-  <p class="header row-head" style="margin-bottom: 0px; align-self: center;">Registered Users</p>
-  </div>
-
-  <div class="col-md-9">
-    <form class="form-inline" action="seller-SIM-list-search.php" method="POST">
-      <input class="form-control mr-sm-2 search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" >
-      <button class="log-buttons search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
+              <form action="#">
+      <div class="form-row align-items-center" style="justify-content:center;">
+        <div class="">
+          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option selected>All</option>
+            <option value="1">No offense</option>
+            <option value="2">With offense</option>
+            <option value="3">First offense</option>
+            <option value="4">Second offense</option>
+            <option value="5">Third offense</option>
+          </select>
+        </div>
+        <div class="col-auto my-1">
+          <button type="submit" class="log-buttons search-btn" name="filter-search" style="margin-top:0px;">Go</button>
+        </div>
+      </div>
     </form>
-  </div>
 
-</div>
+            </div>
 
 <div class="table-responsive">
     <table class="table table-striped">

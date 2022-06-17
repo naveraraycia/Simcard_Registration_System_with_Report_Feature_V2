@@ -308,12 +308,9 @@ h2 {
   top: 5px;
 }
 
-.search-input {
-  width: 75%!important;
-}
-
-
-
+/* .search-input {
+  width: 30%!important;
+} */
 
 
 /* MEDIA QUERY FOR NAV BAR */
@@ -325,6 +322,7 @@ h2 {
   margin-bottom: 0rem !important;
 }
 
+
 .col-md-3 {
   flex: 0 0 55%;
   max-width: 55%;
@@ -335,9 +333,9 @@ h2 {
   max-width: 45%;
 }
 
-.search-input {
-  width: 50%!important;
-}
+/* .search-input {
+  width: 30%!important;
+} */
 
 }
 
@@ -364,18 +362,16 @@ h2 {
       justify-content: center;
 }
 
-.search-input {
-    width: 50%!important;
-}
+/* .search-input {
+    width: 30%!important;
+} */
 
 .row-table-head {
   display: flex;
   justify-content: center
   align-items: center
 }
-}
 
-@media only screen and (max-width: 768px) {
 .log-button {
   margin-bottom: 1rem;
 }
@@ -401,6 +397,13 @@ h2 {
 
 }
 
+@media only screen and (max-width: 870px) {
+  .search-input {
+    width: 200px!important;
+  }
+}
+
+
 @media only screen and (max-width: 570px) {
 .brandname {
   font-size: 14px;
@@ -419,7 +422,7 @@ h2 {
 }
 
   .search-btn {
-    margin-right: 0px!important;
+  margin-right: 24px!important;
 }
 
 .row-head {
@@ -442,6 +445,10 @@ h2 {
       .row-second {
         width: 40%!important;
         padding-left: 0rem!important;
+      }
+
+      .search-input {
+        width: 115px!important;
       }
 
 
