@@ -59,37 +59,47 @@
 
     </style>
 </head>
-  <body style="background-color: white;">
-    <!-- NAVBAR PART -->
-    <header>
+<body style="background-color: white;">
+  <!-- NAVBAR PART -->
+  <header>
 
-      <nav class="navbar navbar-expand-lg">
-        <a class="div1 navbar-brand" href="register-users-local.php">
-            <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
-            <span class="brandname">SIM shop: Cavite SIM Shop</span>
-          </a>
+    <nav class="navbar navbar-expand-lg">
+      <a class="div1 navbar-brand" href="register-users-local.php">
+          <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
+          <span class="brandname">SIM shop: Cavite SIM Shop</span>
+        </a>
 
-        <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav">
 
 
         <ul class='navbar-nav'>
               <li class='nav-item'>
                 <a class='nav-link selected' href='data-privacy-act.php'>Register User</a>
               </li>
+
+              <li class='nav-item'>
+                <a class='nav-link' href='seller-home.php'>Home</a>
+              </li>
+
+              <li class='nav-item'>
+                <a class='nav-link' href='#'>Profile</a>
+              </li>
+
             </ul>
 
 
 
-          <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
-            <button type="submit" name="btn-primary" class="log-button">Logout</button>
-          </form>
-        </div>
-      </nav>
-    </header>
+
+        <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
+          <button type="submit" name="btn-primary" class="log-button">Logout</button>
+        </form>
+      </div>
+    </nav>
+  </header>
 
     <!-- BODY PART -->
     <div class="container" style="background-color: #c8ece4;">

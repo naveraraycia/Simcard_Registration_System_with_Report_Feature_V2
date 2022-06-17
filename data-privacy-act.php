@@ -77,12 +77,21 @@
         <div class="collapse navbar-collapse" id="navbarNav">
 
 
-        <ul class='navbar-nav'>
-              <li class='nav-item'>
-                <a class='nav-link selected' href='data-privacy-act.php'>Register User</a>
-              </li>
+          <ul class='navbar-nav'>
+                <li class='nav-item'>
+                  <a class='nav-link selected' href='data-privacy-act.php'>Register User</a>
+                </li>
 
-            </ul>
+                <li class='nav-item'>
+                  <a class='nav-link' href='seller-home.php'>Home</a>
+                </li>
+
+                <li class='nav-item'>
+                  <a class='nav-link' href='#'>Profile</a>
+                </li>
+
+              </ul>
+
 
 
 
@@ -154,7 +163,7 @@
 
 <div class="row">
   <div class="col-md-6">
-      <a href="#"><button class="send-btn">Go back to home</button></a>
+      <a href="seller-home.php"><button class="send-btn">Go back to home</button></a>
   </div>
 
   <div class="col-md-6">

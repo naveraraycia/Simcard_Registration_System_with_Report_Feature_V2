@@ -1,0 +1,588 @@
+body {
+  font-family: 'League Spartan', sans-serif;
+  background-color: #c1ebe2;
+  padding-bottom: 3rem;
+}
+.inboxtable {
+  table-layout: fixed;
+}
+
+.noResult {
+  color: #497E87;
+  margin: auto;
+}
+
+.row {
+  margin-right: auto;
+}
+
+/* SCRENESHOT BUTTON WITH HIDDEN CHOOSE FILE */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  top: 1rem;
+  /* left: 14px; */
+}
+
+.form-control-file, .form-control-range {
+    width: 187px!important;
+}
+
+.form-control:focus {
+  border-color: #c1ebe2!important;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem #c1ebe2!important;
+}
+
+
+.navbar-collapse {
+  justify-content: right;
+}
+
+.navbar {
+    padding: 0rem 2rem !important;
+    background-color: #2f5a62;
+}
+
+.nav-link {
+  margin-right: 5rem;
+  font-weight: bold;
+  color: #C1EBE3;
+}
+
+.brandname {
+  position: relative;
+  top: 5px;
+  font-weight: 600;
+  color: white;
+}
+
+.div1 {
+  padding: 1.2rem;
+  border-radius: 0 0 5px 5px;
+}
+
+
+.log-button {
+    /* padding: 0; */
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: #C1EBE3;
+    position: relative;
+    right: 6px;
+    margin-top: 5px;
+}
+
+.nav-link:hover{
+  color: white !important;
+  /* background-color: white;
+  border-radius: 8px; */
+}
+
+.search-btn {
+    border: solid 3px #2f5a62 !important;
+    color: white !important;
+    border-radius: 8px !important;
+    margin-right: 25px;
+    right: 50px;
+    height: 40px;
+}
+
+.search-btn:hover{
+  background-color: #2f5a62 !important;
+  color: white !important;
+}
+
+.log-button:hover{
+  color: white !important;
+}
+
+.log-buttons {
+  border: none;
+  background: #2f5a62;
+  font-weight: bold;
+  color: #C1EBE3;
+  position: relative;
+  right: 0px;
+  margin-top: 5px;
+  margin-right: 3rem;
+  margin-left: 1rem;
+}
+
+.log-buttons:hover {
+  background-color:#4b8f9c!important;
+  color: white!important;
+  border-color: #4b8f9c!important;
+}
+
+.selected {
+  color: white !important;
+
+}
+
+/* minimized navbar button collapse */
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+  border-color: white;
+}
+
+/* REGISTER BODY PART */
+
+.container {
+  background-color: white;
+  margin-top: 2rem;
+  padding: 3rem 3rem;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-weight: bold;
+  color: #2f5a62;
+  font-size: 25px;
+  margin-bottom: 2rem;
+}
+
+/* PHP success */
+.regsuccess {
+  text-align: center;
+  font-weight: bold;
+  color: #18CC5D;
+  margin-top: 20px;
+}
+/* PHP account already exist */
+.nsoexist{
+  text-align: center;
+  font-weight: bold;
+  color: #ff5f56;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+
+
+.row {
+  justify-content: center;
+}
+
+/* SECOND ROW */
+.srow {
+  margin-top: 2rem;
+}
+
+
+/* NSO BUTTON */
+.nsobutton{
+  /* width: 50%!important; */
+  border-width: 0;
+}
+
+.labelings {
+  margin-top: 1rem;
+}
+
+
+/* BUTTONS */
+.send-btn {
+  background-color: #2f5a62;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  height: 40px;
+  border-radius: 6px 6px 6px 6px;
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border-width: 0;
+}
+
+.send-btn:hover {
+  background-color: #c1ebe2;
+  cursor: pointer;
+  color: #2f5a62;
+}
+
+
+.row {
+  margin-bottom: -2rem;
+  /* height: 56px; */
+  padding-top: 15px;
+  /* margin-top: 2rem; */
+}
+
+.header {
+  font-weight: bold !important;
+  color: #2f5a62;
+  font-size: 20px;
+}
+
+.rep-message {
+  margin-left: 3rem !important;
+}
+
+.table {
+  background-color: white;
+  margin-top: 2rem;
+}
+
+.canHov:hover {
+  /* box-shadow: 0px 5px 0.4px #2f5a62; */
+  /* border: solid 2px #2f5a62; */
+  background-color: #c1ebe2 !important;
+  cursor: pointer;
+}
+
+/* USER REPORT MESSAGE WITH MODAL PART */
+h2 {
+  font-weight: bold;
+  color: #2f5a62;
+  font-size: 25px;
+  margin-bottom: 3rem;
+}
+
+
+.nameLabel {
+  font-weight: bold;
+  color: #2f5a62;
+  font-size: 17px;
+}
+
+.screenshot-img{
+  width: 300px;
+
+}
+
+
+.lightColFont {
+  font-weight: 400;
+  color: #669591;
+  margin-left: 10px;
+}
+
+.RedColFont {
+  font-weight: 400;
+  color: #ff5f56;
+  margin-left: 10px;
+}
+
+.infolabels {
+  margin-bottom: -5px;
+}
+
+
+/* FIRST COLUMN OF INFO */
+.labelings {
+  font-weight: bold;
+  color: #2f5a62;
+}
+
+.information {
+  font-weight: 400;
+  color: #669591;
+  position: relative;
+  bottom: 10px;
+}
+
+.noResCon {
+  background-color: none !important;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.row-table-head {
+
+  padding-left: 5rem;
+  background-color: white;
+
+}
+
+.row-head {
+  position: relative;
+  top: 5px;
+}
+
+.search-input {
+  width: 75%!important;
+}
+
+
+
+
+
+/* MEDIA QUERY FOR NAV BAR */
+@media only screen and (max-width: 991.5px) {
+.log-button {
+  margin-bottom: 1rem!important;
+}
+.form-inline {
+  margin-bottom: 0rem !important;
+}
+
+.col-md-3 {
+  flex: 0 0 55%;
+  max-width: 55%;
+}
+
+.col-md-9 {
+  flex: 0 0 45%;
+  max-width: 45%;
+}
+
+.search-input {
+  width: 50%!important;
+}
+
+}
+
+@media only screen and (max-width: 790px) {
+  .col-md-3 {
+    text-align: center;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+
+.col-md-9 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-left: 30px;
+}
+
+.row-table-head {
+    padding-left: 0rem;
+}
+
+.form-inline {
+      justify-content: center;
+}
+
+.search-input {
+    width: 50%!important;
+}
+
+.row-table-head {
+  display: flex;
+  justify-content: center
+  align-items: center
+}
+}
+
+@media only screen and (max-width: 768px) {
+.log-button {
+  margin-bottom: 1rem;
+}
+
+.navbar {
+  padding: 0rem 4rem !important;
+}
+
+
+  .first-row {
+    width: 50%!important;
+  }
+
+  .first-row p, .row-second p {
+    font-size: 17px;
+  }
+
+  .row-second {
+    width: 50%!important;
+    padding-left: 0rem!important;
+  }
+
+
+}
+
+@media only screen and (max-width: 570px) {
+.brandname {
+  font-size: 14px;
+}
+
+.navbar {
+  padding: 0rem 2rem !important;
+}
+
+.container {
+  padding: 2rem !important;
+}
+
+.header, h2 {
+  margin-bottom: 0;
+}
+
+  .search-btn {
+    margin-right: 0px!important;
+}
+
+.row-head {
+  font-size: 18px;
+}
+
+  .form-control {
+    width: 50%!important;
+  }
+
+
+      .first-row {
+        width: 60%!important;
+      }
+
+      .first-row p, .row-second p {
+        font-size: 16px;
+      }
+
+      .row-second {
+        width: 40%!important;
+        padding-left: 0rem!important;
+      }
+
+
+}
+
+@media only screen and (max-width: 430px) {
+
+  h2 {
+    font-size: 18px !important;
+  }
+  .noResult {
+    font-size: 18px !important;
+}
+
+  .form-inline {
+    margin-bottom: 5px !important;
+}
+
+.form-control, .search-btn {
+  font-size: 14px;
+}
+
+.search-btn {
+  height: 30px!important;
+  font-size: 12px !important;
+}
+
+
+.row-head {
+  font-size: 16px;
+}
+
+.header {
+    font-size: 16px!important;
+}
+
+  .first-row {
+    width: 60%!important;
+  }
+
+  .first-row p, .row-second p {
+    font-size: 14px!important;
+  }
+
+  .row-second {
+    width: 40%!important;
+    padding-left: 0rem!important;
+  }
+
+  tr, td {
+    font-size: 12px!important;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .custom-toggler.navbar-toggler {
+      width: 40px;
+  }
+
+
+    .table thead th, .table td {
+      font-size: 14px;
+    }
+
+      .form-control {
+        height: calc(1.2em + 0.75rem + 2px) !important;
+        font-size: 14px;
+      }
+
+
+        .form-inline {
+          margin-bottom: 5px !important;
+      }
+
+      .search-btn {
+        height: 30px;
+        font-size: 12px !important;
+      }
+
+  h2 {
+    font-size: 15px !important;
+}
+
+.db {
+  font-size: 11px;
+}
+
+  .navbar {
+    padding: 0rem 1rem !important;
+  }
+
+  .custom-toggler .navbar-toggler-icon {
+    position: relative;
+    right: 8.5px;
+}
+
+}
+
+@media only screen and (max-width: 345px) {
+.brandname {
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 320px) {
+
+  .table thead th, .table td {
+    font-size: 12px;
+  }
+
+  .header {
+    font-size: 16px!important;
+  }
+
+
+    .search-btn:hover{
+      height: 30px !important;
+      background-color: white !important;
+      color: #2f5a62 !important;
+      font-size: 12px !important;
+    }
+
+    .rep-message {
+      margin-left: 1rem !important;
+    }
+
+.brandname {
+  font-size: 0px;
+}
+.navbar-nav .nav-link, .log-button {
+    font-size: 16px;
+}
+
+.ss-btn {
+  font-size: 11px;
+}
+
+h2 {
+    font-size: 13px !important;
+}
+
+.send-btn {
+  font-size: 13px;
+}
+}

@@ -27,7 +27,7 @@
           $_SESSION['SellerLastName']  = $SellerLastName;
           $_SESSION['SellerEmail']     = $email;
           $_SESSION['SellerPassword']  = $password;
-          header("location:../data-privacy-act.php");
+          header("location:../seller-home.php");
       }else{
         header("location:../login_sections.php?simRetailer=invalidpassoremail");
       }

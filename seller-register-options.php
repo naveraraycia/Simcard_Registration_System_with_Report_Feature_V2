@@ -83,12 +83,21 @@
         <div class="collapse navbar-collapse" id="navbarNav">
 
 
-        <ul class='navbar-nav'>
-              <li class='nav-item'>
-                <a class='nav-link selected' href='data-privacy-act.php'>Register User</a>
-              </li>
+          <ul class='navbar-nav'>
+                <li class='nav-item'>
+                  <a class='nav-link selected' href='data-privacy-act.php'>Register User</a>
+                </li>
 
-            </ul>
+                <li class='nav-item'>
+                  <a class='nav-link' href='seller-home.php'>Home</a>
+                </li>
+
+                <li class='nav-item'>
+                  <a class='nav-link' href='#'>Profile</a>
+                </li>
+
+              </ul>
+
 
 
 
