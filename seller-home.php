@@ -9,6 +9,8 @@
     header("Location: index.php");
     exit();
   }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -81,12 +83,6 @@
     </div>
 
     <div class="row" style="margin-bottom: 2px; margin-top: 1rem;">
-
-            <!-- <form class="form-inline" action="seller-SIM-list-search.php" method="POST">
-              <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width: 375px;">
-              <button class="log-buttons search-btn" type="submit" name="submit-search">Search</button>
-            </form> -->
-
 
       <form action="" method="GET">
       <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width: 100%!important;margin-bottom: 10px;">
@@ -173,9 +169,14 @@
                 </select>';
               } ?>
 
+
+
         </div>
         <div class="col-auto my-1">
           <button type="" class="log-buttons search-btn" name="filters" style="margin-top:0px;margin-left: 0px!important; margin-right:0px!important;">Go</button>
+          <!-- EXPORT TO EXCEL BUTTON -->
+        <!-- <a href="excel/seller-home-excel.php" target="_blank" class="btn btn-primary">Export to Excel
+          </a> -->
         </div>
       </div>
     </form>
@@ -241,6 +242,7 @@
            };
            if ($querytype=='A'){
              $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+
               // first offense
              $FirstOff = "SELECT * FROM registered_simusers_db WHERE sim_status = N'$data' AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
              OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
@@ -250,9 +252,11 @@
            }
 
            $result = mysqli_query($conn,$FirstOff);
+      
            $resultCheck = mysqli_num_rows($result);
           }
               while($row = mysqli_fetch_assoc($result)):
+
         ?>
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "reported-message-content.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
@@ -281,6 +285,7 @@
       <?php endwhile; ?>
 
 
+
       </tbody>
     </table>
 
@@ -297,6 +302,7 @@
 
 
      ?>
+
 
 
 </body>

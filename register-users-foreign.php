@@ -101,7 +101,7 @@
   </header>
 
     <!-- BODY PART -->
-    <div class="container" style="background-color: #c8ece4;">
+    <div class="container" style="background-color: #f3f3f3;">
       <div class="row header">
             <h2>Foreign User Sim Card Registration Form</h2>
           </div>
@@ -223,7 +223,7 @@
      ?>
 
 
-       <div class="row">
+       <div class="row srow">
          <div class="col-md-12">
            <div class="form-group">
              <label for="nso-attach">Attach Passport</label>

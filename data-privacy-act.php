@@ -103,7 +103,7 @@
     </header>
 
     <!-- BODY PART -->
-    <div class="container" style="background-color: #c8ece4; padding-bottom: 2rem;">
+    <div class="container" style="background-color:#f3f3f3; padding-bottom: 2rem;">
       <div class="row header">
             <h2>Data Privacy Act Agreement</h2>
           </div>
