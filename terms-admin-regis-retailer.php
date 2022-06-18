@@ -160,14 +160,10 @@
   </div>
 
   <div class="col-md-6">
-      <a href="admin-register-retailer.php"><button class="send-btn">Proceed to registration</button></a>
+      <a href="verify-seller-nso.php"><button class="send-btn">Proceed to registration</button></a>
   </div>
 
 </div>
-
-
-
-
 
 </div>
 

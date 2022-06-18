@@ -12,6 +12,24 @@ body {
   margin: auto;
 }
 
+
+/* PHP success */
+.regsuccess {
+  text-align: center;
+  font-weight: bold;
+  color: #18CC5D;
+  margin-top: 20px;
+}
+/* PHP account already exist */
+.nsoexist{
+  text-align: center;
+  font-weight: bold;
+  color: #ff5f56;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+
 .row {
   margin-right: auto;
 }
