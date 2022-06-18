@@ -103,7 +103,7 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #c8ece4;">
       <div class="row header">
-            <h2>Local User Sim Card Registration Form</h2>
+            <h2>Foreign User Sim Card Registration Form</h2>
           </div>
 
           <!-- <form class="" action="register-users-local.php" method="GET"> -->
@@ -227,7 +227,7 @@
          <div class="col-md-12">
            <div class="form-group">
              <label for="nso-attach">Attach Passport</label>
-             <input type="file" name='file' class="form-control-file" id="nso-attach">
+             <input type="file" name='file' class="form-control-file" id="nso-attach" required>
            </div>
          </div>
 

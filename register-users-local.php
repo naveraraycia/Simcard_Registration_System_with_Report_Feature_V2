@@ -223,14 +223,14 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="nso-attach">Attach NSO</label>
-             <input type="file" name='file' class="form-control-file" id="nso-attach">
+             <input type="file" name='file' class="form-control-file" id="nso-attach" required>
            </div>
          </div>
 
          <div class="col-md-6">
            <div class="form-group">
              <label for="id-attach">Attach Valid ID</label>
-             <input type="file" name='file' class="form-control-file" id="id-attach">
+             <input type="file" name='file' class="form-control-file" id="id-attach" required>
            </div>
          </div>
 
@@ -282,7 +282,7 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="exampleFormControlFile1">Attach Fingerprint Image</label>
-             <input type="file" name='file' class="form-control-file" id="exampleFormControlFile1">
+             <input type="file" name='file' class="form-control-file" id="exampleFormControlFile1" required>
            </div>
          </div>
 
