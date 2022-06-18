@@ -71,7 +71,7 @@
     <header>
 
       <nav class="navbar navbar-expand-lg">
-        <a class="div1 navbar-brand" href="register-users-local.php">
+        <a class="div1 navbar-brand" href="admin-home.php">
             <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
             <span class="brandname">Administrator: Globe Telecomms</span>
           </a>
@@ -121,7 +121,7 @@
 
 
   <div class="col-md-3">
-    <a href="#"><button type="button" name="button" class="send-btn">Register SIM retailer</button></a>
+    <a href="terms-admin-regis-retailer.php"><button type="button" name="button" class="send-btn">Register SIM retailer</button></a>
   </div>
 
   <div class="col-md-3">

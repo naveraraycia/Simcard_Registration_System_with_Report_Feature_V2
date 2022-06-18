@@ -87,21 +87,21 @@
             </form>
 
 
-              <form action="#">
+              <form method="GET">
       <div class="form-row align-items-center" style="justify-content:center;">
         <div class="">
           <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"  name ="operator">
             <option selected>All</option>
-            <option value="1">No offense</option>
-            <option value="2">With offense</option>
-            <option value="3">First offense</option>
-            <option value="4">Second offense</option>
-            <option value="5">Third offense</option>
+            <option>No offense</option>
+            <option>With offense</option>
+            <option>First offense</option>
+            <option>Second offense</option>
+            <option>Third offense</option>
           </select>
         </div>
         <div class="col-auto my-1">
-          <button type="submit" class="log-buttons search-btn" name="filter-search" style="margin-top:0px;">Go</button>
+          <button type="submit" class="log-buttons search-btn" name="filters" style="margin-top:0px;">Go</button>
         </div>
       </div>
     </form>
@@ -136,38 +136,84 @@
       </thead>
       <tbody>
 
+                <?php
+                if (isset($_GET['filters'])){
+                  // include 'Joiningtable.inc.php';
 
-        <?php
-        if (isset($_POST['submit-search'])) :
-          $searchInput = mysqli_real_escape_string($conn, $_POST['input-search']);
-          $sql = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
-          $result = mysqli_query($conn, $sql);
-          $queryResult = mysqli_num_rows($result);
-          if ($queryResult > 0):
-              while($row = mysqli_fetch_assoc($result)):
-        ?>
+                   switch($_GET['operator']){
+                       case "No offense":
+                           $data = 'first offense';
+                           $querytype = 'A';
+                           break;
+                       case "With offense":
+                           $data = 'offense';
+                           $querytype = 'A';
+                           break;
+                       case "First offense":
+                           $data = 'first offense';
+                           $querytype = 'A';
+                           break;
+                       case "Second offense":
+                           $data = 'second offense';
+                           $querytype = 'A';
+                           break;
+                       case "Third offense":
+                           $data = 'third offense';
+                           $querytype = 'A';
+                           break;
+                        case "All":
+                           $querytype = 'B';
+                           break;
+
+                   };
+                   if ($querytype=='A'){
+                    $searchInput = mysqli_real_escape_string($conn, $_POST['input-search']);
+                     // first offense
+                    $FirstOff = "SELECT * FROM registered_simusers_db WHERE sim_status = N'$data' AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
+                    OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
+                   }else if($querytype=='B'){
+                    $FirstOff = "
+                    SELECT * FROM registered_simusers_db;";
+                   }
+
+                   $result = mysqli_query($conn,$FirstOff);
+                   $resultCheck = mysqli_num_rows($result);
+                  }
+                      while($row = mysqli_fetch_assoc($result)):
+                ?>
+
+
+        <!-- <?php
+        // if (isset($_POST['submit-search'])) :
+        //   $searchInput = mysqli_real_escape_string($conn, $_POST['input-search']);
+        //   $sql = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
+        //   $result = mysqli_query($conn, $sql);
+        //   $queryResult = mysqli_num_rows($result);
+        //   if ($queryResult > 0):
+        //       while($row = mysqli_fetch_assoc($result)):
+        ?> -->
 
 
                 <!-- <tr class="canHov" onclick="window.location='<?php echo "reported-message-content.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
           <tr>
             <td class="text-truncate"><?php echo $row['simnum']; ?></td>
-              <th class="text-truncate"><?php echo 'first offense'?></th>
-              <td class="text-truncate"><?php echo '1' ?></td>
-              <td class="text-truncate"><?php echo '2022-11-04' ?></td>
-              <td class="text-truncate"><?php echo '2023-01-04' ?></td>
-              <td class="text-truncate"><?php echo $row['lastname']; ?></th>
-              <td class="text-truncate"><?php echo $row['firstname']; ?></td>
-              <td class="text-truncate"><?php echo $row['midname']; ?></td>
-              <td class="text-truncate"><?php echo $row['suffix']; ?></td>
-              <td class="text-truncate"><?php echo $row['dateofbirth']; ?></td>
-              <td class="text-truncate"><?php echo $row['gender']; ?></td>
-              <td class="text-truncate"><?php echo $row['passnum_nsonum']; ?></td>
-              <td class="text-truncate"><?php echo $row['address']; ?></td>
-              <td class="text-truncate"><?php echo $row['nationality']; ?></td>
-              <td class="text-truncate"><?php echo $row['simcard']; ?></td>
-              <td class="text-truncate"><?php echo 'Jennie Kim'; ?></td>
-              <td class="text-truncate"><?php echo $row['dateofregis']; ?></td>
-              <td class="text-truncate"><?php echo $row['time']; ?></td>
+            <th class="text-truncate"><?php echo $row['sim_status']?></th>
+            <td class="text-truncate"><?php echo $row['offense_count'] ?></td>
+            <td class="text-truncate"><?php echo $row['ban_start']?></td>
+            <td class="text-truncate"><?php echo $row['ban_end']?></td>
+            <td class="text-truncate"><?php echo $row['lastname']; ?></th>
+            <td class="text-truncate"><?php echo $row['firstname']; ?></td>
+            <td class="text-truncate"><?php echo $row['midname']; ?></td>
+            <td class="text-truncate"><?php echo $row['suffix']; ?></td>
+            <td class="text-truncate"><?php echo $row['dateofbirth']; ?></td>
+            <td class="text-truncate"><?php echo $row['gender']; ?></td>
+            <td class="text-truncate"><?php echo $row['passnum_nsonum']; ?></td>
+            <td class="text-truncate"><?php echo $row['address']; ?></td>
+            <td class="text-truncate"><?php echo $row['nationality']; ?></td>
+            <td class="text-truncate"><?php echo $row['simcard']; ?></td>
+            <td class="text-truncate"><?php echo $row['sim_retailer']?></td>
+            <td class="text-truncate"><?php echo $row['dateofregis']; ?></td>
+            <td class="text-truncate"><?php echo $row['time']; ?></td>
 
           </tr>
       <?php endwhile;

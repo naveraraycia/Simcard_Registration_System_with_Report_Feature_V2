@@ -82,27 +82,100 @@
 
     <div class="row" style="margin-bottom: 2px; margin-top: 1rem;">
 
-            <form class="form-inline" action="seller-SIM-list-search.php" method="POST">
+            <!-- <form class="form-inline" action="seller-SIM-list-search.php" method="POST">
               <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width: 375px;">
               <button class="log-buttons search-btn" type="submit" name="submit-search">Search</button>
-            </form>
+            </form> -->
 
 
       <form action="" method="GET">
+      <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width: 100%!important;margin-bottom: 10px;">
       <div class="form-row align-items-center" style="justify-content:center;">
         <div class="">
-          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
-            <option selected >All</option>
-            <option >No offense</option>
-            <option >With offense</option>
-            <option >First offense</option>
-            <option>Second offense</option>
-            <option>Third offense</option>
-          </select>
+          <?php
+            $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+            if(strpos($fulUrl, "operator=All") == true){
+              echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
+              <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
+                <option selected >All</option>
+                <option >No offense at present</option>
+                <option >With offense</option>
+                <option >First offense</option>
+                <option>Second offense</option>
+                <option>Third offense</option>
+              </select>";
+            }
+            elseif(strpos($fulUrl, "operator=With+offense") == true){
+              echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
+              <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
+                <option selected >With offense</option>
+                <option >All</option>
+                <option >No offense at present</option>
+                <option >First offense</option>
+                <option>Second offense</option>
+                <option>Third offense</option>
+              </select>";
+              }
+              elseif(strpos($fulUrl, "operator=No+offense") == true){
+                echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
+                <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
+                  <option selected >No offense at present</option>
+                  <option >All</option>
+                  <option >With offense</option>
+                  <option >First offense</option>
+                  <option>Second offense</option>
+                  <option>Third offense</option>
+                </select>";
+                }
+              elseif(strpos($fulUrl, "operator=First+offense") == true){
+                echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
+                <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
+                  <option selected >First offense</option>
+                  <option >All</option>
+                  <option >No offense at present</option>
+                  <option >With offense</option>
+                  <option>Second offense</option>
+                  <option>Third offense</option>
+                </select>";
+              }
+              elseif(strpos($fulUrl, "operator=Second+offense") == true){
+                echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
+                <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
+                  <option selected >Second offense</option>
+                  <option >All</option>
+                  <option >No offense at present</option>
+                  <option >With offense</option>
+                  <option>First offense</option>
+                  <option>Third offense</option>
+                </select>";
+              }
+              elseif(strpos($fulUrl, "operator=Third+offense") == true){
+                echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
+                <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
+                  <option selected >Third offense</option>
+                  <option >All</option>
+                  <option >No offense at present</option>
+                  <option >With offense</option>
+                  <option>First offense</option>
+                  <option>Second offense</option>
+                </select>";
+              }
+              else {
+                echo '<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
+                  <option selected >All</option>
+                  <option >No offense at present</option>
+                  <option >With offense</option>
+                  <option >First offense</option>
+                  <option>Second offense</option>
+                  <option>Third offense</option>
+                </select>';
+              } ?>
+
         </div>
         <div class="col-auto my-1">
-          <button type="" class="log-buttons search-btn" name="filters" style="margin-top:0px;">Go</button>
+          <button type="" class="log-buttons search-btn" name="filters" style="margin-top:0px;margin-left: 0px!important; margin-right:0px!important;">Go</button>
         </div>
       </div>
     </form>
@@ -139,9 +212,9 @@
         <?php
         if (isset($_GET['filters'])){
           // include 'Joiningtable.inc.php';
-          
+
            switch($_GET['operator']){
-               case "No offense":
+               case "No offense at present":
                    $data = 'first offense';
                    $querytype = 'A';
                    break;
@@ -164,15 +237,16 @@
                 case "All":
                    $querytype = 'B';
                    break;
-              
+
            };
            if ($querytype=='A'){
-            $FirstOff = "
-            SELECT * FROM registered_simusers_db
-            WHERE sim_status = N'$data';";
+             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+              // first offense
+             $FirstOff = "SELECT * FROM registered_simusers_db WHERE sim_status = N'$data' AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
+             OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
            }else if($querytype=='B'){
-            $FirstOff = "
-            SELECT * FROM registered_simusers_db;";
+            $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+            $FirstOff = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
            }
 
            $result = mysqli_query($conn,$FirstOff);
@@ -184,10 +258,10 @@
         <!-- <tr class="canHov" onclick="window.location='<?php echo "reported-message-content.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
         <tr>
           <td class="text-truncate"><?php echo $row['simnum']; ?></td>
-          <th class="text-truncate"><?php echo 'first offense'?></th>
-          <td class="text-truncate"><?php echo '1' ?></td>
-          <td class="text-truncate"><?php echo '2022-11-04' ?></td>
-          <td class="text-truncate"><?php echo '2023-01-04' ?></td>
+          <th class="text-truncate"><?php echo $row['sim_status']?></th>
+          <td class="text-truncate"><?php echo $row['offense_count'] ?></td>
+          <td class="text-truncate"><?php echo $row['ban_start']?></td>
+          <td class="text-truncate"><?php echo $row['ban_end']?></td>
           <td class="text-truncate"><?php echo $row['lastname']; ?></th>
           <td class="text-truncate"><?php echo $row['firstname']; ?></td>
           <td class="text-truncate"><?php echo $row['midname']; ?></td>
@@ -198,7 +272,7 @@
           <td class="text-truncate"><?php echo $row['address']; ?></td>
           <td class="text-truncate"><?php echo $row['nationality']; ?></td>
           <td class="text-truncate"><?php echo $row['simcard']; ?></td>
-          <td class="text-truncate"><?php echo 'Jennie Kim'; ?></td>
+          <td class="text-truncate"><?php echo $row['sim_retailer']?></td>
           <td class="text-truncate"><?php echo $row['dateofregis']; ?></td>
           <td class="text-truncate"><?php echo $row['time']; ?></td>
 

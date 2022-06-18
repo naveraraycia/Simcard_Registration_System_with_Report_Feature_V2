@@ -106,7 +106,7 @@
         <!-- BODY PART -->
         <div class="container" style="background-color: #f3f3f3;">
           <div class="row header">
-                <h2 style="color: #b40032;">Add NSO record</h2>
+                <h2 style="color: #b40032;">Register SIM business</h2>
               </div>
 
               <!-- <form class="" action="#" method="GET"> -->
@@ -159,22 +159,22 @@
              <div class="row">
 
                <div class="col-md-3 infodiv">
-                 <label class="labelings">Last Name</label>
+                 <label class="labelings">email</label>
                  <input id="lastname" type="text" name="lastname" class="form-control" required>
                </div>
 
                <div class="col-md-3 infodiv">
-                 <label class="labelings">First Name</label>
-                 <input id="firstname" type="text" name="firstname" class="form-control" required>
+                 <label class="labelings">password</label>
+                 <input id="firstname" type="password" name="firstname" class="form-control" required>
                </div>
 
                <div class="col-md-3 infodiv">
-                 <label class="labelings">Middle Name</label>
-                 <input id="midname" type="text" name="midname" class="form-control" required>
+                 <label class="labelings">confirm password</label>
+                 <input id="midname" type="password" name="midname" class="form-control" required>
                </div>
 
                <div class="col-md-3">
-                 <label class="labelings">Suffix</label>
+                 <label class="labelings">Shop Name</label>
                  <input type="text" name="suffix" class="form-control">
                </div>
 
@@ -183,25 +183,89 @@
              <!-- SECOND ROW -->
              <div class="row srow" style="margin-bottom: 2rem; margin-top: 1rem;">
                <div class="col-md-3 infodiv">
-                 <label class="labelings">Date of Birth</label>
-                 <input id="dateofbirth" type="date" name="dateofbirth"  class="form-control" required>
+                 <label class="labelings">Owner First Name</label>
+                 <input id="dateofbirth" type="text" name="dateofbirth"  class="form-control" required>
                </div>
                <div class="col-md-3">
-                 <label class="labelings">Gender</label>
+                 <label class="labelings">Middle Name</label>
                  <input  type="text" name="Gender"  class="Gender form-control" required>
                </div>
-               <div class="col-md-6 infodiv">
-                 <label class="labelings">NSO Barcode Number</label>
+               <div class="col-md-3 infodiv">
+                 <label class="labelings">Last Name</label>
                  <input id="nsonum" type="text" name="nsonum" class="form-control" required>
+               </div>
+               <div class="col-md-3 infodiv">
+                 <label class="labelings">Suffix</label>
+                 <input id="nsonum" type="text" name="nsonum" class="form-control">
                </div>
 
              </div>
+
+            <!-- SECOND ROW -->
+            <div class="row srow" style="margin-bottom: 2rem; margin-top: 1rem;">
+                <div class="col-md-3 infodiv">
+                  <label class="labelings">Business Permit</label>
+                  <input id="dateofbirth" type="text" name="dateofbirth"  class="form-control" required>
+                </div>
+              <div class="col-md-3">
+                <label class="labelings">SIM Limit</label>
+                <input  type="text" name="Gender"  class="Gender form-control" required>
+              </div>
+              <div class="col-md-3 infodiv">
+                <label class="labelings">Business Address</label>
+                <input id="nsonum" type="text" name="nsonum" class="form-control" required>
+              </div>
+              <div class="col-md-3 infodiv">
+                <label class="labelings">Registration Date</label>
+                <input id="nsonum" type="date" name="nsonum" class="form-control" required>
+              </div>
+
+            </div>
+
+            <!-- SECOND ROW -->
+            <div class="row srow" style="margin-bottom: 2rem; margin-top: 1rem;">
+                <div class="col-md-6 infodiv">
+                  <label class="labelings">Registered by</label>
+                  <input id="dateofbirth" type="text" name="dateofbirth"  class="form-control" required>
+                </div>
+              <div class="col-md-6">
+                <label class="labelings">Owner's SIM #</label>
+                <input  type="text" name="Gender" class="Gender form-control" required>
+              </div>
+
+
+            </div>
+
+            <div class="row srow">
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nso-attach">Attach Business Permit</label>
+                  <input type="file" name='file' class="form-control-file" id="nso-attach">
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nso-attach">Attach Valid ID</label>
+                  <input type="file" name='file' class="form-control-file" id="nso-attach">
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nso-attach">Attach NSO</label>
+                  <input type="file" name='file' class="form-control-file" id="nso-attach">
+                </div>
+              </div>
+
+              </div>
 
               <!-- REGISTRATION BUTTON -->
 
               <div class="row srow">
               <div class="col-md-12">
-                <button type="submit" name="register" class="send-btn">Register User</button>
+                <button type="submit" name="register" class="send-btn">Register Shop</button>
               </div>
             </div>
 
@@ -209,7 +273,7 @@
 
          <div class="row" style="display: flex; justify-content: flex-start;">
          <div class="col-md-3">
-           <a href="admin-nso-list.php"><button type="submit" name="register" class="send-btn">Back to NSO list</button></a>
+           <a href="admin-home.php"><button type="submit" name="register" class="send-btn">Back to home</button></a>
          </div>
        </div>
 

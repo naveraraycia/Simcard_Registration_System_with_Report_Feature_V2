@@ -1,7 +1,7 @@
 <?php
 
   require 'includes/dbh.inc.php';
-  $sql = "SELECT * FROM nso_dummy_db ORDER BY lastname ASC";
+  $sql = "SELECT * FROM foreign_passport_db ORDER BY lastname ASC";
   $result = mysqli_query($conn, $sql);
   session_start();
   // if (empty($_SESSION['AdminEmail'])){
@@ -105,12 +105,12 @@
 
         <div class="row row-table-head" style="padding-bottom: 15px;">
           <div class="col-md-3">
-          <p class="header row-head" style="margin-bottom: 0px; align-self: center; color: black;">NSO Database <a href="add-nso-record.php"
+          <p class="header row-head" style="margin-bottom: 0px; align-self: center; color: black;">Passport Database <a href="add-passport-record.php"
             ><i class="fa-solid fa-circle-plus icon-plus" style="color:#b40032;"></i></a></p>
           </div>
 
           <div class="col-md-9">
-            <form class="form-inline" action="search_nso_dummy.php" method="POST">
+            <form class="form-inline" action="search_passport_dummy.php" method="POST">
               <input class="form-control mr-sm-2 search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" >
               <button class="log-buttons search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
             </form>
@@ -130,7 +130,8 @@
               <th class="f-column text-truncate" scope="col" >Suffix</th>
               <th class="f-column text-truncate" scope="col" >Date of Birth</th>
               <th class="f-column text-truncate" scope="col" >Gender</th>
-              <th class="f-column text-truncate" scope="col" >NSO #</th>
+              <th class="f-column text-truncate" scope="col" >Passport #</th>
+              <th class="f-column text-truncate" scope="col" >Nationality</th>
 
             </tr>
           </thead>
@@ -139,7 +140,7 @@
             <?php
             if (isset($_POST['submit-search'])) :
               $searchInput = mysqli_real_escape_string($conn, $_POST['input-search']);
-              $sql = "SELECT * FROM nso_dummy_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR nsonum LIKE '%$searchInput%' ORDER BY lastname ASC; ";
+              $sql = "SELECT * FROM foreign_passport_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' ORDER BY lastname ASC; ";
               $result = mysqli_query($conn, $sql);
               $queryResult = mysqli_num_rows($result);
               if ($queryResult > 0):
@@ -156,7 +157,8 @@
               <td class="text-truncate"><?php echo $row['suffix']; ?></td>
               <td class="text-truncate"><?php echo $row['dateofbirth']; ?></td>
               <td class="text-truncate"><?php echo $row['gender']; ?></td>
-              <td class="text-truncate"><?php echo $row['nsonum']; ?></td>
+              <td class="text-truncate"><?php echo $row['passnum']; ?></td>
+              <td class="text-truncate"><?php echo $row['nationality']; ?></td>
 
             </tr>
 
