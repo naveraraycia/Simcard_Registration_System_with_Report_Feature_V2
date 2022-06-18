@@ -108,7 +108,7 @@
             <h2>Local User Sim Card Registration Form</h2>
           </div>
 
-          <form class="" action="register-users-local.php" method="GET">
+          <!-- <form class="" action="register-users-local.php" method="GET"> -->
 <?php
         $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 

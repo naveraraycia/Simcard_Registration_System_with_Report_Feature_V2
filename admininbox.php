@@ -54,6 +54,11 @@ $AdminPass  = $_SESSION['AdminPassword'];
 
 
             <ul class='navbar-nav'>
+
+              <li class='nav-item'>
+                <a class='nav-link' href='registered_users_table_admin.php'>Home</a>
+              </li>
+
               <li class='nav-item'>
                 <a class='nav-link' href='registered_users_table_admin.php'>Users</a>
               </li>

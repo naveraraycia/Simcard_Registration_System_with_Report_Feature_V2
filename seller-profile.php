@@ -99,9 +99,6 @@
 
 <!-- BODY PART -->
 <div class="container" style="background-color: #f3f3f3;">
-  <?php
-    ?>
-
     <div class='row'>
 
       <div class='col-md-4 infocol1'>
@@ -159,12 +156,7 @@
 
 
     </div>
-
-
-    <?php
-
-  ?>
-
+    </div>
 </div>
 
 <script>

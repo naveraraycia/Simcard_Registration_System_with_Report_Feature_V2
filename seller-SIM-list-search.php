@@ -136,10 +136,10 @@
       </thead>
       <tbody>
 
+
         <?php
         if (isset($_POST['submit-search'])) :
           $searchInput = mysqli_real_escape_string($conn, $_POST['input-search']);
-          // THIS SEARCH FEATURE IS TO BE EDITED PA ONCE NAGAWA NA UNG TABLE CONTAINING SIMS NA NAREGISTER NG SELLER
           $sql = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
           $result = mysqli_query($conn, $sql);
           $queryResult = mysqli_num_rows($result);

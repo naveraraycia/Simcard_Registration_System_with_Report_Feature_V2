@@ -27,7 +27,7 @@
         $_SESSION['AdminFirstName'] = $AdminFirstName;
         $_SESSION['AdminLastName']  = $AdminLastName;
         $_SESSION['AdminPassword']  = $password;
-        header("location:../admininbox.php");
+        header("location:../admin-home.php");
       }else{
         header("location:../login_sections.php?adminLogin=invalidpassoremail");
       }
