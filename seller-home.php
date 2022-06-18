@@ -88,21 +88,21 @@
             </form>
 
 
-      <form action="#">
+      <form action="" method="GET">
       <div class="form-row align-items-center" style="justify-content:center;">
         <div class="">
           <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-            <option selected>All</option>
-            <option value="1">No offense</option>
-            <option value="2">With offense</option>
-            <option value="3">First offense</option>
-            <option value="4">Second offense</option>
-            <option value="5">Third offense</option>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
+            <option selected >All</option>
+            <option >No offense</option>
+            <option >With offense</option>
+            <option >First offense</option>
+            <option>Second offense</option>
+            <option>Third offense</option>
           </select>
         </div>
         <div class="col-auto my-1">
-          <button type="submit" class="log-buttons search-btn" name="filter-search" style="margin-top:0px;">Go</button>
+          <button type="" class="log-buttons search-btn" name="filters" style="margin-top:0px;">Go</button>
         </div>
       </div>
     </form>
@@ -137,6 +137,47 @@
       <tbody>
 
         <?php
+        if (isset($_GET['filters'])){
+          // include 'Joiningtable.inc.php';
+          
+           switch($_GET['operator']){
+               case "No offense":
+                   $data = 'first offense';
+                   $querytype = 'A';
+                   break;
+               case "With offense":
+                   $data = 'offense';
+                   $querytype = 'A';
+                   break;
+               case "First offense":
+                   $data = 'first offense';
+                   $querytype = 'A';
+                   break;
+               case "Second offense":
+                   $data = 'second offense';
+                   $querytype = 'A';
+                   break;
+               case "Third offense":
+                   $data = 'third offense';
+                   $querytype = 'A';
+                   break;
+                case "All":
+                   $querytype = 'B';
+                   break;
+              
+           };
+           if ($querytype=='A'){
+            $FirstOff = "
+            SELECT * FROM registered_simusers_db
+            WHERE sim_status = N'$data';";
+           }else if($querytype=='B'){
+            $FirstOff = "
+            SELECT * FROM registered_simusers_db;";
+           }
+
+           $result = mysqli_query($conn,$FirstOff);
+           $resultCheck = mysqli_num_rows($result);
+          }
               while($row = mysqli_fetch_assoc($result)):
         ?>
 

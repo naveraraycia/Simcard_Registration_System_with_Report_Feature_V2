@@ -1,26 +1,85 @@
 <?php
   require "navbar.php";
   include_once 'dbh/EndUser.inc.php';
-  // if (empty($_SESSION['UserNumber'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
-  // $SimCardNumber = $_SESSION['UserNumber'] ;
-  // $LastName      = $_SESSION['UserLast']  ;
-  // $FirstName     = $_SESSION['UserFirst']  ;
-  // $Gender        = $_SESSION['UserGender']  ;
-  // $Birthdate     = $_SESSION['UserBirthdate'];
-  // $Address       = $_SESSION['UserAddress']  ;
-  // $Nationality   = $_SESSION['UserNationality'];
-  // $TypeofUser    = $_SESSION['UserType'] ;
-  // $DateofRegist  = $_SESSION['UserDatReg'];
-  // $TimeofReg     = $_SESSION['UserTimeReg'];
-  // $RegSite       = $_SESSION['UserRegSite'] ;
-  // $SimCard       = $_SESSION['UserSimCard']  ;
-  // $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
-  // $Suffix        = " ".$_SESSION['UserSuffix']." ";
-  // $MiddleName    = $MiddleName.".";
+   //if (empty($_SESSION['UserNumber'])){
+   //  header("Location: index.php");
+   //  exit();
+   // }
+   $user= "+639054632343";
+   $sql = "SELECT * FROM registered_simusers_db WHERE simnum=?;";
+   $stmt              = mysqli_stmt_init($conn);
+   if (mysqli_stmt_prepare($stmt,$sql)){
+     mysqli_stmt_bind_param($stmt,"s",$user);
+     mysqli_stmt_execute($stmt);
+     $result = mysqli_stmt_get_result($stmt);
+     session_start();
+     if($row = mysqli_fetch_assoc($result)){
 
+         $_SESSION['UserLast']        = $row['lastname'];
+         $_SESSION['UserFirst']       = $row['firstname'];
+         $_SESSION['UserMiddleName']  = $row['midname'];
+         $_SESSION['UserSuffix']      = $row['suffix'];
+         $_SESSION['UserBirthdate']   = $row['dateofbirth'];
+         $_SESSION['UserGender']      = $row['gender'];
+         $_SESSION['UserAddress']     = $row['address'];
+         $_SESSION['UserNationality'] = $row['nationality'];
+         if(($row['nationality']) == 'Filipino'||($row['nationality']) == 'filipino'){
+           $_SESSION['UserType']      = 'Local';
+         }else{
+           $_SESSION['UserType']      = 'Foreign';
+         }
+         $_SESSION['UserSimCard']     = $row['simcard'];
+         $_SESSION['UserNumber']      = $row['simnum'];
+         $_SESSION['UserRegSite']     = $row['regisite'];
+         $_SESSION['UserDatReg']      = $row['dateofregis'];
+         $_SESSION['UserTimeReg']     = $row['time'];
+         $_SESSION['sim_status']      = $row['sim_status'];
+         $_SESSION['offense_count']   = $row['offense_count'];
+         $_SESSION['ban_start']       = $row['ban_start'];
+         $_SESSION['ban_end']         = $row['ban_end'];
+         $_SESSION['sim_retailer']    = $row['sim_retailer']  ;
+       }
+      }
+$SimCardNumber = $_SESSION['UserNumber'] ;
+$LastName      = $_SESSION['UserLast']  ;
+$FirstName     = $_SESSION['UserFirst']  ;
+$Gender        = $_SESSION['UserGender']  ;
+$Birthdate     = $_SESSION['UserBirthdate'];
+$Address       = $_SESSION['UserAddress']  ;
+$Nationality   = $_SESSION['UserNationality'];
+if ($Nationality == "Filipino" || $Nationality == "filipino"){
+$Type = "Local";
+}else{
+$Type = "Foreign";
+};
+$TypeofUser    = $_SESSION['UserType'] ;
+$DateofRegist  = $_SESSION['UserDatReg'];
+$TimeofReg     = $_SESSION['UserTimeReg'];
+$RegSite       = $_SESSION['UserRegSite'] ;
+$SimCard       = $_SESSION['UserSimCard']  ;
+$SimStatus     = $_SESSION['sim_status'];
+$SimPenality   = $_SESSION['offense_count'];
+switch($SimPenality){
+  case "0":
+    $penalty = 'None';
+    break;
+  case "1":
+    $penalty = '1st offense';
+    break;
+  case "2":
+    $penalty = '2nd offense';
+    break;
+  case "3":
+    $penalty = 'Permanently Ban';
+    break;
+};
+$BanStart      = $_SESSION['ban_start'];
+$BanEnd        = $_SESSION['ban_end'];
+$Sim_Ret       = $_SESSION['sim_retailer'];
+$MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
+$Suffix        = " ".$_SESSION['UserSuffix']." ";
+$MiddleName    = $MiddleName.".";
+$FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
 ?>
 
 
@@ -133,29 +192,29 @@
 
         <div class='infodiv'>
           <p class='labelings'>Name</p>
-          <p class='information'>Jasmin Liz Duenas</p>
+          <p class='information'>$FullName </p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Gender</p>
-          <p class='information'>F</p>
+          <p class='information'>$Gender</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Birthdate</p>
-          <p class='information'>1999-10-11</p>
+          <p class='information'>$Birthdate</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Address</p>
-          <p class='information'>Earth, Philippines</p>
+          <p class='information'>$Address</p>
         </div>
 
 
 
         <div class='infodiv'>
           <p class='labelings'>Nationality</p>
-          <p class='information'>Filipino</p>
+          <p class='information'>$Nationality</p>
         </div>
 
       </div>
@@ -164,59 +223,59 @@
         <!-- INFO COLUMN 2 -->
         <div class='infodiv'>
           <p class='labelings'>Sim Card Number</p>
-          <p class='information'>+639000000000</p>
+          <p class='information'>$SimCardNumber</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Type of User</p>
-          <p class='information'>Local</p>
+          <p class='information'>$TypeofUser </p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Date of Registration</p>
-          <p class='information'>2021-04-18</p>
+          <p class='information'>$DateofRegist</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Time of Registration</p>
-          <p class='information'>lorem ipsum</p>
+          <p class='information'>$TimeofReg</p>
         </div>
 
         <div class='infodiv'>
-          <p class='labelings'>Registration Site</p>
-          <p class='information'>Cavite SIM shop</p>
+          <p class='labelings'>Registration Shop Site</p>
+          <p class='information'>$RegSite</p>
         </div>
       </div>
 
       <div class='col-md-4 infocol3'>
         <div class='infodiv'>
           <p class='labelings'>Sim Card Type</p>
-          <p class='information'>existing prepaid user</p>
+          <p class='information'>$SimCard</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>SIM status</p>
-          <p class='information'>first offense</p>
+          <p class='information'>$SimStatus</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Penalty</p>
-          <p class='information'>1</p>
+          <p class='information'>$penalty</p>
         </div>
 
         <div class='infodiv'>
-          <p class='labelings'>Date Blocked</p>
-          <p class='information'>2022-11-04</p>
+          <p class='labelings'>Date you have been blocked from Registration</p>
+          <p class='information'>$BanStart</p>
         </div>
 
         <div class='infodiv'>
-          <p class='labelings'>End of Block Period</p>
-          <p class='information'>2023-01-04</p>
+          <p class='labelings'>End of Registration Block period</p>
+          <p class='information'>$BanEnd</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Registered by SIM retailer</p>
-          <p class='information'>Jennie Kim</p>
+          <p class='information'>$Sim_Ret</p>
         </div>
       </div>
     </div>

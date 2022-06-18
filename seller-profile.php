@@ -28,7 +28,6 @@
     // $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
     // $result = mysqli_query($conn, $sql);
 
-
 ?>
 
 
@@ -106,7 +105,7 @@
 
         <div class='infodiv'>
           <p class='labelings'>Shop Name</p>
-          <p class='information'>Cavite SIM shop</p>
+          <p class='information'><?php echo $_SESSION['Shop_Name']; ?></p>
         </div>
 
         <div class='infodiv'>
@@ -116,17 +115,17 @@
 
         <div class='infodiv'>
           <p class='labelings'>Business Owner</p>
-          <p class='information'>Keanu P. Berches</p>
+          <p class='information'><?php echo $_SESSION['SellerFirstName'] ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Address</p>
-          <p class='information'>Dasmarinas City, Cavite</p>
+          <p class='information'><?php echo $_SESSION['Business_Address']; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Permit Number</p>
-          <p class='information'>ASDFK-GHJKL-0976</p>
+          <p class='information'><?php echo $_SESSION['Business_Permit']; ?></p>
         </div>
 
       </div>
@@ -135,7 +134,7 @@
         <!-- INFO COLUMN 2 -->
         <div class='infodiv'>
           <p class='labelings'>SIM Limit</p>
-          <p class='information'>50</p>
+          <p class='information'><?php echo $_SESSION['Simcard_Limit']; ?></p>
         </div>
 
         <div class='infodiv'>
