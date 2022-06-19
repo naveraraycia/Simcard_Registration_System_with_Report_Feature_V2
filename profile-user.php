@@ -12,7 +12,7 @@
      mysqli_stmt_bind_param($stmt,"s",$user);
      mysqli_stmt_execute($stmt);
      $result = mysqli_stmt_get_result($stmt);
-     session_start();
+     // session_start();
      if($row = mysqli_fetch_assoc($result)){
 
          $_SESSION['UserLast']        = $row['lastname'];

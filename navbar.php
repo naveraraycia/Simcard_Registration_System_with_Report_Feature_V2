@@ -53,6 +53,14 @@
                 <a class='nav-link selected' href='profile-user.php?reportPage'>Report</a>
               </li>
 
+              <li class='nav-item'>
+                <a class='nav-link' href='pending-sims-end-user.php'>SIM requests</a>
+              </li>
+
+              <li class='nav-item'>
+                <a class='nav-link' href='end-user-update-data-request.php'>Update Info</a>
+              </li>
+
             </ul>";
           } else {
             echo "<ul class='navbar-nav'>
@@ -61,6 +69,14 @@
               </li>
               <li class='nav-item'>
                 <a class='nav-link' href='profile-user.php?reportPage'>Report</a>
+              </li>
+
+              <li class='nav-item'>
+                <a class='nav-link' href='pending-sims-end-user.php'>SIM requests</a>
+              </li>
+
+              <li class='nav-item'>
+                <a class='nav-link' href='end-user-update-data-request.php'>Update Info</a>
               </li>
 
             </ul>";

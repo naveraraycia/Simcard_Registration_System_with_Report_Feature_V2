@@ -1,13 +1,89 @@
 <?php
-  require "navbar.php";
+  // require "navbar.php";
   include_once 'dbh/EndUser.inc.php';
 
   ?>
 
+  <?php
+
+    session_start();
+
+  ?>
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+
+    <title>SimCardRegistrationSystem</title>
+    <!-- LOGO ON TAB -->
+    <link rel="icon" href="images/logo.png">
+    <!-- GOOGLE FONTS -->
+      <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- CDN CSS FILE BOOTSTRAP VER 4.6 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+
+    <!-- CUSTOM CSS FILE  -->
+    <link rel="stylesheet" href="styles/userprof.css">
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/207a28b81e.js" crossorigin="anonymous"></script>
+
+  </head>
+    <body>
+      <!-- NAVBAR PART -->
+      <header>
+
+        <nav class="navbar navbar-expand-lg">
+          <a class="div1 navbar-brand" href="navbar.php">
+              <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
+              <span class="brandname">SimCardRegistrationSystem</span>
+            </a>
+
+          <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class='navbar-nav'>
+                <li class='nav-item'>
+                  <a class='nav-link' href='profile-user.php'>Profile</a>
+                </li>
+                <li class='nav-item'>
+                  <a class='nav-link' href='profile-user.php?reportPage'>Report</a>
+                </li>
+
+                <li class='nav-item'>
+                  <a class='nav-link' href='pending-sims-end-user.php'>SIM requests</a>
+                </li>
+
+                <li class='nav-item'>
+                  <a class='nav-link selected' href='end-user-update-data-request.php'>Update Info</a>
+                </li>
+
+              </ul>
+
+
+
+            <form class="form-btnn" action="Logout/logoutprocess_EndUser.php" method="POST">
+              <button type="submit" name="btn-primary" class="log-button">Logout</button>
+            </form>
+          </div>
+        </nav>
+      </header>
+
+
   <div class="container">
 
     <div class='row header'>
-    <h2>Request for personal information update</h2>
+    <h2>Request for Update of Personal Information</h2>
+    </div>
+    <div class="row"style="display: flex!important; justify-content:center!important; margin-top:5px;font-size: 18px;color: #18CC5D;">
+      <p class="">Your request for update of personal information may take a couple of days to process</p>
+
     </div>
 
     <?php
@@ -33,83 +109,26 @@
                </div>
 
                <div class="infodiv1">
-                 <form method="GET" action="">
-
                    <select class='custom-select mr-sm-2' id='nlineFormCustomSelect' name ='operator'>
-                     <option selected >Name</option>
-                     <option >Address</option>
+                     <option value="Name">Name</option>
+                     <option value="Address">Address</option>
                    </select>
-                 </form>
                </div>
-
-               <form method="GET">
-               <div class="infodiv1">
-
-                   <button type="submit" name="generate" class="btn btn-secondary">Click to input new data</button>
-
-               </div>
-                </form>
-
-
-               <?php
-
-               if (isset($_GET['generate'])){
-                 // include 'Joiningtable.inc.php';
-
-                 $_GET['operator'] = 'Name';
-
-
-                  switch($_GET['operator']){
-                      case "Name":
-                      $presentfield = 'A';
-                          break;
-                      case "Address":
-                      $presentfield = 'B';
-                      echo '<div class="row">
-                        <div class="col-12 infodiv">
-                          <label class="Bday">Address</label>
-                          <input id="address" type="text" name="address" class="form-control" required>
-                        </div>
-                      </div>';
-                          break;
-                  };
-                  if($presentfield == 'A'){
-                    echo '<div class="row">
-                      <div class="col-md-3">
-                        <label class="labelings">Last Name</label>
-                        <input type="text" name="lastname" class="form-control" required>
-                      </div>
-                      <div class="col-md-3">
-                        <label class="labelings">First Name</label>
-                        <input type="text" name="firstname" class="form-control" required>
-                      </div>
-                      <div class="col-md-3">
-                        <label class="labelings">Middle Name</label>
-                        <input type="text" name="midname" class="form-control" required>
-                      </div>
-                      <div class="col-md-3">
-                        <label class="labelings">Suffix</label>
-                        <input type="text" name="suffix" class="form-control">
-                      </div>
-                    </div>';
-
-                  } else if ($presentfield == 'B') {
-                    echo 'nope!';
-                  }
-                };
-
-
-                ?>
 
 
            </div>
            <div class='col-md-6 textclass'>
              <!-- TEXTAREA COLUMN 2 -->
 
-               <div class='infodiv1'>
-                 <p class='labelings'>Please provide reason why you need to change your information</p>
-                 <textarea id='textArea' class='form-control' name='Remarks' rows='9' cols='80'></textarea>
+               <div class='infodiv1' style="margin-bottom: 0px;">
+                 <p class='labelings'>Please provide reason why you need to change your Information</p>
+                 <textarea id='textArea' class='form-control' name='Remarks' rows='6' cols='80'></textarea>
                </div>
+
+               <div class="infodiv1">
+                 <p class='labelings'>Enter Updated Information</p>
+                 <input id="" type="text" name="address" class="form-control" placeholder="For updating of name: Last Name, First Name, Middle Name, Suffix" required>
+             </div>
 
              </div>
 
@@ -118,7 +137,7 @@
 
          <div class='col-md-6'>
          <div class='form-group'>
-           <label for='exampleFormControlFile1' class='labelings'>Submit Screenshot of Message</label>
+           <label for='exampleFormControlFile1' class='labelings'>Submit Valid Document for proof</label>
              <input type='file' name='file' class='form-control-file' id='exampleFormControlFile1'>
          </div>
          </div>
