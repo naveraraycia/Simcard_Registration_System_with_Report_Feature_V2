@@ -8,6 +8,10 @@
     header("Location: index.php");
     exit();
   }
+  if(empty($_SESSION['nsonumber'])){
+    header("Location: register_fingerprint.php?EnterNSO");
+  }
+
 ?>
 <!-- register-users-local.php?nsonum=3864&button= -->
 <!-- onclick="resetForm()" -->
@@ -118,24 +122,16 @@
         elseif(strpos($fulUrl, "error=simnum-already-exist") == true){
           echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
         }
-        elseif(strpos($fulUrl, "no-result") == true){
-          echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
-        }
-        elseif(strpos($fulUrl, "nsoempty")==true){
-          echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
-        }
-
         // error message for mobile number
         elseif(strpos($fulUrl, "incorrectNum")==true){
         echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
         }
-      elseif(strpos($fulUrl, "missplus")==true){
-        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
+        elseif(strpos($fulUrl, "missplus")==true){
+          echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
         }
-      elseif(strpos($fulUrl, "wrongchars")==true){
-        echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
+        elseif(strpos($fulUrl, "wrongchars")==true){
+          echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
         }
-
         // error message for fingerprint image
         elseif(strpos($fulUrl, "imageempty") == true){
           echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
@@ -149,6 +145,9 @@
         elseif(strpos($fulUrl, "imageformaterror") == true){
           echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
         }
+        elseif(strpos($fulUrl, "simservice") == true){
+          echo "<p class= 'nsoexist'>THIS USER ALREADY HAS A REGISTERED SIM CARD IN THIS SERVICE</p>";
+        }
 
 
 
@@ -156,7 +155,7 @@
 ?>
 
 
-   <form class="" action="#" method="post" enctype="multipart/form-data">
+   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
      $nso = $_SESSION['nsonumber'];
@@ -223,14 +222,14 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="nso-attach">Attach NSO</label>
-             <input type="file" name='file' class="form-control-file" id="nso-attach" required>
+             <input type="file" name='NSOfile' class="form-control-file" id="nso-attach" required>
            </div>
          </div>
 
          <div class="col-md-6">
            <div class="form-group">
              <label for="id-attach">Attach Valid ID</label>
-             <input type="file" name='file' class="form-control-file" id="id-attach" required>
+             <input type="file" name='IDfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
 
@@ -263,7 +262,7 @@
          </div>
          <div class="col-md-4">
            <label class="labelings">SIM Telco</label>
-           <select class="form-control" name="">
+           <select class="form-control" name="services">
              <option value="Globe/TM">Globe/TM</option>
              <option value="Smart">Smart</option>
              <option value="DITO">DITO</option>
@@ -282,7 +281,7 @@
 
          <div class="col-md-6 infodiv">
            <label class="labelings">Name of SIM retailer</label>
-           <input id="regisite" type="text" name="regisite" class="form-control" placeholder="ex: Cavite" required>
+           <input id="regisite" type="text" name="retailer" class="form-control" placeholder="ex: Cavite" required>
          </div>
 
        </div>
@@ -292,7 +291,7 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="exampleFormControlFile1">Attach Fingerprint Image</label>
-             <input type="file" name='file' class="form-control-file" id="exampleFormControlFile1" required>
+             <input type="file" name='Fingerfile' class="form-control-file" id="exampleFormControlFile1" required>
            </div>
          </div>
 

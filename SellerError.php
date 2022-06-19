@@ -5,7 +5,7 @@
          WHERE passnum_nsonum = '$nso_pass';";
         $result = mysqli_query($conn,$sql);
         $row = mysqli_num_rows($result);
-        if($row>2){
+        if($row>5){
             $exceed = true;
         }else{
             $exceed = false;

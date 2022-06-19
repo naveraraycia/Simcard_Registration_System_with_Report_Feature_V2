@@ -3,7 +3,7 @@
 $dbServername = "localhost";
 $dbUsername = "root"; //this will be ONLY change if using server not local
 $dbPassword = ""; //i set a password to nothing . you can put one
-$dbName = "Admin_Seller_Database"; //this is where we will put our database name
+$dbName = "admin_seller_database"; //this is where we will put our database name
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword,$dbName) //stands for CONNection
  ?>

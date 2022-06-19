@@ -32,47 +32,23 @@ if(isset($_POST['register'])){
        }
 
      // DATA FROM REGIS
-     $address = $_POST['address'];
-     $simcard = $_POST['simcard'];
-     $simnum = $_POST['simnum'];
-     $regisite = $_POST['regisite'];
+     $address = $_POST['address'];  //
+     $simcard = $_POST['simcard'];  //??
+     $simnum = $_POST['simnum'];    //
+     $regisite = $_POST['retailer'];
      $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis']));
      date_default_timezone_set('Asia/Manila');
      $time  = date('G').":".date('i').":".date('s');
      $timeImg  = date('G')."-".date('i')."-".date('s');
 
 
-
-       // fingerprint image
-       $file = $_FILES['file'];
-
-       // getting file details
-       $fileName       =$file["name"];
-       $fileType       =$file["type"];
-       $fileTempName   =$file["tmp_name"];
-       $fileError      =$file["error"];
-       $fileSize       =$file["size"];
-
-       $allowed        = array("jpg","jpeg","png","bmp");
-       $fileExt        = explode(".",$fileName);
-       $fileActualExt  = strtolower(end($fileExt));
-
-
-
-       $Name_FingerprintImage       = "Fingerprint-".$lastN."-".$firstN."D-".$dateofregis."_T-".$timeImg;
-       $Fingerprint_ImageFullName   = $Name_FingerprintImage.".".$fileActualExt;
-
-        $simnumber = "+63".$simnum;
-         $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
-         $result = mysqli_query($conn, $sqlnso);
-         $resultsCheck = mysqli_num_rows($result);
-         if($resultsCheck == 1){
+     $simnumber = "+63".$simnum;
+     $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
+     $result = mysqli_query($conn, $sqlnso);
+     $resultsCheck = mysqli_num_rows($result);
+     if($resultsCheck == 1){
        header("Location: ../register-users-foreign.php?error=simnum-already-exist");
-       // echo "<script> window.location.href='../register-users-foreign.php?error=simnum-already-exist'; </script>";
-       // echo "<h2>Error</h2>";
-     }
-
-     else {
+     }else {
        $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum, address,nationality,simcard, simnum,regisite,dateofregis,time,fingerprint_File_Format, fingerprint_File_Name)
        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
        // PREPARED STATEMENT
@@ -81,6 +57,46 @@ if(isset($_POST['register'])){
        if(!mysqli_stmt_prepare($stmt, $sql)){
          echo "SQL statement failed";
        }else{
+
+
+        $NSOfile = $_FILES['file'];
+              $fileName       =$NSOfile["name"];
+              $fileType       =$NSOfile["type"];
+              $fileTempName   =$NSOfile["tmp_name"];
+              $fileError      =$NSOfile["error"];
+              $fileSize       =$NSOfile["size"];
+              $allowed        = array("jpg","jpeg","png","bmp");
+              //conversion
+              $fileExt        = explode(".",$fileName);
+              $fileActualExt  = strtolower(end($fileExt));
+              $FullName = $lastN."_".$passnum_nsonum;
+
+        $NSOFile = ImageCheck($allowed,$fileActualExt,$fileExt,$FullName,$fileError,$fileSize);
+
+
+
+
+
+
+
+
+
+
+        function ImageCheck($allowed,$fileActualExt,$fileExt,$FullName,$fileError,$fileSize){
+                if($fileSize==0){
+                  return "false";
+                }else if (in_array($fileActualExt,$allowed)){
+                  return "false";
+                }else if ($fileSize<20000000){
+                  return "false";
+                }else if($fileError === 0){
+                  return "false";
+                }else{
+                  $ImageFullName = $FullName".".$fileActualExt;
+                  return $ImageFullName;
+                }
+        }
+
          //enter image error handlers
          //////////////////////  IMAGE ERRORS  /////////////////////
            if($fileSize==0){   //ERROR 404 for no file added
@@ -114,20 +130,34 @@ if(isset($_POST['register'])){
                  //     header("Location: ../register-users-foreign.php?error=missplus");
                  //     exit();
                   else{
+
+
+
                      $countnumber = strlen($simnum);
                      if($countnumber != 10){
                          header("Location: ../register-users-foreign.php?error=incorrectNum"); //error for wrong count
                          exit();
-                   }else{
-                     $simnum = "+63". $simnum;
-                     mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
-                     // RUN PARAMETER INDSIDE DATABASE
-                     mysqli_stmt_execute($stmt);
-                     $result = mysqli_stmt_get_result($stmt);
-                     $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
-                     move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
-                     unset($_SESSION['passportnumber']);
-                     header("Location: ../register-users-foreign.php?signup=success");
+                      }else{
+                        $simnum = "+63". $simnum;
+                        mysqli_stmt_bind_param($stmt,"ssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum, $address,$nationality,$simcard, $simnum, $regisite, $dateofregis,$time, $Fingerprint_ImageFullName , $Name_FingerprintImage );
+                        // RUN PARAMETER INDSIDE DATABASE
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+                        $fileDestination = '../Fingerprint_Registered_User_Database/'.$Fingerprint_ImageFullName; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
+                        move_uploaded_file($fileTempName,$fileDestination);  //imomove na yung file to that folder
+                        unset($_SESSION['passportnumber']);
+                        header("Location: ../register-users-foreign.php?signup=success");
+
+
+
+
+
+
+
+
+
+
+
                    }
                  }
                // }
