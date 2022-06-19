@@ -123,31 +123,14 @@
           echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
         }
         elseif(strpos($fulUrl, "exceed")==true){
-          echo "<p class= 'nsoexist'>YOU HAVE ALREADY REGISTERED 3 SIM CARDS</p>";
+          echo "<p class= 'nsoexist'>YOU HAVE ALREADY REGISTERED 5 SIM CARDS</p>";
         }
-        // error message for mobile number
-        elseif(strpos($fulUrl, "incorrectNum")==true){
-        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
+        elseif(strpos($fulUrl, "EnterNSO")==true){
+          echo "<p class= 'nsoexist'>YOU DON'T HAVE ACCESS TO THIS PAGE. ENTER NSO NUMBER</p>";
         }
-      elseif(strpos($fulUrl, "missplus")==true){
-        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
-        }
-      elseif(strpos($fulUrl, "wrongchars")==true){
-        echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
-        }
-
         // error message for fingerprint image
         elseif(strpos($fulUrl, "imageempty") == true){
           echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
-        }
-        elseif(strpos($fulUrl, "imagelarge") == true){
-          echo "<p class= 'nsoexist'>FINGERPRINT IMAGE SIZE IS TOO LARGE</p>";
-        }
-        elseif(strpos($fulUrl, "imageerror") == true){
-          echo "<p class= 'nsoexist'>There was an error that occurred while processing the fingerprint image. Please re-upload the fingerprint image</p>";
-        }
-        elseif(strpos($fulUrl, "imageformaterror") == true){
-          echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
         }
 
 
