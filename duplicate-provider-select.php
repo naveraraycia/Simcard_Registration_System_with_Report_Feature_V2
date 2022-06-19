@@ -109,23 +109,22 @@
     <div class="container" style="background-color: #f3f3f3; padding-bottom: 2rem;">
       <div class="row header">
             <h2>Select Registration Type</h2>
+            <div class="row"style="display: flex!important; justify-content:center!important;font-size: 18px;color: #18CC5D;">
+              <p class="">This registration is for applicants requesting for another SIM card with a service provider they already have existing mobile number with</p>
+            </div>
           </div>
 
 <div class="row">
-  <div class="col-md-3">
-    <a href="verify-document.php"><button type="button" name="button" class="send-btn">Local user</button></a>
+  <div class="col-md-4">
+    <a href="duplicate-nso-verify.php"><button type="button" name="button" class="send-btn">Local user</button></a>
   </div>
 
-  <div class="col-md-3">
-    <a href="verify-passport.php"><button type="button" name="button" class="send-btn">Foreign user</button></a>
+  <div class="col-md-4">
+    <a href="duplicate-sim-passport-verify.php"><button type="button" name="button" class="send-btn">Foreign user</button></a>
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-4">
     <a href="#"><button type="button" name="button" class="send-btn">Business / Work SIM</button></a>
-  </div>
-
-  <div class="col-md-3">
-    <a href="duplicate-provider-select.php"><button type="button" name="button" class="send-btn">Additional SIM # for Existing SIM provider</button></a>
   </div>
 
 </div>

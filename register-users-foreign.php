@@ -242,7 +242,7 @@
        </div>
 
        <div class="row">
-         <div class="col-md-6">
+         <div class="col-md-4">
            <label class="labelings">Type of Sim Card user</label>
            <select class="form-control" name="simcard">
              <option value="new prepaid user">New prepaid user</option>
@@ -250,7 +250,7 @@
              <option value="postpaid user">Postpaid user</option>
            </select>
          </div>
-         <div class="col-md-6 infodiv">
+         <div class="col-md-4 infodiv">
            <label class="labelings">Register SIM number</label>
            <div class="input-group mb-2">
            <div class="input-group-prepend">
@@ -258,6 +258,17 @@
            </div>
            <input type="tel" class="form-control" id="simnum" name="simnum" required>
          </div>
+         </div>
+
+         <div class="col-md-4">
+           <label class="labelings">SIM Telco</label>
+           <select class="form-control" name="">
+             <option value="Globe/TM">Globe/TM</option>
+             <option value="Smart">Smart</option>
+             <option value="DITO">DITO</option>
+             <option value="Sun">Sun</option>
+             <option value="TNT">TNT</option>
+           </select>
          </div>
        </div>
 
