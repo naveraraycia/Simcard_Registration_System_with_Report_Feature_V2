@@ -8,10 +8,6 @@
     header("Location: index.php");
     exit();
   }
-  if(empty($_SESSION['nsonumber'])){
-    header("Location: register_fingerprint.php?EnterNSO");
-  }
-
 ?>
 <!-- register-users-local.php?nsonum=3864&button= -->
 <!-- onclick="resetForm()" -->
@@ -85,7 +81,6 @@
                 <a class='nav-link selected' href='data-privacy-act.php'>Register User</a>
               </li>
 
-
               <li class='nav-item'>
                 <a class='nav-link' href='seller-home.php'>Home</a>
               </li>
@@ -95,7 +90,6 @@
               </li>
 
             </ul>
-
 
 
 
@@ -109,7 +103,7 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #f3f3f3;">
       <div class="row header">
-            <h2>Local User Sim Card Registration Form for Applicant applying for duplicate SIM provider</h2>
+            <h2>Foreign User Sim Card Registration Form for Applicant applying for duplicate SIM provider</h2>
           </div>
 
           <!-- <form class="" action="register-users-local.php" method="GET"> -->
@@ -122,19 +116,24 @@
         elseif(strpos($fulUrl, "error=simnum-already-exist") == true){
           echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
         }
-        elseif(strpos($fulUrl, "error=maxlimit") == true){
-          echo "<p class= 'nsoexist'>YOU HAVE RAN OUT OF SIM STOCK</p>";
+        elseif(strpos($fulUrl, "no-result") == true){
+          echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
         }
+        elseif(strpos($fulUrl, "nsoempty")==true){
+          echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
+        }
+
         // error message for mobile number
         elseif(strpos($fulUrl, "incorrectNum")==true){
         echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
         }
-        elseif(strpos($fulUrl, "missplus")==true){
-          echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
+      elseif(strpos($fulUrl, "missplus")==true){
+        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
         }
-        elseif(strpos($fulUrl, "wrongchars")==true){
-          echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
+      elseif(strpos($fulUrl, "wrongchars")==true){
+        echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
         }
+
         // error message for fingerprint image
         elseif(strpos($fulUrl, "imageempty") == true){
           echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
@@ -148,9 +147,6 @@
         elseif(strpos($fulUrl, "imageformaterror") == true){
           echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
         }
-        elseif(strpos($fulUrl, "simservice") == true){
-          echo "<p class= 'nsoexist'>THIS USER ALREADY HAS A REGISTERED SIM CARD IN THIS SERVICE</p>";
-        }
 
 
 
@@ -158,58 +154,59 @@
 ?>
 
 
-   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
+   <form class="" action="#" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
-     $nso = $_SESSION['nsonumber'];
-     $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
+     $passport = $_SESSION['passportnumber'];
+     $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
      $result = mysqli_query($conn,$query);
 
        if (mysqli_num_rows($result) > 0) {
          // if there is a result
          foreach ($result as $row) {
            ?>
-         <!-- FIRST ROW -->
-         <div class="row">
-
-           <div class="col-md-3 infodiv">
-             <label class="labelings">Last Name</label>
-             <input id="lastname" type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>" disabled>
+           <div class="row">
+             <div class="col-md-3">
+               <label class="labelings">Last Name</label>
+               <input type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>" disabled>
+             </div>
+             <div class="col-md-3">
+               <label class="labelings">First Name</label>
+               <input type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>" disabled>
+             </div>
+             <div class="col-md-3">
+               <label class="labelings">Middle Name</label>
+               <input type="text" name="midname" class="form-control"  value="<?= $row['midname'] ?>" disabled>
+             </div>
+             <div class="col-md-3">
+               <label class="labelings">Suffix</label>
+               <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>" disabled>
+             </div>
            </div>
 
-           <div class="col-md-3 infodiv">
-             <label class="labelings">First Name</label>
-             <input id="firstname" type="text" name="firstname" class="form-control" value="<?= $row['firstname'] ?>" disabled>
-           </div>
+           <!-- SECOND ROW -->
+           <div class="row srow">
+             <div class="col-md-3">
+               <label class="labelings">Date of Birth</label>
+               <input type="date" name="dateofbirth" class="form-control"  value="<?= $row['dateofbirth'] ?>" disabled>
+             </div>
+             <div class="col-md-3 ">
+               <label class="labelings">Gender</label>
+               <input type="text" name="Gender" class="Gender form-control"  value="<?= $row['gender'] ?>" disabled>
+             </div>
+            <div class="col-md-6">
+              <label class="labelings">Nationality</label>
+              <input type="text" name="nationality" class="form-control" value="<?= $row['nationality'] ?>" disabled>
+            </div>
+          </div>
 
-           <div class="col-md-3 infodiv">
-             <label class="labelings">Middle Name</label>
-             <input id="midname" type="text" name="midname" class="form-control" value="<?= $row['midname'] ?>" disabled>
-           </div>
-
-           <div class="col-md-3">
-             <label class="labelings">Suffix</label>
-             <input type="text" name="suffix" class="form-control" value="<?= $row['suffix'] ?>" disabled>
-           </div>
-
-         </div>
-
-         <!-- SECOND ROW -->
-         <div class="row srow" style="margin-bottom: 2rem; margin-top: 1rem;">
-           <div class="col-md-3 infodiv">
-             <label class="labelings">Date of Birth</label>
-             <input id="dateofbirth" type="date" name="dateofbirth"  class="form-control" value="<?= $row['dateofbirth'] ?>" disabled>
-           </div>
-           <div class="col-md-3">
-             <label class="labelings">Gender</label>
-             <input  type="text" name="Gender"  class="Gender form-control" value="<?= $row['gender'] ?>" disabled>
-           </div>
-           <div class="col-md-6 infodiv">
-             <label class="labelings">NSO Barcode Number</label>
-             <input id="nsonum" type="text" name="nsonum" class="form-control"value="<?= $row['nsonum'] ?>" disabled >
-           </div>
-
-         </div>
+          <!-- THIRD ROW -->
+          <div class="row srow">
+            <div class="col-md-12 ">
+              <label class="">Passport Number</label>
+              <input type="text" required name="passnum" class="form-control" value="<?php echo $_SESSION['passportnumber']; ?>" disabled>
+            </div>
+          </div>
 
 
          <?php
@@ -221,20 +218,14 @@
      ?>
 
 
-       <div class="row">
-         <div class="col-md-6">
+       <div class="row srow">
+         <div class="col-md-12">
            <div class="form-group">
-             <label for="nso-attach">Attach NSO</label>
-             <input type="file" name='NSOfile' class="form-control-file" id="nso-attach" required>
+             <label for="nso-attach">Attach Passport</label>
+             <input type="file" name='file' class="form-control-file" id="nso-attach" required>
            </div>
          </div>
 
-         <div class="col-md-6">
-           <div class="form-group">
-             <label for="id-attach">Attach Valid ID</label>
-             <input type="file" name='IDfile' class="form-control-file" id="id-attach" required>
-           </div>
-         </div>
 
        </div>
 
@@ -263,9 +254,10 @@
            <input type="tel" class="form-control" id="simnum" name="simnum" required>
          </div>
          </div>
+
          <div class="col-md-4">
            <label class="labelings">SIM Telco</label>
-           <select class="form-control" name="services">
+           <select class="form-control" name="">
              <option value="Globe/TM">Globe/TM</option>
              <option value="Smart">Smart</option>
              <option value="DITO">DITO</option>
@@ -291,7 +283,7 @@
 
          <div class="col-md-6 infodiv">
            <label class="labelings">Name of SIM retailer</label>
-           <input id="regisite" type="text" name="retailer" class="form-control" placeholder="ex: Cavite" required>
+           <input id="regisite" type="text" name="regisite" class="form-control" placeholder="ex: Cavite" required>
          </div>
 
        </div>
@@ -301,7 +293,7 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="exampleFormControlFile1">Attach Fingerprint Image</label>
-             <input type="file" name='Fingerfile' class="form-control-file" id="exampleFormControlFile1" required>
+             <input type="file" name='file' class="form-control-file" id="exampleFormControlFile1">
            </div>
          </div>
 
