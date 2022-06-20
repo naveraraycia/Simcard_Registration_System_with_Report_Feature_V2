@@ -1,5 +1,4 @@
 <?php
-
     function checkPenalty($conn,$nso_pass){
         $sql ="SELECT * FROM registered_simusers_db
          WHERE passnum_nsonum = '$nso_pass';";
@@ -47,21 +46,18 @@
                               mysqli_query($conn,$updateban); 
                               return true;
                             }else{
-                                header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?stillban");
+                                return "ban";
                             }
                         }else{
-                            header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?stillban");
+                            return "ban";
                         }
                     }else{
-                        header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?stillban");
+                        return "ban";
                   }
                 }
             }else{
-                header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?permanentban");
-                exit();
+                return "permanentban";
             }
-
-            
         }
     }
 ?>
