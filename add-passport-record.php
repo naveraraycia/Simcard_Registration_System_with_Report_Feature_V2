@@ -3,7 +3,7 @@
   require 'includes/dbh.inc.php';
   // $sql = "SELECT * FROM nso_dummy_db ORDER BY lastname ASC";
   // $result = mysqli_query($conn, $sql);
-  session_start();
+  // session_start();
   // if (empty($_SESSION['AdminEmail'])){
   //   header("Location: index.php");
   //   exit();
@@ -89,11 +89,7 @@
               <a class='nav-link selected' href='admin-home.php'>Home</a>
             </li>
 
-
               </ul>
-
-
-
 
           <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
             <button type="submit" name="btn-primary" class="log-button">Logout</button>
@@ -109,51 +105,21 @@
                 <h2 style="color: #b40032;">Add Passport record</h2>
               </div>
 
-              <!-- <form class="" action="#" method="GET"> -->
+              <form class="" action="add-passport-record.php" method="GET">
     <?php
             $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
             if(strpos($fulUrl, "signup=success") == true){
               echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
             }
-            elseif(strpos($fulUrl, "error=simnum-already-exist") == true){
+            elseif(strpos($fulUrl, "error=passnum-already-exist") == true){
               echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
-            }
-            elseif(strpos($fulUrl, "no-result") == true){
-              echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
-            }
-            elseif(strpos($fulUrl, "nsoempty")==true){
-              echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
-            }
-
-            // error message for mobile number
-            elseif(strpos($fulUrl, "incorrectNum")==true){
-            echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
-            }
-          elseif(strpos($fulUrl, "missplus")==true){
-            echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
-            }
-          elseif(strpos($fulUrl, "wrongchars")==true){
-            echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
-            }
-
-            // error message for fingerprint image
-            elseif(strpos($fulUrl, "imageempty") == true){
-              echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
-            }
-            elseif(strpos($fulUrl, "imagelarge") == true){
-              echo "<p class= 'nsoexist'>FINGERPRINT IMAGE SIZE IS TOO LARGE</p>";
-            }
-            elseif(strpos($fulUrl, "imageerror") == true){
-              echo "<p class= 'nsoexist'>There was an error that occurred while processing the fingerprint image. Please re-upload the fingerprint image</p>";
-            }
-            elseif(strpos($fulUrl, "imageformaterror") == true){
-              echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
             }
 
     ?>
+  </form>
 
-       <form class="" action="#" method="post" enctype="multipart/form-data">
+       <form class="" action="add-passport-record-backend.php" method="post" enctype="multipart/form-data">
          <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
              <!-- FIRST ROW -->
 
