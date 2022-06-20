@@ -1,9 +1,9 @@
 <?php
 
   require 'includes/dbh.inc.php';
-  $sql = "SELECT * FROM nso_dummy_db ORDER BY lastname ASC";
-  $result = mysqli_query($conn, $sql);
-  session_start();
+  // $sql = "SELECT * FROM nso_dummy_db ORDER BY lastname ASC";
+  // $result = mysqli_query($conn, $sql);
+  // session_start();
   // if (empty($_SESSION['AdminEmail'])){
   //   header("Location: index.php");
   //   exit();
@@ -45,7 +45,6 @@
   color: white;
   font-weight: bold;
   width: 100%;
-  height: 100px;
   border-radius: 6px 6px 6px 6px;
   position: relative;
   margin-top: 1rem;
@@ -63,8 +62,6 @@
 .col-md-3 {
   margin-bottom: 2rem;
 }
-
-
 
 </style>
 </head>
@@ -91,6 +88,7 @@
             </li>
 
               </ul>
+
           <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
             <button type="submit" name="btn-primary" class="log-button">Logout</button>
           </form>
@@ -98,65 +96,83 @@
       </nav>
     </header>
 
-        <div class="row row-table-head" style="padding-bottom: 15px;">
-          <div class="col-md-3">
-          <p class="header row-head" style="margin-bottom: 0px; align-self: center; color: black;">NSO Database <a href="add-nso-record.php"
-            ><i class="fa-solid fa-circle-plus icon-plus" style="color:#b40032;"></i></a></p>
-          </div>
 
-          <div class="col-md-9">
-            <form class="form-inline" action="search_nso_dummy.php" method="POST">
-              <input class="form-control mr-sm-2 search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" >
-              <button class="log-buttons search-btn my-2 my-sm-0" type="submit" name="submit-search">Search</button>
-            </form>
-          </div>
+        <!-- BODY PART -->
+        <div class="container" style="background-color: #f3f3f3;">
+          <div class="row header">
+                <h2 style="color: #b40032;">UPDATE SIM RETAILER DATA FOR: Cavite SIM Shop</h2>
 
-        </div>
+              </div>
 
+              <form class="" action="#" method="GET">
+    <?php
+            $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th class="f-column text-truncate" scope="col" >ID</th>
-              <th class="f-column text-truncate" scope="col" >Last Name</th>
-              <th class="f-column text-truncate" scope="col" >First Name</th>
-              <th class="f-column text-truncate" scope="col" >Middle Name</th>
-              <th class="f-column text-truncate" scope="col" >Suffix</th>
-              <th class="f-column text-truncate" scope="col" >Date of Birth</th>
-              <th class="f-column text-truncate" scope="col" >Gender</th>
-              <th class="f-column text-truncate" scope="col" >NSO #</th>
+            if(strpos($fulUrl, "signup=success") == true){
+              echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
+            }
+            elseif(strpos($fulUrl, "error=nsomnum-already-exist") == true){
+              echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS NSO NUMBER ALREADY EXISTS</p>";
+            }
+    ?>
+  </form>
 
-            </tr>
-          </thead>
-          <tbody>
-
-            <?php
-                  while($row = mysqli_fetch_assoc($result)):
-            ?>
-
-            <tr>
-
-              <th scope="row" class="text-truncate"><?php echo 'ex: 1' ?></th>
-              <td class="text-truncate"><?php echo $row['lastname']; ?></td>
-              <td class="text-truncate"><?php echo $row['firstname']; ?></td>
-              <td class="text-truncate"><?php echo $row['midname']; ?></td>
-              <td class="text-truncate"><?php echo $row['suffix']; ?></td>
-              <td class="text-truncate"><?php echo $row['dateofbirth']; ?></td>
-              <td class="text-truncate"><?php echo $row['gender']; ?></td>
-              <td class="text-truncate"><?php echo $row['nsonum']; ?></td>
-
-            </tr>
-
-          <?php endwhile; ?>
+              <form class="" action="#" method="POST" enctype="multipart/form-data">
 
 
-          </tbody>
-        </table>
+             <!-- SECOND ROW -->
+             <div class="row srow" style="margin-bottom: 2rem; margin-top: 1rem;">
+               <div class="col-md-4 infodiv">
+                 <label class="labelings">Shop Name</label>
+                <input  type="text" name=""  class="Gender form-control" value="Cavite SIM shop" required>
+               </div>
+               <div class="col-md-4">
+                 <label class="labelings">Business Owner</label>
+                 <input  type="text" name="Gender"  class="Gender form-control" value="Mary Grace" required>
+               </div>
+               <div class="col-md-4 infodiv">
+                 <label class="labelings">Business Permit Number</label>
+                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="123456XX" required>
+               </div>
 
-      </div>
+             </div>
 
+              <div class="row srow">
+                <div class="col-md-12 infodiv">
+                  <label class="labelings">Business Address</label>
+                  <input id="lastname" type="text" name="lastname" class="form-control" value="Lot 123 Testing" required>
 
+                </div>
+              </div>
+             <div class="row srow">
+               <div class="col-md-6 infodiv">
+                 <label class="labelings">SIM Limit</label>
+                 <input id="" type="number" name="" class="form-control" value="32" required>
+               </div>
+
+               <div class="col-md-6 infodiv">
+                 <label class="labelings">Owner SIM number</label>
+                 <div class="input-group mb-2">
+                 <div class="input-group-prepend">
+                   <div class="input-group-text">+63</div>
+                 </div>
+                 <input type="tel" class="form-control" id="simnum" name="simnum" value="9175650000" required>
+               </div>
+               </div>
+
+             </div>
+
+              <!-- UPDATE BUTTON -->
+
+              <div class="row srow">
+              <div class="col-md-12">
+                <button type="submit" name="register" class="send-btn">Update</button>
+              </div>
+            </div>
+
+         </form>
+
+       </div>
 
     </body>
 

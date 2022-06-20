@@ -125,7 +125,7 @@
   </div>
 
   <div class="col-md-3">
-    <a href="#"><button type="button" name="button" class="send-btn">View / Update / Delete Registered SIM Retailer</button></a>
+    <a href="list-sim-retailer-admin.php"><button type="button" name="button" class="send-btn">View / Update / Delete Registered SIM Retailer</button></a>
   </div>
 
 </div>

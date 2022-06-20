@@ -234,9 +234,7 @@ h2 {
 }
 
 .canHov:hover {
-  /* box-shadow: 0px 5px 0.4px #2f5a62; */
-  /* border: solid 2px #2f5a62; */
-  background-color: #c1ebe2 !important;
+  background-color: #ffecf2!important;
   cursor: pointer;
 }
 
