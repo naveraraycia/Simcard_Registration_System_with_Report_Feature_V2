@@ -32,57 +32,59 @@
     <!-- FONT AWESOME -->
     <script src="https://kit.fontawesome.com/207a28b81e.js" crossorigin="anonymous"></script>
 
+
   </head>
-    <body>
-      <!-- NAVBAR PART -->
-      <header>
+  <body style="background-color: white;">
+    <!-- NAVBAR PART -->
+    <header>
 
-        <nav class="navbar navbar-expand-lg">
-          <a class="div1 navbar-brand" href="navbar.php">
-              <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
-              <span class="brandname">SimCardRegistrationSystem</span>
-            </a>
+      <nav class="navbar navbar-expand-lg">
+        <a class="div1 navbar-brand" href="register-users-local.php">
+            <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
+            <span class="brandname">SIM shop: Cavite SIM Shop</span>
+          </a>
 
-          <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class='navbar-nav'>
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+
+          <ul class='navbar-nav'>
                 <li class='nav-item'>
-                  <a class='nav-link' href='profile-user.php'>Profile</a>
-                </li>
-                <li class='nav-item'>
-                  <a class='nav-link' href='profile-user.php?reportPage'>Report</a>
-                </li>
-
-                <li class='nav-item'>
-                  <a class='nav-link' href='pending-sims-end-user.php'>SIM requests</a>
+                  <a class='nav-link' href='data-privacy-act.php'>Register User</a>
                 </li>
 
                 <li class='nav-item'>
-                  <a class='nav-link selected' href='end-user-update-data-request.php'>Update Info</a>
+                  <a class='nav-link' href='seller-home.php'>Home</a>
+                </li>
+
+                <li class='nav-item'>
+                  <a class='nav-link' href='seller-profile.php'>Profile</a>
+                </li>
+
+                <li class='nav-item'>
+                  <a class='nav-link selected' href='request-sim-resupply.php'>Update info / Request SIM</a>
                 </li>
 
               </ul>
 
+          <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
+            <button type="submit" name="btn-primary" class="log-button">Logout</button>
+          </form>
+        </div>
+      </nav>
+    </header>
 
 
-            <form class="form-btnn" action="Logout/logoutprocess_EndUser.php" method="POST">
-              <button type="submit" name="btn-primary" class="log-button">Logout</button>
-            </form>
-          </div>
-        </nav>
-      </header>
-
-
-  <div class="container">
+  <div class="container" style="background-color: #f3f3f3;">
 
     <div class='row header'>
-    <h2>Request for Update of Personal Information</h2>
+    <h2>Request for Update of SIM Retailer information</h2>
     </div>
     <div class="row"style="display: flex!important; justify-content:center!important; margin-top:5px;font-size: 18px;color: #18CC5D;">
-      <p class="">Your request for update of personal information may take a couple of days to process</p>
+      <p class="" style="margin-top:3rem!important;">Your request for update of information may take a couple of days to process</p>
 
     </div>
 
@@ -97,22 +99,29 @@
              <!-- COLUMN 1 -->
 
                <div class='infodiv1'>
-                 <p class='labelings'>Name</p>
+                 <p class='labelings'>Business Owner</p>
                  <input type='text' name='VictName' value='<?php //$FirstName $LastName $MiddleName $Suffix ?> 'id='usernamee' class='form-control' required disabled>
 
                </div>
 
                <div class='infodiv1'>
-                 <p class='labelings'>Your Mobile Number</p>
-                 <input type='tel' name='VictimNumber' value='<?php //$SimCardNumber ?>' id='yourNumber' class='form-control' placeholder='' required disabled>
+                 <p class='labelings'>Business Permit #</p>
+                 <input type='' name='VictimNumber' value='<?php //$SimCardNumber ?>' id='yourNumber' class='form-control' placeholder='' required disabled>
 
                </div>
 
                <div class="infodiv1">
                    <select class='custom-select mr-sm-2' id='nlineFormCustomSelect' name ='operator'>
-                     <option value="Name">Name</option>
-                     <option value="Address">Address</option>
+                     <option value="Shop Name">Shop Name</option>
+                     <option value="Business Address">Business Address</option>
+                     <option value="Shop Name">Owner's SIM #</option>
                    </select>
+               </div>
+
+               <div class='infodiv1'>
+                 <p class='labelings'>Enter your SIM Retailer owner key</p>
+                 <input type='' name='VictimNumber' value='<?php //$SimCardNumber ?>' id='yourNumber' class='form-control' placeholder='' required>
+
                </div>
 
 
@@ -129,6 +138,9 @@
                  <p class='labelings'>Enter Updated Information</p>
                  <input id="" type="text" name="address" class="form-control" placeholder="For updating of name: Last Name, First Name, Middle Name, Suffix" required>
              </div>
+             <div class="row" style="display: flex!important; margin-top: 1rem!important;justify-content:center!important;font-size: 18px; color:grey;">
+               <p class="">If you want to update SIM #, follow the format : +639170000000</p>
+             </div>
 
              </div>
 
@@ -140,11 +152,16 @@
            <label for='exampleFormControlFile1' class='labelings'>Submit Valid Document for proof</label>
              <input type='file' name='file' class='form-control-file' id='exampleFormControlFile1'>
          </div>
+         <div class="row"style="display: flex!important; justify-content:flex-start!important;font-size: 18px;color: grey;">
+           <p class="">Attach Business Permit for updating Shop Name or Address</p>
+         </div>
          </div>
 
          <div class='col-md-6'>
            <button type='submit' name='reportbutton' class='send-btn submit_btn' style='display: flex; justify-content: center; align-items: center;'>Send</button>
          </div>
+
+
          </div>
 
          <div class="row srow">
@@ -155,6 +172,8 @@
            </div>
 
          </div>
+
+
            </form>
 
 

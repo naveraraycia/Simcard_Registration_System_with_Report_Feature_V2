@@ -174,6 +174,15 @@ $FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
     <div class='col-md-6'>
       <button type='submit' name='reportbutton' class='send-btn submit_btn' style='display: flex; justify-content: center; align-items: center;'>Send</button>
     </div>
+
+    <div class='row srow'>
+      <div class='col-md-12'>
+        <div class='row'style='display: flex!important; justify-content:center!important; margin-top:5px;font-size: 18px;'>
+          <p class='' style='text-align:center!important;'>By submitting this form, you agree to our <a href='#' style='font-weight:bold;'>Privacy Policy</a> and <a href='#' style='font-weight:bold;'>Terms and Conditions</a> with accordance to the Data Privacy Act of 2012</p>
+        </div>
+      </div>
+
+    </div>
     </div>
       </form>
     ";

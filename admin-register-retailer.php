@@ -93,7 +93,7 @@ if (empty($_SESSION['AdminEmail'])){
   <!-- BODY PART -->
   <div class="container" style="background-color:#f3f3f3;">
     <div class="row header">
-          <h2 style="color:#b40032;">Register SIM Business</h2>
+          <h2 style="color:#b40032;">Register SIM Retailer Business</h2>
         </div>
 
           <!-- <form class="" action="register-users-local.php" method="GET"> -->
@@ -217,6 +217,19 @@ if (empty($_SESSION['AdminEmail'])){
 
          <div class="col-4 infodiv">
            <label class="Bday">Confirm Password</label>
+           <input id="address" type="password" name="address" class="form-control" required>
+         </div>
+
+       </div>
+
+       <div class="row srow">
+         <div class="col-6 infodiv">
+           <label class="Bday">Business Owner Unique Key</label>
+           <input id="address" type="text" name="address" class="form-control" required>
+         </div>
+
+         <div class="col-6 infodiv">
+           <label class="Bday">Business Owner Confirm Unique Key</label>
            <input id="address" type="password" name="address" class="form-control" required>
          </div>
 

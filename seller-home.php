@@ -67,6 +67,10 @@
                 <a class='nav-link' href='seller-profile.php'>Profile</a>
               </li>
 
+              <li class='nav-item'>
+                <a class='nav-link' href='request-sim-resupply.php'>Update info / Request SIM</a>
+              </li>
+
             </ul>
 
         <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">

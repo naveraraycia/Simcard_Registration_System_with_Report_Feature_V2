@@ -85,7 +85,7 @@
 
           <ul class='navbar-nav'>
                 <li class='nav-item'>
-                  <a class='nav-link selected' href='data-privacy-act.php'>Register User</a>
+                  <a class='nav-link' href='data-privacy-act.php'>Register User</a>
                 </li>
 
                 <li class='nav-item'>
@@ -97,7 +97,7 @@
                 </li>
 
                 <li class='nav-item'>
-                  <a class='nav-link' href='request-sim-resupply.php'>Update info / Request SIM</a>
+                  <a class='nav-link selected' href='request-sim-resupply.php'>Update info / Request SIM</a>
                 </li>
 
               </ul>
@@ -112,28 +112,44 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #f3f3f3; padding-bottom: 2rem;">
       <div class="row header">
-            <h2>Select Registration Type</h2>
-            <div class="row"style="display: flex!important; justify-content:center!important;font-size: 18px;color: #18CC5D;">
-              <p class="">This registration is for applicants requesting for another SIM card with a service provider they already have existing mobile number with</p>
-            </div>
+            <h2>Select Process</h2>
           </div>
 
 <div class="row">
-  <div class="col-md-4">
-    <a href="duplicate-nso-verify.php"><button type="button" name="button" class="send-btn">Local user</button></a>
+  <div class="col-md-6">
+    <a href="update-seller-profile.php"><button type="button" name="button" class="send-btn">Update SIM Retailer Business Info</button></a>
   </div>
 
-  <div class="col-md-4">
-    <a href="duplicate-sim-passport-verify.php"><button type="button" name="button" class="send-btn">Foreign user</button></a>
-  </div>
-
-  <div class="col-md-4">
-    <a href="duplicate-business-verify.php"><button type="button" name="button" class="send-btn">Business / Work SIM</button></a>
+  <div class="col-md-6">
+  <button type="button" name="button" class="send-btn" data-toggle="modal" data-target="#exampleModal">Request for resupply of SIM</button>
   </div>
 
 </div>
 
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">SIM Limit Resupply</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Amount of SIM to resupply</label>
+            <input type="number" class="form-control" id="resupplynum" style="width: 100px;">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
  </body>
