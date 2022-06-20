@@ -124,7 +124,7 @@
   </div>
 
   <div class="col-md-4">
-    <a href="#"><button type="button" name="button" class="send-btn">Business / Work SIM</button></a>
+    <a href="duplicate-business-verify.php"><button type="button" name="button" class="send-btn">Business / Work SIM</button></a>
   </div>
 
 </div>
