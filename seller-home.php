@@ -175,8 +175,8 @@
         <div class="col-auto my-1">
           <button type="" class="log-buttons search-btn" name="filters" style="margin-top:0px;margin-left: 0px!important; margin-right:0px!important;">Go</button>
           <!-- EXPORT TO EXCEL BUTTON -->
-        <!-- <a href="excel/seller-home-excel.php" target="_blank" class="btn btn-primary">Export to Excel
-          </a> -->
+        <a href="excel/seller-home-excel.php" target="_blank" class="btn btn-primary">Export to Excel
+          </a>
         </div>
       </div>
     </form>
@@ -252,7 +252,7 @@
            }
 
            $result = mysqli_query($conn,$FirstOff);
-      
+
            $resultCheck = mysqli_num_rows($result);
           }
               while($row = mysqli_fetch_assoc($result)):

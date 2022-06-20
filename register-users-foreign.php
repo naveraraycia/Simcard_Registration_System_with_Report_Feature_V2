@@ -204,12 +204,7 @@
           <div class="row srow">
             <div class="col-md-12 ">
               <label class="">Passport Number</label>
-              <input type="text" required name="passnum" class="form-control" value="<?php
-              if (isset($_GET['passnum'])) {
-                echo $_GET['passnum'];
-                $_SESSION['passportnumber'] = $_GET['passnum'];
-              }
-              ?>" disabled>
+              <input type="text" required name="passnum" class="form-control" value="<?php echo $_SESSION['passportnumber']; ?>" disabled>
             </div>
           </div>
 
