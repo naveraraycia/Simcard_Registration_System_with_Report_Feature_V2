@@ -142,16 +142,16 @@
         }
         // error message for fingerprint image
         elseif(strpos($fulUrl, "imageempty") == true){
-          echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
+          echo "<p class= 'nsoexist'>INSUFFICIENT IMAGE UPLOADED</p>";
         }
         elseif(strpos($fulUrl, "imagelarge") == true){
-          echo "<p class= 'nsoexist'>FINGERPRINT IMAGE SIZE IS TOO LARGE</p>";
+          echo "<p class= 'nsoexist'>SOME IMAGES SIZE ARE TOO LARGE</p>";
         }
         elseif(strpos($fulUrl, "imageerror") == true){
-          echo "<p class= 'nsoexist'>There was an error that occurred while processing the fingerprint image. Please re-upload the fingerprint image</p>";
+          echo "<p class= 'nsoexist'>There was an error that occurred while processing the image. Please try again later</p>";
         }
         elseif(strpos($fulUrl, "imageformaterror") == true){
-          echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
+          echo "<p class= 'nsoexist'>Please upload the images in .jpg, .jpeg, .png, or .bmp only</p>";
         }
         elseif(strpos($fulUrl, "simservice") == true){
           echo "<p class= 'nsoexist'>THIS USER ALREADY HAS A REGISTERED SIM CARD IN THIS SERVICE</p>";

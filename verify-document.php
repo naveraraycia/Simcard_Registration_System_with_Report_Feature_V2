@@ -153,9 +153,18 @@
         include 'SellerError.php';
 
         $checkbanstat= checkban($conn,$nso);
-        $exceed      = checkPenalty($conn,$nso);
+        if($checkbanstat ==  "ban"){
+          header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?stillban");
+          exit();
+        }else if($checkbanstat == "permanentban"){
+          header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?permanentban");
+          exit();
+        }
+
+        $exceed= checkPenalty($conn,$nso);
         if($exceed == true){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?exceed");
+          exit();
         }
         foreach ($result as $row) {
           ?>
