@@ -122,6 +122,9 @@
         elseif(strpos($fulUrl, "error=simnum-already-exist") == true){
           echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
         }
+        elseif(strpos($fulUrl, "error=maxlimit") == true){
+          echo "<p class= 'nsoexist'>YOU HAVE RAN OUT OF SIM STOCK</p>";
+        }
         // error message for mobile number
         elseif(strpos($fulUrl, "incorrectNum")==true){
         echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";

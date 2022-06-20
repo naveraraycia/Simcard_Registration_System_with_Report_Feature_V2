@@ -110,11 +110,14 @@
 <?php
         $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        if(strpos($fulUrl, "signup=success") == true){
-          echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
+        if(strpos($fulUrl, "stillban") == true){
+          echo "<p class= 'nsoexist'>THIS USER IS UNDER BAN</p>";
         }
-        elseif(strpos($fulUrl, "error=simnum-already-exist") == true){
-          echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
+        if(strpos($fulUrl, "signup=success") == true){
+          echo "<p class= 'regsuccess'>THIS USER HAS BEEN SUCCESSFULLY REGISTERED</p>";
+        }
+        elseif(strpos($fulUrl, "permanentban") == true){
+          echo "<p class= 'nsoexist'>THIS PERSON HAS BEEN PERMNANENTLY BAN TO REGISTRATER SIM</p>";
         }
         elseif(strpos($fulUrl, "no-result") == true){
           echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
@@ -128,10 +131,7 @@
         elseif(strpos($fulUrl, "EnterNSO")==true){
           echo "<p class= 'nsoexist'>YOU DON'T HAVE ACCESS TO THIS PAGE. ENTER NSO NUMBER</p>";
         }
-        // error message for fingerprint image
-        elseif(strpos($fulUrl, "imageempty") == true){
-          echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
-        }
+
 
 
 
@@ -147,7 +147,9 @@
 
       if (mysqli_num_rows($result) > 0) {
         include 'SellerError.php';
-        $exceed= checkPenalty($conn,$nso);
+
+        $checkbanstat= checkban($conn,$nso);
+        $exceed      = checkPenalty($conn,$nso);
         if($exceed == true){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?exceed");
         }
@@ -233,7 +235,6 @@
     // header("http://localhost/Sim-Registration-Final-UI-main/register-users-local.php?nsonum=.$nso.&button=no-result");
     header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?no-result=nsonum='.$nso.'&button");
     // echo "NO RESULT";
-
   }
 } else {
   // INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD
