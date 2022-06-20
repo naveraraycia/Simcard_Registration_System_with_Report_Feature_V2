@@ -1,14 +1,16 @@
 <?php
-  require 'includes/dbh.inc.php';
 
-?>
-<?php
+  require 'includes/dbh.inc.php';
+  // $sql = "SELECT * FROM nso_dummy_db ORDER BY lastname ASC";
+  // $result = mysqli_query($conn, $sql);
   // session_start();
-  // if (empty($_SESSION['SellerFirstName'])){
+  // if (empty($_SESSION['AdminEmail'])){
   //   header("Location: index.php");
   //   exit();
   // }
+
 ?>
+
 <!-- register-users-local.php?nsonum=3864&button= -->
 <!-- onclick="resetForm()" -->
 <!DOCTYPE html>
@@ -30,7 +32,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
 
   <!-- CUSTOM CSS FILE  -->
-  <link rel="stylesheet" href="styles/admin-home-style.css">
+  <link rel="stylesheet" href="styles/admin-tables-style.css">
   <!-- FONT AWESOME -->
 <script src="https://kit.fontawesome.com/57070be855.js" crossorigin="anonymous"></script>
 
@@ -43,7 +45,6 @@
   color: white;
   font-weight: bold;
   width: 100%;
-  height: 100px;
   border-radius: 6px 6px 6px 6px;
   position: relative;
   margin-top: 1rem;
@@ -61,8 +62,6 @@
 .col-md-3 {
   margin-bottom: 2rem;
 }
-
-
 
 </style>
 </head>
@@ -88,11 +87,7 @@
               <a class='nav-link selected' href='admin-home.php'>Home</a>
             </li>
 
-
               </ul>
-
-
-
 
           <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
             <button type="submit" name="btn-primary" class="log-button">Logout</button>
@@ -101,54 +96,71 @@
       </nav>
     </header>
 
-    <!-- BODY PART -->
-    <div class="container" style="background-color: #f3f3f3; padding-bottom: 2rem;">
-      <div class="row header">
-            <h2>Select Task</h2>
-          </div>
 
-          <form class="" action="verify-document.php" method="GET">
+        <!-- BODY PART -->
+        <div class="container" style="background-color: #f3f3f3;">
+          <div class="row header">
+                <h2 style="color: #b40032;">UPDATE SIM USER DATA</h2>
 
+              </div>
 
-<div class="row">
-  <div class="col-md-3">
-    <a href="admin-nso-list.php"><button type="button" name="button" class="send-btn">View NSO Records</button></a>
-  </div>
+              <form class="" action="#" method="GET">
+    <?php
+            $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-  <div class="col-md-3">
-    <a href="admin-pass-list.php"><button type="button" name="button" class="send-btn">View Passport Records</button></a>
-  </div>
+            if(strpos($fulUrl, "signup=success") == true){
+              echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
+            }
+            elseif(strpos($fulUrl, "error=nsomnum-already-exist") == true){
+              echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS NSO NUMBER ALREADY EXISTS</p>";
+            }
+    ?>
+  </form>
 
-
-  <div class="col-md-3">
-    <a href="terms-admin-regis-retailer.php"><button type="button" name="button" class="send-btn">Register SIM retailer</button></a>
-  </div>
-
-  <div class="col-md-3">
-    <a href="list-sim-retailer-admin.php"><button type="button" name="button" class="send-btn">View / Update / Delete Registered SIM Retailer</button></a>
-  </div>
-
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-    <a href="list-end-user-admin.php"><button type="button" name="button" class="send-btn">View / Update / Delete registered SIM User</button></a>
-  </div>
-
-  <div class="col-md-6">
-    <a href="#"><button type="button" name="button" class="send-btn">Report Messages</button></a>
-  </div>
-
-</div>
+              <form class="" action="#" method="POST" enctype="multipart/form-data">
 
 
+             <!-- SECOND ROW -->
+             <div class="row srow" style="margin-bottom: 2rem; margin-top: 1rem;">
+               <div class="col-md-3 infodiv">
+                 <label class="labelings">Last Name</label>
+                <input  type="text" name=""  class="Gender form-control" value="Berches" required>
+               </div>
+               <div class="col-md-3 infodive">
+                 <label class="labelings">First Name</label>
+                 <input  type="text" name="Gender"  class="Gender form-control" value="Keanu" required>
+               </div>
+               <div class="col-md-3 infodiv">
+                 <label class="labelings">Middle Name</label>
+                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="Paga" required>
+               </div>
 
+               <div class="col-md-3 infodiv">
+                 <label class="labelings">Suffix</label>
+                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="" required>
+               </div>
 
+             </div>
 
-</div>
+              <div class="row srow">
+                <div class="col-md-12 infodiv">
+                  <label class="labelings">Address</label>
+                  <input id="lastname" type="text" name="lastname" class="form-control" value="Philippines,Earth" required>
+                </div>
+              </div>
 
+              <!-- UPDATE BUTTON -->
 
-<!-- end of body -->
+              <div class="row srow">
+              <div class="col-md-12">
+                <button type="submit" name="register" class="send-btn">Update</button>
+              </div>
+            </div>
 
- </body>
-</html>
+         </form>
+
+       </div>
+
+    </body>
+
+    </html>

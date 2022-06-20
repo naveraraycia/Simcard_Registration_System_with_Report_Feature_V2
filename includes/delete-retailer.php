@@ -2,12 +2,12 @@
 
 include_once "dbh.inc.php";
 
-	if(isset($_GET['del_id'])) {
+	if(isset($_GET['simnum'])) {
 
-  $businessPermit = $_GET['del_id'];
+  $simcardnum = $_GET['simnum'];
 
   //USE THE $id as the variable for WHERE CLAUSE
-  // THIS SHOULD BE THE QUERY: 	"DELETE FROM tasks WHERE businessPermitColumn = $businessPermit"
+  // THIS SHOULD BE THE QUERY: 	"DELETE FROM registered_simusers_db WHERE simnumColumn = $simcardnum"
 
   // HEAD THE USER BACK TO list-sim-retailer-admin.php
   header("location: ../list-sim-retailer-admin.php");

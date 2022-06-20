@@ -226,6 +226,11 @@ $FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
           <p class='information'>$Nationality</p>
         </div>
 
+        <div class='infodiv'>
+          <p class='labelings'>Company Address </p>
+          <p class='information'>Test 123 Earth</p>
+        </div>
+
       </div>
 
       <div class='col-md-4 infocol2'>
@@ -254,6 +259,13 @@ $FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
           <p class='labelings'>Registration Shop Site</p>
           <p class='information'>$RegSite</p>
         </div>
+
+        <div class='infodiv'>
+          <p class='labelings'>SIM Service Provider</p>
+          <p class='information'>Globe</p>
+        </div>
+
+
       </div>
 
       <div class='col-md-4 infocol3'>

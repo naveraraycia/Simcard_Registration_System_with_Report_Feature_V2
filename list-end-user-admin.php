@@ -65,7 +65,7 @@
 
     <div class="row">
       <div class="col-md-12">
-      <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;color: #b40032;">LIST OF REGISTERED SIM RETAILERS</p>
+      <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;color: #b40032;">LIST OF REGISTERED SIM USERS</p>
       </div>
     </div>
 
@@ -110,15 +110,26 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th class="f-column text-truncate" scope="col" >Shop Name</th>
-          <th class="f-column text-truncate" scope="col" >Shop Email</th>
-          <th class="f-column text-truncate" scope="col" >Business Owner</th>
-          <th class="f-column text-truncate" scope="col" >Business Address</th>
-          <th class="f-column text-truncate" scope="col" >Business Permit Number</th>
-          <th class="f-column text-truncate" scope="col" >Owner SIM #</th>
-          <th class="f-column text-truncate" scope="col" >SIM Limit</th>
+          <th class="f-column text-truncate" scope="col" >SIM Card #</th>
+          <th class="f-column text-truncate" scope="col" >SIM status</th>
+          <th class="f-column text-truncate" scope="col" >Penalty</th>
+          <th class="f-column text-truncate" scope="col" >Date blocked</th>
+          <th class="f-column text-truncate" scope="col" >End of block period</th>
+          <th class="f-column text-truncate" scope="col" >Last Name</th>
+          <th class="f-column text-truncate" scope="col" >First Name</th>
+          <th class="f-column text-truncate" scope="col" >Middle Name</th>
+          <th class="f-column text-truncate" scope="col" >Suffix</th>
+          <th class="f-column text-truncate" scope="col" >Birthdate</th>
+          <th class="f-column text-truncate" scope="col" >Gender</th>
+          <th class="f-column text-truncate" scope="col" >NSO or Passport #</th>
+          <th class="f-column text-truncate" scope="col" >Address</th>
+          <th class="f-column text-truncate" scope="col" >Nationality</th>
+          <th class="f-column text-truncate" scope="col" >SIM User Type</th>
+          <th class="f-column text-truncate" scope="col" >SIM Shop</th>
+          <th class="f-column text-truncate" scope="col" >SIM retailer</th>
+          <th class="f-column text-truncate" scope="col" >Fingerprint Img</th>
           <th class="f-column text-truncate" scope="col" >Registration Date</th>
-          <th class="f-column text-truncate" scope="col" >Registered by</th>
+          <th class="f-column text-truncate" scope="col" >Registration Time</th>
 
 
         </tr>
@@ -178,19 +189,29 @@
         //
         // ?>
 
-        <!-- <tr class="canHov" onclick="window.location='<?php echo "update-retailer-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
-        <tr class="canHov" onclick="window.location='update-retailer-info.php';">
-          <!-- hito sa echo below sa simnum=   , ilagay mo ung $row['simcardnumbercolumnname'] -->
-          <td class="text-truncate"><a href="includes/delete-retailer.php?simnum=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
-          <td class="text-truncate"><?php echo 'Cavite SIM Shop'; ?></td>
-          <th class="text-truncate"><?php echo 'cavite_shop@gmail.com'; ?></th>
-          <td class="text-truncate"><?php echo 'Mary Grace'; ?></td>
-          <td class="text-truncate"><?php echo 'Lot 123 Testing'; ?></td>
-          <td class="text-truncate"><?php echo '123456XX'; ?></td>
-          <td class="text-truncate"><?php echo '+639175650000'; ?></th>
-          <td class="text-truncate"><?php echo '32'; ?></td>
-          <td class="text-truncate"><?php echo '2022-01-01'; ?></td>
-          <td class="text-truncate"><?php echo 'Globe Telecomms Admin'; ?></td>
+        <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
+        <tr class="canHov" onclick="window.location='update-end-user-info.php';">
+          <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
+          <td class="text-truncate"><?php echo '+639178900000';?></td>
+          <th class="text-truncate"><?php echo 'Active';?></th>
+          <td class="text-truncate"><?php echo '0';?></td>
+          <td class="text-truncate"><?php echo '--';?></td>
+          <td class="text-truncate"><?php echo '--';?></td>
+          <td class="text-truncate"><?php echo 'Berches';?></th>
+          <td class="text-truncate"><?php echo 'Keanu';?></td>
+          <td class="text-truncate"><?php echo 'Paga';?></td>
+          <td class="text-truncate"><?php echo '';?></td>
+          <td class="text-truncate"><?php echo '1999-10-11';?></td>
+          <td class="text-truncate"><?php echo 'M';?></td>
+          <td class="text-truncate"><?php echo '04710-A98VB01-0';?></td>
+          <td class="text-truncate"><?php echo 'Philippines, Earth';?></td>
+          <td class="text-truncate"><?php echo 'Filipino';?></td>
+          <td class="text-truncate"><?php echo 'existing prepaid user';?></td>
+          <td class="text-truncate"><?php echo 'Cavite SIM shop';?></td>
+          <td class="text-truncate"><?php echo 'Stella Reyes';?></td>
+          <td class="text-truncate"><?php echo 'S2Link.com';?></td>
+          <td class="text-truncate"><?php echo '2022-05-09';?></td>
+          <td class="text-truncate"><?php echo '18:25:37';?></td>
 
         </tr>
 
