@@ -39,7 +39,7 @@
       <header>
 
         <nav class="navbar navbar-expand-lg">
-          <a class="div1 navbar-brand" href="navbar.php">
+          <a class="div1 navbar-brand" href="profile-user.php">
               <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
               <span class="brandname">SimCardRegistrationSystem</span>
             </a>
