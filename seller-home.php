@@ -80,113 +80,50 @@
     </nav>
   </header>
 
-    <div class="row" style="padding-bottom: 15px;">
+    <div class="row">
       <div class="col-md-12">
-      <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;">SIMs registered by your shop</p>
+      <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;">SIMS REGISTERED BY YOUR SHOP</p>
       </div>
     </div>
 
-    <div class="row" style="margin-bottom: 2px; margin-top: 1rem;">
+
 
       <form action="" method="GET">
-      <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width: 100%!important;margin-bottom: 10px;">
-      <div class="form-row align-items-center" style="justify-content:center;">
-        <div class="">
-          <?php
-            $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-            if(strpos($fulUrl, "operator=All") == true){
-              echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
-              <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
-                <option selected >All</option>
-                <option >No offense at present</option>
-                <option >With offense</option>
-                <option >First offense</option>
-                <option>Second offense</option>
-                <option>Third offense</option>
-              </select>";
-            }
-            elseif(strpos($fulUrl, "operator=With+offense") == true){
-              echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
-              <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
-                <option selected >With offense</option>
-                <option >All</option>
-                <option >No offense at present</option>
-                <option >First offense</option>
-                <option>Second offense</option>
-                <option>Third offense</option>
-              </select>";
-              }
-              elseif(strpos($fulUrl, "operator=No+offense") == true){
-                echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
-                <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
-                  <option selected >No offense at present</option>
-                  <option >All</option>
-                  <option >With offense</option>
-                  <option >First offense</option>
-                  <option>Second offense</option>
-                  <option>Third offense</option>
-                </select>";
-                }
-              elseif(strpos($fulUrl, "operator=First+offense") == true){
-                echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
-                <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
-                  <option selected >First offense</option>
-                  <option >All</option>
-                  <option >No offense at present</option>
-                  <option >With offense</option>
-                  <option>Second offense</option>
-                  <option>Third offense</option>
-                </select>";
-              }
-              elseif(strpos($fulUrl, "operator=Second+offense") == true){
-                echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
-                <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
-                  <option selected >Second offense</option>
-                  <option >All</option>
-                  <option >No offense at present</option>
-                  <option >With offense</option>
-                  <option>First offense</option>
-                  <option>Third offense</option>
-                </select>";
-              }
-              elseif(strpos($fulUrl, "operator=Third+offense") == true){
-                echo "<label class='mr-sm-2 sr-only' for='inlineFormCustomSelect'>Preference</label>
-                <select class='custom-select mr-sm-2' id='inlineFormCustomSelect' name ='operator'>
-                  <option selected >Third offense</option>
-                  <option >All</option>
-                  <option >No offense at present</option>
-                  <option >With offense</option>
-                  <option>First offense</option>
-                  <option>Second offense</option>
-                </select>";
-              }
-              else {
-                echo '<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
-                  <option selected >All</option>
-                  <option >No offense at present</option>
-                  <option >With offense</option>
-                  <option >First offense</option>
-                  <option>Second offense</option>
-                  <option>Third offense</option>
-                </select>';
-              } ?>
-
-
-
+          <!-- INPUT FIELD ROW -->
+        <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
+        <div class="col-md-3">
+          <label class="labelings">Search</label>
+          <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
         </div>
-        <div class="col-auto my-1">
-          <button type="" class="log-buttons search-btn" name="filters" style="margin-top:0px;margin-left: 0px!important; margin-right:0px!important;">Go</button>
-          <!-- EXPORT TO EXCEL BUTTON -->
-        <a href="excel/seller-home-excel.php" target="_blank" class="btn btn-primary">Export to Excel
-          </a>
+        <div class="col-md-3">
+          <label class="labelings">Offense</label>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
+              <option selected >All</option>
+              <option >No offense at present</option>
+              <option >With offense</option>
+              <option >First offense</option>
+              <option>Second offense</option>
+              <option>Third offense</option>
+            </select>
         </div>
+
+        <div class="col-md-3">
+          <label class="labelings">Start date</label>
+          <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+        </div>
+        <div class="col-md-3">
+          <label class="labelings">End date</label>
+          <input class="form-control" type="date" name="end_date" style="width:100%!important;">
       </div>
-    </form>
+        </div>
 
-            </div>
-    <div class="table-responsive">
+        <div class="row" style="display:flex;margin-top:1rem;">
+            <button type="" class="btn btn-primary" name="filters" style="margin-right: 10px;">Go</button>
+            <a href="#" class="btn btn-primary">Export to Excel</a>
+        </div>
+
+      </form>
+    <div class="table-responsive" style="margin-top: 2rem!important;">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -301,12 +238,13 @@
 
     <?php
     // UPDATE ID INCREMENT
-  	$update = "SET @num :=0;";
-    $resultup = mysqli_query($conn, $update);
-    $update = "UPDATE report_messages_db SET report_id = @num := (@num+1);";
-    $resultup = mysqli_query($conn, $update);
-    $update = "ALTER TABLE report_messages_db AUTO_INCREMENT = 1;";
-    $resultup = mysqli_query($conn, $update);
+  	// $update = "SET @num :=0;";
+    // $resultup = mysqli_query($conn, $update);
+    // $update = "UPDATE report_messages_db SET report_id = @num := (@num+1);";
+    // $resultup = mysqli_query($conn, $update);
+    // $update = "ALTER TABLE report_messages_db AUTO_INCREMENT = 1;";
+    // $resultup = mysqli_query($conn, $update);
+
 
 
      ?>
