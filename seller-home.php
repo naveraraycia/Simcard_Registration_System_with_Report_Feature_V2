@@ -216,23 +216,23 @@
 
            switch($_GET['operator']){
                case "No offense at present":
-                   $data = 'first offense';
+                   $data = 'Active Status';
                    $querytype = 'A';
                    break;
                case "With offense":
                    $data = 'offense';
-                   $querytype = 'A';
+                   $querytype = 'C';
                    break;
                case "First offense":
-                   $data = 'first offense';
+                   $data = 'First offense';
                    $querytype = 'A';
                    break;
                case "Second offense":
-                   $data = 'second offense';
+                   $data = 'Second offense';
                    $querytype = 'A';
                    break;
                case "Third offense":
-                   $data = 'third offense';
+                   $data = 'Permanent ban';
                    $querytype = 'A';
                    break;
                 case "All":
@@ -249,6 +249,10 @@
            }else if($querytype=='B'){
             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
             $FirstOff = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
+           }else if($querytype=='C'){
+            $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+            $FirstOff ="SELECT * FROM registered_simusers_db WHERE (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban') AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
+            OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
            }
 
            $result = mysqli_query($conn,$FirstOff);

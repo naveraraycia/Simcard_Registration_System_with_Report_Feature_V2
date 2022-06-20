@@ -48,12 +48,18 @@ if(isset($_POST['register'])){
                 $result = mysqli_query($conn,$sqlservice);
                 $resultsCheck = mysqli_num_rows($result);
                 
+                if($simcard == "new prepaid user"){
+                  if($_SESSION['Simcard_limit'] <= 0){
+                  header("Location: ../register-users-local.php?error=maxlimit");
+                  exit();  
+                  }
+                }
                 //CHECK IF USER HAS ALREADY SIMILAR SERVICE
                 if($resultsCheck > 0){
                     header("Location: ../register-users-local.php?error=simservice");
                     exit();  
                 }
-
+                
                 $stmt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($stmt, $sql)){
                   echo "SQL statement failed";
@@ -121,13 +127,13 @@ if(isset($_POST['register'])){
                   $IDExt = ImageCheck($allowed,$fileActualExt,$fileExt,$IDName,$fileError,$fileSize);
                   
                 /// IMAGE FINGERPRINT
-                $Fingerfile               = $_FILES['Fingerfile'];
-                      $fileName       = $Fingerfile["name"];
-                      $fileType       = $Fingerfile["type"];
+                $Fingerfile                 = $_FILES['Fingerfile'];
+                      $fileName             = $Fingerfile["name"];
+                      $fileType             = $Fingerfile["type"];
                       $FingerfileTempName   = $Fingerfile["tmp_name"];
-                      $fileError      = $Fingerfile["error"];
-                      $fileSize       = $Fingerfile["size"];
-                      $allowed        = array("jpg","jpeg","png","bmp");
+                      $fileError            = $Fingerfile["error"];
+                      $fileSize             = $Fingerfile["size"];
+                      $allowed              = array("jpg","jpeg","png","bmp");
                       //conversion
                       $fileExt        = explode(".",$fileName);
                       $fileActualExt  = strtolower(end($fileExt));
@@ -136,7 +142,6 @@ if(isset($_POST['register'])){
 
                 //GETTING SHOP DATA AND SETTING FIXED DATA
                 $sim_shop = $_SESSION['Shop_Name'];
-                $sim_retailer= ;
                 $sim_status = "Active Status";
                 $regisite  = $_SESSION['Business_Address'];
                 $ban_start = "--";
