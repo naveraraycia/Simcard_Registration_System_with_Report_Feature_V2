@@ -91,11 +91,11 @@
         </div>
 
         <div class="col-md-3">
-          <label class="labelings">Start date</label>
+          <label class="labelings">Marked as Malicious SIMs from</label>
           <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
         </div>
         <div class="col-md-3">
-          <label class="labelings">End date</label>
+          <label class="labelings">End range</label>
           <input class="form-control" type="date" name="end_date" style="width:100%!important;">
       </div>
         </div>
@@ -135,6 +135,10 @@
           <th class="f-column text-truncate" scope="col" >Fingerprint</th>
           <th class="f-column text-truncate" scope="col" >NSO / PASSPORT</th>
           <th class="f-column text-truncate" scope="col" >Valid ID</th>
+          <th class="f-column text-truncate" scope="col" >Business Permit #</th>
+          <th class="f-column text-truncate" scope="col" >Company Address</th>
+          <th class="f-column text-truncate" scope="col" >Business Permit</th>
+          <th class="f-column text-truncate" scope="col" >Company Endorsement</th>
 
 
 
@@ -215,13 +219,17 @@
           <td class="f-column text-truncate">Filipino</th>
           <td class="f-column text-truncate">02122-TEST-3</th>
           <td class="f-column text-truncate">Cavite SIM shop</th>
-            <td class="f-column text-truncate">Aguinaldo Highway, Dasmarinas, Cavite</th>
+          <td class="f-column text-truncate">Aguinaldo Highway, Dasmarinas, Cavite</th>
           <td class="f-column text-truncate">Karen Reyes</th>
           <td class="f-column text-truncate">2021-09-11</th>
           <td class="f-column text-truncate">time here</th>
           <td class="f-column text-truncate">fingerprintlink.com</th>
           <td class="f-column text-truncate">nso-passlink.com</th>
           <td class="f-column text-truncate">idlink.com</th>
+          <td class="f-column text-truncate">1234-TEST-PERMIT</th>
+          <td class="f-column text-truncate">Aguinaldo Highway, Pluto</th>
+          <td class="f-column text-truncate">BPphoto.com</th>
+          <td class="f-column text-truncate">Endorsepic.com</th>
 
 
 
