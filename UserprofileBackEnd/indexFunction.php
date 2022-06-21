@@ -48,6 +48,11 @@
       if ($row = mysqli_fetch_assoc($resultData)){
 
         //SESSION START FOR USER LOGIN;
+        //SELECT lastname, firstname, midname, suffix, dateofbirth, gender,simnum, 
+        //simcard, nationality, sim_status, offense_count, dateofregis, address,
+        // time, ban_start, ban_end, regisite, services, sim_retailer F
+        //FROM registered_simusers_db
+        //WHERE simnum = '+639214425914'
           $sql = "SELECT * FROM registered_simusers_db WHERE simnum=?;";
           $stmt              = mysqli_stmt_init($conn);
           if (mysqli_stmt_prepare($stmt,$sql)){
@@ -75,7 +80,12 @@
                 $_SESSION['UserRegSite']     = $row['regisite'];
                 $_SESSION['UserDatReg']      = $row['dateofregis'];
                 $_SESSION['UserTimeReg']     = $row['time'];
-
+                $_SESSION['services']        = $row['services'];
+                $_SESSION['retailer']        = $row['sim_retailer'];
+                $_SESSION['Banstart']        = $row['ban_start'];
+                $_SESSION['Banend']          = $row['ban_end'];
+                $_SESSION['sim_status']      = $row['sim_status'];
+                $_SESSION['offense_count']   = $row['offense_count'];
             }
             header("location:../profile-user.php");
           }

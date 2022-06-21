@@ -5,39 +5,19 @@
    //  header("Location: index.php");
    //  exit();
    // }
-   $user= "+639054632343";
-   $sql = "SELECT * FROM registered_simusers_db WHERE simnum=?;";
-   $stmt              = mysqli_stmt_init($conn);
+
+   $user = $_SESSION['UserNumber'];
+   $sql  = "SELECT * FROM working_sim_db WHERE simnum=?;";
+   $stmt = mysqli_stmt_init($conn);
    if (mysqli_stmt_prepare($stmt,$sql)){
      mysqli_stmt_bind_param($stmt,"s",$user);
      mysqli_stmt_execute($stmt);
      $result = mysqli_stmt_get_result($stmt);
      // session_start();
      if($row = mysqli_fetch_assoc($result)){
-
-         $_SESSION['UserLast']        = $row['lastname'];
-         $_SESSION['UserFirst']       = $row['firstname'];
-         $_SESSION['UserMiddleName']  = $row['midname'];
-         $_SESSION['UserSuffix']      = $row['suffix'];
-         $_SESSION['UserBirthdate']   = $row['dateofbirth'];
-         $_SESSION['UserGender']      = $row['gender'];
-         $_SESSION['UserAddress']     = $row['address'];
-         $_SESSION['UserNationality'] = $row['nationality'];
-         if(($row['nationality']) == 'Filipino'||($row['nationality']) == 'filipino'){
-           $_SESSION['UserType']      = 'Local';
-         }else{
-           $_SESSION['UserType']      = 'Foreign';
-         }
-         $_SESSION['UserSimCard']     = $row['simcard'];
-         $_SESSION['UserNumber']      = $row['simnum'];
-         $_SESSION['UserRegSite']     = $row['regisite'];
-         $_SESSION['UserDatReg']      = $row['dateofregis'];
-         $_SESSION['UserTimeReg']     = $row['time'];
-         $_SESSION['sim_status']      = $row['sim_status'];
-         $_SESSION['offense_count']   = $row['offense_count'];
-         $_SESSION['ban_start']       = $row['ban_start'];
-         $_SESSION['ban_end']         = $row['ban_end'];
-         $_SESSION['sim_retailer']    = $row['sim_retailer']  ;
+            $_SESSION['company_address'] = $row['company_address'];
+       }else{
+        $_SESSION['company_address'] = "--";
        }
       }
 $SimCardNumber = $_SESSION['UserNumber'] ;
@@ -73,13 +53,15 @@ switch($SimPenality){
     $penalty = 'Permanently Ban';
     break;
 };
-$BanStart      = $_SESSION['ban_start'];
-$BanEnd        = $_SESSION['ban_end'];
-$Sim_Ret       = $_SESSION['sim_retailer'];
+$BanStart      = $_SESSION['Banstart'];
+$BanEnd        = $_SESSION['Banend'];
+$Sim_Ret       = $_SESSION['retailer'];
 $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
 $Suffix        = " ".$_SESSION['UserSuffix']." ";
 $MiddleName    = $MiddleName.".";
 $FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
+$company_address = $_SESSION['company_address'];
+$service       = $_SESSION['services'];
 ?>
 
 
@@ -228,7 +210,7 @@ $FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
 
         <div class='infodiv'>
           <p class='labelings'>Company Address </p>
-          <p class='information'>Test 123 Earth</p>
+          <p class='information'>$company_address</p>
         </div>
 
       </div>
@@ -262,7 +244,7 @@ $FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
 
         <div class='infodiv'>
           <p class='labelings'>SIM Service Provider</p>
-          <p class='information'>Globe</p>
+          <p class='information'>$service</p>
         </div>
 
 
