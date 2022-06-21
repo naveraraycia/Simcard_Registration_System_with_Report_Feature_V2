@@ -57,6 +57,10 @@
   color: white;
 }
 
+p{
+  line-height: 200%;
+}
+
 
 </style>
 </head>
@@ -85,9 +89,6 @@
 
                     </ul>
 
-
-
-
                 <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
                   <button type="submit" name="btn-primary" class="log-button">Logout</button>
                 </form>
@@ -95,80 +96,35 @@
             </nav>
     </header>
 
-    <!-- BODY PART -->
-    <div class="container" style="background-color: #f3f3f3;padding-bottom:2rem;">
-      <div class="row header">
-            <h2 style="color: #b40032;">Data Privacy Act Agreement</h2>
-          </div>
-
-
-<?php
-        $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-        if(strpos($fulUrl, "signup=success") == true){
-          echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
-        }
-        elseif(strpos($fulUrl, "error=simnum-already-exist") == true){
-          echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
-        }
-        elseif(strpos($fulUrl, "no-result") == true){
-          echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
-        }
-        elseif(strpos($fulUrl, "nsoempty")==true){
-          echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
-        }
-
-        // error message for mobile number
-        elseif(strpos($fulUrl, "incorrectNum")==true){
-        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
-        }
-      elseif(strpos($fulUrl, "missplus")==true){
-        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
-        }
-      elseif(strpos($fulUrl, "wrongchars")==true){
-        echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
-        }
-
-        // error message for fingerprint image
-        elseif(strpos($fulUrl, "imageempty") == true){
-          echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
-        }
-        elseif(strpos($fulUrl, "imagelarge") == true){
-          echo "<p class= 'nsoexist'>FINGERPRINT IMAGE SIZE IS TOO LARGE</p>";
-        }
-        elseif(strpos($fulUrl, "imageerror") == true){
-          echo "<p class= 'nsoexist'>There was an error that occurred while processing the fingerprint image. Please re-upload the fingerprint image</p>";
-        }
-        elseif(strpos($fulUrl, "imageformaterror") == true){
-          echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
-        }
-
-
-
-
-?>
-
-<div class="row">
-
-  <p>In suscipit, massa dignissim varius rutrum, metus mi posuere mauris, eu fermentum mi eros eu dolor. Nulla euismod risus quis nunc luctus, sed commodo elit ultrices. Etiam non feugiat ante. Suspendisse sit amet diam at velit fringilla scelerisque. Integer sit amet ante risus. Sed sit amet purus ornare eros finibus fringilla eu ut tortor. Quisque tempus sollicitudin justo quis finibus. Donec venenatis orci sit amet justo ultricies, vitae bibendum libero lacinia. Vivamus consequat condimentum dolor a gravida. Mauris metus augue, rutrum vel bibendum eget, ornare sit amet est. Nulla sit amet blandit nisi. Nam cursus, quam id fermentum tincidunt, velit leo eleifend metus, sollicitudin tempus orci odio in nulla. Aliquam tempus sit amet mi sed auctor. Fusce porttitor tempor mattis. Sed rhoncus turpis a erat vehicula efficitur. Duis consectetur placerat lacus, a laoreet dui dictum vel.</p>
-
-</div>
-
-<div class="row">
-  <div class="col-md-6">
-      <a href="admin-home.php"><button class="send-btn">Go back to home</button></a>
+<!-- BODY PART -->
+<div class="container" style="background-color:#f3f3f3; padding-bottom: 2rem;">
+  <div class="row header">
+    <h2 style="color:#b40032;">Data Privacy Act of 2012</h2>
   </div>
 
-  <div class="col-md-6">
-      <a href="verify-seller-nso.php"><button class="send-btn">Proceed to registration</button></a>
+
+<div class="row" style="display:flex;flex-direction:column;">
+  <p>Republic Act is also known as Data Privacy act of 2012.
+“It is the policy of the State to PROTECT THE FUNDAMENTAL HUMAN RIGHT OF PRIVACY, of communication while ensuring free flow of information to promote innovation and growth.
+The state recognizes the vital role of information and communications technology in nation-building and its inherent obligation to ensure that personal information in information and communications systems in the government and in the private sector are secured and protected.”</p>
+  </p>
+  <h2 style="text-align:center;color:#b40032;">Privacy Policy</h2>
+  <p>The SimCardRegistrationSystem website respects and values the applicants' right to privacy. We are committed to protecting the applicants' privacy. We will only collect, record, store, process, and use the applicants' personal information in accordance with the Data Privacy Act of 2012, its Implementing Rules and Regulations, National Privacy Commission issuances, and other applicable laws.
+We will only use the applicants' data within the parameters established by this policy.
+  </p>
+  <br>
+  <p><strong>Proceeding to the registration means that the applicant has fully understood the Privacy Policy and is allowing the SimCardRegistrationSystem website through the Administrator to collect, record, store, process, and use their data for the sake of keeping records with regards to the registration of the SIM shop.</strong></p>
+
+  <div class="row" style="width:100%!important;">
+    <div class="col-md-6">
+        <a href="admin-home.php"><button class="send-btn">Go back to home</button></a>
+    </div>
+    <div class="col-md-6">
+          <a href="verify-seller-nso.php"><button class="send-btn">Proceed to registration</button></a>
+    </div>
   </div>
-
 </div>
-
 </div>
-
-
-<!-- end of body -->
 
  </body>
 </html>

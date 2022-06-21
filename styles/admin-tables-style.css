@@ -32,6 +32,8 @@ body {
 
 .row {
   margin-right: auto;
+  justify-content: center;
+  margin-left: 0px;
 }
 
 /* SCRENESHOT BUTTON WITH HIDDEN CHOOSE FILE */
@@ -174,10 +176,6 @@ h2 {
 }
 
 
-.row {
-  justify-content: center;
-}
-
 /* SECOND ROW */
 .srow {
   margin-top: 2rem;
@@ -210,13 +208,6 @@ h2 {
   color: #2f5a62;
 }
 
-
-.row {
-  margin-bottom: -2rem;
-  /* height: 56px; */
-  padding-top: 15px;
-  /* margin-top: 2rem; */
-}
 
 .header {
   font-weight: bold !important;
