@@ -91,11 +91,11 @@
         </div>
 
         <div class="col-md-3">
-          <label class="labelings">Start date</label>
+          <label class="labelings">Registration date start range</label>
           <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
         </div>
         <div class="col-md-3">
-          <label class="labelings">End date</label>
+          <label class="labelings">End range</label>
           <input class="form-control" type="date" name="end_date" style="width:100%!important;">
       </div>
         </div>
