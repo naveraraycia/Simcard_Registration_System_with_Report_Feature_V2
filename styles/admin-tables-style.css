@@ -34,7 +34,10 @@ body {
   margin-right: auto;
   justify-content: center;
   margin-left: 0px;
+  margin-bottom: -2rem;
+  padding-top: 15px;
 }
+
 
 /* SCRENESHOT BUTTON WITH HIDDEN CHOOSE FILE */
 .upload-btn-wrapper {

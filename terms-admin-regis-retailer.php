@@ -103,7 +103,7 @@ p{
   </div>
 
 
-<div class="row" style="display:flex;flex-direction:column;">
+<div class="row" style="display:flex;flex-direction:column; margin-bottom:16px!important;">
   <p>Republic Act is also known as Data Privacy act of 2012.
 “It is the policy of the State to PROTECT THE FUNDAMENTAL HUMAN RIGHT OF PRIVACY, of communication while ensuring free flow of information to promote innovation and growth.
 The state recognizes the vital role of information and communications technology in nation-building and its inherent obligation to ensure that personal information in information and communications systems in the government and in the private sector are secured and protected.”</p>
