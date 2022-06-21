@@ -150,8 +150,13 @@
                      <input type="date" name="dateofbirth" class="form-control" required>
                    </div>
                    <div class="col-md-3 ">
+                     <!-- <label class="labelings">Gender</label>
+                     <input type="text" name="Gender" class="Gender form-control" required> -->
                      <label class="labelings">Gender</label>
-                     <input type="text" name="Gender" class="Gender form-control" required>
+                     <select class="form-control" name="Gender">
+                       <option value="M">M</option>
+                       <option value="F">F</option>
+                     </select>
                    </div>
                   <div class="col-md-6">
                     <label class="labelings">Nationality</label>
