@@ -7,7 +7,12 @@
   <?php
 
     session_start();
-
+    $LastName      = $_SESSION['UserLast']  ;
+    $FirstName     = $_SESSION['UserFirst']  ;
+    $Suffix        = " ".$_SESSION['UserSuffix']." ";
+    $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
+    $SimCardNumber = $_SESSION['UserNumber'] ;
+    $FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
   ?>
   <!DOCTYPE html>
   <html lang="en" dir="ltr">
@@ -86,25 +91,42 @@
 
     </div>
 
+<div>
     <?php
-      //INSERT ERROR HANDLERS HERE
-     ?>
+    
+                $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
+                  if(strpos($fulUrl, "error=success") == true){
+                    echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
+                  }elseif(strpos($fulUrl, "error=nsomnum-already-exist") == true){
+                    echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS NSO NUMBER ALREADY EXISTS</p>";
+                  }elseif(strpos($fulUrl, "signup=EMPTY") == true){
+                    echo "<p class= 'regsuccess'FILL UP ALL FIELDS</p>";
+                  }elseif(strpos($fulUrl, "error=imagelarge") == true){
+                    echo "<p class= 'nsoexist'>IMAGE IS TOO LARGE</p>";
+                  }elseif(strpos($fulUrl, "error=nsomnum-already-exist") == true){
+                    echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS NSO NUMBER ALREADY EXISTS</p>";
+                  }elseif(strpos($fulUrl, "error=imageerror") == true){
+                    echo "<p class= 'regsuccess'>THERE WAS A PROBLEM IN YOUR IMAGE</p>";
+                  }elseif(strpos($fulUrl, "error=imageformaterror") == true){
+                    echo "<p class= 'nsoexist'>ENTER JPG, PNG, OR BMP ONLY</p>";
+                  };
+     ?>
      <br><br>
-         <form class='' id='form' action='UserprofileBackEnd/BackEnd_Report.php' method='post' enctype='multipart/form-data'>
+         <form class='' id='form' action='UserprofileBackEnd/requestchange.php' method='post' enctype='multipart/form-data'>
          <div class='row'>
            <div class='col-md-6 iconn'>
              <!-- COLUMN 1 -->
 
                <div class='infodiv1'>
                  <p class='labelings'>Name</p>
-                 <input type='text' name='VictName' value='<?php //$FirstName $LastName $MiddleName $Suffix ?> 'id='usernamee' class='form-control' required disabled>
+                 <input type='text' name='VictName' value='<?php echo $FullName ;?> 'id='usernamee' class='form-control' required disabled>
 
                </div>
 
                <div class='infodiv1'>
                  <p class='labelings'>Your Mobile Number</p>
-                 <input type='tel' name='VictimNumber' value='<?php //$SimCardNumber ?>' id='yourNumber' class='form-control' placeholder='' required disabled>
+                 <input type='tel' name='VictimNumber' value='<?php echo $SimCardNumber; ?>' id='yourNumber' class='form-control' placeholder='' required disabled>
 
                </div>
 
@@ -127,7 +149,7 @@
 
                <div class="infodiv1">
                  <p class='labelings'>Enter Updated Information</p>
-                 <input id="" type="text" name="address" class="form-control" placeholder="For updating of name: Last Name, First Name, Middle Name, Suffix" required>
+                 <input id="" type="text" name="update" class="form-control" placeholder="For updating of name: Last Name, First Name, Middle Name, Suffix" required>
              </div>
 
              </div>

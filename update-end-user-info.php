@@ -113,6 +113,21 @@
             }
             elseif(strpos($fulUrl, "error=nsomnum-already-exist") == true){
               echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS NSO NUMBER ALREADY EXISTS</p>";
+            }    
+            elseif(strpos($fulUrl, "signup=EMPTY") == true){
+              echo "<p class= 'regsuccess'FILL UP ALL FIELDS</p>";
+            }
+            elseif(strpos($fulUrl, "error=imagelarge") == true){
+              echo "<p class= 'nsoexist'>IMAGE IS TOO LARGE</p>";
+            }
+            elseif(strpos($fulUrl, "error=nsomnum-already-exist") == true){
+              echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS NSO NUMBER ALREADY EXISTS</p>";
+            }    
+            elseif(strpos($fulUrl, "error=imageerror") == true){
+              echo "<p class= 'regsuccess'>THERE WAS A PROBLEM IN YOUR IMAGE</p>";
+            }
+            elseif(strpos($fulUrl, "error=imageformaterror") == true){
+              echo "<p class= 'nsoexist'>ENTER JPG, PNG, OR BMP ONLY</p>";
             }
     ?>
   </form>
