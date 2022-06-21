@@ -264,7 +264,7 @@ if (empty($_SESSION['AdminEmail'])){
          </div>
 
          <div class="col-10 infodiv">
-           <label class="Bday">Business Address</label>
+           <label class="Bday">SIM Shop Address</label>
            <input id="address" type="text" name="address" class="form-control" required>
          </div>
        </div>

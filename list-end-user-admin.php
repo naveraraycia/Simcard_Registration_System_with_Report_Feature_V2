@@ -110,26 +110,32 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th class="f-column text-truncate" scope="col" >SIM Card #</th>
-          <th class="f-column text-truncate" scope="col" >SIM status</th>
+          <th class="f-column text-truncate" scope="col" ></th>
+          <th class="f-column text-truncate" scope="col" >SIM Status</th>
           <th class="f-column text-truncate" scope="col" >Penalty</th>
           <th class="f-column text-truncate" scope="col" >Date blocked</th>
           <th class="f-column text-truncate" scope="col" >End of block period</th>
+          <th class="f-column text-truncate" scope="col" >SIM Card #</th>
+          <th class="f-column text-truncate" scope="col" >SIM Type</th>
+          <th class="f-column text-truncate" scope="col" >Provider</th>
           <th class="f-column text-truncate" scope="col" >Last Name</th>
           <th class="f-column text-truncate" scope="col" >First Name</th>
           <th class="f-column text-truncate" scope="col" >Middle Name</th>
           <th class="f-column text-truncate" scope="col" >Suffix</th>
-          <th class="f-column text-truncate" scope="col" >Birthdate</th>
           <th class="f-column text-truncate" scope="col" >Gender</th>
-          <th class="f-column text-truncate" scope="col" >NSO or Passport #</th>
+          <th class="f-column text-truncate" scope="col" >Birthdate</th>
           <th class="f-column text-truncate" scope="col" >Address</th>
           <th class="f-column text-truncate" scope="col" >Nationality</th>
-          <th class="f-column text-truncate" scope="col" >SIM User Type</th>
+          <th class="f-column text-truncate" scope="col" >NSO / Passport #</th>
           <th class="f-column text-truncate" scope="col" >SIM Shop</th>
-          <th class="f-column text-truncate" scope="col" >SIM retailer</th>
-          <th class="f-column text-truncate" scope="col" >Fingerprint Img</th>
+          <th class="f-column text-truncate" scope="col" >Registration Site</th>
+          <th class="f-column text-truncate" scope="col" >SIM Retailer</th>
           <th class="f-column text-truncate" scope="col" >Registration Date</th>
           <th class="f-column text-truncate" scope="col" >Registration Time</th>
+          <th class="f-column text-truncate" scope="col" >Fingerprint</th>
+          <th class="f-column text-truncate" scope="col" >NSO / PASSPORT</th>
+          <th class="f-column text-truncate" scope="col" >Valid ID</th>
+
 
 
         </tr>
@@ -190,28 +196,34 @@
         // ?>
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
-        <tr class="canHov" onclick="window.location='update-end-user-info.php';">
+        <tr>
           <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
-          <td class="text-truncate"><?php echo '+639178900000';?></td>
-          <th class="text-truncate"><?php echo 'Active';?></th>
-          <td class="text-truncate"><?php echo '0';?></td>
-          <td class="text-truncate"><?php echo '--';?></td>
-          <td class="text-truncate"><?php echo '--';?></td>
-          <td class="text-truncate"><?php echo 'Berches';?></th>
-          <td class="text-truncate"><?php echo 'Keanu';?></td>
-          <td class="text-truncate"><?php echo 'Paga';?></td>
-          <td class="text-truncate"><?php echo '';?></td>
-          <td class="text-truncate"><?php echo '1999-10-11';?></td>
-          <td class="text-truncate"><?php echo 'M';?></td>
-          <td class="text-truncate"><?php echo '04710-A98VB01-0';?></td>
-          <td class="text-truncate"><?php echo 'Philippines, Earth';?></td>
-          <td class="text-truncate"><?php echo 'Filipino';?></td>
-          <td class="text-truncate"><?php echo 'existing prepaid user';?></td>
-          <td class="text-truncate"><?php echo 'Cavite SIM shop';?></td>
-          <td class="text-truncate"><?php echo 'Stella Reyes';?></td>
-          <td class="text-truncate"><?php echo 'S2Link.com';?></td>
-          <td class="text-truncate"><?php echo '2022-05-09';?></td>
-          <td class="text-truncate"><?php echo '18:25:37';?></td>
+          <td class="f-column text-truncate">Active</th>
+          <td class="f-column text-truncate">0</th>
+          <td class="f-column text-truncate">--</th>
+          <td class="f-column text-truncate">--</th>
+          <td class="f-column text-truncate">+639127680000</th>
+          <td class="f-column text-truncate">existing prepaid user</th>
+          <td class="f-column text-truncate">Globe</th>
+          <td class="f-column text-truncate">Araneta</th>
+          <td class="f-column text-truncate">Paolo</th>
+          <td class="f-column text-truncate">Cruz</th>
+          <td class="f-column text-truncate">III</th>
+          <td class="f-column text-truncate">M</th>
+          <td class="f-column text-truncate">1999-01-01</th>
+          <td class="f-column text-truncate">Blk 5, Lot 16, Pluto</th>
+          <td class="f-column text-truncate">Filipino</th>
+          <td class="f-column text-truncate">02122-TEST-3</th>
+          <td class="f-column text-truncate">Cavite SIM shop</th>
+            <td class="f-column text-truncate">Aguinaldo Highway, Dasmarinas, Cavite</th>
+          <td class="f-column text-truncate">Karen Reyes</th>
+          <td class="f-column text-truncate">2021-09-11</th>
+          <td class="f-column text-truncate">time here</th>
+          <td class="f-column text-truncate">fingerprintlink.com</th>
+          <td class="f-column text-truncate">nso-passlink.com</th>
+          <td class="f-column text-truncate">idlink.com</th>
+
+
 
         </tr>
 
