@@ -1,32 +1,6 @@
 <?php
-  include_once 'dbh/EndUser.inc.php';
-  session_start();
-  if (empty($_SESSION['SellerFirstName'])){
-    header("Location: index.php");
-    exit();
-  }
-  // if (empty($_SESSION['UserNumber'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
-  // $SimCardNumber = $_SESSION['UserNumber'] ;
-  // $LastName      = $_SESSION['UserLast']  ;
-  // $FirstName     = $_SESSION['UserFirst']  ;
-  // $Gender        = $_SESSION['UserGender']  ;
-  // $Birthdate     = $_SESSION['UserBirthdate'];
-  // $Address       = $_SESSION['UserAddress']  ;
-  // $Nationality   = $_SESSION['UserNationality'];
-  // $TypeofUser    = $_SESSION['UserType'] ;
-  // $DateofRegist  = $_SESSION['UserDatReg'];
-  // $TimeofReg     = $_SESSION['UserTimeReg'];
-  // $RegSite       = $_SESSION['UserRegSite'] ;
-  // $SimCard       = $_SESSION['UserSimCard']  ;
-  // $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
-  // $Suffix        = " ".$_SESSION['UserSuffix']." ";
-  // $MiddleName    = $MiddleName.".";
-
-    // $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
-    // $result = mysqli_query($conn, $sql);
+session_start();
+include_once 'dbh/Admin_Seller.inc.php';
 
 ?>
 
@@ -101,35 +75,46 @@
 
 
 <!-- BODY PART -->
+<form class='' id='form' action='UserprofileBackEnd/indexFunction_simretailer.php' method='POST' >
+  <?php
+  $Business_Permit = $_SESSION['Business_Permit'];
+  $query = "SELECT * FROM seller WHERE Business_Permit  =  '$Business_Permit'; ";
+  $result = mysqli_query($conn,$query);
+
+    if (mysqli_num_rows($result) > 0) {
+      // if there is a result
+      foreach ($result as $row) {
+        ?>
 <div class="container" style="background-color: #f3f3f3;">
+
     <div class='row'>
 
       <div class='col-md-4 infocol1'>
         <!-- INFO COLUMN 1 -->
 
         <div class='infodiv'>
-          <p class='labelings'>Shop Name</p>
-          <p class='information'><?php echo $_SESSION['Shop_Name']; ?></p>
+          <p class='labelings' >Shop Name</p>
+          <p class='information'><?= $row['Shop_Name'] ; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Shop Email</p>
-          <p class='information'>cavite_shop@gmail.com</p>
+          <p class='information'><?= $row['selleremail'] ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Owner</p>
-          <p class='information'><?php echo $_SESSION['SellerFirstName'] ?></p>
+          <p class='information'><?= $row['business_owner'] ; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Address</p>
-          <p class='information'><?php echo $_SESSION['Business_Address']; ?></p>
+          <p class='information'><?= $row['Business_Address'] ; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Permit Number</p>
-          <p class='information'><?php echo $_SESSION['Business_Permit']; ?></p>
+          <p class='information'><?= $row['Business_Permit'] ; ?></p>
         </div>
 
       </div>
@@ -138,29 +123,36 @@
         <!-- INFO COLUMN 2 -->
         <div class='infodiv'>
           <p class='labelings'>SIM Limit</p>
-          <p class='information'><?php echo $_SESSION['Simcard_Limit']; ?></p>
+          <p class='information'><?= $row['Simcard_Limit'] ; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Shop Registration Date</p>
-          <p class='information'>2021-05-18</p>
+          <p class='information'><?= $row['reg_date'] ; ?></p>
         </div>
 
 
         <div class='infodiv'>
           <p class='labelings'>Owner's SIM #</p>
-          <p class='information'>+639178569874</p>
+          <p class='information'><?= $row['owner_num'] ; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Registered by</p>
-          <p class='information'>Globe Telecomms Admin</p>
+          <p class='information'><?= $row['admin_reg'] ; ?></p>
         </div>
+        <?php
+      }
+    }
+         ?>
 
 
     </div>
+
     </div>
 </div>
+
+</form>
 
 <script>
   const submit_btn = document.querySelector('.submit_btn');
