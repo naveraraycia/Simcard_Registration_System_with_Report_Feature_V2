@@ -110,6 +110,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th class="f-column text-truncate" scope="col" ></th>
           <th class="f-column text-truncate" scope="col" >Shop Name</th>
           <th class="f-column text-truncate" scope="col" >Shop Email</th>
           <th class="f-column text-truncate" scope="col" >Business Owner</th>
@@ -179,7 +180,7 @@
         // ?>
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-retailer-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
-        <tr class="canHov" onclick="window.location='update-retailer-info.php';">
+        <tr>
           <!-- hito sa echo below sa simnum=   , ilagay mo ung $row['simcardnumbercolumnname'] -->
           <td class="text-truncate"><a href="includes/delete-retailer.php?simnum=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
           <td class="text-truncate"><?php echo 'Cavite SIM Shop'; ?></td>

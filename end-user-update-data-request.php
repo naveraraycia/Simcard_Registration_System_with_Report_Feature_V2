@@ -93,7 +93,7 @@
 
 <div>
     <?php
-    
+
                 $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
                   if(strpos($fulUrl, "error=success") == true){
@@ -172,7 +172,7 @@
          <div class="row srow">
            <div class="col-md-12">
              <div class="row"style="display: flex!important; justify-content:flex-start!important; margin-top:5px;font-size: 18px;">
-               <p class="">By submitting this form, you agree to our <a href="#" style="font-weight:bold;">Privacy Policy</a> and <a href="#" style="font-weight:bold;">Terms and Conditions</a> with accordance to the Data Privacy Act of 2012</p>
+               <p class="">By submitting this form, you agree to our <a href="privacy-policy.php" style="font-weight:bold;">Privacy Policy</a> and <a href='terms-condition.php' style="font-weight:bold;">Terms and Conditions</a> with accordance to the Data Privacy Act of 2012</p>
              </div>
            </div>
 
