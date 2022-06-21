@@ -111,15 +111,21 @@
       <thead>
         <tr>
           <th class="f-column text-truncate" scope="col" ></th>
-          <th class="f-column text-truncate" scope="col" >Shop Name</th>
-          <th class="f-column text-truncate" scope="col" >Shop Email</th>
-          <th class="f-column text-truncate" scope="col" >Business Owner</th>
-          <th class="f-column text-truncate" scope="col" >Business Address</th>
-          <th class="f-column text-truncate" scope="col" >Business Permit Number</th>
-          <th class="f-column text-truncate" scope="col" >Owner SIM #</th>
-          <th class="f-column text-truncate" scope="col" >SIM Limit</th>
-          <th class="f-column text-truncate" scope="col" >Registration Date</th>
-          <th class="f-column text-truncate" scope="col" >Registered by</th>
+            <th class="f-column text-truncate" scope="col">Shop Name</th>
+            <th class="f-column text-truncate" scope="col">Shop Email</th>
+            <th class="f-column text-truncate" scope="col">Last Name</th>
+            <th class="f-column text-truncate" scope="col">First Name</th>
+            <th class="f-column text-truncate" scope="col">Middle Name</th>
+            <th class="f-column text-truncate" scope="col">Suffix</th>
+            <th class="f-column text-truncate" scope="col">Business Permit #</th>
+            <th class="f-column text-truncate" scope="col">Shop Address</th>
+            <th class="f-column text-truncate" scope="col">SIM Limit</th>
+            <th class="f-column text-truncate" scope="col">Business Permit</th>
+            <th class="f-column text-truncate" scope="col">NSO</th>
+            <th class="f-column text-truncate" scope="col">Valid ID</th>
+            <th class="f-column text-truncate" scope="col">Owner's Address</th>
+            <th class="f-column text-truncate" scope="col">Owner's SIM #</th>
+            <th class="f-column text-truncate" scope="col">Registration Date</th>
 
 
         </tr>
@@ -183,15 +189,22 @@
         <tr>
           <!-- hito sa echo below sa simnum=   , ilagay mo ung $row['simcardnumbercolumnname'] -->
           <td class="text-truncate"><a href="includes/delete-retailer.php?simnum=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
-          <td class="text-truncate"><?php echo 'Cavite SIM Shop'; ?></td>
-          <th class="text-truncate"><?php echo 'cavite_shop@gmail.com'; ?></th>
-          <td class="text-truncate"><?php echo 'Mary Grace'; ?></td>
-          <td class="text-truncate"><?php echo 'Lot 123 Testing'; ?></td>
-          <td class="text-truncate"><?php echo '123456XX'; ?></td>
-          <td class="text-truncate"><?php echo '+639175650000'; ?></th>
-          <td class="text-truncate"><?php echo '32'; ?></td>
+          <td class="text-truncate"><?php echo 'Cavite SIM shop'; ?></th>
+          <td class="text-truncate"><?php echo 'cavite_shop@gmail.com'; ?></th>
+          <td class="text-truncate"><?php echo 'Videla'; ?></th>
+          <td class="text-truncate"><?php echo 'Chantal'; ?></th>
+          <td class="text-truncate"><?php echo 'Reyes'; ?></th>
+          <td class="text-truncate"><?php echo ''; ?></th>
+          <td class="text-truncate"><?php echo '1234-TEST'; ?></th>
+          <td class="text-truncate"><?php echo 'Dasmarinas Cavite'; ?></th>
+          <td class="text-truncate"><?php echo '32'; ?></th>
+          <td class="text-truncate"><?php echo 'BPlink.com'; ?></th>
+          <td class="text-truncate"><?php echo 'NSOlink.com'; ?></th>
+          <td class="text-truncate"><?php echo 'validIDlink.com'; ?></th>
+          <td class="text-truncate"><?php echo 'Blk 5, Lot 11, Pluto'; ?></th>
+          <td class="text-truncate"><?php echo '+639128900000'; ?></th>
           <td class="text-truncate"><?php echo '2022-01-01'; ?></td>
-          <td class="text-truncate"><?php echo 'Globe Telecomms Admin'; ?></td>
+
 
         </tr>
 
