@@ -136,6 +136,9 @@
           <th class="f-column text-truncate" scope="col" >NSO or Passport #</th>
           <th class="f-column text-truncate" scope="col" >SIM User Type</th>
           <th class="f-column text-truncate" scope="col" >Address</th>
+          <th class="f-column text-truncate" scope="col" >Nationality</th>
+          <th class="f-column text-truncate" scope="col" >Business Permit #</th>
+          <th class="f-column text-truncate" scope="col" >Company Address</th>
           <th class="f-column text-truncate" scope="col" >Penalty</th>
           <th class="f-column text-truncate" scope="col" >Registration Date</th>
           <th class="f-column text-truncate" scope="col" >Registered by</th>
@@ -210,6 +213,9 @@
           <td class="text-truncate"><?php echo $row['passnum_nsonum']; ?></td>
           <td class="text-truncate"><?php echo $row['simcard']; ?></td>
           <td class="text-truncate"><?php echo $row['address']; ?></td>
+          <td class="text-truncate"><?php echo $row['nationality']; ?></td>
+          <td class="text-truncate"><?php echo '12345-BP-TEST'; ?></td>
+          <td class="text-truncate"><?php echo 'Aguinaldo Highway, Lot 15, Cavite'; ?></td>
           <td class="text-truncate"><?php echo $row['offense_count'] ?></td>
           <td class="text-truncate"><?php echo $row['dateofregis']; ?></td>
           <td class="text-truncate"><?php echo $row['sim_retailer']; ?></td>
