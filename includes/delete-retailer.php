@@ -10,7 +10,7 @@ include_once "dbh.inc.php";
   // THIS SHOULD BE THE QUERY: 	"DELETE FROM registered_simusers_db WHERE simnumColumn = $simcardnum"
 
   // HEAD THE USER BACK TO list-sim-retailer-admin.php
-  header("location: ../list-sim-retailer-admin.php");
+  header("Location: ../list-sim-retailer-admin.php");
 
 } else {
 

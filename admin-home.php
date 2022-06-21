@@ -125,30 +125,41 @@
   </div>
 
   <div class="col-md-3">
-    <a href="list-sim-retailer-admin.php"><button type="button" name="button" class="send-btn">View / Update / Delete Registered SIM Retailer</button></a>
+    <a href="list-sim-retailer-admin.php"><button type="button" name="button" class="send-btn">View / Delete Registered SIM Retailers</button></a>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <a href="list-end-user-admin.php"><button type="button" name="button" class="send-btn">View / Delete registered SIM Users</button></a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="admin-report-list.php"><button type="button" name="button" class="send-btn">Report Messages</button></a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="#"><button type="button" name="button" class="send-btn">User Requests for Update</button></a>
   </div>
 
 </div>
 
 <div class="row">
   <div class="col-md-6">
-    <a href="list-end-user-admin.php"><button type="button" name="button" class="send-btn">View / Update / Delete registered SIM User</button></a>
+    <a href="#"><button type="button" name="button" class="send-btn">End-user Additional SIM requests</button></a>
   </div>
 
   <div class="col-md-6">
-    <a href="#"><button type="button" name="button" class="send-btn">Report Messages</button></a>
+    <a href="#"><button type="button" name="button" class="send-btn">Resupply requests</button></a>
   </div>
-
 </div>
 
 
 
-
-
 </div>
 
 
-<!-- end of body -->
 
  </body>
 </html>
