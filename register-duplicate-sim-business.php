@@ -158,11 +158,10 @@
 
 
 
-
 ?>
 
 
-   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
+   <form class="" action="includes/duplicate_businessbackend.php" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
      $nso = $_SESSION['nsonumber'];
@@ -206,7 +205,7 @@
            </div>
            <div class="col-md-3">
              <label class="labelings">Gender</label>
-             <input  type="text" name="Gender"  class="Gender form-control" value="<?= $row['gender'] ?>" disabled>
+             <input  type="text" name="gender"  class="Gender form-control" value="<?= $row['gender'] ?>" disabled>
            </div>
            <div class="col-md-6 infodiv">
              <label class="labelings">NSO Barcode Number</label>
@@ -233,7 +232,7 @@
            </div>
          </div>
 
-         <div class="col-md-6">
+         <div class="col-md-6"> 
            <div class="form-group">
              <label for="id-attach">Attach Valid ID</label>
              <input type="file" name='IDfile' class="form-control-file" id="id-attach" required>
@@ -246,14 +245,14 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="id-attach">Attach Endorsement Letter for SIM Registration</label>
-             <input type="file" name='' class="form-control-file" id="id-attach" required>
+             <input type="file" name='Endoresementfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
 
          <div class="col-md-6">
            <div class="form-group">
              <label for="id-attach">Attach Business Permit</label>
-             <input type="file" name='' class="form-control-file" id="id-attach" required>
+             <input type="file" name='Permitfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
        </div>
@@ -290,12 +289,12 @@
 
          <div class="col-md-4 infodiv">
            <label class="Bday">Company / Business Address</label>
-           <input id="" type="text" name="address" class="form-control" required>
+           <input id="" type="text" name="companyaddress" class="form-control" required>
          </div>
 
          <div class="col-md-4 infodiv">
            <label class="Bday">Business Permit #</label>
-           <input id="" type="text" name="address" class="form-control" required>
+           <input id="" type="text" name="num_permit" class="form-control" required>
          </div>
        </div>
 
@@ -332,7 +331,7 @@
        <div class="row srow">
          <div class="col-md-12">
            <p class='labelings'>Reason why additional SIM with the same service provider is requested</p>
-           <textarea id='textArea' class='form-control' name='Remarks' rows='6' cols='80' style="resize: none;" required></textarea>
+           <textarea id='textArea' class='form-control' name='remarks' rows='6' cols='80' style="resize: none;" required></textarea>
          </div>
        </div>
 

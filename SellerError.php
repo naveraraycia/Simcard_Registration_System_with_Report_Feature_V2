@@ -4,7 +4,7 @@
          WHERE passnum_nsonum = '$nso_pass';";
         $result = mysqli_query($conn,$sql);
         $row = mysqli_num_rows($result);
-        if($row>5){
+        if($row>=5){
             $exceed = true;
         }else{
             $exceed = false;
@@ -25,7 +25,7 @@
             $ban_start     = $row['ban_start'];
             $ban_end       = $row['ban_end'];
 
-            if($offense_count < 3){
+            if($offense_count < 2){
                 if($sim_status == "Active Status"){
                     return false;
                 }else{

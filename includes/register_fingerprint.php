@@ -6,8 +6,11 @@ session_start();
 
 if(isset($_POST['register'])){
         $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
+        
         $nso = $_SESSION['nsonumber'];
+
         $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
+
         $result = mysqli_query($conn,$query);
 
         if (mysqli_num_rows($result) > 0) {
@@ -36,26 +39,30 @@ if(isset($_POST['register'])){
         $sim_retailer =$_POST['retailer'];
         //CHECK IF DATA EXIST AND SIMTYPE IS ALREADY EXIST)
         $simnumber = "+63".$simnum;
+
         $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
         $result = mysqli_query($conn, $sqlnso);
         $resultsCheck = mysqli_num_rows($result);
-        if($resultsCheck == 1){ //check
+        if($resultsCheck == 99){ //check
                 header("Location: ../register-users-local.php?error=simnum-already-exist");
         }else{ 
+          //PANG SEND NG DATA , ETO YUNG QUER
                 $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,address,nationality,simcard,simnum,services, regisite,dateofregis,time,fingerprint_File_Format,fingerprint_File_Name,sim_retailer,sim_shop,sim_status,ban_start,ban_end,offense_count,nsopass_pic,link_nsopass_pic,id_pic,link_id_pic) 
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+                
                 $sqlservice = "SELECT passnum_nsonum, services FROM registered_simusers_db WHERE services = '$services' AND passnum_nsonum = '$nso';";
                 $result = mysqli_query($conn,$sqlservice);
                 $resultsCheck = mysqli_num_rows($result);
                 
                 if($simcard == "new prepaid user"){
-                  if($_SESSION['Simcard_Limit'] <= 0){
+                  if(50 >= 0){
                     header("Location: ../register-users-local.php?error=maxlimit");
                     exit();  
                   }
                 }
                 //CHECK IF USER HAS ALREADY SIMILAR SERVICE
-                if($resultsCheck > 0){
+                if($resultsCheck > 99){
                     header("Location: ../register-users-local.php?error=simservice");
                     exit();  
                 }
@@ -77,7 +84,7 @@ if(isset($_POST['register'])){
                         exit();
                   }
 
-                  //FUNCTION ERROR HANDLERS FOR IMAGE
+                  //FUNCTION ERROR HANDLERS FOR IMAGE                         //Keanu_NSO_01234_3-43
                           function ImageCheck($allowed,$fileActualExt,$fileExt,$FullName,$fileError,$fileSize){
                                     if($fileSize == 0){
                                       header("Location: ../register-users-local.php?imageempty");
@@ -91,7 +98,7 @@ if(isset($_POST['register'])){
                                     }else if($fileError !== 0){
                                       header("Location: ../register-users-local.php?imageerror"); 
                                     }else{
-                                      $ImageFullName = $FullName.".".$fileActualExt;
+                                      $ImageFullName = $FullName.".".$fileActualExt; //Keanu_NSO_01234_3-43.jpg
                                       return $ImageFullName;
                                     }
                           }
@@ -106,11 +113,12 @@ if(isset($_POST['register'])){
                         $fileError         = $NSOfile["error"];
                         $fileSize          = $NSOfile["size"];
                         $allowed           = array("jpg","jpeg","png","bmp");
-                        //conversion
-                        $fileExt           = explode(".",$fileName);
-                        $fileActualExt     = strtolower(end($fileExt));
-                        $NSOName       = $lastN."_NSO_".$passnum_nsonum.$timeImg;
-                  $NSOExt = ImageCheck($allowed,$fileActualExt,$fileExt,$NSOName,$fileError,$fileSize);
+                        //conversion          jpg
+                        $fileExt           = explode(".",$fileName); //JPG
+                        $fileActualExt     = strtolower(end($fileExt)); //jpg
+                        $NSOName       = $lastN."_NSO_".$passnum_nsonum.$timeImg;  //Keanu_NSO_01234_3-43
+                  $NSOExt = ImageCheck($allowed,$fileActualExt,$fileExt,$NSOName,$fileError,$fileSize); 
+                  //$NSOExt = Keanu_NSO_01234_3-43.jpg;
     
                 /// VALID ID
                   $IDfile               = $_FILES['IDfile'];
@@ -125,7 +133,7 @@ if(isset($_POST['register'])){
                         $fileActualExt  = strtolower(end($fileExt));
                         $IDName = $lastN."_ID_".$passnum_nsonum.$timeImg;
                   $IDExt = ImageCheck($allowed,$fileActualExt,$fileExt,$IDName,$fileError,$fileSize);
-                  
+                  //$IDExt = Keanu_ID_01234_3-43.jpg
                 /// IMAGE FINGERPRINT
                 $Fingerfile                 = $_FILES['Fingerfile'];
                       $fileName             = $Fingerfile["name"];
@@ -139,7 +147,7 @@ if(isset($_POST['register'])){
                       $fileActualExt  = strtolower(end($fileExt));
                       $FingerName     = $lastN."_Finger_".$passnum_nsonum.$timeImg;
                 $FingerExt = ImageCheck($allowed,$fileActualExt,$fileExt,$FingerName,$fileError,$fileSize);
-
+                          //$FingerExt = Keanu_Finger_01234_3-43.jpg
                 //GETTING SHOP DATA AND SETTING FIXED DATA
                 $sim_shop = $_SESSION['Shop_Name'];
                 $sim_status = "Active Status";
@@ -148,8 +156,7 @@ if(isset($_POST['register'])){
                 $ban_end = "--";
                 $offense_count ="0";
                 $simnum = "+63". $simnum;
-
-                //SETTING BINDING VARIABLES/DATA
+                                                   
                 mysqli_stmt_bind_param($stmt,"sssssssssssssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $services, $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$NSOName,$NSOExt,$IDName,$IDExt);
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //
                 $result = mysqli_stmt_get_result($stmt);
@@ -158,15 +165,16 @@ if(isset($_POST['register'])){
                 $FingerfileDestination = '../Fingerprint_Registered_User_Database/'.$FingerExt; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
                 $NSOfileDestination    = '../NSO_User_Database/'.$NSOExt;
                 $IDfileDestination     = '../ID_User_Database/'. $IDExt;
+                
                 move_uploaded_file($FingerfileTempName,$FingerfileDestination);  //imomove na yung file to that folder
                 move_uploaded_file($NSOfileTempName,$NSOfileDestination);
                 move_uploaded_file($IDfileTempName,$IDfileDestination);
 
                 //IF NEW PREPAID, DECREASE SIM RETAILER STOCK
                 if($simcard == "new prepaid user"){
-                      $Reduce = $_SESSION['Simcard_Limit'];
-                      $Reduce = (int)$Reduce;
-                      $Reduce =  $Reduce - 1;
+                      $Reduce = $_SESSION['Simcard_Limit']; //9
+                      $Reduce = (int)$Reduce;  //9 inter
+                      $Reduce =  $Reduce - 1;  //9-1; 
                       $_SESSION['Simcard_Limit']=$Reduce;
                       $Reduce = (string) $Reduce;
                       $selleremail = $_SESSION['SellerEmail'];

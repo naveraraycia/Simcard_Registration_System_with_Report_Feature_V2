@@ -141,16 +141,16 @@
         }
         // error message for fingerprint image
         elseif(strpos($fulUrl, "imageempty") == true){
-          echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
+          echo "<p class= 'nsoexist'>INSUFFICIENT IMAGE UPLOADED</p>";
         }
         elseif(strpos($fulUrl, "imagelarge") == true){
-          echo "<p class= 'nsoexist'>FINGERPRINT IMAGE SIZE IS TOO LARGE</p>";
+          echo "<p class= 'nsoexist'>SOME IMAGES SIZE ARE TOO LARGE</p>";
         }
         elseif(strpos($fulUrl, "imageerror") == true){
-          echo "<p class= 'nsoexist'>There was an error that occurred while processing the fingerprint image. Please re-upload the fingerprint image</p>";
+          echo "<p class= 'nsoexist'>There was an error that occurred while processing the image. Please try again later</p>";
         }
         elseif(strpos($fulUrl, "imageformaterror") == true){
-          echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
+          echo "<p class= 'nsoexist'>Please upload the images in .jpg, .jpeg, .png, or .bmp only</p>";
         }
         elseif(strpos($fulUrl, "simservice") == true){
           echo "<p class= 'nsoexist'>THIS USER ALREADY HAS A REGISTERED SIM CARD IN THIS SERVICE</p>";
@@ -162,7 +162,7 @@
 ?>
 
 
-   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
+  <form class="" action="includes/register_business.php" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
      $nso = $_SESSION['nsonumber'];
@@ -206,7 +206,7 @@
            </div>
            <div class="col-md-3">
              <label class="labelings">Gender</label>
-             <input  type="text" name="Gender"  class="Gender form-control" value="<?= $row['gender'] ?>" disabled>
+             <input  type="text" name="gender"  class="Gender form-control" value="<?= $row['gender'] ?>" disabled>
            </div>
            <div class="col-md-6 infodiv">
              <label class="labelings">NSO Barcode Number</label>
@@ -246,14 +246,14 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="id-attach">Attach Endorsement Letter for SIM Registration</label>
-             <input type="file" name='' class="form-control-file" id="id-attach" required>
+             <input type="file" name='Endoresementfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
 
          <div class="col-md-6">
            <div class="form-group">
              <label for="id-attach">Attach Business Permit</label>
-             <input type="file" name='' class="form-control-file" id="id-attach" required>
+             <input type="file" name='Permitfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
        </div>
@@ -290,12 +290,12 @@
 
          <div class="col-md-4 infodiv">
            <label class="Bday">Company / Business Address</label>
-           <input id="" type="text" name="address" class="form-control" required>
+           <input id="" type="text" name="companyaddress" class="form-control" required>
          </div>
 
          <div class="col-md-4 infodiv">
            <label class="Bday">Business Permit #</label>
-           <input id="" type="text" name="address" class="form-control" required>
+           <input id="" type="text" name="num_permit" class="form-control" required>
          </div>
        </div>
 

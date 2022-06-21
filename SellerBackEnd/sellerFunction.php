@@ -31,6 +31,7 @@
           $_SESSION['Business_Permit'] =$row['Business_Permit'];
           $_SESSION['Simcard_Limit'] =$row['Simcard_Limit'];
           $_SESSION['Business_Address'] =$row['Business Address'];
+          $_SESSION['business_owner']   = $row['original_owner'];
           header("location:../seller-home.php");
       }else{
         header("location:../login_sections.php?simRetailer=invalidpassoremail");

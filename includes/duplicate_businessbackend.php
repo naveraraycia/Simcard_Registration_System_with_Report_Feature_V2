@@ -29,6 +29,7 @@ if(isset($_POST['register'])){
         $simcard = $_POST['simcard'];                                   // simcard
         $simnum = $_POST['simnum'];                                     // register number
         $services = $_POST['services'];                                 // services
+        $remarks   = $_POST['remarks'];                                 // remarks
         $regisite  = $_SESSION['Business_Address'];                     // regisite
         $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis'])); // dateofregis
         $time  = date('G')."_".date('i')."_".date('s');                 // time
@@ -47,11 +48,11 @@ if(isset($_POST['register'])){
         $result = mysqli_query($conn, $sqlnso);
         $resultsCheck = mysqli_num_rows($result);
         if($resultsCheck == 1){ //check
-                header("Location: ../business-register.php?error=simnum-already-exist");
+                header("Location: ../register-duplicate-sim-business.php?error=simnum-already-exist");
         }else{ 
              
-                $sql = "INSERT INTO registered_simusers_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,address,nationality,simcard,simnum,services, regisite,dateofregis,time,fingerprint_File_Format,fingerprint_File_Name,sim_retailer,sim_shop,sim_status,ban_start,ban_end,offense_count,nsopass_pic,link_nsopass_pic,id_pic,link_id_pic) 
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                $sql = "INSERT INTO request_reg_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,address,nationality,simcard,simnum,services, remarks, regisite,dateofregis,time,fingerprint_File_Format,fingerprint_File_Name,sim_retailer,sim_shop,sim_status,ban_start,ban_end,offense_count,nsopass_pic,link_nsopass_pic,id_pic,link_id_pic) 
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
                 $sqlservice = "SELECT passnum_nsonum, services FROM registered_simusers_db WHERE services = '$services' AND passnum_nsonum = '$nso';";
                 $result = mysqli_query($conn,$sqlservice);
@@ -59,43 +60,38 @@ if(isset($_POST['register'])){
                 
                 if($simcard == "new prepaid user"){
                   if($_SESSION['Simcard_Limit'] <= 0){
-                    header("Location: ../business-register.php?error=maxlimit");
+                    header("Location: ../register-duplicate-sim-business.php?error=maxlimit");
                     exit();  
                   }
                 }
-                //CHECK IF USER HAS ALREADY SIMILAR SERVICE
-                if($resultsCheck > 0){
-                    header("Location: ../business-register.php?error=simservice");
-                    exit();  
-                }
-                
+
     
 
                   //CHECKING FOR NON-INT
                   if(!preg_match("/^[0-9]*$/", $simnum)){ 
-                        header("Location: ../business-register.php?error=wrongchars");
+                        header("Location: ../register-duplicate-sim-business.php?error=wrongchars");
                         exit();
                   }
                   //COUNTING NUMBER LENGTH
                   $countnumber = strlen($simnum);
                   if($countnumber != 10){
-                        header("Location: ../business-register.php?error=incorrectNum"); //error for wrong count
+                        header("Location: ../register-duplicate-sim-business.php?error=incorrectNum"); //error for wrong count
                         exit();
                   }
 
                   //FUNCTION ERROR HANDLERS FOR IMAGE
                           function ImageCheck($allowed,$fileActualExt,$fileExt,$FullName,$fileError,$fileSize){
                                     if($fileSize == 0){
-                                      header("Location: ../business-register.php?imageempty");
+                                      header("Location: ../register-duplicate-sim-business.php?imageempty");
                                       exit();
                                     }else if (!in_array($fileActualExt,$allowed)){
-                                      header("Location: ../business-register.php?imageformaterror");
+                                      header("Location: ../register-duplicate-sim-business.php?imageformaterror");
                                       exit();
                                     }else if ($fileSize>20000000000){
-                                      header("Location: ../business-register.php?imagelarge");
+                                      header("Location: ../register-duplicate-sim-business.php?imagelarge");
                                       exit();
                                     }else if($fileError !== 0){
-                                      header("Location: ../business-register.php?imageerror"); 
+                                      header("Location: ../register-duplicate-sim-business.php?imageerror"); 
                                     }else{
                                       $ImageFullName = $FullName.".".$fileActualExt;
                                       return $ImageFullName;
@@ -178,7 +174,7 @@ if(isset($_POST['register'])){
                 //sending to REGISTRATION DB
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt, $sql);
-                mysqli_stmt_bind_param($stmt,"sssssssssssssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $services, $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$NSOName,$NSOExt,$IDName,$IDExt);
+                mysqli_stmt_bind_param($stmt,"ssssssssssssssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $services,$remarks, $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$NSOName,$NSOExt,$IDName,$IDExt);
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //
                 $result = mysqli_stmt_get_result($stmt);
 
@@ -221,7 +217,7 @@ if(isset($_POST['register'])){
                 }
                 //UNSET NSO
                 unset($_SESSION['nsonumber']);
-                header("Location: ../business-nso-verify.php?signup=success");
+                header("Location: ../duplicate-business-verify.php?signup=success");
           }  
       }
     }

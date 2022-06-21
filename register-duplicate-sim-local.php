@@ -162,7 +162,7 @@
 ?>
 
 
-   <form class="" action="includes/register_fingerprint.php" method="post" enctype="multipart/form-data">
+   <form class="" action="includes/duplicate_localbackend.php" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
      $nso = $_SESSION['nsonumber'];
@@ -206,7 +206,7 @@
            </div>
            <div class="col-md-3">
              <label class="labelings">Gender</label>
-             <input  type="text" name="Gender"  class="Gender form-control" value="<?= $row['gender'] ?>" disabled>
+             <input  type="text" name="gender"  class="Gender form-control" value="<?= $row['gender'] ?>" disabled>
            </div>
            <div class="col-md-6 infodiv">
              <label class="labelings">NSO Barcode Number</label>
@@ -282,7 +282,7 @@
        <div class="row srow">
          <div class="col-md-12">
            <p class='labelings'>Reason why additional SIM with the same service provider is requested</p>
-           <textarea id='textArea' class='form-control' name='Remarks' rows='6' cols='80' style="resize: none;" required></textarea>
+           <textarea id='textArea' class='form-control' name='remarks' rows='6' cols='80' style="resize: none;" required></textarea>
          </div>
        </div>
 

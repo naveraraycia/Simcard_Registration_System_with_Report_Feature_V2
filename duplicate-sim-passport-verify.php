@@ -114,44 +114,26 @@
 <?php
         $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        if(strpos($fulUrl, "signup=success") == true){
-          echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
+        if(strpos($fulUrl, "stillban") == true){
+          echo "<p class= 'nsoexist'>THIS USER IS UNDER BAN</p>";
         }
-        elseif(strpos($fulUrl, "error=simnum-already-exist") == true){
-          echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
+        if(strpos($fulUrl, "signup=success") == true){
+          echo "<p class= 'regsuccess'>YOUR REQUEST FOR HAS BEEN SENT</p>";
+        }
+        elseif(strpos($fulUrl, "permanentban") == true){
+          echo "<p class= 'nsoexist'>THIS PERSON HAS BEEN PERMNANENTLY BAN TO REGISTRATER SIM</p>";
         }
         elseif(strpos($fulUrl, "no-result") == true){
-          echo "<p class= 'nsoexist'>USER NOT FOUND ON PASSPORT DATABASE</p>";
+          echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
         }
         elseif(strpos($fulUrl, "nsoempty")==true){
           echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
         }
         elseif(strpos($fulUrl, "exceed")==true){
-          echo "<p class= 'nsoexist'>YOU HAVE ALREADY REGISTERED 3 SIM CARDS</p>";
+          echo "<p class= 'nsoexist'>YOU HAVE ALREADY REGISTERED 5 SIM CARDS</p>";
         }
-        // error message for mobile number
-        elseif(strpos($fulUrl, "incorrectNum")==true){
-        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
-        }
-      elseif(strpos($fulUrl, "missplus")==true){
-        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
-        }
-      elseif(strpos($fulUrl, "wrongchars")==true){
-        echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
-        }
-
-        // error message for fingerprint image
-        elseif(strpos($fulUrl, "imageempty") == true){
-          echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
-        }
-        elseif(strpos($fulUrl, "imagelarge") == true){
-          echo "<p class= 'nsoexist'>FINGERPRINT IMAGE SIZE IS TOO LARGE</p>";
-        }
-        elseif(strpos($fulUrl, "imageerror") == true){
-          echo "<p class= 'nsoexist'>There was an error that occurred while processing the fingerprint image. Please re-upload the fingerprint image</p>";
-        }
-        elseif(strpos($fulUrl, "imageformaterror") == true){
-          echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
+        elseif(strpos($fulUrl, "EnterNSO")==true){
+          echo "<p class= 'nsoexist'>YOU DON'T HAVE ACCESS TO THIS PAGE. ENTER NSO NUMBER</p>";
         }
 
 
@@ -198,7 +180,7 @@
             </div>
             <div class="col-md-3 ">
               <label class="labelings">Gender</label>
-              <input type="text" name="Gender" class="Gender form-control"  value="<?= $row['gender'] ?>" disabled>
+              <input type="text" name="gender" class="Gender form-control"  value="<?= $row['gender'] ?>" disabled>
             </div>
            <div class="col-md-6">
              <label class="labelings">Nationality</label>
