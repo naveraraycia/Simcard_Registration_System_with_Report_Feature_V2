@@ -258,12 +258,12 @@ if (empty($_SESSION['AdminEmail'])){
        </div>
 
        <div class="row srow">
-         <div class="col-6 infodiv">
+         <div class="col-2 infodiv">
            <label class="Bday">SIM Limit</label>
-           <input id="address" type="text" name="address" class="form-control" required>
+           <input id="" type="number" name="address" class="form-control" required>
          </div>
 
-         <div class="col-6 infodiv">
+         <div class="col-10 infodiv">
            <label class="Bday">Business Address</label>
            <input id="address" type="text" name="address" class="form-control" required>
          </div>
