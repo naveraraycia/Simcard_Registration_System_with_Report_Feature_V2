@@ -107,7 +107,7 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #f3f3f3;">
       <div class="row header">
-            <h2>Verify NSO Document for Business SIM</h2>
+            <h2>Verify NSO Document for WORK SIM</h2>
           </div>
 
           <form class="" action="business-nso-verify.php" method="GET">

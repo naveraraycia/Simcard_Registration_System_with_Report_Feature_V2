@@ -232,9 +232,9 @@
            </div>
          </div>
 
-         <div class="col-md-6"> 
+         <div class="col-md-6">
            <div class="form-group">
-             <label for="id-attach">Attach Valid ID</label>
+             <label for="id-attach">Attach Valid ID with Address</label>
              <input type="file" name='IDfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
@@ -251,7 +251,7 @@
 
          <div class="col-md-6">
            <div class="form-group">
-             <label for="id-attach">Attach Business Permit</label>
+             <label for="id-attach">Attach Employee ID</label>
              <input type="file" name='Permitfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
@@ -293,7 +293,7 @@
          </div>
 
          <div class="col-md-4 infodiv">
-           <label class="Bday">Business Permit #</label>
+           <label class="Bday">Company Name</label>
            <input id="" type="text" name="num_permit" class="form-control" required>
          </div>
        </div>

@@ -100,7 +100,7 @@
         <!-- BODY PART -->
         <div class="container" style="background-color: #f3f3f3;">
           <div class="row header">
-                <h2 style="color: #b40032;">UPDATE SIM USER DATA</h2>
+                <h2 style="color: #b40032;">UPDATE WORK SIM DATA</h2>
 
               </div>
 
@@ -157,12 +157,25 @@
 
              </div>
 
+             <div class="row srow">
+               <div class="col-md-12 infodiv">
+                 <label class="labelings">User's Address</label>
+                 <input id="lastname" type="text" name="lastname" class="form-control" value="Philippines,Earth" required>
+               </div>
+             </div>
+
               <div class="row srow">
-                <div class="col-md-12 infodiv">
-                  <label class="labelings">Address</label>
+                <div class="col-md-6 infodiv">
+                  <label class="labelings">Company Name</label>
+                  <input id="lastname" type="text" name="lastname" class="form-control" value="Electronic Inc." required>
+                </div>
+
+                <div class="col-md-6 infodiv">
+                  <label class="labelings">Company Address</label>
                   <input id="lastname" type="text" name="lastname" class="form-control" value="Philippines,Earth" required>
                 </div>
               </div>
+
 
               <!-- UPDATE BUTTON -->
 

@@ -138,9 +138,9 @@
           <th class="f-column text-truncate" scope="col" >Fingerprint</th>
           <th class="f-column text-truncate" scope="col" >NSO / PASSPORT</th>
           <th class="f-column text-truncate" scope="col" >Valid ID</th>
-          <th class="f-column text-truncate" scope="col" >Business Permit #</th>
+          <th class="f-column text-truncate" scope="col" >Company Name</th>
           <th class="f-column text-truncate" scope="col" >Company Address</th>
-          <th class="f-column text-truncate" scope="col" >Business Permit</th>
+          <th class="f-column text-truncate" scope="col" >Employee ID</th>
           <th class="f-column text-truncate" scope="col" >Company Endorsement</th>
 
 
@@ -229,7 +229,7 @@
           <td class="f-column text-truncate">fingerprintlink.com</th>
           <td class="f-column text-truncate">nso-passlink.com</th>
           <td class="f-column text-truncate">idlink.com</th>
-          <td class="f-column text-truncate">1234-TEST-PERMIT</th>
+          <td class="f-column text-truncate">Electronics Inc.</th>
           <td class="f-column text-truncate">Aguinaldo Highway, Pluto</th>
           <td class="f-column text-truncate">BPphoto.com</th>
           <td class="f-column text-truncate">Endorsepic.com</th>
