@@ -151,7 +151,7 @@
   </div>
 
   <div class="col-md-6">
-    <a href="#"><button type="button" name="button" class="send-btn">Resupply requests</button></a>
+    <a href="admin-resupply-request.php"><button type="button" name="button" class="send-btn">Resupply requests</button></a>
   </div>
 </div>
 
