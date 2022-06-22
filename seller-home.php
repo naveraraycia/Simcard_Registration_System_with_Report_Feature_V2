@@ -97,6 +97,7 @@
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
         <div class="col-md-3">
+          <!-- PAKITANGGAL NETO LABEL AND INPUT LANG -->
           <label class="labelings">Search</label>
           <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
         </div>
@@ -183,6 +184,7 @@
 
            };
            if ($querytype=='A'){
+             // PATANGGAL NETO
              $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
 
               // first offense
@@ -251,7 +253,7 @@
 $(document).ready(function() {
   $("#example").DataTable({
     aaSorting: [],
-    searching: false,
+    searching: true,
     responsive: true,
     "bLengthChange": true,
     lengthMenu: [[5,10,25,50,-1], [5,10,25,50,"All"]],
@@ -267,7 +269,7 @@ $(document).ready(function() {
     ],
     dom: 'Bfrtip',
     buttons: [
-          'pageLength','copy', 'csv', 'excel', 'pdf', 'print'
+          'pageLength','copy', 'csv', 'excel', 'print'
       ]
   });
 

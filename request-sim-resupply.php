@@ -136,17 +136,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="#Hello" method="">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Amount of SIM to resupply</label>
             <input type="number" class="form-control" id="resupplynum" style="width: 100px;">
           </div>
-        </form>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send</button>
+        <button type="submit" class="btn btn-primary">Send</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
