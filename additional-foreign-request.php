@@ -69,7 +69,7 @@
 
   <div class="row">
     <div class="col-md-12">
-    <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;color: #b40032;">LIST OF LOCAL USERS REQUESTING FOR ADDITIONAL SIM WITH THE SAME PROVIDER</p>
+    <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;color: #b40032;">LIST OF FOREIGN USERS REQUESTING FOR ADDITIONAL SIM WITH THE SAME PROVIDER</p>
     </div>
   </div>
 
@@ -114,18 +114,18 @@
         <th class="f-column text-truncate" scope="col" >SIM #</th>
         <th class="f-column text-truncate" scope="col" >Provider Requested</th>
         <th class="f-column text-truncate" scope="col" >Reason for requesting</th>
-        <th class="f-column text-truncate" scope="col" >NSO #</th>
+        <th class="f-column text-truncate" scope="col" >Passport #</th>
         <th class="f-column text-truncate" scope="col" >Address</th>
         <th class="f-column text-truncate" scope="col" >Gender</th>
         <th class="f-column text-truncate" scope="col" >Birthdate</th>
+        <th class="f-column text-truncate" scope="col" >Nationality</th>
         <th class="f-column text-truncate" scope="col" >Registration Site</th>
         <th class="f-column text-truncate" scope="col" >SIM Shop</th>
         <th class="f-column text-truncate" scope="col" >Registered by</th>
         <th class="f-column text-truncate" scope="col" >Registration Date</th>
         <th class="f-column text-truncate" scope="col" >Registration Time</th>
         <th class="f-column text-truncate" scope="col" >Fingerprint</th>
-        <th class="f-column text-truncate" scope="col" >NSO</th>
-        <th class="f-column text-truncate" scope="col" >Valid ID</th>
+        <th class="f-column text-truncate" scope="col" >Passport</th>
 
 
 
@@ -191,26 +191,26 @@
         <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td> -->
         <td class="text-truncate"><a href="#ConfirmAdditionalLocalBackendHere" class="btn btn-success">Approve</a></td>
         <td class="text-truncate"><a href="#DenyAdditionalLocalBackendHere" class="btn btn-danger">Deny</a></td>
-        <td class="f-column text-truncate">Molina</th>
-        <td class="f-column text-truncate">Aaron</th>
-        <td class="f-column text-truncate">Hakeem</th>
-        <td class="f-column text-truncate">III</th>
+        <td class="f-column text-truncate">Smith</th>
+        <td class="f-column text-truncate">John</th>
+        <td class="f-column text-truncate">Jones</th>
+        <td class="f-column text-truncate">II</th>
         <td class="f-column text-truncate">new prepaid user</th>
-        <td class="f-column text-truncate">+639120000000</th>
-        <td class="f-column text-truncate">DITO</th>
+        <td class="f-column text-truncate">+639120000320</th>
+        <td class="f-column text-truncate">Smart</th>
         <td class="f-column text-truncate">I would like to take have another SIM with the same provider since I would be giving this one for my son.</th>
-        <td class="f-column text-truncate">1234-TEST-NSO-#</th>
-        <td class="text-truncate">Blk 16, 15th Ave, Disney Drive</th>
+        <td class="f-column text-truncate">5678-PASSPORT-#</th>
+        <td class="text-truncate">Hotel Golden, Manila</th>
         <td class="f-column text-truncate">M</th>
-        <td class="f-column text-truncate">1999-08-08</th>
-        <td class="f-column text-truncate">Imus Cavite</th>
-        <td class="f-column text-truncate">SIM Nations</th>
-        <td class="f-column text-truncate">Karen Reyes</th>
+        <td class="f-column text-truncate">1999-08-09</th>
+        <td class="f-column text-truncate">American</th>
+        <td class="f-column text-truncate">Manila</th>
+        <td class="f-column text-truncate">SIM United Shop</th>
+        <td class="f-column text-truncate">Karina Ruiz</th>
         <td class="f-column text-truncate">PutDate-here</th>
         <td class="f-column text-truncate">Put-time-here</th>
         <td class="f-column text-truncate">Fingerprint.s3.link</th>
-        <td class="f-column text-truncate">NSO.s3.link</th>
-        <td class="f-column text-truncate">ID.s3.link</th>
+        <td class="f-column text-truncate">Passport.s3.link</th>
 
 
       </tr>

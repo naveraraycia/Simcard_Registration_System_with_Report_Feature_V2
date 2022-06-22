@@ -137,7 +137,7 @@
           <th class="f-column text-truncate" scope="col" >Registration Time</th>
           <th class="f-column text-truncate" scope="col" >Fingerprint</th>
           <th class="f-column text-truncate" scope="col" >NSO / PASSPORT</th>
-          <th class="f-column text-truncate" scope="col" >Valid ID</th>
+          <th class="f-column text-truncate" scope="col" >Valid ID w/ Address</th>
           <th class="f-column text-truncate" scope="col" >Company Name</th>
           <th class="f-column text-truncate" scope="col" >Company Address</th>
           <th class="f-column text-truncate" scope="col" >Employee ID</th>

@@ -113,11 +113,11 @@
   </div>
 
   <div class="col-md-4">
-    <a href="info-upd-work.php"><button type="button" name="button" class="send-btn">Foreign users</button></a>
+    <a href="additional-foreign-request.php"><button type="button" name="button" class="send-btn">Foreign users</button></a>
   </div>
 
   <div class="col-md-4">
-    <a href="info-upd-seller.php"><button type="button" name="button" class="send-btn">Business / Work SIMs</button></a>
+    <a href="additional-business-request.php"><button type="button" name="button" class="send-btn">Business / Work SIMs</button></a>
   </div>
 
 </div>
