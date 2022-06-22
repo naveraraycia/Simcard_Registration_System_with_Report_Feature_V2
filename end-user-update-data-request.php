@@ -65,6 +65,10 @@
                   <a class='nav-link' href='pending-sims-end-user.php'>SIM requests</a>
                 </li>
 
+                <!-- DITO MO ILAGAY YUNG HEADER NA MAGDEDETERMINE KUNG COMPANY ACC OR HINDE, BUONG LIST UNG ILAGAY MO SA IF ELSE, ICHANGE MO NALANG YUNG HREF.
+                end-user-update-data-request.php = Update for Local / Foreign
+                working-update-sim.php = form for update request for working / business SIM card
+               -->
                 <li class='nav-item'>
                   <a class='nav-link selected' href='end-user-update-data-request.php'>Update Info</a>
                 </li>
