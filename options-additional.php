@@ -91,9 +91,6 @@
 
               </ul>
 
-
-
-
           <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
             <button type="submit" name="btn-primary" class="log-button">Logout</button>
           </form>
@@ -104,59 +101,26 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #f3f3f3; padding-bottom: 2rem;">
       <div class="row header">
-            <h2>Select Task</h2>
+            <h2>Select Type of User to Grant Additional SIM with similar provider</h2>
           </div>
 
           <form class="" action="verify-document.php" method="GET">
 
 
 <div class="row">
-  <div class="col-md-3">
-    <a href="admin-nso-list.php"><button type="button" name="button" class="send-btn">View NSO Records</button></a>
-  </div>
-
-  <div class="col-md-3">
-    <a href="admin-pass-list.php"><button type="button" name="button" class="send-btn">View Passport Records</button></a>
-  </div>
-
-
-  <div class="col-md-3">
-    <a href="terms-admin-regis-retailer.php"><button type="button" name="button" class="send-btn">Register SIM retailer</button></a>
-  </div>
-
-  <div class="col-md-3">
-    <a href="list-sim-retailer-admin.php"><button type="button" name="button" class="send-btn">View / Delete Registered SIM Retailers</button></a>
-  </div>
-
-</div>
-
-<div class="row">
   <div class="col-md-4">
-    <a href="list-end-user-admin.php"><button type="button" name="button" class="send-btn">View / Delete registered SIM Users</button></a>
+    <a href="additional-local-request.php"><button type="button" name="button" class="send-btn">Local users</button></a>
   </div>
 
   <div class="col-md-4">
-    <a href="admin-report-list.php"><button type="button" name="button" class="send-btn">Report Messages</button></a>
+    <a href="info-upd-work.php"><button type="button" name="button" class="send-btn">Foreign users</button></a>
   </div>
 
   <div class="col-md-4">
-    <a href="options-update-request.php"><button type="button" name="button" class="send-btn">User Requests for Update</button></a>
+    <a href="info-upd-seller.php"><button type="button" name="button" class="send-btn">Business / Work SIMs</button></a>
   </div>
 
 </div>
-
-<div class="row">
-  <div class="col-md-6">
-    <a href="options-additional.php"><button type="button" name="button" class="send-btn">End-user Additional SIM requests</button></a>
-  </div>
-
-  <div class="col-md-6">
-    <a href="admin-resupply-request.php"><button type="button" name="button" class="send-btn">Resupply requests</button></a>
-  </div>
-</div>
-
-
-
 </div>
 
 

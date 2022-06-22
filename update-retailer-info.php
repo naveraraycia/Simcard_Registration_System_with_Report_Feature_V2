@@ -100,7 +100,7 @@
         <!-- BODY PART -->
         <div class="container" style="background-color: #f3f3f3;">
           <div class="row header">
-                <h2 style="color: #b40032;">UPDATE SIM RETAILER DATA FOR: Cavite SIM Shop</h2>
+                <h2 style="color: #b40032;">UPDATE SIM RETAILER DATA</h2>
 
               </div>
 
@@ -114,6 +114,21 @@
             elseif(strpos($fulUrl, "error=nsomnum-already-exist") == true){
               echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS NSO NUMBER ALREADY EXISTS</p>";
             }
+            elseif(strpos($fulUrl, "signup=EMPTY") == true){
+              echo "<p class= 'regsuccess'FILL UP ALL FIELDS</p>";
+            }
+            elseif(strpos($fulUrl, "error=imagelarge") == true){
+              echo "<p class= 'nsoexist'>IMAGE IS TOO LARGE</p>";
+            }
+            elseif(strpos($fulUrl, "error=nsomnum-already-exist") == true){
+              echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS NSO NUMBER ALREADY EXISTS</p>";
+            }
+            elseif(strpos($fulUrl, "error=imageerror") == true){
+              echo "<p class= 'regsuccess'>THERE WAS A PROBLEM IN YOUR IMAGE</p>";
+            }
+            elseif(strpos($fulUrl, "error=imageformaterror") == true){
+              echo "<p class= 'nsoexist'>ENTER JPG, PNG, OR BMP ONLY</p>";
+            }
     ?>
   </form>
 
@@ -122,45 +137,62 @@
 
              <!-- SECOND ROW -->
              <div class="row srow" style="margin-bottom: 2rem; margin-top: 1rem;">
-               <div class="col-md-4 infodiv">
-                 <label class="labelings">Shop Name</label>
-                <input  type="text" name=""  class="Gender form-control" value="Cavite SIM shop" required>
+               <div class="col-md-3 infodiv">
+                 <label class="labelings">Last Name</label>
+                <input  type="text" name=""  class="Gender form-control" value="Talde" required>
                </div>
-               <div class="col-md-4">
-                 <label class="labelings">Business Owner</label>
-                 <input  type="text" name="Gender"  class="Gender form-control" value="Mary Grace" required>
+               <div class="col-md-3 infodive">
+                 <label class="labelings">First Name</label>
+                 <input  type="text" name="Gender"  class="Gender form-control" value="Vincent Mao" required>
                </div>
-               <div class="col-md-4 infodiv">
-                 <label class="labelings">Business Permit Number</label>
-                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="123456XX" required>
+               <div class="col-md-3 infodiv">
+                 <label class="labelings">Middle Name</label>
+                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="Berches" required>
+               </div>
+
+               <div class="col-md-3 infodiv">
+                 <label class="labelings">Suffix</label>
+                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="">
                </div>
 
              </div>
 
-              <div class="row srow">
-                <div class="col-md-12 infodiv">
-                  <label class="labelings">Business Address</label>
-                  <input id="lastname" type="text" name="lastname" class="form-control" value="Lot 123 Testing" required>
-
-                </div>
-              </div>
              <div class="row srow">
                <div class="col-md-6 infodiv">
-                 <label class="labelings">SIM Limit</label>
-                 <input id="" type="number" name="" class="form-control" value="32" required>
+                 <label class="labelings">Owner's Address</label>
+                 <input id="lastname" type="text" name="lastname" class="form-control" value="Philippines,Earth" required>
                </div>
 
                <div class="col-md-6 infodiv">
-                 <label class="labelings">Owner SIM number</label>
+                 <label class="labelings">Owner's SIM #</label>
                  <div class="input-group mb-2">
                  <div class="input-group-prepend">
                    <div class="input-group-text">+63</div>
                  </div>
-                 <input type="tel" class="form-control" id="simnum" name="simnum" value="9175650000" required>
+                 <input type="tel" class="form-control" id="simnum" name="simnum" required>
                </div>
                </div>
-
              </div>
+
+              <div class="row srow">
+                <div class="col-md-6 infodiv">
+                  <label class="labelings">SIM Shop Name</label>
+                  <input id="lastname" type="text" name="lastname" class="form-control" value="Imus SIMs" required>
+                </div>
+
+                <div class="col-md-6 infodiv">
+                  <label class="labelings">Business Permit #</label>
+                  <input id="lastname" type="text" name="lastname" class="form-control" value="123-PERMIT-#" required>
+                </div>
+              </div>
+
+              <div class="row srow">
+                <div class="col-md-12 infodiv">
+                  <label class="labelings">SIM Shop's Address</label>
+                  <input id="lastname" type="text" name="lastname" class="form-control" value="Philippines,Earth" required>
+                </div>
+              </div>
+
 
               <!-- UPDATE BUTTON -->
 

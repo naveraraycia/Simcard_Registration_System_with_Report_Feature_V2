@@ -162,27 +162,27 @@ p{
 
             <div class="col-12">
               <div class="infolabels">
-                <p class="nameLabel">Name: <span>Sofia Araneta<?php // echo $row['user_name'] ?></span></p>
+                <p class="nameLabel">SIM Shop Owner: <span>Vincent Mao Talde<?php // echo $row['user_name'] ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">User's Mobile number: <span>+639120450030<?php //echo $row['user_mobile_num'] ?></span></p>
+                <p class="nameLabel">Business Permit #: <span>123-PERMIT-#<?php //echo $row['user_mobile_num'] ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Data to update: <span>Address<?php //echo $row['reported_number'] ?></span></p>
+                <p class="nameLabel">Data to update: <span>Shop Name<?php //echo $row['reported_number'] ?></span></p>
               </div>
               <div class="infolabels mb-5">
-                <p class="nameLabel">Requested update value: <span class="text-primary">Blk 19, Lot 16, Jerusalem St., Manila Heights<?php // echo $_GET['repLname'];?></span></p>
+                <p class="nameLabel">Requested update value: <span class="text-primary">SIM Nation<?php // echo $_GET['repLname'];?></span></p>
               </div>
               <div class="infolabels">
                 <p class="nameLabel">User's Reason for Updating</p>
               </div>
               <div class="infolabels mb-5">
-                <p class="lighFontOnly">We moved houses just two days ago. Please update my address information<?php// echo $row['remarks'] ?></p>
+                <p class="lighFontOnly">I changed the name of the shop to SIM Nation earlier in the barangay. Please Update my data<?php// echo $row['remarks'] ?></p>
               </div>
 
               <div class="row" style="margin-bottom:1rem;display:flex;justify-content:flex-start;">
                 <div class="col-12"style="padding-left:0px;margin-right:0px;">
-                  <a href="update-work-info.php" class="btn btn-success" style="margin-bottom:10px;">Update</a>
+                  <a href="update-retailer-info.php" class="btn btn-success" style="margin-bottom:10px;">Update</a>
                   <a href="#DeleteSpecificReportMessageBackEndHere" class="btn btn-danger" style="margin-bottom:10px;">Delete Message</a>
                 </div>
               </div>
@@ -210,21 +210,14 @@ p{
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Submitted Proof: NSO, Valid ID, Business Permit</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Submitted Proof</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <!-- <img class="screenshot-img" src="<?php //echo "Image_Report_Database/".$row['Report_Screenshot'].""    ?>" alt="Proof-for-update-place-URL-here"> -->
-
-                <div class="row" style="display:flex;flex-direction:column; flex-wrap:nowrap!important; width:50%!important;">
-                  <img class="screenshot-img" src="https://i.pinimg.com/474x/5c/40/f0/5c40f0006916cac0ef07936351522e9d.jpg" alt="NSO-proof">
-                  <img class="screenshot-img" src="https://static.imoney.ph/articles/wp-content/uploads/2018/05/voters-e1527151561259.png" alt="NSO-proof">
-                  <img class="screenshot-img" src="https://www.tripleiconsulting.com/wp-content/uploads/2022/01/business-permit-sample-examples2.jpg" alt="NSO-proof">
-
-                </div>
+                <img class="screenshot-img" src="<?php //echo "Image_Report_Database/".$row['Report_Screenshot'].""    ?>" alt="Proof-for-update-place-URL-here">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

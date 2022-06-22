@@ -162,7 +162,7 @@ p{
 
             <div class="col-12">
               <div class="infolabels">
-                <p class="nameLabel">From: <span>Jodi Sta. Maria<?php // echo $row['user_name'] ?></span></p>
+                <p class="nameLabel">Name: <span>Jodi Sta. Maria<?php // echo $row['user_name'] ?></span></p>
               </div>
               <div class="infolabels">
                 <p class="nameLabel">User's Mobile number: <span>+639120900000<?php //echo $row['user_mobile_num'] ?></span></p>

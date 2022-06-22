@@ -139,15 +139,15 @@
              <div class="row srow" style="margin-bottom: 2rem; margin-top: 1rem;">
                <div class="col-md-3 infodiv">
                  <label class="labelings">Last Name</label>
-                <input  type="text" name=""  class="Gender form-control" value="Sta. Maria" required>
+                <input  type="text" name=""  class="Gender form-control" value="Araneta" required>
                </div>
                <div class="col-md-3 infodive">
                  <label class="labelings">First Name</label>
-                 <input  type="text" name="Gender"  class="Gender form-control" value="Jodi" required>
+                 <input  type="text" name="Gender"  class="Gender form-control" value="Sofia" required>
                </div>
                <div class="col-md-3 infodiv">
                  <label class="labelings">Middle Name</label>
-                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="Garcia" required>
+                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="Villamar" required>
                </div>
 
                <div class="col-md-3 infodiv">

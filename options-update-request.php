@@ -117,7 +117,7 @@
   </div>
 
   <div class="col-md-4">
-    <a href="#SIMRetailerUpdate"><button type="button" name="button" class="send-btn">SIM Retailer Info Update Requests</button></a>
+    <a href="info-upd-seller.php"><button type="button" name="button" class="send-btn">SIM Retailer Info Update Requests</button></a>
   </div>
 
 </div>
