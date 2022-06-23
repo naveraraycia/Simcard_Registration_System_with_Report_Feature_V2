@@ -167,7 +167,7 @@
          <div class="row srow">
            <div class="col-md-12">
              <div class="row"style="display: flex!important; justify-content:flex-start!important; margin-top:5px;font-size: 18px;">
-               <p class="">By submitting this form, you agree to our <a href="#" style="font-weight:bold;">Privacy Policy</a> and <a href="seller-terms.php" style="font-weight:bold;">Terms and Conditions</a> with accordance to the Data Privacy Act of 2012</p>
+               <p class="">By submitting this form, you agree to our <a href="privacy-policy-seller.php" style="font-weight:bold;">Privacy Policy</a> and <a href="seller-terms.php" style="font-weight:bold;">Terms and Conditions</a> with accordance to the Data Privacy Act of 2012</p>
              </div>
            </div>
 
