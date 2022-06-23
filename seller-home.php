@@ -156,7 +156,18 @@
         <?php
         if (isset($_GET['filters'])){
           // include 'Joiningtable.inc.php';
-
+          $start_date = $_GET['start_date'];
+          $end_date   = $_GET['end_date'];
+          if (empty($start_date)){
+            $start_date = '0000-00-00';
+          }
+          if (empty($end_date)){
+            $end_date = '9999-12-30';
+          }
+         // echo $start_date;
+         // echo "<br>";
+         // echo $end_date;
+          //exit();
            switch($_GET['operator']){
                case "No offense at present":
                    $data = 'Active Status';
@@ -168,36 +179,44 @@
                    break;
                case "First offense":
                    $data = 'First offense';
-                   $querytype = 'A';
+                   $querytype = 'D';
                    break;
                case "Second offense":
                    $data = 'Second offense';
-                   $querytype = 'A';
+                   $querytype = 'D';
                    break;
                case "Third offense":
                    $data = 'Permanent ban';
-                   $querytype = 'A';
+                   $querytype = 'D';
                    break;
                 case "All":
                    $querytype = 'B';
                    break;
 
            };
-           if ($querytype=='A'){
-             // PATANGGAL NETO
-             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
 
-              // first offense
-             $FirstOff = "SELECT * FROM registered_simusers_db WHERE sim_status = N'$data' AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-             OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
+           if ($querytype=='A'){
+             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+              // first offense NO ISSUE. NO CHANGES NEEED
+             $FirstOff = "SELECT * FROM registered_simusers_db WHERE (dateofregis between'$start_date' and '$end_date') AND sim_status = N'$data' ORDER BY lastname ASC;";
+            //NO ISSUE
            }else if($querytype=='B'){
             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-            $FirstOff = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
-           }else if($querytype=='C'){
+            $FirstOff = "SELECT * FROM registered_simusers_db WHERE (dateofregis between'$start_date' and '$end_date')  ORDER BY lastname ASC; ";
+         
+          }else if($querytype=='C'){
             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-            $FirstOff ="SELECT simnum,
-            SELECT * FROM registered_simusers_db WHERE (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban') AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-            OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
+            //((ban_start between'$start_date' and '$end_date') and (ban_end between '$start_date'AND '$end_date') AND (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))
+            //THIS QUERY IS FOR BAN DATES
+            $FirstOff ="SELECT * FROM registered_simusers_db WHERE ((dateofregis between'$start_date' and '$end_date')AND
+            (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))  ORDER BY lastname ASC;";
+           }else if($querytype=='D'){
+            $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+              // first offense NO ISSUE. NO CHANGES NEEED
+             $FirstOff = "SELECT * FROM registered_simusers_db WHERE ((dateofregis between'$start_date' and '$end_date') AND
+             (sim_status = N'$data'))ORDER BY lastname ASC;";
+        
+
            }
 
            $result = mysqli_query($conn,$FirstOff);

@@ -46,7 +46,7 @@ if(isset($_POST['register'])){
         $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
         $result = mysqli_query($conn, $sqlnso);
         $resultsCheck = mysqli_num_rows($result);
-        if($resultsCheck == 1){ //check
+        if($resultsCheck >= 1){ //check
                 header("Location: ../business-register.php?error=simnum-already-exist");
         }else{ 
              

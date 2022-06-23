@@ -103,45 +103,64 @@ if (empty($_SESSION['AdminEmail'])){
         if(strpos($fulUrl, "signup=success") == true){
           echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
         }
-        elseif(strpos($fulUrl, "error=simnum-already-exist") == true){
-          echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
+        elseif(strpos($fulUrl, "error=notemail") == true){
+          echo "<p class= 'nsoexist'>ENTER A VALID EMAIL FORMAT</p>";
         }
-        elseif(strpos($fulUrl, "no-result") == true){
-          echo "<p class= 'nsoexist'>USER NOT FOUND ON NSO DATABASE</p>";
+        elseif(strpos($fulUrl, "error=incorrectNum") == true){
+          echo "<p class= 'nsoexist'>ENTER CORRECT PHONE NUMBER DIGIT</p>";
         }
-        elseif(strpos($fulUrl, "nsoempty")==true){
-          echo "<p class= 'nsoexist'>NSO BARCODE NUMBER IS EMPTY</p>";
+        elseif(strpos($fulUrl, "email-already-exist") == true){
+          echo "<p class= 'nsoexist'>THIS EMAIL HAS BEEN ALREADY TAKEN</p>";
         }
-
-        // error message for mobile number
-        elseif(strpos($fulUrl, "incorrectNum")==true){
-        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please make sure the digit length is correct</p>";
-        }
-      elseif(strpos($fulUrl, "missplus")==true){
-        echo "<p class= 'nsoexist'>Incorrect mobile number input format. Please use the +63 format and input digits only</p>";
-        }
-      elseif(strpos($fulUrl, "wrongchars")==true){
-        echo "<p class= 'nsoexist'>Invalid characters detected. Please enter numbers only</p>";
-        }
-
-        // error message for fingerprint image
         elseif(strpos($fulUrl, "imageempty") == true){
-          echo "<p class= 'nsoexist'>NO FINGERPRINT IMAGE UPLOADED</p>";
-        }
-        elseif(strpos($fulUrl, "imagelarge") == true){
-          echo "<p class= 'nsoexist'>FINGERPRINT IMAGE SIZE IS TOO LARGE</p>";
-        }
-        elseif(strpos($fulUrl, "imageerror") == true){
-          echo "<p class= 'nsoexist'>There was an error that occurred while processing the fingerprint image. Please re-upload the fingerprint image</p>";
+          echo "<p class= 'nsoexist'>YOU HAVE SUBMITTED INSUFFICIENT DOCUMENTS</p>";
         }
         elseif(strpos($fulUrl, "imageformaterror") == true){
-          echo "<p class= 'nsoexist'>Please upload the fingerprint image in .jpg, .jpeg, .png, or .bmp only</p>";
+          echo "<p class= 'nsoexist'>INCORRECT IMAGE FORMAT. ENTER JPG, PNG, OR BMP ONLY</p>";
         }
-
+        elseif(strpos($fulUrl, "imagelarge") == true){
+          echo "<p class= 'nsoexist'>IMAGE IS TOO LARGE. PLEASE DECOMPRESS IT</p>";
+        }
+        elseif(strpos($fulUrl, "imageerror") == true){
+          echo "<p class= 'nsoexist'>THERE IS A PROBLEM IN YOUR IMAGE. ENTER AGAIN</p>";
+        }
+        elseif(strpos($fulUrl, "error=wrongchars") == true){
+          echo "<p class= 'nsoexist'>ENTER NUMBERS ONLY IN MOBILE INPUT</p>";
+        }
+        elseif(strpos($fulUrl, "error=notmatchpass") == true){
+          echo "<p class= 'nsoexist'>THE PASSWORD YOU SET DID NOT MATCH</p>";
+        }
+        elseif(strpos($fulUrl, "error=notmatchowner") == true){
+          echo "<p class= 'nsoexist'>THE OWNER KEY YOU SET DID NOT MATCH</p>";
+        }
+        elseif(strpos($fulUrl, "passworderror") == true){
+          echo "<p class= 'nsoexist'>ENTER ATLEAST 6 CHAR FOR PASSWORD</p>";
+        }
+        elseif(strpos($fulUrl, "error=notmatchowner") == true){
+          echo "<p class= 'nsoexist'>ENTER ATLEAST 8 CHAR FOR OWNER KEY</p>";
+        }
+        elseif(strpos($fulUrl, "error=simnum-not-regis") == true){
+          echo "<p class= 'nsoexist'>THE SIM NUMBER YOU ENTER IS NOT REGISTERED</p>";
+        }
+        elseif(strpos($fulUrl, "error=seller-already-register") == true){
+          echo "<p class= 'nsoexist'>THIS SELLER IS ALREADY REGISTER UNDER DIFFERENT ACCOUNT</p>";
+        }
+        elseif(strpos($fulUrl, "ownerkey-already-exist") == true){
+          echo "<p class= 'nsoexist'>OWNER-KEY ALREADY TAKEN</p>";
+        }
+        elseif(strpos($fulUrl, "keyerror") == true){
+          echo "<p class= 'nsoexist'>ENTER 8 OR MORE CHARACTERS FOR OWNER KEY</p>";
+        }
+        elseif(strpos($fulUrl, "error=simlimitinvalid") == true){
+          echo "<p class= 'nsoexist'>ENTER NUMBERS ON SIM LIMIT ONLY</p>";
+        }
+        
+        
+      
 ?>
 
 
-   <form class="" action="#" method="post" enctype="multipart/form-data">
+   <form class="" action="seller_registration_backend/retailer_reg.php" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
      $nso = $_SESSION['nsonumber1'];
@@ -191,14 +210,14 @@ if (empty($_SESSION['AdminEmail'])){
          <div class="col-md-4">
            <div class="form-group">
              <label for="nso-attach">Attach NSO</label>
-             <input type="file" name='file' class="form-control-file" id="nso-attach" required>
+             <input type="file" name='NSOfile' class="form-control-file" id="nso-attach" required>
            </div>
          </div>
 
          <div class="col-md-4">
            <div class="form-group">
              <label for="id-attach">Attach Valid ID</label>
-             <input type="file" name='file' class="form-control-file" id="id-attach" required>
+             <input type="file" name='IDfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
 
@@ -206,7 +225,7 @@ if (empty($_SESSION['AdminEmail'])){
         <div class="col-md-4">
           <div class="form-group">
             <label for="id-attach">Attach Business Permit</label>
-            <input type="file" name='' class="form-control-file" id="id-attach" required>
+            <input type="file" name='Permitfile' class="form-control-file" id="id-attach" required>
           </div>
         </div>
 
@@ -215,17 +234,17 @@ if (empty($_SESSION['AdminEmail'])){
        <div class="row srow">
          <div class="col-4 infodiv">
            <label class="Bday">Email</label>
-           <input id="address" type="text" name="address" class="form-control" required>
+           <input id="address" type="text" name="selleremail" class="form-control" required>
          </div>
 
          <div class="col-4 infodiv">
            <label class="Bday">Password</label>
-           <input id="address" type="password" name="address" class="form-control" required>
+           <input id="address" type="password" name="sellerpassword" class="form-control" required>
          </div>
 
          <div class="col-4 infodiv">
            <label class="Bday">Confirm Password</label>
-           <input id="address" type="password" name="address" class="form-control" required>
+           <input id="address" type="password" name="confirmpassword" class="form-control" required>
          </div>
 
        </div>
@@ -233,12 +252,12 @@ if (empty($_SESSION['AdminEmail'])){
        <div class="row srow">
          <div class="col-6 infodiv">
            <label class="Bday">Business Owner Unique Key</label>
-           <input id="address" type="text" name="address" class="form-control" required>
+           <input id="address" type="text" name="owner_key" class="form-control" required>
          </div>
 
          <div class="col-6 infodiv">
            <label class="Bday">Business Owner Confirm Unique Key</label>
-           <input id="address" type="password" name="address" class="form-control" required>
+           <input id="address" type="password" name="confirm_owner_key" class="form-control" required>
          </div>
 
        </div>
@@ -246,12 +265,12 @@ if (empty($_SESSION['AdminEmail'])){
        <div class="row srow">
          <div class="col-6 infodiv">
            <label class="Bday">Shop Name</label>
-           <input id="address" type="text" name="address" class="form-control" required>
+           <input id="address" type="text" name="shop_name" class="form-control" required>
          </div>
 
          <div class="col-6 infodiv">
            <label class="Bday">Business Permit #</label>
-           <input id="address" type="text" name="address" class="form-control" required>
+           <input id="address" type="text" name="num_permit" class="form-control" required>
          </div>
 
 
@@ -260,12 +279,12 @@ if (empty($_SESSION['AdminEmail'])){
        <div class="row srow">
          <div class="col-2 infodiv">
            <label class="Bday">SIM Limit</label>
-           <input id="" type="number" name="address" class="form-control" required>
+           <input id="" type="number" name="Sim_Limit" class="form-control" required>
          </div>
 
          <div class="col-10 infodiv">
            <label class="Bday">SIM Shop Address</label>
-           <input id="address" type="text" name="address" class="form-control" required>
+           <input id="address" type="text" name="company_address" class="form-control" required>
          </div>
        </div>
 
@@ -273,7 +292,7 @@ if (empty($_SESSION['AdminEmail'])){
 
          <div class="col-12 infodiv">
            <label class="Bday">Owner's Address</label>
-           <input id="" type="text" name="address" class="form-control" required>
+           <input id="" type="text" name="owneraddress" class="form-control" required>
          </div>
        </div>
 
@@ -296,7 +315,7 @@ if (empty($_SESSION['AdminEmail'])){
 
          <div class="col-md-4 infodiv">
            <label class="labelings">Registered by</label>
-           <input id="regisite" type="text" name="regisite" class="form-control" placeholder="ex: Cavite" required>
+           <input id="regisite" type="text" name="admin_reg" class="form-control" placeholder="ex: TELCO Employee Name Here" required>
          </div>
 
        </div>

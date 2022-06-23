@@ -1,5 +1,5 @@
 <?php
-include_once "../dbh/EndUser.inc.php";
+include_once "../includes/dbh.inc.php";
 
 if(isset($_POST['reportbutton'])){
 

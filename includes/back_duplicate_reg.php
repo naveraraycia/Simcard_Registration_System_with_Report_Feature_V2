@@ -8,7 +8,6 @@ if(isset($_POST['register'])){
 
         date_default_timezone_set('Asia/Manila');
         $timeImg  = date('G')."_".date('i')."_".date('s');
-
         $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
         $nso = $_SESSION['nsonumber'];
         $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
@@ -44,19 +43,9 @@ if(isset($_POST['register'])){
         
         //CHECK IF DATA EXIST AND SIMTYPE IS ALREADY EXIST)
         $simnumber = "+63".$simnum;                                     
-        $sqlnso = "SELECT simnum FROM foreign_registered_simusers_db WHERE simnum = '$simnumber';";
+        $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
         $result = mysqli_query($conn, $sqlnso);
         $resultsCheck = mysqli_num_rows($result);
-        if($resultsCheck >= 1){ //check
-            header("Location: ../register-users-local.php?error=simnum-already-exist");
-            exit();
-        }
-        //CHECKING IF NUM EXIST IN LOCAL DB
-
-        $sqlnso = "SELECT simnum FROM local_registered_simusers_db WHERE simnum = '$simnumber';";
-        $result = mysqli_query($conn, $sqlnso);
-        $resultsCheck = mysqli_num_rows($result);
-        
         if($resultsCheck == 1){ //check
                 header("Location: ../register-duplicate-sim-local.php?error=simnum-already-exist");
         }else{ 

@@ -1,7 +1,19 @@
 <?php
   require 'includes/dbh.inc.php';
-  // $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
-  // $result = mysqli_query($conn, $sql);
+   $sql = "SELECT s.Shop_Name AS Shop_Name, 
+   s.selleremail AS selleremail, 
+   rg.lastname as lastname, rg.firstname as firstname, rg.midname as midname, 
+   rg.suffix as suffix, 
+   s.Business_Permit as Business_Permit, 
+   s.Business_Address as Business_Address, 
+   s.Simcard_Limit AS simcard_limit, 
+   s.link_permit_pic AS link_permit_pic, 
+   s.link_nsopass_pic as link_nsopass_pic, 
+   s.link_id_pic as link_id_pic, rg.address as address, s.owner_num as owner_num, 
+   s.dateofreg as dateofreg
+   FROM local_registered_simusers_db as rg INNER JOIN seller as s 
+   WHERE rg.simnum = s.owner_num";
+  $result = mysqli_query($conn, $sql);
 ?>
 <?php
   // session_start();
@@ -78,10 +90,6 @@
       <form action="" method="GET">
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
-        <div class="col-md-4">
-          <label class="labelings">Search</label>
-          <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
-        </div>
         <!-- <div class="col-md-3">
           <label class="labelings">Offense</label>
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
@@ -112,6 +120,12 @@
     <div class="table-responsive" style="margin-top: 2rem!important;">
     <table class="table table-striped" id="example">
       <thead>
+<?php
+
+?>
+
+
+
         <tr>
           <th class="f-column text-truncate" scope="col" ></th>
             <th class="f-column text-truncate" scope="col">Shop Name</th>
@@ -135,84 +149,68 @@
       </thead>
       <tbody>
 
-        <?php
-        // if (isset($_GET['filters'])){
+      <?php
+        if (isset($_GET['filters'])){
           // include 'Joiningtable.inc.php';
+          $start_date = $_GET['start_date'];
+          $end_date   = $_GET['end_date'];
+          if (empty($start_date)){
+            $start_date = '0000-00-00';
+          }
+          if (empty($end_date)){
+            $end_date = '9999-12-30';
+          }
+         // echo $start_date;
+         // echo "<br>";
+         // echo $end_date;
 
-           // switch($_GET['operator']){
-           //     case "No offense at present":
-           //         $data = 'Active Status';
-           //         $querytype = 'A';
-           //         break;
-           //     case "With offense":
-           //         $data = 'offense';
-           //         $querytype = 'C';
-           //         break;
-           //     case "First offense":
-           //         $data = 'First offense';
-           //         $querytype = 'A';
-           //         break;
-           //     case "Second offense":
-           //         $data = 'Second offense';
-           //         $querytype = 'A';
-           //         break;
-           //     case "Third offense":
-           //         $data = 'Permanent ban';
-           //         $querytype = 'A';
-           //         break;
-           //      case "All":
-           //         $querytype = 'B';
-           //         break;
-           //
-           // };
-           // if ($querytype=='A'){
-           //   $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+          $FirstOff = "SELECT s.Shop_Name AS Shop_Name, 
+          s.selleremail AS selleremail, 
+          rg.lastname as lastname, rg.firstname as firstname, rg.midname as midname, 
+          rg.suffix as suffix, 
+          s.Business_Permit as Business_Permit, 
+          s.Business_Address as Business_Address, 
+          s.Simcard_Limit AS simcard_limit, 
+          s.link_permit_pic AS link_permit_pic, 
+          s.link_nsopass_pic as link_nsopass_pic, 
+          s.link_id_pic as link_id_pic, rg.address as address, s.owner_num as owner_num, 
+          s.dateofreg as dateofreg, s.owner_key as owner_key
+          FROM local_registered_simusers_db as rg INNER JOIN seller as s 
+          WHERE rg.simnum = s.owner_num AND (s.dateofreg BETWEEN '$start_date' AND '$end_date');";
 
-              // first offense
-        //      $FirstOff = "SELECT * FROM registered_simusers_db WHERE sim_status = N'$data' AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-        //      OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-        //    }else if($querytype=='B'){
-        //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-        //     $FirstOff = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
-        //    }else if($querytype=='C'){
-        //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-        //     $FirstOff ="SELECT * FROM registered_simusers_db WHERE (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban') AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-        //     OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-        //    }
-        //
-        //    $result = mysqli_query($conn,$FirstOff);
-        //
-        //    $resultCheck = mysqli_num_rows($result);
-        //   }
-        //       while($row = mysqli_fetch_assoc($result)):
-        //
-        // ?>
+           $result = mysqli_query($conn,$FirstOff);
+
+           $resultCheck = mysqli_num_rows($result);
+          }
+              while($row = mysqli_fetch_assoc($result)):
+                $selleremail = $row['selleremail']; 
+        ?>
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-retailer-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
         <tr>
           <!-- hito sa echo below sa simnum=   , ilagay mo ung $row['simcardnumbercolumnname'] -->
-          <td class="text-truncate"><a href="includes/delete-retailer.php?simnum=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
-          <td class="text-truncate"><?php echo 'Cavite SIM shop'; ?></th>
-          <td class="text-truncate"><?php echo 'cavite_shop@gmail.com'; ?></th>
-          <td class="text-truncate"><?php echo 'Videla'; ?></th>
-          <td class="text-truncate"><?php echo 'Chantal'; ?></th>
-          <td class="text-truncate"><?php echo 'Reyes'; ?></th>
-          <td class="text-truncate"><?php echo ''; ?></th>
-          <td class="text-truncate"><?php echo '1234-TEST'; ?></th>
-          <td class="text-truncate"><?php echo 'Dasmarinas Cavite'; ?></th>
-          <td class="text-truncate"><?php echo '32'; ?></th>
-          <td class="text-truncate"><?php echo 'BPlink.com'; ?></th>
-          <td class="text-truncate"><?php echo 'NSOlink.com'; ?></th>
-          <td class="text-truncate"><?php echo 'validIDlink.com'; ?></th>
-          <td class="text-truncate"><?php echo 'Blk 5, Lot 11, Pluto'; ?></th>
-          <td class="text-truncate"><?php echo '+639128900000'; ?></th>
-          <td class="text-truncate"><?php echo '2022-01-01'; ?></td>
+          <td class="text-truncate"><a href="includes/delete-retailer.php?sellemail=<?php echo  $selleremail; ?>" class="btn btn-danger">Delete</a></td>
+          <td class="text-truncate"><?php echo $row['Shop_Name']; ?></th>
+          <td class="text-truncate"><?php echo $selleremail; ?></th>
+          <td class="text-truncate"><?php echo $row['lastname']; ?></th>
+          <td class="text-truncate"><?php echo $row['firstname']; ?></th>
+          <td class="text-truncate"><?php echo $row['midname']; ?></th>
+          <td class="text-truncate"><?php echo $row['suffix']; ?></th>
+          <td class="text-truncate"><?php echo $row['Business_Permit']; ?></th>
+          <td class="text-truncate"><?php echo $row['Business_Address']; ?></th>
+          <td class="text-truncate"><?php echo $row['simcard_limit']; ?></th>
+          <td class="text-truncate"><?php echo $row['link_permit_pic']; ?></th>
+          <td class="text-truncate"><?php echo $row['link_nsopass_pic']; ?></th>
+          <td class="text-truncate"><?php echo $row['link_id_pic']; ?></th>
+          <td class="text-truncate"><?php echo $row['address']; ?></th>
+          <td class="text-truncate"><?php echo $row['owner_num']; ?></th>
+          <td class="text-truncate"><?php echo $row['dateofreg']; ?></td>
 
 
         </tr>
 
 
-      <!-- <?php //endwhile; ?> -->
+      <?php endwhile; ?> 
 
 
 

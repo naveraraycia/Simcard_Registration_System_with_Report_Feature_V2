@@ -168,7 +168,7 @@
 
   </script>
 
-      <script src="./sim-registration-otp/requestOtp.js"></script>
+    <!--  <script src="./sim-registration-otp/requestOtp.js"></script> -->
 
 </body>
 </html>

@@ -2,10 +2,12 @@
 
 include_once "dbh.inc.php";
 
-	if(isset($_GET['simnum'])) {
+	if(isset($_GET['sellemail'])) {
 
-  $simcardnum = $_GET['simnum'];
-
+  $sellemail = $_GET['sellemail'];
+    $sql = "DELETE FROM seller WHERE selleremail='$sellemail';";
+    echo $sellemail;
+    $result = mysqli_query($conn,$sql);
   //USE THE $id as the variable for WHERE CLAUSE
   // THIS SHOULD BE THE QUERY: 	"DELETE FROM registered_simusers_db WHERE simnumColumn = $simcardnum"
 

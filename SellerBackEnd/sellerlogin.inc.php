@@ -1,11 +1,11 @@
 <?php
-  include_once '../dbh/Admin_Seller.inc.php';
+  include_once '../includes/dbh.inc.php';
   if(isset($_POST['sellerbutton'])){
 
     $SellerLogin = mysqli_real_escape_string($conn, $_POST['selleremail']);
     $SellerPass = mysqli_real_escape_string($conn,  $_POST['sellerpassword']);
 
-    require_once '../dbh/Admin_Seller.inc.php';
+   // require_once '../dbh/Admin_Seller.inc.php';
     require_once 'sellerFunction.php';
 
     //CHECK IF INPUTS ARE EMPTY

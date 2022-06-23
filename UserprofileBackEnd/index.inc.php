@@ -1,9 +1,8 @@
 <?php
- include_once "../dbh/EndUser.inc.php";
+ include_once "../includes/dbh.inc.php";
   if(isset($_POST['indexButton'])){
 
     $UserLoginNumberPHP = mysqli_real_escape_string($conn, $_POST['IndexNumber']); //Get input
-    require_once '../dbh/EndUser.inc.php';
     require_once 'indexFunction.php';
 
     //ERROR FOR EMPTY BOX !!!CORRECT!!!!!

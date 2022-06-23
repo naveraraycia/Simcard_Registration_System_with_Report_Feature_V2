@@ -35,7 +35,7 @@
  function CheckNumber($conn, $UserLoginNumberPHP){
       $sql = "SELECT*FROM registered_simusers_db WHERE simnum = ?;";
       $stmt = mysqli_stmt_init($conn);
-      include_once "../dbh/EndUser.inc.php";
+      include_once "../includes/dbh.inc.php";
       //CHECK CONNECTION IF WORKING
       if(!mysqli_stmt_prepare($stmt,$sql)){
           header("Location: ../login_sections.php?errornumber=stmtfailed");

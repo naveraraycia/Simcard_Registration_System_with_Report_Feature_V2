@@ -1,6 +1,6 @@
 <?php
   // require "navbar.php";
-  include_once 'dbh/EndUser.inc.php';
+  include_once 'includes/dbh.inc.php';
   // $sql = "SELECT * FROM nso_dummy_db ORDER BY lastname ASC";
   // $result = mysqli_query($conn, $sql);
   ?>

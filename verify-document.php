@@ -1,6 +1,6 @@
 <?php
   require 'includes/dbh.inc.php';
-
+  
 ?>
 <?php
   session_start();
@@ -117,6 +117,13 @@
         if(strpos($fulUrl, "stillban") == true){
           echo "<p class= 'nsoexist'>THIS USER IS UNDER BAN</p>";
         }
+        if(strpos($fulUrl, "1tillban") == true){
+          echo "<p class= 'nsoexist'>THIS USER IS UNDER BAN</p>";
+        }elseif(strpos($fulUrl, "2tillban") == true){
+          echo "<p class= 'nsoexist'>THIS USER IS UNDER BAN</p>";
+        }elseif(strpos($fulUrl, "3tillban") == true){
+          echo "<p class= 'nsoexist'>THIS USER IS UNDER BAN</p>";
+        }
         if(strpos($fulUrl, "signup=success") == true){
           echo "<p class= 'regsuccess'>THIS USER HAS BEEN SUCCESSFULLY REGISTERED</p>";
         }
@@ -150,7 +157,7 @@
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
-        include 'SellerError.php';
+        include 'SellerErrorLocal.php';
 
         $checkbanstat= checkban($conn,$nso);
         if($checkbanstat ==  "ban"){
@@ -159,7 +166,20 @@
         }else if($checkbanstat == "permanentban"){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?permanentban");
           exit();
+        }else if($checkbanstat == "secban"){
+          header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?2tillban");
+          exit();
         }
+        else if($checkbanstat == "thban"){
+          header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?1tillban");
+          exit();
+        }else if($checkbanstat == "fsban"){
+          header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?3tillban");
+          exit();
+        }else if($checkbanstat == "notban"){
+
+        }
+        
 
         $exceed= checkPenalty($conn,$nso);
         if($exceed == true){

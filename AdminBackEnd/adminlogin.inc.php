@@ -1,11 +1,9 @@
 <?php
-include_once '../dbh/Admin_Seller.inc.php';
+include_once '../includes/dbh.inc.php';
 if(isset($_POST['adminbutton'])){
 
   $adminLogin = mysqli_real_escape_string($conn, $_POST['adminemail']);
   $adminPass = mysqli_real_escape_string($conn,  $_POST['adminpass']);
-
-  require_once '../dbh/Admin_Seller.inc.php';
   require_once 'adminFunction.php';
 
     //CHECK IF INPUTS ARE EMPTY

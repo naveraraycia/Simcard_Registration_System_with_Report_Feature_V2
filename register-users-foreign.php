@@ -156,7 +156,7 @@
 ?>
 
 
-   <form class="" action="includes/register_fingerprint_foreign.php" method="post" enctype="multipart/form-data">
+   <form class="" action="includes/back_foreign_reg.php" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
      $passport = $_SESSION['passportnumber'];

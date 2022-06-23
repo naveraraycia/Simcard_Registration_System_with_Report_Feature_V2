@@ -1,6 +1,6 @@
 <?php
   require "navbar.php";
-  include_once 'dbh/EndUser.inc.php';
+  include_once 'includes/dbh.inc.php';
    //if (empty($_SESSION['UserNumber'])){
    //  header("Location: index.php");
    //  exit();

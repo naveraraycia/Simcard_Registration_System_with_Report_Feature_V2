@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'dbh/Admin_Seller.inc.php';
+include_once 'includes/dbh.inc.php';
 
 ?>
 
@@ -77,8 +77,8 @@ include_once 'dbh/Admin_Seller.inc.php';
 <!-- BODY PART -->
 <form class='' id='form' action='UserprofileBackEnd/indexFunction_simretailer.php' method='POST' >
   <?php
-  $Business_Permit = $_SESSION['Business_Permit'];
-  $query = "SELECT * FROM seller WHERE Business_Permit  =  '$Business_Permit'; ";
+  $Business_Permit = $_SESSION['business_permit'];
+  $query = "SELECT * FROM seller WHERE business_permit  =  '$Business_Permit'; ";
   $result = mysqli_query($conn,$query);
 
     if (mysqli_num_rows($result) > 0) {
@@ -94,27 +94,27 @@ include_once 'dbh/Admin_Seller.inc.php';
 
         <div class='infodiv'>
           <p class='labelings' >Shop Name</p>
-          <p class='information'><?= $row['Shop_Name'] ; ?></p>
+          <p class='information'><?php echo $_SESSION['Shop_Name']; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Shop Email</p>
-          <p class='information'><?= $row['selleremail'] ?></p>
+          <p class='information'><?php echo $_SESSION['SellerEmail']  ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Owner</p>
-          <p class='information'><?= $row['business_owner'] ; ?></p>
+          <p class='information'><?php echo $_SESSION['business_owner'] ; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Address</p>
-          <p class='information'><?= $row['Business_Address'] ; ?></p>
+          <p class='information'><?php echo $_SESSION['Business_Address'] ; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Permit Number</p>
-          <p class='information'><?= $row['Business_Permit'] ; ?></p>
+          <p class='information'><?php echo $_SESSION['business_permit'] ; ?></p>
         </div>
 
       </div>
@@ -123,23 +123,23 @@ include_once 'dbh/Admin_Seller.inc.php';
         <!-- INFO COLUMN 2 -->
         <div class='infodiv'>
           <p class='labelings'>SIM Limit</p>
-          <p class='information'><?= $row['Simcard_Limit'] ; ?></p>
+          <p class='information'><?php echo $_SESSION['Simcard_Limit'] ; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Shop Registration Date</p>
-          <p class='information'><?= $row['reg_date'] ; ?></p>
+          <p class='information'><?php echo $_SESSION['date_reg'] ; ?></p>
         </div>
 
 
         <div class='infodiv'>
           <p class='labelings'>Owner's SIM #</p>
-          <p class='information'><?= $row['owner_num'] ; ?></p>
+          <p class='information'><?php echo  $_SESSION['owners_num']  ; ?></p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Registered by</p>
-          <p class='information'><?= $row['admin_reg'] ; ?></p>
+          <p class='information'><?php echo $_SESSION['reg_by'] ; ?></p>
         </div>
         <?php
       }
