@@ -95,7 +95,7 @@
               </li>
 
               <li class='nav-item'>
-                <a class='nav-link' href='request-sim-resupply.php'>Update info / Request SIM</a>
+                <a class='nav-link' href='request-sim-resupply.php'>Request SIM</a>
               </li>
 
             </ul>
@@ -113,7 +113,7 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #f3f3f3;">
       <div class="row header">
-            <h2>Work SIM Card Registration Form</h2>
+            <h2>Business Entity SIM Card Registration Form</h2>
           </div>
 
           <!-- <form class="" action="register-users-local.php" method="GET"> -->
@@ -226,49 +226,16 @@
 
 
        <div class="row">
-         <div class="col-md-6">
+         <div class="col-md-4">
            <div class="form-group">
              <label for="nso-attach">Attach NSO</label>
              <input type="file" name='NSOfile' class="form-control-file" id="nso-attach" required>
            </div>
          </div>
 
-         <div class="col-md-6">
+         <div class="col-md-4">
            <div class="form-group">
              <label for="id-attach">Attach Valid ID with Address</label>
-             <input type="file" name='IDfile' class="form-control-file" id="id-attach" required>
-           </div>
-         </div>
-
-       </div>
-
-       <div class="row">
-         <div class="col-md-6">
-           <div class="form-group">
-             <label for="id-attach">Attach Endorsement Letter for SIM Registration</label>
-             <input type="file" name='Endoresementfile' class="form-control-file" id="id-attach" required>
-           </div>
-         </div>
-
-         <div class="col-md-6">
-           <div class="form-group">
-             <label for="id-attach">Attach Employee ID</label>
-             <input type="file" name='Permitfile' class="form-control-file" id="id-attach" required>
-           </div>
-         </div>
-       </div>
-
-       <!-- <div class="row">
-         <div class="col-md-4">
-           <div class="form-group">
-             <label for="nso-attach">Attach SIM Registration Endorsement Form from the Company</label>
-             <input type="file" name='NSOfile' class="form-control-file" id="nso-attach" required>
-           </div>
-         </div>
-
-         <div class="col-md-4">
-           <div class="form-group">
-             <label for="id-attach">Attach Certificate </label>
              <input type="file" name='IDfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
@@ -276,11 +243,13 @@
          <div class="col-md-4">
            <div class="form-group">
              <label for="id-attach">Attach Business Permit</label>
-             <input type="file" name='' class="form-control-file" id="id-attach" required>
+             <input type="file" name='Endoresementfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
 
-       </div> -->
+       </div>
+
+
 
        <div class="row srow">
          <div class="col-md-4 infodiv">
@@ -289,12 +258,19 @@
          </div>
 
          <div class="col-md-4 infodiv">
-           <label class="Bday">Company / Business Address</label>
+           <label class="Bday">Business Name</label>
            <input id="" type="text" name="companyaddress" class="form-control" required>
          </div>
 
          <div class="col-md-4 infodiv">
-           <label class="Bday">Company Name</label>
+           <label class="Bday">Business Permit #</label>
+           <input id="" type="text" name="num_permit" class="form-control" required>
+         </div>
+       </div>
+
+       <div class="row srow">
+         <div class="col-md-12 infodiv">
+           <label class="Bday">Business Address</label>
            <input id="" type="text" name="num_permit" class="form-control" required>
          </div>
        </div>

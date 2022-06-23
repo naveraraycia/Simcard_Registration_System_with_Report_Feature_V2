@@ -95,7 +95,7 @@
               </li>
 
               <li class='nav-item'>
-                <a class='nav-link' href='request-sim-resupply.php'>Update info / Request SIM</a>
+                <a class='nav-link' href='request-sim-resupply.php'>Request SIM</a>
               </li>
 
             </ul>

@@ -90,7 +90,7 @@
                 </li>
 
                 <li class='nav-item'>
-                  <a class='nav-link' href='request-sim-resupply.php'>Update info / Request SIM</a>
+                  <a class='nav-link' href='request-sim-resupply.php'>Request SIM</a>
                 </li>
 
               </ul>
@@ -107,7 +107,7 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #f3f3f3;">
       <div class="row header">
-            <h2>Verify NSO Document for WORK SIM</h2>
+            <h2>Verify NSO Document for Business Entity Representative</h2>
           </div>
 
           <form class="" action="business-nso-verify.php" method="GET">

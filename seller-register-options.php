@@ -97,7 +97,7 @@
                 </li>
 
                 <li class='nav-item'>
-                  <a class='nav-link' href='request-sim-resupply.php'>Update info / Request SIM</a>
+                  <a class='nav-link' href='request-sim-resupply.php'>Request SIM</a>
                 </li>
 
               </ul>
@@ -125,7 +125,7 @@
   </div>
 
   <div class="col-md-3">
-    <a href="business-nso-verify.php"><button type="button" name="button" class="send-btn">Business / Work SIM</button></a>
+    <a href="business-nso-verify.php"><button type="button" name="button" class="send-btn">Business Entity</button></a>
   </div>
 
   <div class="col-md-3">

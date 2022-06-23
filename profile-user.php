@@ -208,11 +208,6 @@ $service       = $_SESSION['services'];
           <p class='information'>$Nationality</p>
         </div>
 
-        <div class='infodiv'>
-          <p class='labelings'>Company Address </p>
-          <p class='information'>$company_address</p>
-        </div>
-
       </div>
 
       <div class='col-md-4 infocol2'>
@@ -233,11 +228,6 @@ $service       = $_SESSION['services'];
         </div>
 
         <div class='infodiv'>
-          <p class='labelings'>Time of Registration</p>
-          <p class='information'>$TimeofReg</p>
-        </div>
-
-        <div class='infodiv'>
           <p class='labelings'>Registration Shop Site</p>
           <p class='information'>$RegSite</p>
         </div>
@@ -247,14 +237,15 @@ $service       = $_SESSION['services'];
           <p class='information'>$service</p>
         </div>
 
-
-      </div>
-
-      <div class='col-md-4 infocol3'>
         <div class='infodiv'>
           <p class='labelings'>Sim Card Type</p>
           <p class='information'>$SimCard</p>
         </div>
+
+
+      </div>
+
+      <div class='col-md-4 infocol3'>
 
         <div class='infodiv'>
           <p class='labelings'>SIM status</p>

@@ -1,6 +1,6 @@
 <?php
   require 'includes/dbh.inc.php';
-  
+
 ?>
 <?php
   session_start();
@@ -90,7 +90,7 @@
                 </li>
 
                 <li class='nav-item'>
-                  <a class='nav-link' href='request-sim-resupply.php'>Update info / Request SIM</a>
+                  <a class='nav-link' href='request-sim-resupply.php'>Request SIM</a>
                 </li>
 
               </ul>
@@ -179,7 +179,7 @@
         }else if($checkbanstat == "notban"){
 
         }
-        
+
 
         $exceed= checkPenalty($conn,$nso);
         if($exceed == true){
