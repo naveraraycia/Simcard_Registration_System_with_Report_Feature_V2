@@ -130,6 +130,14 @@ We will only use the applicants' data within the parameters established by this 
 <p><strong>Proceeding to the registration means that the applicant has fully understood the Privacy Policy and is allowing the SimCardRegistrationSystem website through the SIM shop to collect, record, store, process, and use their data for the sake of keeping records with regards to SIM card registration</strong></p>
 
 <div class="row">
+  <div class="col-12">
+    <div class='row'style='display: flex!important; justify-content:center!important; margin-top:5px;font-size: 18px;'>
+      <p class='' style=''>By submitting this form, you agree to our <a href='privacy-policy.php' style='font-weight:bold;'>Privacy Policy</a> and <a href='terms-condition.php' style='font-weight:bold;'>Terms and Conditions</a> with accordance to the Data Privacy Act of 2012</p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-md-6">
       <a href="seller-home.php"><button class="send-btn">Go back to home</button></a>
   </div>
