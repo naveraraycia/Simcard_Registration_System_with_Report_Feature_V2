@@ -3,11 +3,11 @@
 
 ?>
 <?php
-  session_start();
-  if (empty($_SESSION['SellerFirstName'])){
-    header("Location: index.php");
-    exit();
-  }
+  // session_start();
+  // if (empty($_SESSION['SellerFirstName'])){
+  //   header("Location: index.php");
+  //   exit();
+  // }
 ?>
 <!-- register-users-local.php?nsonum=3864&button= -->
 <!-- onclick="resetForm()" -->
