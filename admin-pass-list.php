@@ -141,10 +141,11 @@
 
             <?php
                   while($row = mysqli_fetch_assoc($result)):
+                    $passnum = $row['passnum'];
             ?>
 
             <tr>
-              <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
+              <td class="text-truncate"><a href="includes/delete-foreign-user.php?del_id=<?php echo $row['passnum']; ?>" class="btn btn-danger">Delete</a></td>
               <th scope="row" class="text-truncate"><?php echo 'ex: 1' ?></th>
               <td class="text-truncate"><?php echo $row['lastname']; ?></td>
               <td class="text-truncate"><?php echo $row['firstname']; ?></td>
