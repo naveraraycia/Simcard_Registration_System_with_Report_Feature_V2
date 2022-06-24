@@ -1,7 +1,5 @@
 <?php
   require 'includes/dbh.inc.php';
-  $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
-  $result = mysqli_query($conn, $sql);
 ?>
 <?php
   session_start();
@@ -9,7 +7,13 @@
     header("Location: index.php");
     exit();
   }
-
+  $businessaddress = $_SESSION['Business_Address'];
+  $sql = "SELECT l.sim_status, l.simnum, l.services, n.lastname, n.firstname, n.midname, n.suffix, l.nsonum, 
+  l.simcard, l.address, l.offense_count, l.dateofreg, l.sim_retailer
+  FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
+  WHERE (dateofreg between'2000-01-01' and '2030-01-01') AND
+              regisite='$businessaddress' ORDER BY lastname ASC;";
+  $result = mysqli_query($conn, $sql);
 
 ?>
 <!DOCTYPE html>
@@ -156,7 +160,7 @@
           $start_date = $_GET['start_date'];
           $end_date   = $_GET['end_date'];
           if (empty($start_date)){
-            $start_date = '0000-00-00';
+            $start_date = '2000-11-11';
           }
           if (empty($end_date)){
             $end_date = '9999-12-30';
@@ -195,23 +199,37 @@
            if ($querytype=='A'){
              $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
               // first offense NO ISSUE. NO CHANGES NEEED
-             $FirstOff = "SELECT * FROM registered_simusers_db WHERE (dateofregis between'$start_date' and '$end_date') AND sim_status = N'$data' ORDER BY lastname ASC;";
+             $FirstOff = "SELECT l.sim_status, l.simnum, l.services, n.lastname, n.firstname, n.midname, n.suffix, l.nsonum, 
+             l.simcard, l.address, l.offense_count, l.dateofreg, l.sim_retailer
+             FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
+             WHERE ((dateofreg between'$start_date' and '$end_date') AND
+                          (sim_status = 'Active Status')) AND regisite='$businessaddress' ORDER BY lastname ASC;";
             //NO ISSUE
            }else if($querytype=='B'){
             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-            $FirstOff = "SELECT * FROM registered_simusers_db WHERE (dateofregis between'$start_date' and '$end_date')  ORDER BY lastname ASC; ";
+            $FirstOff = "SELECT l.sim_status, l.simnum, l.services, n.lastname, n.firstname, n.midname, n.suffix, l.nsonum, 
+            l.simcard, l.address, l.offense_count, l.dateofreg, l.sim_retailer
+            FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
+            WHERE (dateofreg between'$start_date' and '$end_date') AND
+                   regisite='$businessaddress' ORDER BY lastname ASC; ";
 
           }else if($querytype=='C'){
             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
             //((ban_start between'$start_date' and '$end_date') and (ban_end between '$start_date'AND '$end_date') AND (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))
             //THIS QUERY IS FOR BAN DATES
-            $FirstOff ="SELECT * FROM registered_simusers_db WHERE ((dateofregis between'$start_date' and '$end_date')AND
-            (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))  ORDER BY lastname ASC;";
+            $FirstOff ="SELECT l.sim_status, l.simnum, l.services, n.lastname, n.firstname, n.midname, n.suffix, l.nsonum, 
+            l.simcard, l.address, l.offense_count, l.dateofreg, l.sim_retailer
+            FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
+            WHERE ((dateofreg between'$start_date' and '$end_date') AND
+            (l.sim_status = N'First offense' OR l.sim_status = N'Second offense' OR l.sim_status = N'Permanent ban')) AND regisite='$businessaddress'  ORDER BY lastname ASC;";
            }else if($querytype=='D'){
             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
               // first offense NO ISSUE. NO CHANGES NEEED
-             $FirstOff = "SELECT * FROM registered_simusers_db WHERE ((dateofregis between'$start_date' and '$end_date') AND
-             (sim_status = N'$data'))ORDER BY lastname ASC;";
+             $FirstOff = "SELECT l.sim_status, l.simnum, l.services, n.lastname, n.firstname, n.midname, n.suffix, l.nsonum, 
+             l.simcard, l.address, l.offense_count, l.dateofreg, l.sim_retailer
+             FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
+             WHERE ((dateofreg between'$start_date' and '$end_date')AND
+             (sim_status = N'$data')) AND regisite='$businessaddress'  ORDER BY lastname ASC;";
 
 
            }
@@ -233,11 +251,11 @@
           <td class="text-truncate"><?php echo $row['firstname']; ?></td>
           <td class="text-truncate"><?php echo $row['midname']; ?></td>
           <td class="text-truncate"><?php echo $row['suffix']; ?></td>
-          <td class="text-truncate"><?php echo $row['passnum_nsonum']; ?></td>
+          <td class="text-truncate"><?php echo $row['nsonum']; ?></td>
           <td class="text-truncate"><?php echo $row['simcard']; ?></td>
           <td class="text-truncate"><?php echo $row['address']; ?></td>
           <td class="text-truncate"><?php echo $row['offense_count'] ?></td>
-          <td class="text-truncate"><?php echo $row['dateofregis']; ?></td>
+          <td class="text-truncate"><?php echo $row['dateofreg']; ?></td>
           <td class="text-truncate"><?php echo $row['sim_retailer']; ?></td>
 
         </tr>

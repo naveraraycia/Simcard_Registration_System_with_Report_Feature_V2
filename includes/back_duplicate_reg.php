@@ -8,6 +8,7 @@ if(isset($_POST['register'])){
 
         date_default_timezone_set('Asia/Manila');
         $timeImg  = date('G')."_".date('i')."_".date('s');
+        $timeImg  = $timeImg."_".date('Y-m-d');
         $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
         $nso = $_SESSION['nsonumber'];
         $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";
@@ -42,11 +43,26 @@ if(isset($_POST['register'])){
         
         
         //CHECK IF DATA EXIST AND SIMTYPE IS ALREADY EXIST)
-        $simnumber = "+63".$simnum;                                     
-        $sqlnso = "SELECT simnum FROM registered_simusers_db WHERE simnum = '$simnumber';";
+        $simnumber = "+63".$simnum;   
+//
+        $sqlnso = "SELECT simnum FROM foreign_registered_simusers_db WHERE simnum = '$simnumber';";
         $result = mysqli_query($conn, $sqlnso);
         $resultsCheck = mysqli_num_rows($result);
-        if($resultsCheck == 1){ //check
+        if($resultsCheck >= 1){ //check
+                header("Location: ../register-duplicate-sim-local.php?error=simnum-already-exist");
+                exit();
+        }
+        $sqlnso = "SELECT simnum FROM local_registered_simusers_db WHERE simnum = '$simnumber';";
+        $result = mysqli_query($conn, $sqlnso);
+        $resultsCheck = mysqli_num_rows($result);
+        if($resultsCheck >= 1){ //check
+                header("Location: ../register-duplicate-sim-local.php?error=simnum-already-exist");
+                exit();
+        }
+        $sqlnso = "SELECT simnum FROM working_registered_simusers_db WHERE simnum = '$simnumber';";
+        $result = mysqli_query($conn, $sqlnso);
+        $resultsCheck = mysqli_num_rows($result);
+        if($resultsCheck >= 1){ //check
                 header("Location: ../register-duplicate-sim-local.php?error=simnum-already-exist");
         }else{ 
           //PANG SEND NG DATA , ETO YUNG QUER
@@ -146,7 +162,7 @@ if(isset($_POST['register'])){
 
 
                 $simnum = "+63". $simnum;   //DAPAT ANDITO LANG TONG SIMNUM+63 PARA DI MAGERROR HANDLER                                   
-                mysqli_stmt_bind_param($stmt,"ssssssssssssssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $remarks, $services, $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$NSOName,$NSOExt,$IDName,$IDExt);
+                mysqli_stmt_bind_param($stmt,"ssssssssssssssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $services, $remarks,  $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$NSOName,$NSOExt,$IDName,$IDExt);
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //
                 $result = mysqli_stmt_get_result($stmt);
 
@@ -168,8 +184,8 @@ if(isset($_POST['register'])){
                       $Reduce = (string) $Reduce;
                       $selleremail = $_SESSION['SellerEmail'];
                       $limitdown ="UPDATE seller SET Simcard_Limit='$Reduce' WHERE selleremail='$selleremail';";
-                      include '../dbh/Updating_SellerAdmin.inc.php';
-                      mysqli_query($TRY,$limitdown);  
+    
+                      mysqli_query($conn,$limitdown);  
                 }
                 //UNSET NSO
                 unset($_SESSION['nsonumber']);

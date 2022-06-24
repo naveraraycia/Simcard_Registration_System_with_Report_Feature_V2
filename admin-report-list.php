@@ -1,15 +1,31 @@
 <?php
   require 'includes/dbh.inc.php';
-  // $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
-  // $result = mysqli_query($conn, $sql);
+   $sql = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name , 
+   COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name, 
+               COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num, 
+               COALESCE(d.lastname,NULL,e.lastname) AS Complainant_first_name,
+               COALESCE(d.firstname,NULL,e.firstname) AS Complainant_last_name,
+               r.reported_number as reported_number, r.report_id as report_id,
+                      r.remarks as remarks, r.sent_at as sent_at
+    FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum 
+    LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum 
+                  LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum 
+                  LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum 
+                  LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum 
+                  LEFT JOIN foreign_registered_simusers_db as b ON r.user_mobile_num = b.simnum
+                  LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum 
+                  LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum;";
+   $result = mysqli_query($conn, $sql);
+
+   session_start();
+   if (empty($_SESSION['AdminEmail'])){
+     header("Location: index.php");
+     exit();
+   }
+
 ?>
-<?php
-  // session_start();
-  // if (empty($_SESSION['SellerFirstName'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
-?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -78,10 +94,6 @@
     <form action="" method="GET">
         <!-- INPUT FIELD ROW -->
       <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
-      <div class="col-md-4">
-        <label class="labelings">Search</label>
-        <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
-      </div>
 
       <div class="col-md-4">
         <label class="labelings">Received from</label>
@@ -116,73 +128,56 @@
     <tbody>
 
       <?php
-      // if (isset($_GET['filters'])){
+       if (isset($_GET['filters'])){
         // include 'Joiningtable.inc.php';
 
-         // switch($_GET['operator']){
-         //     case "No offense at present":
-         //         $data = 'Active Status';
-         //         $querytype = 'A';
-         //         break;
-         //     case "With offense":
-         //         $data = 'offense';
-         //         $querytype = 'C';
-         //         break;
-         //     case "First offense":
-         //         $data = 'First offense';
-         //         $querytype = 'A';
-         //         break;
-         //     case "Second offense":
-         //         $data = 'Second offense';
-         //         $querytype = 'A';
-         //         break;
-         //     case "Third offense":
-         //         $data = 'Permanent ban';
-         //         $querytype = 'A';
-         //         break;
-         //      case "All":
-         //         $querytype = 'B';
-         //         break;
-         //
-         // };
-         // if ($querytype=='A'){
-         //   $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+        $start_date = $_GET['start_date'];
+        $end_date   = $_GET['end_date'];
+        if (empty($start_date)){
+          $start_date = '0000-00-00';}
+        if (empty($end_date)){
+          $end_date = '9999-12-30';}
 
-            // first offense
-      //      $FirstOff = "SELECT * FROM registered_simusers_db WHERE sim_status = N'$data' AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-      //      OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-      //    }else if($querytype=='B'){
-      //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-      //     $FirstOff = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
-      //    }else if($querytype=='C'){
-      //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-      //     $FirstOff ="SELECT * FROM registered_simusers_db WHERE (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban') AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-      //     OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-      //    }
+          $FirstOff = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name , 
+          COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name, 
+                      COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num, 
+                      COALESCE(d.lastname,NULL,e.lastname) AS Complainant_first_name,
+                      COALESCE(d.firstname,NULL,e.firstname) AS Complainant_last_name,
+                      r.reported_number as reported_number, r.report_id as report_id,
+                      r.remarks as remarks, r.sent_at as sent_at
+           FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum 
+           LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum 
+                         LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum 
+                         LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum 
+                         LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum 
+                         LEFT JOIN foreign_registered_simusers_db as b ON r.user_mobile_num = b.simnum
+                         LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum 
+                         LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum 
+       WHERE r.sent_at BETWEEN '$start_date' AND '$end_date'";
+         $result = mysqli_query($conn,$FirstOff);
       //
-      //    $result = mysqli_query($conn,$FirstOff);
-      //
-      //    $resultCheck = mysqli_num_rows($result);
-      //   }
-      //       while($row = mysqli_fetch_assoc($result)):
+          $resultCheck = mysqli_num_rows($result);
+        }
+             while($row = mysqli_fetch_assoc($result)):
+              $report_id = $row['report_id'];
+              $data =$row['sent_at'];
       //
       // ?>
-
-      <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
-      <tr class="canHov" onclick="window.location='report-content.php';">
-        <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td> -->
-        <td class="f-column text-truncate">Ranzell Manaig</th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
-        <td class="f-column text-truncate">+639120900000</th>
-        <td class="f-column text-truncate">+639179091111</th>
-        <td class="f-column text-truncate" style="color:#ff5f56;">Aaron Molina</th>
-        <td class="text-truncate">This person is scamming me! Please Investigate!</th>
-        <td class="f-column text-truncate">2022-05-06</th>
+        <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['report_id']."&sent=".$row['lastname']."";?>';"> -->
+       <tr class="canHov" onclick="window.location='report-content.php?id=<?php echo $row['report_id'];?>';">
+        <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>  -->
+        <td class="f-column text-truncate"><?php echo $row['Complainant_first_name']." ".$row['Complainant_last_name'] ?></th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
+        <td class="f-column text-truncate"><?php echo $row['Complainant_sim_num']?></th>
+        <td class="f-column text-truncate"><?php echo $row['reported_number']?></th>
+        <td class="f-column text-truncate" style="color:#ff5f56;"><?php echo $row['Reported_First_Name']." ".$row['Reported_Last_Name']?></th>
+        <td class="text-truncate"><?php echo $row['remarks']?></th>
+        <td class="f-column text-truncate"><?php echo $data?></th>
 
 
       </tr>
 
 
-    <!-- <?php //endwhile; ?> -->
+    <?php endwhile; ?> 
 
 
 

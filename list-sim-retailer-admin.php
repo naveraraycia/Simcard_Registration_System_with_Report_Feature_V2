@@ -9,10 +9,11 @@
    s.Simcard_Limit AS simcard_limit, 
    s.link_permit_pic AS link_permit_pic, 
    s.link_nsopass_pic as link_nsopass_pic, 
-   s.link_id_pic as link_id_pic, rg.address as address, s.owner_num as owner_num, 
+   s.link_id_pic as link_id_pic, s.owner_num as owner_num, 
    s.dateofreg as dateofreg
-   FROM local_registered_simusers_db as rg INNER JOIN seller as s 
-   WHERE rg.simnum = s.owner_num";
+   FROM seller as s LEFT JOIN local_registered_simusers_db as n ON s.owner_num = n.simnum 
+   					LEFT JOIN nso_dummy_db as rg ON n.nsonum = rg.nsonum
+   WHERE n.simnum = s.owner_num";
   $result = mysqli_query($conn, $sql);
 ?>
 <?php
@@ -173,10 +174,11 @@
           s.Simcard_Limit AS simcard_limit, 
           s.link_permit_pic AS link_permit_pic, 
           s.link_nsopass_pic as link_nsopass_pic, 
-          s.link_id_pic as link_id_pic, rg.address as address, s.owner_num as owner_num, 
-          s.dateofreg as dateofreg, s.owner_key as owner_key
-          FROM local_registered_simusers_db as rg INNER JOIN seller as s 
-          WHERE rg.simnum = s.owner_num AND (s.dateofreg BETWEEN '$start_date' AND '$end_date');";
+          s.link_id_pic as link_id_pic, s.owner_num as owner_num, 
+          s.dateofreg as dateofreg
+          FROM seller as s LEFT JOIN local_registered_simusers_db as n ON s.owner_num = n.simnum 
+                    LEFT JOIN nso_dummy_db as rg ON n.nsonum = rg.nsonum
+          WHERE n.simnum = s.owner_num AND s.dateofreg BETWEEN '$start_date' AND '$end_date';";
 
            $result = mysqli_query($conn,$FirstOff);
 

@@ -160,23 +160,24 @@
         include 'SellerErrorLocal.php';
 
         $checkbanstat= checkban($conn,$nso);
-        if($checkbanstat ==  "ban"){
+        $checkbusiness = checkbanbusiness($conn,$nso);
+        if($checkbanstat ==  "ban"|| $checkbusiness == "ban"){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?stillban");
           exit();
-        }else if($checkbanstat == "permanentban"){
+        }else if($checkbanstat == "permanentban"|| $checkbusiness == "permanentban"){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?permanentban");
           exit();
-        }else if($checkbanstat == "secban"){
+        }else if($checkbanstat == "secban" || $checkbusiness == "secban"){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?2tillban");
           exit();
         }
-        else if($checkbanstat == "thban"){
+        else if($checkbanstat == "thban" || $checkbusiness == "thban"){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?1tillban");
           exit();
-        }else if($checkbanstat == "fsban"){
+        }else if($checkbanstat == "fsban" || $checkbusiness == "fsban"){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/verify-document.php?3tillban");
           exit();
-        }else if($checkbanstat == "notban"){
+        }else if($checkbanstat == "notban"|| $checkbusiness == "notban"){
 
         }
 
