@@ -177,7 +177,7 @@
          <div class="row">
 
            <div class="col-md-3 infodiv">
-             <label class="labelings">Last Name</label>
+             <label class="labelings">Representative's Last Name</label>
              <input id="lastname" type="text" name="lastname" class="form-control" value="<?= $row['lastname'] ?>" disabled>
            </div>
 
@@ -226,34 +226,43 @@
 
 
        <div class="row">
-         <div class="col-md-4">
+         <div class="col-md-6">
            <div class="form-group">
              <label for="nso-attach">Attach NSO</label>
              <input type="file" name='NSOfile' class="form-control-file" id="nso-attach" required>
            </div>
          </div>
 
-         <div class="col-md-4">
+         <div class="col-md-6">
            <div class="form-group">
              <label for="id-attach">Attach Valid ID with Address</label>
              <input type="file" name='IDfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
 
-         <div class="col-md-4">
-           <div class="form-group">
-             <label for="id-attach">Attach Business Permit</label>
-             <input type="file" name='Permitfile' class="form-control-file" id="id-attach" required>
-           </div>
          </div>
 
-       </div>
+         <div class="row">
+           <div class="col-md-6">
+             <div class="form-group">
+               <label for="id-attach">Attach Letter of Authorization from Business Entity</label>
+               <input type="file" name='Authorfile' class="form-control-file" id="id-attach" required>
+             </div>
+           </div>
+
+           <div class="col-md-6">
+             <div class="form-group">
+               <label for="id-attach">Attach Business Permit</label>
+               <input type="file" name='Permitfile' class="form-control-file" id="id-attach" required>
+             </div>
+           </div>
+         </div>
 
 
 
        <div class="row srow">
          <div class="col-md-4 infodiv">
-           <label class="Bday">Applicant's Address</label>
+           <label class="Bday">Representative's Address</label>
            <input id="address" type="text" name="address" class="form-control" required>
          </div>
 

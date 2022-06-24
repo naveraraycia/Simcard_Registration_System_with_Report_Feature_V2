@@ -243,24 +243,33 @@ if (empty($_SESSION['AdminEmail'])){
 
 
        <div class="row srow">
-         <div class="col-md-4">
+         <div class="col-md-6">
            <div class="form-group">
              <label for="nso-attach">Attach NSO</label>
              <input type="file" name='NSOfile' class="form-control-file" id="nso-attach">
            </div>
          </div>
 
-         <div class="col-md-4">
+         <div class="col-md-6">
            <div class="form-group">
              <label for="id-attach">Attach Valid ID with Address</label>
              <input type="file" name='IDfile' class="form-control-file" id="id-attach">
            </div>
          </div>
+          </div>
 
-         <div class="col-md-4">
+          <div class="row srow">
+         <div class="col-md-6">
            <div class="form-group">
              <label for="id-attach">Attach Business Permit</label>
              <input type="file" name='Permitfile' class="form-control-file" id="id-attach">
+           </div>
+         </div>
+
+         <div class="col-md-6">
+           <div class="form-group">
+             <label for="id-attach">Attach Authorization Letter</label>
+             <input type="file" name='Authorfile' class="form-control-file" id="id-attach">
            </div>
          </div>
 

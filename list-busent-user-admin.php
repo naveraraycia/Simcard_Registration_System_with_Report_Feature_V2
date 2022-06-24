@@ -141,6 +141,7 @@
           <th class="f-column text-truncate" scope="col" >Business Permit</th>
           <th class="f-column text-truncate" scope="col" >NSO</th>
           <th class="f-column text-truncate" scope="col" >Valid ID</th>
+          <th class="f-column text-truncate" scope="col" >Authorization Letter</th>
 
 
         </tr>
@@ -230,6 +231,7 @@
             <td class="f-column text-truncate" scope="col" >permit.s3.link</th>
             <td class="f-column text-truncate" scope="col" >nso.s3.link</th>
             <td class="f-column text-truncate" scope="col" >id.s3.link</th>
+            <td class="f-column text-truncate" scope="col" >letter.s3.link</th>
 
         </tr>
 
