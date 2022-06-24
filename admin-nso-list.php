@@ -135,18 +135,19 @@
 
             <?php
                   while($row = mysqli_fetch_assoc($result)):
+                      $nsonum = $row['nsonum'];
             ?>
 
             <tr>
-              <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
-              <th scope="row" class="text-truncate"><?php echo 'ex: 1' ?></th>
+              <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo $nsonum; ?>" class="btn btn-danger">Delete</a></td>
+              <th scope="row" class="text-truncate"><?php ?></th>
               <td class="text-truncate"><?php echo $row['lastname']; ?></td>
               <td class="text-truncate"><?php echo $row['firstname']; ?></td>
               <td class="text-truncate"><?php echo $row['midname']; ?></td>
               <td class="text-truncate"><?php echo $row['suffix']; ?></td>
               <td class="text-truncate"><?php echo $row['dateofbirth']; ?></td>
               <td class="text-truncate"><?php echo $row['gender']; ?></td>
-              <td class="text-truncate"><?php echo $row['nsonum']; ?></td>
+              <td class="text-truncate"><?php echo $nsonum; ?></td>
 
             </tr>
 

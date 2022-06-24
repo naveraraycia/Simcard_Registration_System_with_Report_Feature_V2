@@ -162,7 +162,7 @@
 ?>
 
 
-  <form class="" action="includes/register_business.php" method="post" enctype="multipart/form-data">
+  <form class="" action="includes/back_business_register.php" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
      $nso = $_SESSION['nsonumber'];
@@ -243,7 +243,7 @@
          <div class="col-md-4">
            <div class="form-group">
              <label for="id-attach">Attach Business Permit</label>
-             <input type="file" name='Endoresementfile' class="form-control-file" id="id-attach" required>
+             <input type="file" name='Permitfile' class="form-control-file" id="id-attach" required>
            </div>
          </div>
 
@@ -259,7 +259,7 @@
 
          <div class="col-md-4 infodiv">
            <label class="Bday">Business Name</label>
-           <input id="" type="text" name="companyaddress" class="form-control" required>
+           <input id="" type="text" name="company_name" class="form-control" required>
          </div>
 
          <div class="col-md-4 infodiv">
@@ -271,7 +271,7 @@
        <div class="row srow">
          <div class="col-md-12 infodiv">
            <label class="Bday">Business Address</label>
-           <input id="" type="text" name="num_permit" class="form-control" required>
+           <input id="" type="text" name="business_address" class="form-control" required>
          </div>
        </div>
 
