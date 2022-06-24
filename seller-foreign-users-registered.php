@@ -101,11 +101,6 @@
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
         <div class="col-md-3">
-          <!-- PAKITANGGAL NETO LABEL AND INPUT LANG -->
-          <label class="labelings">Search</label>
-          <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
-        </div>
-        <div class="col-md-3">
           <label class="labelings">Offense</label>
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
               <option selected >All</option>
@@ -198,18 +193,16 @@
            };
 
            if ($querytype=='A'){
-            $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
              // first offense NO ISSUE. NO CHANGES NEEED
             $FirstOff = "SELECT f.sim_status, f.simnum, f.services, n.lastname, n.firstname, n.midname, n.suffix, f.passnum, f.address, n.nationality,
-            f.simcard, f.address, f.offense_count, f.dateofreg, f.sim_retailer
+                           f.simcard, f.address, f.offense_count, f.dateofreg, f.sim_retailer
             FROM foreign_registered_simusers_db AS f LEFT JOIN foreign_passport_db as n ON f.passnum = n.passnum
             WHERE ((dateofreg between'$start_date' and '$end_date') AND
                          (sim_status = 'Active Status')) AND regisite='$businessaddress' ORDER BY lastname ASC;";
            //NO ISSUE
           }else if($querytype=='B'){
-           $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
            $FirstOff = "SELECT f.sim_status, f.simnum, f.services, n.lastname, n.firstname, n.midname, n.suffix, f.passnum, f.address,n.nationality,
-           f.simcard, f.address, f.offense_count, f.dateofreg, f.sim_retailer
+                                f.simcard, f.address, f.offense_count, f.dateofreg, f.sim_retailer
            FROM foreign_registered_simusers_db AS f LEFT JOIN foreign_passport_db as n ON f.passnum = n.passnum
            WHERE (dateofreg between'$start_date' and '$end_date') AND
                   regisite='$businessaddress' ORDER BY lastname ASC; ";

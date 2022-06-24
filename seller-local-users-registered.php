@@ -101,11 +101,6 @@
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
         <div class="col-md-3">
-          <!-- PAKITANGGAL NETO LABEL AND INPUT LANG -->
-          <label class="labelings">Search</label>
-          <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
-        </div>
-        <div class="col-md-3">
           <label class="labelings">Offense</label>
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
               <option selected >All</option>

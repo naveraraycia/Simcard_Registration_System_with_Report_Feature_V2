@@ -97,11 +97,6 @@
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
         <div class="col-md-3">
-          <!-- PAKITANGGAL NETO LABEL AND INPUT LANG -->
-          <label class="labelings">Search</label>
-          <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
-        </div>
-        <div class="col-md-3">
           <label class="labelings">Offense</label>
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
               <option selected >All</option>
@@ -196,22 +191,18 @@
            };
 
            if ($querytype=='A'){
-             $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
               // first offense NO ISSUE. NO CHANGES NEEED
              $FirstOff = "SELECT * FROM registered_simusers_db WHERE (dateofregis between'$start_date' and '$end_date') AND sim_status = N'$data' ORDER BY lastname ASC;";
             //NO ISSUE
            }else if($querytype=='B'){
-            $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
             $FirstOff = "SELECT * FROM registered_simusers_db WHERE (dateofregis between'$start_date' and '$end_date')  ORDER BY lastname ASC; ";
 
           }else if($querytype=='C'){
-            $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
             //((ban_start between'$start_date' and '$end_date') and (ban_end between '$start_date'AND '$end_date') AND (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))
             //THIS QUERY IS FOR BAN DATES
             $FirstOff ="SELECT * FROM registered_simusers_db WHERE ((dateofregis between'$start_date' and '$end_date')AND
             (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))  ORDER BY lastname ASC;";
            }else if($querytype=='D'){
-            $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
               // first offense NO ISSUE. NO CHANGES NEEED
              $FirstOff = "SELECT * FROM registered_simusers_db WHERE ((dateofregis between'$start_date' and '$end_date') AND
              (sim_status = N'$data'))ORDER BY lastname ASC;";
