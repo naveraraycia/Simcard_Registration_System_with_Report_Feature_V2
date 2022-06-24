@@ -101,7 +101,7 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #f3f3f3; padding-bottom: 2rem;">
       <div class="row header">
-            <h2>Select User to Update</h2>
+            <h2>Select List of User Requesting for Information Update</h2>
           </div>
 
           <form class="" action="verify-document.php" method="GET">
@@ -109,16 +109,13 @@
 
 <div class="row">
   <div class="col-md-4">
-    <a href="info-upd-localfor.php"><button type="button" name="button" class="send-btn">Local / Foreign Info Update Requests</button></a>
+    <a href="info-upd-localfor.php"><button type="button" name="button" class="send-btn">Local User Info Update Requests</button></a>
   </div>
 
   <div class="col-md-4">
-    <a href="info-upd-work.php"><button type="button" name="button" class="send-btn">Work SIM Info Update Requests</button></a>
+    <a href="info-upd-foreign.php"><button type="button" name="button" class="send-btn">Foreign User Info Update Requests</button></a>
   </div>
 
-  <div class="col-md-4">
-    <a href="info-upd-seller.php"><button type="button" name="button" class="send-btn">SIM Retailer Info Update Requests</button></a>
-  </div>
 
 </div>
 </div>

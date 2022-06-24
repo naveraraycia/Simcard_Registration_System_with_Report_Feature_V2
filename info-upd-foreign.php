@@ -69,7 +69,7 @@
 
   <div class="row">
     <div class="col-md-12">
-    <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;color: #b40032;">LIST OF LOCAL USER REQUEST FOR INFO UPDATE</p>
+    <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;color: #b40032;">LIST OF FOREIGN USER REQUEST FOR INFO UPDATE</p>
     </div>
   </div>
 
@@ -168,11 +168,11 @@
       // ?>
 
       <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
-      <tr class="canHov" onclick="window.location='content-localfor-upd.php';">
+      <tr class="canHov" onclick="window.location='content-foreign-upd.php';">
         <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td> -->
-        <td class="f-column text-truncate">Jodi Sta. Maria</th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
+        <td class="f-column text-truncate">Melody Jones</th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
         <td class="f-column text-truncate">+639120900030</th>
-        <td class="f-column text-truncate">Blk 10, Lot 16, Alabang Heights</th>
+        <td class="f-column text-truncate">Blk 10, Lot 16, Alabang Dr</th>
         <td class="text-truncate">I have just moved yesterday. Please update my address</th>
         <td class="f-column text-truncate">Pooflink.s3.com</th>
 

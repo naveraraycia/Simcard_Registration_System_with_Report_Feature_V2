@@ -124,6 +124,7 @@
         <table class="table table-striped" id="example">
           <thead>
             <tr>
+              <th class="f-column text-truncate" scope="col" ></th>
               <th class="f-column text-truncate" scope="col" >ID</th>
               <th class="f-column text-truncate" scope="col" >Last Name</th>
               <th class="f-column text-truncate" scope="col" >First Name</th>
@@ -143,7 +144,7 @@
             ?>
 
             <tr>
-
+              <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
               <th scope="row" class="text-truncate"><?php echo 'ex: 1' ?></th>
               <td class="text-truncate"><?php echo $row['lastname']; ?></td>
               <td class="text-truncate"><?php echo $row['firstname']; ?></td>

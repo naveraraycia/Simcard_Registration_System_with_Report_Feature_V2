@@ -132,7 +132,7 @@
 
 <div class="row">
   <div class="col-md-4">
-    <a href="list-end-user-admin.php"><button type="button" name="button" class="send-btn">View / Delete registered SIM Users</button></a>
+    <a href="admin-type-user.php"><button type="button" name="button" class="send-btn">View / Delete registered SIM Users</button></a>
   </div>
 
   <div class="col-md-4">

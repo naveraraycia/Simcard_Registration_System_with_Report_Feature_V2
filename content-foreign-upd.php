@@ -162,13 +162,13 @@ p{
 
             <div class="col-12">
               <div class="infolabels">
-                <p class="nameLabel">Name: <span>Jodi Sta. Maria<?php // echo $row['user_name'] ?></span></p>
+                <p class="nameLabel">Name: <span>Melody Jones<?php // echo $row['user_name'] ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">User's Mobile number: <span>+639120900000<?php //echo $row['user_mobile_num'] ?></span></p>
+                <p class="nameLabel">User's Mobile number: <span>+639120900030<?php //echo $row['user_mobile_num'] ?></span></p>
               </div>
               <div class="infolabels mb-5">
-                <p class="nameLabel">Requested new address: <span class="text-primary">Blk 10, Lot 16, Alabang Heights <?php // echo $_GET['repLname'];?></span></p>
+                <p class="nameLabel">Requested new address: <span class="text-primary">Blk 10, Lot 16, Alabang Dr<?php // echo $_GET['repLname'];?></span></p>
               </div>
               <div class="infolabels">
                 <p class="nameLabel">User's Reason for Updating</p>
@@ -179,9 +179,6 @@ p{
 
               <div class="row" style="margin-bottom:1rem;display:flex;justify-content:flex-start;">
                 <div class="col-12"style="padding-left:0px;margin-right:0px;">
-                  <!-- DITO PAKI LAGYAN NG PARAMETER YUNG update-end-user-info.php . pwedeng update-end-user-indo.php?nationality=foreign-->
-                  <!-- tapos pagdating mo sa update-end-user-info.php mag get ka nalang . if nationality = foreign then mag select ka from foreign_registered , kapag nationality=local , select sa local_registered. -->
-                  <!-- Hindi ko na kasi dinoble dito ung web page ng pageedit ng address ng local and foreign since same na same lang -->
                   <a href="update-end-user-info.php" class="btn btn-success" style="margin-bottom:10px;">Update</a>
                   <a href="#DeleteSpecificReportMessageBackEndHere" class="btn btn-danger" style="margin-bottom:10px;">Delete Message</a>
                 </div>

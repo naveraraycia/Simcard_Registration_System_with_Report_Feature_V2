@@ -1,17 +1,17 @@
 <?php
   require 'includes/dbh.inc.php';
-   $sql = "SELECT s.Shop_Name AS Shop_Name, 
-   s.selleremail AS selleremail, 
-   rg.lastname as lastname, rg.firstname as firstname, rg.midname as midname, 
-   rg.suffix as suffix, 
-   s.Business_Permit as Business_Permit, 
-   s.Business_Address as Business_Address, 
-   s.Simcard_Limit AS simcard_limit, 
-   s.link_permit_pic AS link_permit_pic, 
-   s.link_nsopass_pic as link_nsopass_pic, 
-   s.link_id_pic as link_id_pic, rg.address as address, s.owner_num as owner_num, 
+   $sql = "SELECT s.Shop_Name AS Shop_Name,
+   s.selleremail AS selleremail,
+   rg.lastname as lastname, rg.firstname as firstname, rg.midname as midname,
+   rg.suffix as suffix,
+   s.Business_Permit as Business_Permit,
+   s.Business_Address as Business_Address,
+   s.Simcard_Limit AS simcard_limit,
+   s.link_permit_pic AS link_permit_pic,
+   s.link_nsopass_pic as link_nsopass_pic,
+   s.link_id_pic as link_id_pic, rg.address as address, s.owner_num as owner_num,
    s.dateofreg as dateofreg
-   FROM local_registered_simusers_db as rg INNER JOIN seller as s 
+   FROM local_registered_simusers_db as rg INNER JOIN seller as s
    WHERE rg.simnum = s.owner_num";
   $result = mysqli_query($conn, $sql);
 ?>
@@ -128,6 +128,7 @@
 
         <tr>
           <th class="f-column text-truncate" scope="col" ></th>
+          <th class="f-column text-truncate" scope="col" ></th>
             <th class="f-column text-truncate" scope="col">Shop Name</th>
             <th class="f-column text-truncate" scope="col">Shop Email</th>
             <th class="f-column text-truncate" scope="col">Last Name</th>
@@ -164,18 +165,18 @@
          // echo "<br>";
          // echo $end_date;
 
-          $FirstOff = "SELECT s.Shop_Name AS Shop_Name, 
-          s.selleremail AS selleremail, 
-          rg.lastname as lastname, rg.firstname as firstname, rg.midname as midname, 
-          rg.suffix as suffix, 
-          s.Business_Permit as Business_Permit, 
-          s.Business_Address as Business_Address, 
-          s.Simcard_Limit AS simcard_limit, 
-          s.link_permit_pic AS link_permit_pic, 
-          s.link_nsopass_pic as link_nsopass_pic, 
-          s.link_id_pic as link_id_pic, rg.address as address, s.owner_num as owner_num, 
+          $FirstOff = "SELECT s.Shop_Name AS Shop_Name,
+          s.selleremail AS selleremail,
+          rg.lastname as lastname, rg.firstname as firstname, rg.midname as midname,
+          rg.suffix as suffix,
+          s.Business_Permit as Business_Permit,
+          s.Business_Address as Business_Address,
+          s.Simcard_Limit AS simcard_limit,
+          s.link_permit_pic AS link_permit_pic,
+          s.link_nsopass_pic as link_nsopass_pic,
+          s.link_id_pic as link_id_pic, rg.address as address, s.owner_num as owner_num,
           s.dateofreg as dateofreg, s.owner_key as owner_key
-          FROM local_registered_simusers_db as rg INNER JOIN seller as s 
+          FROM local_registered_simusers_db as rg INNER JOIN seller as s
           WHERE rg.simnum = s.owner_num AND (s.dateofreg BETWEEN '$start_date' AND '$end_date');";
 
            $result = mysqli_query($conn,$FirstOff);
@@ -183,13 +184,14 @@
            $resultCheck = mysqli_num_rows($result);
           }
               while($row = mysqli_fetch_assoc($result)):
-                $selleremail = $row['selleremail']; 
+                $selleremail = $row['selleremail'];
         ?>
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-retailer-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
-        <tr>
+          <tr>
           <!-- hito sa echo below sa simnum=   , ilagay mo ung $row['simcardnumbercolumnname'] -->
           <td class="text-truncate"><a href="includes/delete-retailer.php?sellemail=<?php echo  $selleremail; ?>" class="btn btn-danger">Delete</a></td>
+          <td class="text-truncate"><a href="includes/admin-edit-seller.php?sellemail=<?php //echo  $selleremail; ?>" class="btn btn-success">Update</a></td>
           <td class="text-truncate"><?php echo $row['Shop_Name']; ?></th>
           <td class="text-truncate"><?php echo $selleremail; ?></th>
           <td class="text-truncate"><?php echo $row['lastname']; ?></th>
@@ -210,7 +212,7 @@
         </tr>
 
 
-      <?php endwhile; ?> 
+      <?php endwhile; ?>
 
 
 

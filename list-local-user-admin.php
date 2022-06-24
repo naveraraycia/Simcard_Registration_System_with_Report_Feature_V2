@@ -69,7 +69,7 @@
 
     <div class="row">
       <div class="col-md-12">
-      <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;color: #b40032;">LIST OF REGISTERED SIM USERS</p>
+      <p class="header row-head" style="margin-bottom: 0px; display: flex; justify-content: center;color: #b40032;">LIST OF REGISTERED LOCAL SIM USERS</p>
       </div>
     </div>
 
@@ -114,6 +114,7 @@
       <thead>
         <tr>
           <th class="f-column text-truncate" scope="col" ></th>
+          <th class="f-column text-truncate" scope="col" ></th>
           <th class="f-column text-truncate" scope="col" >SIM Status</th>
           <th class="f-column text-truncate" scope="col" >Penalty</th>
           <th class="f-column text-truncate" scope="col" >Date blocked</th>
@@ -128,21 +129,14 @@
           <th class="f-column text-truncate" scope="col" >Gender</th>
           <th class="f-column text-truncate" scope="col" >Birthdate</th>
           <th class="f-column text-truncate" scope="col" >Address</th>
-          <th class="f-column text-truncate" scope="col" >Nationality</th>
-          <th class="f-column text-truncate" scope="col" >NSO / Passport #</th>
+          <th class="f-column text-truncate" scope="col" >NSO #</th>
           <th class="f-column text-truncate" scope="col" >SIM Shop</th>
           <th class="f-column text-truncate" scope="col" >Registration Site</th>
           <th class="f-column text-truncate" scope="col" >SIM Retailer</th>
           <th class="f-column text-truncate" scope="col" >Registration Date</th>
-          <th class="f-column text-truncate" scope="col" >Registration Time</th>
           <th class="f-column text-truncate" scope="col" >Fingerprint</th>
-          <th class="f-column text-truncate" scope="col" >NSO / PASSPORT</th>
-          <th class="f-column text-truncate" scope="col" >Valid ID w/ Address</th>
-          <th class="f-column text-truncate" scope="col" >Company Name</th>
-          <th class="f-column text-truncate" scope="col" >Company Address</th>
-          <th class="f-column text-truncate" scope="col" >Employee ID</th>
-          <th class="f-column text-truncate" scope="col" >Company Endorsement</th>
-
+          <th class="f-column text-truncate" scope="col" >NSO</th>
+          <th class="f-column text-truncate" scope="col" >Valid ID</th>
 
 
         </tr>
@@ -204,7 +198,8 @@
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
         <tr>
-          <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td>
+          <td class="text-truncate"><a href="#DeleteBackendHere" class="btn btn-danger">Delete</a></td>
+            <td class="text-truncate"><a href="admin-edit-local.php?simnum=<?php //echo  $selleremail; ?>" class="btn btn-success">Update</a></td>
           <td class="f-column text-truncate">Active</th>
           <td class="f-column text-truncate">0</th>
           <td class="f-column text-truncate">--</th>
@@ -219,22 +214,14 @@
           <td class="f-column text-truncate">M</th>
           <td class="f-column text-truncate">1999-01-01</th>
           <td class="f-column text-truncate">Blk 5, Lot 16, Pluto</th>
-          <td class="f-column text-truncate">Filipino</th>
-          <td class="f-column text-truncate">02122-TEST-3</th>
+          <td class="f-column text-truncate">02122-NSONUM-3</th>
           <td class="f-column text-truncate">Cavite SIM shop</th>
           <td class="f-column text-truncate">Aguinaldo Highway, Dasmarinas, Cavite</th>
           <td class="f-column text-truncate">Karen Reyes</th>
           <td class="f-column text-truncate">2021-09-11</th>
-          <td class="f-column text-truncate">time here</th>
           <td class="f-column text-truncate">fingerprintlink.com</th>
           <td class="f-column text-truncate">nso-passlink.com</th>
           <td class="f-column text-truncate">idlink.com</th>
-          <td class="f-column text-truncate">Electronics Inc.</th>
-          <td class="f-column text-truncate">Aguinaldo Highway, Pluto</th>
-          <td class="f-column text-truncate">BPphoto.com</th>
-          <td class="f-column text-truncate">Endorsepic.com</th>
-
-
 
         </tr>
 

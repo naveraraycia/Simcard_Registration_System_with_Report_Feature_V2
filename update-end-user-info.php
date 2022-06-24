@@ -100,7 +100,7 @@
         <!-- BODY PART -->
         <div class="container" style="background-color: #f3f3f3;">
           <div class="row header">
-                <h2 style="color: #b40032;">UPDATE SIM USER DATA</h2>
+                <h2 style="color: #b40032;">UPDATE SIM USER ADDRESS</h2>
 
               </div>
 
@@ -136,28 +136,9 @@
 
 
              <!-- SECOND ROW -->
-             <div class="row srow" style="margin-bottom: 2rem; margin-top: 1rem;">
-               <div class="col-md-3 infodiv">
-                 <label class="labelings">Last Name</label>
-                <input  type="text" name=""  class="Gender form-control" value="Sta. Maria" required>
-               </div>
-               <div class="col-md-3 infodive">
-                 <label class="labelings">First Name</label>
-                 <input  type="text" name="Gender"  class="Gender form-control" value="Jodi" required>
-               </div>
-               <div class="col-md-3 infodiv">
-                 <label class="labelings">Middle Name</label>
-                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="Garcia" required>
-               </div>
 
-               <div class="col-md-3 infodiv">
-                 <label class="labelings">Suffix</label>
-                 <input id="nsonum" type="text" name="nsonum" class="form-control" value="">
-               </div>
 
-             </div>
-
-              <div class="row srow">
+              <div class="row">
                 <div class="col-md-12 infodiv">
                   <label class="labelings">Address</label>
                   <input id="lastname" type="text" name="lastname" class="form-control" value="Philippines,Earth" required>

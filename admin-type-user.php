@@ -91,6 +91,9 @@
 
               </ul>
 
+
+
+
           <form class="form-btnn" action="Logout/logoutprocess_SimRetailer.php" method="POST">
             <button type="submit" name="btn-primary" class="log-button">Logout</button>
           </form>
@@ -101,7 +104,7 @@
     <!-- BODY PART -->
     <div class="container" style="background-color: #f3f3f3; padding-bottom: 2rem;">
       <div class="row header">
-            <h2>Select Type of User to Grant Additional SIM with similar provider</h2>
+            <h2>Select User you want to view</h2>
           </div>
 
           <form class="" action="verify-document.php" method="GET">
@@ -109,14 +112,20 @@
 
 <div class="row">
   <div class="col-md-4">
-    <a href="additional-local-request.php"><button type="button" name="button" class="send-btn">Local users</button></a>
+    <a href="list-local-user-admin.php"><button type="button" name="button" class="send-btn">View Registered Local Users</button></a>
   </div>
 
   <div class="col-md-4">
-    <a href="additional-foreign-request.php"><button type="button" name="button" class="send-btn">Foreign users</button></a>
+    <a href="list-foreign-user-admin.php"><button type="button" name="button" class="send-btn">View Registered Foreign Users</button></a>
+  </div>
+
+
+  <div class="col-md-4">
+    <a href="list-busent-user-admin.php"><button type="button" name="button" class="send-btn">View Registered Business Entities</button></a>
   </div>
 
 </div>
+
 </div>
 
 
