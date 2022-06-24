@@ -6,20 +6,6 @@
    //  exit();
    // }
 
-   $user = $_SESSION['UserNumber'];
-   $sql  = "SELECT * FROM working_sim_db WHERE simnum=?;";
-   $stmt = mysqli_stmt_init($conn);
-   if (mysqli_stmt_prepare($stmt,$sql)){
-     mysqli_stmt_bind_param($stmt,"s",$user);
-     mysqli_stmt_execute($stmt);
-     $result = mysqli_stmt_get_result($stmt);
-     // session_start();
-     if($row = mysqli_fetch_assoc($result)){
-            $_SESSION['company_address'] = $row['company_address'];
-       }else{
-        $_SESSION['company_address'] = "--";
-       }
-      }
 $SimCardNumber = $_SESSION['UserNumber'] ;
 $LastName      = $_SESSION['UserLast']  ;
 $FirstName     = $_SESSION['UserFirst']  ;
@@ -34,7 +20,6 @@ $Type = "Foreign";
 };
 $TypeofUser    = $_SESSION['UserType'] ;
 $DateofRegist  = $_SESSION['UserDatReg'];
-$TimeofReg     = $_SESSION['UserTimeReg'];
 $RegSite       = $_SESSION['UserRegSite'] ;
 $SimCard       = $_SESSION['UserSimCard']  ;
 $SimStatus     = $_SESSION['sim_status'];
@@ -60,7 +45,6 @@ $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
 $Suffix        = " ".$_SESSION['UserSuffix']." ";
 $MiddleName    = $MiddleName.".";
 $FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
-$company_address = $_SESSION['company_address'];
 $service       = $_SESSION['services'];
 ?>
 
@@ -219,7 +203,7 @@ $service       = $_SESSION['services'];
 
         <div class='infodiv'>
           <p class='labelings'>Type of User</p>
-          <p class='information'>$TypeofUser </p>
+          <p class='information'>$Type </p>
         </div>
 
         <div class='infodiv'>

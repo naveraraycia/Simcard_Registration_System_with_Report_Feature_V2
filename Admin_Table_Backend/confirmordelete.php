@@ -1,4 +1,4 @@
-<?php 
+<?php
     include_once '../includes/dbh.inc.php';
     date_default_timezone_set('Asia/Manila');
     $today = date('Y-m-d');
@@ -55,7 +55,7 @@
     }
 
 
-    
+
     $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     if(strpos($fulUrl, "click=confirm") == true){
         $serial = mysqli_real_escape_string($conn, $_GET['serial']);
@@ -96,9 +96,9 @@
                             if($offense_count >= 3){ $offense_count = 3;
                             }else{$offense_count = $offense_count + 1;}
 
-                            $sql = "UPDATE local_registered_simusers_db 
+                            $sql = "UPDATE local_registered_simusers_db
                                     SET sim_status = '$sim_status', ban_start = '$ban_start', ban_end = '$ban_end', offense_count = '$offense_count'
-                                    WHERE nsonum = '$serial';"; 
+                                    WHERE nsonum = '$serial';";
                             mysqli_query($conn, $sql);
                 }
 
@@ -107,7 +107,7 @@
                 $result = mysqli_query($conn, $sqlnso);
                 $resultsCheck = mysqli_num_rows($result);
                 if($resultsCheck > 0){ //check
-                            $checkcount = "SELECT offense_count, ban_start, ban_end, sim_status FROM business_entity_registered_simusers_db 
+                            $checkcount = "SELECT offense_count, ban_start, ban_end, sim_status FROM business_entity_registered_simusers_db
                                             WHERE simnum = $num;";
                             $result = mysqli_query($conn, $checkcount);
                             $row = mysqli_num_rows($result);
@@ -124,9 +124,9 @@
                             if($offense_count >= 3){ $offense_count = 3;
                             }else{$offense_count = $offense_count + 1;}
 
-                            $sql = "UPDATE business_entity_registered_simusers_db 
+                            $sql = "UPDATE business_entity_registered_simusers_db
                                     SET sim_status = '$sim_status', ban_start = '$ban_start', ban_end = '$ban_end', offense_count = '$offense_count'
-                                    WHERE nsonum = '$serial';"; 
+                                    WHERE nsonum = '$serial';";
                             mysqli_query($conn, $sql);
                 }
                 delete_message($conn);
@@ -156,16 +156,16 @@
                 $sim_status = status_adjust($offense_count);
                 if($offense_count >= 3){ $offense_count = 3;
                 }else{$offense_count = $offense_count + 1;}
-                $sql = "UPDATE foreign_registered_simusers_db 
+                $sql = "UPDATE foreign_registered_simusers_db
                         SET sim_status = '$sim_status', ban_start = '$ban_start', ban_end = '$ban_end', offense_count = '$offense_count'
-                        WHERE nsonum = '$serial';"; 
+                        WHERE passnum = '$serial';";
                 mysqli_query($conn, $sql);
                 delete_message($conn);
-                header("Location:../admin-report-list.php?success");
+                header("Location:../admin-report-list.php?success2");
                 exit();
         }
 
-        
+
 
     }
 
@@ -174,6 +174,7 @@
     // ADMIN, DELETING REPORT MESSAGES
     if(strpos($fulUrl, "click=deletereport")==true){
         delete_message($conn);
+          header("Location:../admin-report-list.php?deleted");
     }
 
 ?>

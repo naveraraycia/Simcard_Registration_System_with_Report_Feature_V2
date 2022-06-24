@@ -3,11 +3,23 @@
 
 ?>
 <!-- <?php
-  // session_start();
-  // if (empty($_SESSION['SellerFirstName'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+$id = mysqli_real_escape_string($conn, $_GET['id']);
+            $FirstOff ="SELECT  q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates,
+                                l.simnum as simnum, q.update_req as update_req, q.message as message, q.nsopass_pic as nso_link
+                        FROM update_user_db AS q LEFT JOIN local_registered_simusers_db AS l ON q.simnum = l.simnum
+                        LEFT JOIN nso_dummy_db AS n ON l.nsonum = n.nsonum
+                        WHERE l.simnum IS NOT NULL AND q.user_id ='$id'; ";
+            $result = mysqli_query($conn,$FirstOff);
+       $resultCheck = mysqli_num_rows($result);
+       while($row = mysqli_fetch_assoc($result)):
+                      $user_id = $row['user_id'];
+                      $name    = $row['firstname']." ". $row['midname']." ". $row['lastname'];
+                      $simnum  = $row['simnum'];
+                      $update  = $row['update_req'];
+                      $message = $row['message'];
+                      $nso_link= $row['nso_link'];
+       endwhile;  
+       $thrownum = trim($simnum,"+");
 ?> -->
 
 <!DOCTYPE html>
@@ -111,49 +123,6 @@ p{
         <div class="container" style="background-color:#f3f3f3;">
           <div class="row" style="margin-bottom:1rem;">
             <?php
-            // require 'includes/dbh.inc.php';
-            //
-            // $repId = $title = mysqli_real_escape_string($conn, $_GET['id']);
-            // $sentAt = mysqli_real_escape_string($conn, $_GET['sent']);
-            // $user = mysqli_real_escape_string($conn, $_GET['user']);
-
-            // SELECT STATEMENT
-            // $sql = "SELECT * FROM report_messages_db WHERE report_id = '$repId' AND sent_at = '$sentAt' AND user_name = '$user';";
-            // $result = mysqli_query($conn, $sql);
-            // $queryResults = mysqli_num_rows($result);  //checks how many rows are the results
-            //
-            //
-            // if($queryResults > 0 ):
-            //   while($row = mysqli_fetch_assoc($result)):
-            //     $repNum = $row['reported_number'];
-            //     $_GET['reportt'] = $repNum;
-
-                // SELECT STATEMENT
-                // $varReport = $_GET['reportt'];
-                // echo $varReport;
-                // $sqlfind = "SELECT * FROM registered_simusers_db WHERE simnum = '$varReport';";
-                // $resultfind = mysqli_query($conn, $sqlfind);
-              //  $queryResultsfind = mysqli_num_rows($resultfind);  //checks how many rows are the results
-
-                // if($queryResultsfind > 0 ){
-                //   while($rowfind = mysqli_fetch_assoc($resultfind)){
-                //     $repName = $rowfind['lastname'];
-                //     $_GET['repLastname'] = $repName;
-                //     $repFName = $rowfind['firstname'];
-                //     $_GET['repFname'] = $repFName;
-                //     $repgetNum = $rowfind['simnum'];
-                //     $_GET['repNMBR'] = $repgetNum;
-                //
-                //     $_GET['repLname'] = $repName.' '.$repFName;
-                //
-                //
-                //   }
-                // }else {
-                //   $_GET['repLname']='Nobody. This number is either not registered or does not exist.';
-                //
-                // }
-
-
             ?>
 
 
@@ -162,19 +131,19 @@ p{
 
             <div class="col-12">
               <div class="infolabels">
-                <p class="nameLabel">Name: <span>Jodi Sta. Maria<?php // echo $row['user_name'] ?></span></p>
+                <p class="nameLabel">Name: <span><?php echo $name ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">User's Mobile number: <span>+639120900000<?php //echo $row['user_mobile_num'] ?></span></p>
+                <p class="nameLabel">User's Mobile number: <span><?php echo $simnum ?></span></p>
               </div>
               <div class="infolabels mb-5">
-                <p class="nameLabel">Requested new address: <span class="text-primary">Blk 10, Lot 16, Alabang Heights <?php // echo $_GET['repLname'];?></span></p>
+                <p class="nameLabel">Requested new address: <span class="text-primary"><?php echo $update ?></span></p>
               </div>
               <div class="infolabels">
                 <p class="nameLabel">User's Reason for Updating</p>
               </div>
               <div class="infolabels mb-5">
-                <p class="lighFontOnly">I have just moved yesterday. Please update my address<?php// echo $row['remarks'] ?></p>
+                <p class="lighFontOnly"><?php echo $message ?></p>
               </div>
 
               <div class="row" style="margin-bottom:1rem;display:flex;justify-content:flex-start;">
@@ -182,8 +151,9 @@ p{
                   <!-- DITO PAKI LAGYAN NG PARAMETER YUNG update-end-user-info.php . pwedeng update-end-user-indo.php?nationality=foreign-->
                   <!-- tapos pagdating mo sa update-end-user-info.php mag get ka nalang . if nationality = foreign then mag select ka from foreign_registered , kapag nationality=local , select sa local_registered. -->
                   <!-- Hindi ko na kasi dinoble dito ung web page ng pageedit ng address ng local and foreign since same na same lang -->
-                  <a href="update-end-user-info.php" class="btn btn-success" style="margin-bottom:10px;">Update</a>
-                  <a href="#DeleteSpecificReportMessageBackEndHere" class="btn btn-danger" style="margin-bottom:10px;">Delete Message</a>
+                  <a href="update-end-user-info.php?click=confirm&id=<?php echo$user_id."&nationality=filipino";?>" class="btn btn-success" style="margin-right:10px;margin-bottom:10px;">Update</a>
+                  <a href="Admin_Table_Backend/userdelete.php?click=userdelete&simnum=<?php echo $user_id ."&nation=filipino"; ?>" class="btn btn-danger"style="margin-right:10px;margin-bottom:10px;">Delete</a>
+
                 </div>
               </div>
 
@@ -217,7 +187,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo "Image_Report_Database/".$row['Report_Screenshot'].""    ?>" alt="Proof-for-update-place-URL-here">
+                <img class="screenshot-img" src="<?php echo 'Request_Change_Database/'.$nso_link;    ?>" alt="Proof-for-update-place-URL-here">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

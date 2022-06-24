@@ -1,13 +1,49 @@
 <?php
 
   require 'includes/dbh.inc.php';
-  // $sql = "SELECT * FROM nso_dummy_db ORDER BY lastname ASC";
-  // $result = mysqli_query($conn, $sql);
-  // session_start();
-  // if (empty($_SESSION['AdminEmail'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+  $nation = mysqli_real_escape_string($conn, $_GET['nationality']);
+  $id = mysqli_real_escape_string($conn, $_GET['id']);
+
+  if($nation == 'filipino'){
+              $sql = "SELECT q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates,
+                         l.simnum as simnum, q.update_req as update_req, q.message as message, q.nsopass_pic as nso_link
+                      FROM update_user_db AS q LEFT JOIN local_registered_simusers_db AS l ON q.simnum = l.simnum
+                      LEFT JOIN nso_dummy_db AS n ON l.nsonum = n.nsonum
+                      WHERE l.simnum IS NOT NULL AND q.user_id ='$id';";
+
+              $result = mysqli_query($conn,$sql);
+              $resultCheck = mysqli_num_rows($result);
+              while($row = mysqli_fetch_assoc($result)):
+                            $id = $row['user_id'];
+                            $name    = $row['firstname']." ". $row['midname']." ". $row['lastname'];
+                            $simnum  = $row['simnum'];
+                            $update  = $row['update_req'];
+                            $message = $row['message'];
+                            $nso_link= $row['nso_link'];
+                            $nation  = "filipino";
+            endwhile;  
+
+
+    }elseif($nation == 'notfilipino' ){
+
+              $sql ="SELECT q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates, l.passnum,
+                            l.simnum as simnum, q.update_req as update_req, q.message as message, q.nsopass_pic as nso_link
+                     FROM update_user_db AS q LEFT JOIN foreign_registered_simusers_db AS l ON q.simnum = l.simnum
+                     LEFT JOIN foreign_passport_db AS n ON l.passnum = n.passnum
+                     WHERE l.simnum IS NOT NULL AND q.user_id ='$id';";
+            
+            $result = mysqli_query($conn,$sql);
+            $resultCheck = mysqli_num_rows($result);
+            while($row = mysqli_fetch_assoc($result)):
+                          $user_id = $row['user_id'];
+                          $name    = $row['firstname']." ". $row['midname']." ". $row['lastname'];
+                          $simnum  = $row['simnum'];
+                          $update  = $row['update_req'];
+                          $message = $row['message'];
+                          $nso_link= $row['nso_link'];
+                          $nation  = "notfilipino";
+       endwhile;  
+    }
 
 ?>
 
@@ -104,7 +140,7 @@
 
               </div>
 
-              <form class="" action="#" method="GET">
+              <form class="" action="" method="GET">
     <?php
             $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -132,7 +168,7 @@
     ?>
   </form>
 
-              <form class="" action="#" method="POST" enctype="multipart/form-data">
+              <form class="" action="Admin_Table_Backend/update_change_local.php?id=<?php echo $id?>&nation=<?php echo $nation?>" method="POST" enctype="multipart/form-data">
 
 
              <!-- SECOND ROW -->
@@ -141,7 +177,7 @@
               <div class="row">
                 <div class="col-md-12 infodiv">
                   <label class="labelings">Address</label>
-                  <input id="lastname" type="text" name="lastname" class="form-control" value="Philippines,Earth" required>
+                  <input id="lastname" type="text" name="newaddress" class="form-control" value="<?php echo $update ?>" required></input>
                 </div>
               </div>
 
@@ -149,7 +185,7 @@
 
               <div class="row srow">
               <div class="col-md-12">
-                <button type="submit" name="register" class="send-btn">Update</button>
+                <button type="submit" name="update" class="send-btn">Update</button>
               </div>
             </div>
 

@@ -68,14 +68,14 @@ if(isset($_POST['reportbutton'])){
                                   $time = date('G').":".date('i').":".date('s');
                                   $DateTime = $dates." ".$time;
                                   //Preparing Query for Inserting Data in the Database
-                                  $sql = "INSERT INTO update_user_db(update_type, update_req, simnum, message, nsopass_pic, link_nsopass_pic, clock)
-                                          VALUES(?,?,?,?,?,?,?);";
+                                  $sql = "INSERT INTO update_user_db(update_type, update_req, simnum, message, nsopass_pic, link_nsopass_pic, clock, dates)
+                                          VALUES(?,?,?,?,?,?,?,?);";
 
                                   if(!mysqli_stmt_prepare($stmt,$sql)){ //ERROR 404 for unable to upload
                                       header("Location:../end-user-update-data-request.php?error=connection");
                                   }else{
 
-                                      mysqli_stmt_bind_param($stmt,"sssssss", $operator, $update, $SimCardNumber, $Message, $fileName, $fileActualExt, $time);
+                                      mysqli_stmt_bind_param($stmt,"ssssssss", $operator, $update, $SimCardNumber, $Message, $ImageFullName, $DocumentName, $time, $dates);
                                       mysqli_stmt_execute($stmt); //FILE SENT
                                       move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       // UPDATE ID INCREMENT

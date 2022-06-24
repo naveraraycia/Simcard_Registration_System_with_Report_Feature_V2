@@ -1,7 +1,11 @@
 <?php
   require 'includes/dbh.inc.php';
-  // $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
-  // $result = mysqli_query($conn, $sql);
+  $sql = "SELECT q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates,
+                 l.simnum as simnum, q.update_req as update_req, q.message as message, q.nsopass_pic as nso_link
+          FROM update_user_db AS q LEFT JOIN local_registered_simusers_db AS l ON q.simnum = l.simnum
+          LEFT JOIN nso_dummy_db AS n ON l.nsonum = n.nsonum
+          WHERE l.simnum IS NOT NULL";
+  $result = mysqli_query($conn, $sql);
 ?>
 <?php
   // session_start();
@@ -114,73 +118,45 @@
     </thead>
     <tbody>
 
-      <?php
-      // if (isset($_GET['filters'])){
-        // include 'Joiningtable.inc.php';
-
-         // switch($_GET['operator']){
-         //     case "No offense at present":
-         //         $data = 'Active Status';
-         //         $querytype = 'A';
-         //         break;
-         //     case "With offense":
-         //         $data = 'offense';
-         //         $querytype = 'C';
-         //         break;
-         //     case "First offense":
-         //         $data = 'First offense';
-         //         $querytype = 'A';
-         //         break;
-         //     case "Second offense":
-         //         $data = 'Second offense';
-         //         $querytype = 'A';
-         //         break;
-         //     case "Third offense":
-         //         $data = 'Permanent ban';
-         //         $querytype = 'A';
-         //         break;
-         //      case "All":
-         //         $querytype = 'B';
-         //         break;
-         //
-         // };
-         // if ($querytype=='A'){
-         //   $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-
-            // first offense
-      //      $FirstOff = "SELECT * FROM registered_simusers_db WHERE sim_status = N'$data' AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-      //      OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-      //    }else if($querytype=='B'){
-      //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-      //     $FirstOff = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
-      //    }else if($querytype=='C'){
-      //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-      //     $FirstOff ="SELECT * FROM registered_simusers_db WHERE (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban') AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-      //     OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-      //    }
-      //
-      //    $result = mysqli_query($conn,$FirstOff);
-      //
-      //    $resultCheck = mysqli_num_rows($result);
-      //   }
-      //       while($row = mysqli_fetch_assoc($result)):
-      //
-      // ?>
+    <?php
+       if (isset($_GET['filters'])){
+        $start_date = $_GET['start_date'];
+        $end_date   = $_GET['end_date'];
+        if (empty($start_date)){
+          $start_date = '0000-00-00';
+        }
+        if (empty($end_date)){
+          $end_date = '9999-12-30';
+        }
+            $FirstOff ="SELECT  q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates,
+                               l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_nsopass_pic as nso_link
+                         FROM update_user_db AS q LEFT JOIN local_registered_simusers_db AS l ON q.simnum = l.simnum
+                         LEFT JOIN nso_dummy_db AS n ON l.nsonum = n.nsonum
+                        WHERE l.simnum IS NOT NULL AND q.dates between '$start_date' AND'$end_date'";
+      
+      
+       $result = mysqli_query($conn,$FirstOff);
+      
+          $resultCheck = mysqli_num_rows($result);
+       }
+           while($row = mysqli_fetch_assoc($result)):
+                $user_id = $row['user_id'];
+       ?>
 
       <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
-      <tr class="canHov" onclick="window.location='content-localfor-upd.php';">
-        <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td> -->
-        <td class="f-column text-truncate">Jodi Sta. Maria</th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
-        <td class="f-column text-truncate">+639120900030</th>
-        <td class="f-column text-truncate">Blk 10, Lot 16, Alabang Heights</th>
-        <td class="text-truncate">I have just moved yesterday. Please update my address</th>
-        <td class="f-column text-truncate">Pooflink.s3.com</th>
+      <tr class="canHov" onclick="window.location='content-localfor-upd.php?id=<?php echo  $user_id;?>';">
+        <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo $user_id; ?>" class="btn btn-danger">Delete</a></td> -->
+        <td class="f-column text-truncate"><?php echo $row['firstname']." ". $row['midname']." ". $row['lastname'];?></th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
+        <td class="f-column text-truncate"><?php echo $row['simnum']?></th>
+        <td class="f-column text-truncate"><?php echo $row['update_req']?></th>
+        <td class="f-column text-truncate"><?php echo $row['message']?></th>
+        <td class="f-column text-truncate"><?php echo $row['nso_link']?></th>
 
 
       </tr>
 
 
-    <!-- <?php //endwhile; ?> -->
+     <?php endwhile; ?> 
 
 
 

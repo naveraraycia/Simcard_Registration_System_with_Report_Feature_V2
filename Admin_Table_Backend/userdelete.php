@@ -26,7 +26,6 @@ function delete_message($conn){
             WHERE  simnum ='$simnum'";
             echo $simnum;
             mysqli_query($conn, $sql);
-            exit();
             header("Location: ../list-local-user-admin.php?success");
         }else if($nation == 'notfilipino'){
             $sql = "DELETE FROM foreign_registered_simusers_db 
@@ -37,6 +36,21 @@ function delete_message($conn){
             header("Location: ../list-foreign-user-admin.php?success");
         }
     }
+
+    if(strpos($fulUrl, "click=userdelete")){
+      $simnum = $_GET['simnum'];
+      $nation = mysqli_real_escape_string($conn,$_GET['nation']);
+          $sql = "DELETE FROM update_user_db
+          WHERE  user_id ='$simnum'";
+          mysqli_query($conn, $sql);
+          if($nation == 'filipino'){
+            header("Location: ../info-upd-localfor.php?success");
+            exit();
+          }else{
+            header("Location: ../info-upd-foreign.php?success");
+            exit();
+          }
+      }
 
 
 

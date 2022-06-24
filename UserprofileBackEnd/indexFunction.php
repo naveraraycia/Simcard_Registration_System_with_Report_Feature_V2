@@ -1,5 +1,5 @@
 <?php
-
+session_start();
  function EmptyInputIndex($UserLoginNumberPHP){ //ERROR IF NO INPUT
    $result;
    if(empty($UserLoginNumberPHP)){
@@ -33,35 +33,55 @@
 
 //CHECK IF THERE IF THE NUMBER EXIST
  function CheckNumber($conn, $UserLoginNumberPHP){
-      $sql = "SELECT*FROM registered_simusers_db WHERE simnum = ?;";
-      $stmt = mysqli_stmt_init($conn);
       include_once "../includes/dbh.inc.php";
-      //CHECK CONNECTION IF WORKING
-      if(!mysqli_stmt_prepare($stmt,$sql)){
-          header("Location: ../login_sections.php?errornumber=stmtfailed");
-          exit();
-      }
-      $BUserLoginNumberPHP = "+63". $UserLoginNumberPHP;
-      mysqli_stmt_bind_param($stmt,"i", $BUserLoginNumberPHP);
-      mysqli_stmt_execute($stmt);
-      $resultData = mysqli_stmt_get_result($stmt);
-      if ($row = mysqli_fetch_assoc($resultData)){
-
-        //SESSION START FOR USER LOGIN;
-        //SELECT lastname, firstname, midname, suffix, dateofbirth, gender,simnum, 
-        //simcard, nationality, sim_status, offense_count, dateofregis, address,
-        // time, ban_start, ban_end, regisite, services, sim_retailer F
-        //FROM registered_simusers_db
-        //WHERE simnum = '+639214425914'
-          $sql = "SELECT * FROM registered_simusers_db WHERE simnum=?;";
+      $BUserLoginNumberPHP = '+63'. $UserLoginNumberPHP;
+          $sql = "SELECT n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix, 
+                         n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum, 
+                         r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard, 
+                         r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start, 
+                         r.ban_end as ban_end, r.sim_retailer as sim_retailer
+                  FROM local_registered_simusers_db as r LEFT JOIN nso_dummy_db as n ON r.nsonum = n.nsonum
+                  WHERE r.simnum = ?;";
           $stmt              = mysqli_stmt_init($conn);
-          if (mysqli_stmt_prepare($stmt,$sql)){
+            mysqli_stmt_prepare($stmt,$sql);
             mysqli_stmt_bind_param($stmt,"s",$BUserLoginNumberPHP);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
-            session_start();
             if($row = mysqli_fetch_assoc($result)){
-
+                $_SESSION['UserLast']        = $row['lastname'];
+                $_SESSION['UserFirst']       = $row['firstname'];
+                $_SESSION['UserMiddleName']  = $row['midname'];
+                $_SESSION['UserSuffix']      = $row['suffix'];
+                $_SESSION['UserBirthdate']   = $row['dateofbirth'];
+                $_SESSION['UserGender']      = $row['gender'];
+                $_SESSION['UserAddress']     = $row['address'];
+                $_SESSION['UserNationality'] = 'Filipino';
+                $_SESSION['UserType']      = 'Filipino';
+                $_SESSION['UserSimCard']     = $row['simcard'];
+                $_SESSION['UserNumber']      = $row['simnum'];
+                $_SESSION['UserRegSite']     = $row['regisite'];
+                $_SESSION['UserDatReg']      = $row['dateofregis'];
+                $_SESSION['services']        = $row['services'];
+                $_SESSION['retailer']        = $row['sim_retailer'];
+                $_SESSION['Banstart']        = $row['ban_start'];
+                $_SESSION['Banend']          = $row['ban_end'];
+                $_SESSION['sim_status']      = $row['sim_status'];
+                $_SESSION['offense_count']   = $row['offense_count'];
+                header("location:../profile-user.php");
+                exit();
+            }
+            $sql = "SELECT n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix, n.gender as gender, 
+                           n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum, r.dateofreg as dateofregis, r.regisite as regisite ,
+                           r.services as services, r.simcard as simcard, r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start, 
+                           r.ban_end as ban_end, r.sim_retailer as sim_retailer, n.nationality as nationality
+                    FROM foreign_registered_simusers_db as r LEFT JOIN foreign_passport_db as n ON r.passnum = n.passnum
+                  WHERE r.simnum = ?;";
+            $stmt = mysqli_stmt_init($conn);
+            mysqli_stmt_prepare($stmt,$sql);
+            mysqli_stmt_bind_param($stmt,"s",$BUserLoginNumberPHP);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            if($row = mysqli_fetch_assoc($result)){
                 $_SESSION['UserLast']        = $row['lastname'];
                 $_SESSION['UserFirst']       = $row['firstname'];
                 $_SESSION['UserMiddleName']  = $row['midname'];
@@ -70,27 +90,24 @@
                 $_SESSION['UserGender']      = $row['gender'];
                 $_SESSION['UserAddress']     = $row['address'];
                 $_SESSION['UserNationality'] = $row['nationality'];
-                if(($row['nationality']) == 'Filipino'||($row['nationality']) == 'filipino'){
-                  $_SESSION['UserType']      = 'Local';
-                }else{
-                  $_SESSION['UserType']      = 'Foreign';
-                }
+                $_SESSION['UserType']      = 'Filipino';
                 $_SESSION['UserSimCard']     = $row['simcard'];
                 $_SESSION['UserNumber']      = $row['simnum'];
                 $_SESSION['UserRegSite']     = $row['regisite'];
                 $_SESSION['UserDatReg']      = $row['dateofregis'];
-                $_SESSION['UserTimeReg']     = $row['time'];
                 $_SESSION['services']        = $row['services'];
                 $_SESSION['retailer']        = $row['sim_retailer'];
                 $_SESSION['Banstart']        = $row['ban_start'];
                 $_SESSION['Banend']          = $row['ban_end'];
                 $_SESSION['sim_status']      = $row['sim_status'];
                 $_SESSION['offense_count']   = $row['offense_count'];
-            }
-            header("location:../profile-user.php");
+                header("location:../profile-user.php");
+                exit();
           }
-      }else{
-          header("location:../login_sections.php?errornumber=notexist");
-      }
+
+          header("location:../login_sections.php?errornumber=notexist ");
+
+           
+
   }
 ?>

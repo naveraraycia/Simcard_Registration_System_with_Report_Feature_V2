@@ -136,7 +136,6 @@
 
                <div class="infodiv1">
                    <select class='custom-select mr-sm-2' id='nlineFormCustomSelect' name ='operator'>
-                     <option value="Name">Name</option>
                      <option value="Address">Address</option>
                    </select>
                </div>
@@ -153,7 +152,7 @@
 
                <div class="infodiv1">
                  <p class='labelings'>Enter Updated Information</p>
-                 <input id="" type="text" name="update" class="form-control" placeholder="For updating of name: Last Name, First Name, Middle Name, Suffix" required>
+                 <input id="" type="text" name="update" class="form-control"  required>
              </div>
 
              </div>
