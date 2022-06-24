@@ -1,7 +1,5 @@
 <?php
   require 'includes/dbh.inc.php';
-  // $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
-  // $result = mysqli_query($conn, $sql);
 ?>
 <?php
   // session_start();
@@ -9,6 +7,13 @@
   //   header("Location: index.php");
   //   exit();
   // }
+     $sql = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
+                  rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+                  n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
+                  n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
+                  rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
+          FROM foreign_registered_simusers_db AS rg LEFT JOIN foreign_passport_db as n ON rg.passnum = n.passnum;";
+           $result = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -115,7 +120,7 @@
         <tr>
           <th class="f-column text-truncate" scope="col" ></th>
           <th class="f-column text-truncate" scope="col" ></th>
-          <th class="f-column text-truncate" scope="col" >SIM Status</th>
+          <th class="f-column text-truncate" scope="col" >User Status</th>
           <th class="f-column text-truncate" scope="col" >Penalty</th>
           <th class="f-column text-truncate" scope="col" >Date blocked</th>
           <th class="f-column text-truncate" scope="col" >End of block period</th>
@@ -144,90 +149,143 @@
       <tbody>
 
         <?php
-        // if (isset($_GET['filters'])){
-          // include 'Joiningtable.inc.php';
+         if (isset($_GET['filters'])){
+          $start_date = $_GET['start_date'];
+          $end_date   = $_GET['end_date'];
+          if (empty($start_date)){
+            $start_date = '0000-00-00';
+          }
+          if (empty($end_date)){
+            $end_date = '9999-12-30';
+          }
 
-           // switch($_GET['operator']){
-           //     case "No offense at present":
-           //         $data = 'Active Status';
-           //         $querytype = 'A';
-           //         break;
-           //     case "With offense":
-           //         $data = 'offense';
-           //         $querytype = 'C';
-           //         break;
-           //     case "First offense":
-           //         $data = 'First offense';
-           //         $querytype = 'A';
-           //         break;
-           //     case "Second offense":
-           //         $data = 'Second offense';
-           //         $querytype = 'A';
-           //         break;
-           //     case "Third offense":
-           //         $data = 'Permanent ban';
-           //         $querytype = 'A';
-           //         break;
-           //      case "All":
-           //         $querytype = 'B';
-           //         break;
-           //
-           // };
-           // if ($querytype=='A'){
-           //   $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
 
-              // first offense
-        //      $FirstOff = "SELECT * FROM registered_simusers_db WHERE sim_status = N'$data' AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-        //      OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-        //    }else if($querytype=='B'){
-        //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-        //     $FirstOff = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
-        //    }else if($querytype=='C'){
-        //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-        //     $FirstOff ="SELECT * FROM registered_simusers_db WHERE (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban') AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-        //     OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-        //    }
-        //
-        //    $result = mysqli_query($conn,$FirstOff);
-        //
-        //    $resultCheck = mysqli_num_rows($result);
-        //   }
-        //       while($row = mysqli_fetch_assoc($result)):
-        //
-        // ?>
+           switch($_GET['operator']){
+               case "No offense at present":
+                   $data = 'Active Status';
+                   $querytype = 'A';
+                   break;
+               case "With offense":
+                   $data = 'offense';
+                   $querytype = 'C';
+                   break;
+               case "First offense":
+                   $data = 'First offense';
+                   $querytype = 'D';
+                   break;
+               case "Second offense":
+                   $data = 'Second offense';
+                   $querytype = 'D';
+                   break;
+               case "Third offense":
+                   $data = 'Permanent ban';
+                   $querytype = 'E';
+                   break;
+                case "All":
+                   $querytype = 'B';
+                   break;
+          
+           };
+           if ($querytype=='A'){
+             
+
+             // first offense
+             $FirstOff = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
+                                  rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+                                  n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
+                                  n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
+                                  rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
+                         FROM foreign_registered_simusers_db AS rg LEFT JOIN foreign_passport_db as n ON rg.passnum = n.passnum
+                         WHERE sim_status = 'Active Status' 
+                         ORDER BY n.lastname ASC;";
+
+                         
+           }else if($querytype=='B'){
+            
+            $FirstOff = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
+                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+                                n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
+                                n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
+                                rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
+                           FROM foreign_registered_simusers_db AS rg LEFT JOIN foreign_passport_db as n ON rg.passnum = n.passnum
+                           ORDER BY n.lastname ASC;";
+
+
+           }else if($querytype=='C'){
+            
+            $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
+                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+                                n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
+                                n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
+                                rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
+                         FROM foreign_registered_simusers_db AS rg LEFT JOIN foreign_passport_db as n ON rg.passnum = n.passnum
+                         WHERE ((rg.ban_start between'$start_date' and '$end_date') AND
+                               (rg.sim_status = N'First offense' OR rg.sim_status = N'Second offense' OR rg.sim_status = N'Permanent ban'))  or rg.sim_status = 'Permanent ban'
+                         ORDER BY n.lastname ASC;";
+           }else if($querytype=='D'){
+             
+             $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
+                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+                                n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
+                                n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
+                                rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
+                          FROM foreign_registered_simusers_db AS rg LEFT JOIN foreign_passport_db as n ON rg.passnum = n.passnum
+                          WHERE ((rg.ban_start between'$start_date' and '$end_date') AND
+                                (rg.sim_status = N'$data'))
+                          ORDER BY n.lastname ASC;";
+            }else if($querytype=='E'){
+             
+             $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
+                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+                                n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
+                                n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
+                                rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
+                          FROM foreign_registered_simusers_db AS rg LEFT JOIN foreign_passport_db as n ON rg.passnum = n.passnum
+                          WHERE ((rg.ban_start between'$start_date' and '$end_date') AND
+                                (rg.sim_status = N'Permanent ban'))
+                          ORDER BY n.lastname ASC;";
+            }
+       
+           $result = mysqli_query($conn,$FirstOff);
+       
+           $resultCheck = mysqli_num_rows($result);
+          }
+              while($row = mysqli_fetch_assoc($result)):
+                 $simnum = $row['simnum'];
+                 $thrownum = trim($simnum,"+");
+        ?>
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
         <tr>
-          <td class="text-truncate"><a href="#DeleteBackendHere" class="btn btn-danger">Delete</a></td>
+          <td class="text-truncate"><a href="Admin_Table_Backend/userdelete.php?click=delete&simnum=<?php echo $thrownum ."&nation=notfilipino"; ?>" class="btn btn-danger">Delete</a></td>
             <td class="text-truncate"><a href="admin-edit-foreign.php?simnum=<?php //echo  $selleremail; ?>" class="btn btn-success">Update</a></td>
-          <td class="f-column text-truncate">Active</th>
-          <td class="f-column text-truncate">0</th>
-          <td class="f-column text-truncate">--</th>
-          <td class="f-column text-truncate">--</th>
-          <td class="f-column text-truncate">+639127680000</th>
-          <td class="f-column text-truncate">existing prepaid user</th>
-          <td class="f-column text-truncate">TNT</th>
-          <td class="f-column text-truncate">Swift</th>
-          <td class="f-column text-truncate">Taylor</th>
-          <td class="f-column text-truncate">May</th>
-          <td class="f-column text-truncate"></th>
-          <td class="f-column text-truncate">F</th>
-          <td class="f-column text-truncate">1999-01-01</th>
-          <td class="f-column text-truncate">Hotel Red, Manila</th>
-          <td class="f-column text-truncate">02122-PASSPORTNUM-3</th>
-          <td class="f-column text-truncate">American</th>
-          <td class="f-column text-truncate">Cavite SIM shop</th>
-          <td class="f-column text-truncate">16th Ave. Manila</th>
-          <td class="f-column text-truncate">Karen Reyes</th>
-          <td class="f-column text-truncate">2021-09-11</th>
-          <td class="f-column text-truncate">fingerprintlink.com</th>
-          <td class="f-column text-truncate">passlink.com</th>
+            <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['offense_count'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['ban_start'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['ban_end'] ?></th>
+          <td class="f-column text-truncate"><?php echo $simnum ?></th>
+          <td class="f-column text-truncate"><?php echo $row['simcard'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['services'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['lastname'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['firstname'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['midname'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['suffix'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['gender'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['dateofbirth'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['address'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['passnum'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['nationality'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['sim_shop'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['regisite'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['sim_retailer'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['dateofreg'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['finger_link'] ?></th>
+          <td class="f-column text-truncate"><?php echo $row['pass_link'] ?></th>
 
         </tr>
 
 
-      <!-- <?php //endwhile; ?> -->
-
+<?php endwhile; ?> 
 
 
       </tbody>

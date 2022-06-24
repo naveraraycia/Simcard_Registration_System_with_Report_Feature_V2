@@ -219,8 +219,8 @@
                                   n.nsonum as nsonum, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                   rg.fingerprint_File_Format as finger_link, rg.link_nsopass_pic as nso_link, rg.link_id_pic as id_link
                           FROM local_registered_simusers_db AS rg LEFT JOIN nso_dummy_db as n ON rg.nsonum = n.nsonum 
-                          WHERE ((dateofreg between'$start_date' and '$end_date') AND
-                                (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))
+                          WHERE ((ban_start between'$start_date' and '$end_date') AND
+                                (rg.sim_status = N'First offense' OR rg.sim_status = N'Second offense' OR rg.sim_status = N'Permanent ban')) or rg.sim_status = 'Permanent ban'
                           ORDER BY n.lastname ASC;";
             }else if($querytype=='D'){
               
@@ -230,8 +230,8 @@
                                    n.nsonum as nsonum, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                    rg.fingerprint_File_Format as finger_link, rg.link_nsopass_pic as nso_link, rg.link_id_pic as id_link
                            FROM local_registered_simusers_db AS rg LEFT JOIN nso_dummy_db as n ON rg.nsonum = n.nsonum 
-                           WHERE ((dateofreg between'$start_date' and '$end_date') AND
-                                 (sim_status = N'$data'))
+                           WHERE ((rg.ban_start between'$start_date' and '$end_date') AND
+                                 (rg.sim_status = N'$data'))
                            ORDER BY n.lastname ASC;";
              }else if($querytype=='E'){
               
@@ -241,8 +241,8 @@
                                    n.nsonum as nsonum, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                    rg.fingerprint_File_Format as finger_link, rg.link_nsopass_pic as nso_link, rg.link_id_pic as id_link
                            FROM local_registered_simusers_db AS rg LEFT JOIN nso_dummy_db as n ON rg.nsonum = n.nsonum 
-                           WHERE ((dateofreg between'$start_date' and '$end_date') AND
-                                 (sim_status = N'Permanent ban'))
+                           WHERE ((rg.dateofreg between'$start_date' and '$end_date') AND
+                                 (rg.sim_status = N'Permanent ban'))
                            ORDER BY n.lastname ASC;";
              }
         
@@ -252,11 +252,12 @@
            }
                while($row = mysqli_fetch_assoc($result)):
                   $simnum = $row['simnum'];
+                  $thrownum = trim($simnum,"+");
          ?>
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
         <tr>
-          <td class="text-truncate"><a href="#DeleteBackendHere" class="btn btn-danger">Delete</a></td>
+          <td class="text-truncate"><a href="Admin_Table_Backend/userdelete.php?click=delete&simnum=<?php echo $thrownum ."&nation=filipino"; ?>" class="btn btn-danger">Delete</a></td>
             <td class="text-truncate"><a href="admin-edit-local.php?simnum=<?php echo $simnum; ?>" class="btn btn-success">Update</a></td>
           <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['offense_count'] ?></th>

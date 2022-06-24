@@ -32,6 +32,7 @@
         $sent_at = $row['sent_at'];
         $viewscreenshot = $row['Report_Screenshot'];
         $serial = $row['num_serial'];
+        $picture = $row['Report_Screenshot'];
        endwhile;
       if (empty($serial)|| $serial == ''){
         $reportedname = 'THIS NUMBER IS NOT REGISTERED';
@@ -259,7 +260,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo "Image_Report_Database/".$row['Report_Screenshot'].""    ?>" alt="Reported-Screenshot-Place-Here">
+                <img class="screenshot-img" src="<?php echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="Reported-Screenshot-Place-Here">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
