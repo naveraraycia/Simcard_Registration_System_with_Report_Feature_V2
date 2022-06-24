@@ -149,7 +149,7 @@
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
-        include 'SellerError.php';
+        include 'SellerErrorForeign.php';
 
         $checkbanstat= checkban($conn,$passport);
         if($checkbanstat ==  "ban"){

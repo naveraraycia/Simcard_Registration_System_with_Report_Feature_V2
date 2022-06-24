@@ -1,7 +1,7 @@
 <?php
-    function checkPenalty($conn,$nso_pass){
+    function checkPenalty($conn,$passport){
         $sql ="SELECT * FROM foreign_registered_simusers_db
-         WHERE passnum = '$nso_pass';";
+         WHERE passnum = '$passport';";
         $result = mysqli_query($conn,$sql);
         $row = mysqli_num_rows($result);
         if($row>=5){
@@ -13,9 +13,9 @@
     }
 
 
-    function checkban($conn,$nso_pass){
+    function checkban($conn,$passport){
         $sql ="SELECT sim_status, offense_count, ban_start, ban_end FROM foreign_registered_simusers_db
-               WHERE passnum = '$nso_pass';";
+               WHERE passnum = '$passport';";
         $result = mysqli_query($conn,$sql);
         $row = mysqli_num_rows($result);
         foreach($result as $row){
@@ -42,7 +42,7 @@
                             $ban_end4  = substr($ban_end, 8, 2);
 
                             if($datetoday > $ban_end4){
-                              $updateban = "UPDATE foreign_registered_simusers_db SET ban_start='--', ban_end='--', sim_status='Active Status' WHERE passnum='$nso_pass';"; 
+                              $updateban = "UPDATE foreign_registered_simusers_db SET ban_start='--', ban_end='--', sim_status='Active Status' WHERE passnum='$passport';"; 
                               mysqli_query($conn,$updateban); 
                               return "notban";
                             }else{

@@ -66,11 +66,11 @@ if(isset($_POST['register'])){
         }else{ 
           //PANG SEND NG DATA , ETO YUNG QUER
                 $sql = "INSERT INTO local_registered_simusers_db (
-                    sim_status, simnum, simcard, services, dateofreg,
+                    sim_status, simnum, simcard, services, dateofreg, address,
                     sim_retailer, sim_shop, regisite, fingerprint_File_Format, fingerprint_File_Name,
                     nsonum, nsopass_pic, link_nsopass_pic, id_pic, link_id_pic, 
                     offense_count, ban_start,  ban_end)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
                 
                 $sqlservice = "SELECT nsonum, services FROM local_registered_simusers_db WHERE services = '$services' AND nsonum = '$nso';";
@@ -179,8 +179,8 @@ if(isset($_POST['register'])){
                 $offense_count ="0";
                 $simnum = "+63". $simnum;
                                                    
-                mysqli_stmt_bind_param($stmt,"ssssssssssssssssss",
-                                        $sim_status, $simnum, $simcard, $services, $dateofregis,
+                mysqli_stmt_bind_param($stmt,"sssssssssssssssssss",
+                                        $sim_status, $simnum, $simcard, $services, $dateofregis, $address,
                                         $sim_retailer, $sim_shop, $regisite, $FingerExt, $FingerName, 
                                         $passnum_nsonum, $NSOName, $NSOExt, $IDName, $IDExt, 
                                         $offense_count, $ban_start, $ban_end 
@@ -196,7 +196,7 @@ if(isset($_POST['register'])){
                 move_uploaded_file($FingerfileTempName,$FingerfileDestination);  //imomove na yung file to that folder
                 move_uploaded_file($NSOfileTempName,$NSOfileDestination);
                 move_uploaded_file($IDfileTempName,$IDfileDestination);
-
+                                          //EDITED AS OF JUNE 24, 2022
                 //IF NEW PREPAID, DECREASE SIM RETAILER STOCK
                 if($simcard == "new prepaid user"){
                       $Reduce = $_SESSION['Simcard_Limit']; //9
@@ -206,8 +206,7 @@ if(isset($_POST['register'])){
                       $Reduce = (string) $Reduce;
                       $selleremail = $_SESSION['SellerEmail'];
                       $limitdown ="UPDATE seller SET Simcard_Limit='$Reduce' WHERE selleremail='$selleremail';";
-                      include '../dbh/Updating_SellerAdmin.inc.php';
-                      mysqli_query($TRY,$limitdown);  
+                      mysqli_query($conn,$limitdown);  
                 }
                 //UNSET NSO
                 unset($_SESSION['nsonumber']);

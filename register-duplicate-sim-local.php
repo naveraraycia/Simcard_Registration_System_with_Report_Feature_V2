@@ -162,7 +162,7 @@
 ?>
 
 
-   <form class="" action="includes/duplicate_localbackend.php" method="post" enctype="multipart/form-data">
+   <form class="" action="includes/back_duplicate_reg.php" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
      $nso = $_SESSION['nsonumber'];

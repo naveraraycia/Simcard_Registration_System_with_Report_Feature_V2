@@ -146,7 +146,7 @@
     $result = mysqli_query($conn,$query);
 
       if (mysqli_num_rows($result) > 0) {
-        include 'SellerError.php';
+        include 'SellerErrorForeign.php';
         $exceed= checkPenalty($conn,$passport);
         if($exceed == true){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/duplicate-sim-passport-verify.php?exceed");

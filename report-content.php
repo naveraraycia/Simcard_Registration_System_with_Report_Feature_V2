@@ -1,13 +1,50 @@
 <?php
   require 'includes/dbh.inc.php';
 
+  $id = mysqli_real_escape_string($conn, $_GET['id']);
+  $sql = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name , 
+  COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name, 
+              COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num, 
+              COALESCE(d.lastname,NULL,e.lastname) AS Complainant_first_name,
+              COALESCE(d.firstname,NULL,e.firstname) AS Complainant_last_name,
+              COALESCE(n.nsonum,NULL, f.passnum) AS num_serial,
+              r.reported_number as reported_number, r.report_id as report_id,
+              r.remarks as remarks, r.sent_at as sent_at, r.Report_Screenshot as Report_Screenshot
+   FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum 
+   LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum 
+                 LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum 
+                 LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum 
+                 LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum 
+                 LEFT JOIN foreign_registered_simusers_db as b ON r.user_mobile_num = b.simnum
+                 LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum 
+                 LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum 
+   WHERE r.report_id = '$id';";
+       $result = mysqli_query($conn,$sql);
+
+       while($row = mysqli_fetch_assoc($result)):
+        $report_id = $row['report_id'];
+        $data = $row['sent_at'];
+        $username = $row['Complainant_first_name']." ".$row['Complainant_last_name'];
+        $simnum = $row['Complainant_sim_num'];
+        $reportednum = $row['reported_number'];
+        $reportedname =  $row['Reported_First_Name']." ".$row['Reported_Last_Name'];
+        $remarks = $row['remarks'];
+        $sent_at = $row['sent_at'];
+        $viewscreenshot = $row['Report_Screenshot'];
+        $serial = $row['num_serial'];
+       endwhile;
+      if (empty($serial)|| $serial == ''){
+        $reportedname = 'THIS NUMBER IS NOT REGISTERED';
+        $reportedtrue = 'notexist';
+        
+      }else{
+        $reportedtrue = 'exist';
+      }
+      
 ?>
 <!-- <?php
-  // session_start();
-  // if (empty($_SESSION['SellerFirstName'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+
+
 ?> -->
 
 <!DOCTYPE html>
@@ -117,6 +154,8 @@ p{
             // $sentAt = mysqli_real_escape_string($conn, $_GET['sent']);
             // $user = mysqli_real_escape_string($conn, $_GET['user']);
 
+          //
+            
             // SELECT STATEMENT
             // $sql = "SELECT * FROM report_messages_db WHERE report_id = '$repId' AND sent_at = '$sentAt' AND user_name = '$user';";
             // $result = mysqli_query($conn, $sql);
@@ -162,22 +201,22 @@ p{
 
             <div class="col-12">
               <div class="infolabels">
-                <p class="nameLabel">From: <span>Mark Ranzell Manaig<?php // echo $row['user_name'] ?></span></p>
+                <p class="nameLabel">From: <span> <?php echo $username ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">User's Mobile number: <span>+639120900000<?php //echo $row['user_mobile_num'] ?></span></p>
+                <p class="nameLabel">User's Mobile number: <span><?php echo $simnum ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Reported Number: <span style="color:#ff5f56;">+639179091111<?php //echo $row['reported_number'] ?></span></p>
+                <p class="nameLabel">Reported Number: <span style="color:#ff5f56;"><?php echo $reportednum ?></span></p>
               </div>
               <div class="infolabels mb-5">
-                <p class="nameLabel">According to the database, this reported number belongs to: <span style="color:#ff5f56;"> Aaron Molina <?php // echo $_GET['repLname'];?></span></p>
+                <p class="nameLabel">According to the database, this reported number belongs to: <span style="color:#ff5f56;"><?php echo $reportedname ?></span></p>
               </div>
               <div class="infolabels">
                 <p class="nameLabel">User Remarks</p>
               </div>
               <div class="infolabels mb-5">
-                <p class="lighFontOnly">This person is scamming me! Please investigate!<?php// echo $row['remarks'] ?></p>
+                <p class="lighFontOnly"><?php echo $remarks ?></p>
               </div>
               <div class="infolabels">
                 <p class="nameLabel">Sent: <span class="lightColFont">2022-05-06<?php //echo $row['sent_at'] ?></span></p>
@@ -185,11 +224,11 @@ p{
 
               <div class="row" style="margin-bottom:1rem;display:flex;justify-content:flex-start;">
                 <div class="col-12"style="padding-left:0px;margin-right:0px;">
-                  <a href="#ConfirmBackEndHere" class="btn btn-success" style="margin-right:10px;margin-bottom:10px;">Confirm</a>
-                  <a href="#DeleteSpecificReportMessageBackEndHere" class="btn btn-danger" style="margin-bottom:10px;">Delete Message</a>
+                  <a href='<?php echo 'Admin_Table_Backend/confirmordelete.php?click=confirm&id='.$id.'&serial='.$serial.'&number='.$reportednum.'&reported='.$reportedtrue?>' class="btn btn-success" style="margin-right:10px;margin-bottom:10px;">Confirm</a>
+                  <a href='<?php echo 'Admin_Table_Backend/confirmordelete.php?click=deletereport&id='.$id ?>'  class="btn btn-danger" style="margin-bottom:10px;">Delete Message</a>
                 </div>
               </div>
-
+              <tr class="canHov" onclick="window.location='report-content.php?id=<?php echo $row['report_id'];?>';">
             </div>
 
     <?php
