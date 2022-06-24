@@ -34,7 +34,7 @@ if(isset($_POST['register'])){
         $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis']));
         date_default_timezone_set('Asia/Manila');
         $time  = date('G').":".date('i').":".date('s');
-        $timeImg  = date('G')."_".date('i')."_".date('s');
+        $timeImg  = date('G')."_".date('i')."_".date('s')."_".date('Y-m-d');
         $services = $_POST['services'];
         $sim_retailer =$_POST['retailer'];
         //CHECK IF DATA EXIST AND SIMTYPE IS ALREADY EXIST)

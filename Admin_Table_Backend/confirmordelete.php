@@ -52,7 +52,8 @@
         $sql = "DELETE FROM report_messages_db
                WHERE report_id = '$id' ";
          mysqli_query($conn, $sql);
-         echo "done?";
+         header("Location:../admin-report-list.php?deleted");
+         exit();
     }
 
 

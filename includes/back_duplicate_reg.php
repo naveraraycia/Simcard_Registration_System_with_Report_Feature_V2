@@ -9,6 +9,7 @@ if(isset($_POST['register'])){
         date_default_timezone_set('Asia/Manila');
         $timeImg  = date('G')."_".date('i')."_".date('s');
         $timeImg  = $timeImg."_".date('Y-m-d');
+        echo "$timeImg";
         $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
         $nso = $_SESSION['nsonumber'];
         $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso';";

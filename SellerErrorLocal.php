@@ -1,10 +1,22 @@
 <?php
     function checkPenalty($conn,$nso_pass){
-        $sql ="SELECT * FROM local_registered_simusers_db
+        $sql ="SELECT COUNT(nsonum) as cout FROM local_registered_simusers_db
          WHERE nsonum = '$nso_pass';";
         $result = mysqli_query($conn,$sql);
         $row = mysqli_num_rows($result);
-        if($row>=5){
+        foreach($result as $row){
+            $counts = $row['cout'];
+        }
+        $sql ="SELECT COUNT(nsonum) as counts FROM business_entity_registered_simusers_db
+        WHERE nsonum = '$nso_pass';";
+        $result = mysqli_query($conn,$sql);
+        $busrow = mysqli_num_rows($result);
+        foreach($result as $busrow){
+            $buscounts = $busrow['counts'];
+        }
+
+
+       if(($counts)>=5){
             $exceed = true;
             
         }else{

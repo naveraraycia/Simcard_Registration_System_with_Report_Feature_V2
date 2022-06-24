@@ -9,7 +9,7 @@
    s.Business_Address as Business_Address,
    s.Simcard_Limit AS simcard_limit,
    s.link_permit_pic AS link_permit_pic,
-   s.link_nsopass_pic as link_nsopass_pic,
+   s.link_nsopass_pic as link_nsopass_pic, s.address as address,
    s.link_id_pic as link_id_pic, s.owner_num as owner_num,
    s.dateofreg as dateofreg
    FROM seller as s LEFT JOIN local_registered_simusers_db as n ON s.owner_num = n.simnum
@@ -175,7 +175,7 @@
           s.Business_Address as Business_Address,
           s.Simcard_Limit AS simcard_limit,
           s.link_permit_pic AS link_permit_pic,
-          s.link_nsopass_pic as link_nsopass_pic,
+          s.link_nsopass_pic as link_nsopass_pic, s.address as address,
           s.link_id_pic as link_id_pic, s.owner_num as owner_num,
           s.dateofreg as dateofreg
           FROM seller as s LEFT JOIN local_registered_simusers_db as n ON s.owner_num = n.simnum
@@ -195,7 +195,7 @@
           <tr>
           <!-- hito sa echo below sa simnum=   , ilagay mo ung $row['simcardnumbercolumnname'] -->
           <td class="text-truncate"><a href="includes/delete-retailer.php?sellemail=<?php echo  $selleremail; ?>" class="btn btn-danger">Delete</a></td>
-          <td class="text-truncate"><a href="includes/admin-edit-seller.php?sellemail=<?php //echo  $selleremail; ?>" class="btn btn-success">Update</a></td>
+          <td class="text-truncate"><a href="admin-edit-seller.php?sellemail=<?php //echo  $selleremail; ?>" class="btn btn-success">Update</a></td>
           <td class="text-truncate"><?php echo $row['Shop_Name']; ?></th>
           <td class="text-truncate"><?php echo $selleremail; ?></th>
           <td class="text-truncate"><?php echo $row['lastname']; ?></th>

@@ -8,11 +8,10 @@ include_once "dbh.inc.php";
 
   //USE THE $id as the variable for WHERE CLAUSE
   // THIS SHOULD BE THE QUERY: 	"DELETE FROM tasks WHERE businessPermitColumn = $businessPermit"
-
+    exit();
   // HEAD THE USER BACK TO list-sim-retailer-admin.php
   header("location: ../list-end-user-admin.php");
-
 } else {
 
-  //
+  
 }
