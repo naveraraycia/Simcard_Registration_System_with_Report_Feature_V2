@@ -4,11 +4,15 @@
   // $result = mysqli_query($conn, $sql);
 ?>
 <?php
-  // session_start();
+  session_start();
   // if (empty($_SESSION['SellerFirstName'])){
   //   header("Location: index.php");
   //   exit();
   // }
+  $sql = "SELECT s.Shop_Name as Shop_Name, s.business_owner as business_owner, s.owner_num as owner_num, s.Business_Address as Business_Address,
+                s.Simcard_Limit as Simcard_Limit, r.sim_amount_requested as sim_amount_requested
+          FROM seller AS s LEFT JOIN resupply_requests as r ON s.owner_num = r.request_id";
+  $result = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -90,23 +94,33 @@
       </tr>
     </thead>
     <tbody>
+      <?php
+      $sql = "SELECT s.Shop_Name as Shop_Name,s.business_owner as business_owner, s.owner_num as owner_num, s.Business_Address as Business_Address, s.Simcard_Limit as Simcard_Limit,
+       r.sim_amount_requested as sim_amount_requested
+       FROM resupply_requests AS r LEFT JOIN seller as s ON r.selleremail = s.selleremail
+       WHERE r.sim_amount_requested;";
+      $result = mysqli_query($conn, $sql);
+      while($row = mysqli_fetch_assoc($result)):
+        $owner_num = $row['owner_num'];
+        $sim_amount_requested = $row['sim_amount_requested'];
+        ?>
 
-      <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
+      <!-- <tr class="canHov" onclick="window.location='<?php //echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
       <tr>
         <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td> -->
-        <td class="text-truncate"><a href="#ResupplyBackendHere" class="btn btn-success">Resupply</a></td>
-        <td class="f-column text-truncate">Cavite SIM shop</th>
-        <td class="f-column text-truncate">Chantal Videla</th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
-        <td class="f-column text-truncate">+639128900000</th>
-        <td class="f-column text-truncate">Dasmarinas Cavite</th>
-        <td class="text-truncate">32</th>
-        <td class="f-column text-truncate">60</th>
+        <td class="text-truncate"><a href="admin-edit-local.php?simnum=<?php echo $thrownum; ?>" class="btn btn-success">Resupply</a></td>
+        <td class="f-column text-truncate"><?php echo $row['Shop_Name'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['business_owner'] ?></th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
+        <td class="f-column text-truncate"><?php echo $row['owner_num'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['Business_Address'] ?></th>
+        <td class="text-truncate"><?php echo $row['Simcard_Limit'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['sim_amount_requested'] ?></th>
 
 
       </tr>
 
 
-    <!-- <?php //endwhile; ?> -->
+    <?php endwhile; ?>
 
 
 

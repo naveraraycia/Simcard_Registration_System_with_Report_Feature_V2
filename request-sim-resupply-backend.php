@@ -27,7 +27,7 @@ if(isset($_POST['sendbutton'])){
 
   // else {
     $sql = "INSERT INTO resupply_requests(selleremail, sim_amount_requested)
-    VALUES ('$selleremail','$sim_amount_requested');";
+    VALUES (?,?);";
 
     // PREPARED STATEMENT
     $stmt = mysqli_stmt_init($conn);
@@ -44,6 +44,7 @@ if(isset($_POST['sendbutton'])){
       mysqli_stmt_execute($stmt);
       $result = mysqli_stmt_get_result($stmt);
       header("Location: request-sim-resupply.php?signup=success");
+      exit();
     }
   // }
   mysqli_stmt_close($stmt);
