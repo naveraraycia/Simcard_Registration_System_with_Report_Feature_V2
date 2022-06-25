@@ -115,7 +115,7 @@
         <tr>
           <th class="f-column text-truncate notexport" scope="col" ></th>
           <th class="f-column text-truncate notexport" scope="col" ></th>
-          <th class="f-column text-truncate" scope="col" >SIM Status</th>
+          <th class="f-column text-truncate" scope="col" >User Status</th>
           <th class="f-column text-truncate" scope="col" >Penalty</th>
           <th class="f-column text-truncate" scope="col" >Date blocked</th>
           <th class="f-column text-truncate" scope="col" >End of block period</th>

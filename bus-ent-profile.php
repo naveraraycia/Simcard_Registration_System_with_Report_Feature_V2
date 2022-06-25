@@ -339,7 +339,7 @@ $service       = $_SESSION['services'];
       <div class='col-md-4 infocol3'>
 
         <div class='infodiv'>
-          <p class='labelings'>SIM status</p>
+          <p class='labelings'>User status</p>
           <p class='information'>$SimStatus</p>
         </div>
 
