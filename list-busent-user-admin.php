@@ -5,7 +5,7 @@
                   n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
-                  b.link_id_pic as link_id_pic, b.authletter as authletter, b.link_nso_pic as link_nso_pic
+                  b.link_id_pic as link_id_pic,b.link_authletter as link_authletter,b.link_nso_pic as link_nso_pic
 FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON b.nsonum = n.nsonum ORDER BY lastname ASC";
    $result = mysqli_query($conn, $sql);
 ?>
@@ -201,7 +201,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
                                   n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
-                                  b.link_id_pic as link_id_pic, b.authletter as authletter, b.link_nso_pic as link_nso_pic
+                                  b.link_id_pic as link_id_pic, b.link_authletter as link_authletter, b.link_nso_pic as link_nso_pic
                           FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON b.nsonum = n.nsonum
                           WHERE sim_status = 'Active Status'
                           ORDER BY n.lastname ASC;";
@@ -214,7 +214,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
                                   n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
-                                  b.link_id_pic as link_id_pic, b.authletter as authletter, b.link_nso_pic as link_nso_pic
+                                  b.link_id_pic as link_id_pic, b.link_authletter as link_authletter, b.link_nso_pic as link_nso_pic
                             FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON b.nsonum = n.nsonum
                             ORDER BY n.lastname ASC;";
 
@@ -226,10 +226,10 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
                                   n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
-                                  b.link_id_pic as link_id_pic, b.authletter as authletter, b.link_nso_pic as link_nso_pic
+                                  b.link_id_pic as link_id_pic, b.link_authletter as link_authletter, b.link_nso_pic as link_nso_pic
                           FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON b.nsonum = n.nsonum
-                          WHERE ((ban_start between'$start_date' and '$end_date') AND
-                                (b.sim_status = N'First offense' OR rg.sim_status = N'Second offense' OR rg.sim_status = N'Permanent ban')) or b.sim_status = 'Permanent ban'
+                          WHERE ((b.ban_start between'$start_date' and '$end_date') AND
+                                (b.sim_status = N'First offense' OR b.sim_status = N'Second offense' OR b.sim_status = N'Permanent ban')) or b.sim_status = 'Permanent ban'
                           ORDER BY n.lastname ASC;";
             }else if($querytype=='D'){
 
@@ -238,7 +238,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
                                   n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
-                                  b.link_id_pic as link_id_pic, b.authletter as authletter, b.link_nso_pic as link_nso_pic
+                                  b.link_id_pic as link_id_pic, b.link_authletter as link_authletter, b.link_nso_pic as link_nso_pic
                           FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON b.nsonum = n.nsonum
                            WHERE ((b.ban_start between'$start_date' and '$end_date') AND
                                  (b.sim_status = N'$data'))
@@ -250,7 +250,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
                                   n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
-                                  b.link_id_pic as link_id_pic, b.authletter as authletter,b.link_nso_pic as link_nso_pic
+                                  b.link_id_pic as link_id_pic, b.link_authletter as link_authletter,b.link_nso_pic as link_nso_pic
                           FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON b.nsonum = n.nsonum
                            WHERE ((b.ban_start between'$start_date' and '$end_date') AND
                                  (b.sim_status = N'Permanent ban'))
@@ -269,7 +269,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
         <tr>
           <td class="text-truncate"><a href="Admin_Table_Backend/userdelete.php?click=delete&simnum=<?php echo $thrownum ."&nation=business"; ?>" class="btn btn-danger">Delete</a></td>
-            <td class="text-truncate"><a href="admin-edit-busent.php?simnum=<?php //echo  $selleremail; ?>" class="btn btn-success">Update</a></td>
+            <td class="text-truncate"><a href="admin-edit-busent.php?simnum=<?php echo $thrownum; ?>" class="btn btn-success">Update</a></td>
             <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['offense_count'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['ban_start'] ?></th>
@@ -296,7 +296,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
             <td class="f-column text-truncate"> <?php echo $row['business_permit'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['link_nso_pic'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['link_id_pic'] ?></th>
-            <td class="f-column text-truncate"><?php echo $row['authletter'] ?></th>
+            <td class="f-column text-truncate"><?php echo $row['link_authletter'] ?></th>
 
         </tr>
 

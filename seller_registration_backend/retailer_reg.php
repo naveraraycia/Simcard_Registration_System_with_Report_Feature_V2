@@ -41,12 +41,6 @@ if(isset($_POST['register'])){
           exit();
         }
         
-        $owner_key = $_POST['owner_key'];
-        $confirm_owner_key = $_POST['confirm_owner_key'];
-        if($owner_key != $confirm_owner_key){
-          echo header("Location: ../admin-register-retailer.php?error=notmatchowner");
-          exit();
-        }
 
         $shop_name = mysqli_real_escape_string($conn, $_POST['shop_name']);      
         $num_permit = $_POST['num_permit'];
@@ -77,8 +71,8 @@ if(isset($_POST['register'])){
              
                 $sql = "INSERT INTO seller( seller_nso, selleremail, sellerpassword, Shop_Name, Business_Permit, 
                   Simcard_Limit, Business_Address, admin_reg, owner_num, 
-                  owner_key, nsopass_pic, link_nsopass_pic, id_pic, 
-                  link_id_pic, permit_pic, link_permit_pic, dateofregis) 
+                   nsopass_pic, link_nsopass_pic, id_pic, 
+                  link_id_pic, permit_pic, link_permit_pic, dateofregis, address) 
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
                 
@@ -102,7 +96,7 @@ if(isset($_POST['register'])){
                     header("Location: ../admin-register-retailer.php?notemail");
                     exit();
                   }
-                  $sqlnso = "SELECT selleremail, owner_key FROM seller WHERE selleremail = '$selleremail';";
+                  $sqlnso = "SELECT selleremail FROM seller WHERE selleremail = '$selleremail';";
                   $result = mysqli_query($conn,$sqlnso);
                   $resultsCheck = mysqli_num_rows($result);
                   if($resultsCheck > 0){
@@ -115,16 +109,8 @@ if(isset($_POST['register'])){
                     exit();
                   }
 
-                  if(strlen($owner_key) < 8){
-                    header("Location: ../admin-register-retailer.php?keyerror"); //error for wrong count
-                    exit();
-                  }
-                  $sqlnso = "SELECT selleremail, owner_key FROM seller WHERE owner_key = '$owner_key';";
-                  $result = mysqli_query($conn,$sqlnso);
-                  if($resultsCheck > 0){
-                    header("Location: ../admin-register-retailer.php?ownerkey-already-exist");
-                    exit();
-                  }
+
+
 
                   //FUNCTION ERROR HANDLERS FOR IMAGE
                           function ImageCheck($allowed,$fileActualExt,$fileExt,$FullName,$fileError,$fileSize){
@@ -197,9 +183,9 @@ if(isset($_POST['register'])){
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 $sql = "INSERT INTO seller( seller_nso, selleremail, sellerpassword, Shop_Name, Business_Permit, 
                 Simcard_Limit, Business_Address, admin_reg, owner_num, 
-                owner_key, nsopass_pic, link_nsopass_pic, id_pic, 
-                link_id_pic, permit_pic, link_permit_pic, dateofreg) 
-              VALUES ( '$passnum_nsonum','$selleremail', '$sellerpassword','$shop_name','$num_permit','$sim_limit','$company_address','$admin_reg','$simnum','$owner_key','$NSOName','$NSOExt','$PermitName','$PermitExt','$IDName','$IDExt','$dateofregis');";
+                 nsopass_pic, link_nsopass_pic, id_pic, 
+                link_id_pic, permit_pic, link_permit_pic, dateofreg, address) 
+              VALUES ( '$passnum_nsonum','$selleremail', '$sellerpassword','$shop_name','$num_permit','$sim_limit','$company_address','$admin_reg','$simnum','$NSOName','$NSOExt','$PermitName','$PermitExt','$IDName','$IDExt','$dateofregis','$owneraddress');";
                 // mysqli_stmt_bind_param($stmt,'ssssisssssssssss', $selleremail, $sellerpassword, $shop_name, $num_permit, $sim_limit, $company_address, $admin_reg,$simnum, $owner_key, $NSOName, $NSOExt, $PermitName, $PermitExt, $IDName, $IDExt, $dateofregis);
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt, $sql);

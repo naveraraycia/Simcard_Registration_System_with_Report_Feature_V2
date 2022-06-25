@@ -162,17 +162,29 @@ if (empty($_SESSION['AdminEmail'])){
 ?>
 
 
-   <form class="" action="#" method="post" enctype="multipart/form-data">
+   <form class="" action="admin_edit_selected_user/admin_back_seller_user.php?simnum=<?php echo $throw?>" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
-     $nso = $_SESSION['nsonumber1'];
-     $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
+     $query = "SELECT s.Shop_Name AS shop_name,
+     s.selleremail AS selleremail,
+     rg.lastname as lastname, rg.firstname as firstname, rg.midname as midname,
+     rg.suffix as suffix,
+     s.Business_Permit as business_permit,
+     s.Business_Address as business_address,
+     s.Simcard_Limit AS simcard_limit,
+     s.link_permit_pic AS link_permit_pic,
+     s.link_nsopass_pic as link_nsopass_pic, s.address as address,
+     s.link_id_pic as link_id_pic, s.owner_num as owner_num,
+     s.dateofreg as dateofreg
+     FROM seller as s LEFT JOIN local_registered_simusers_db as n ON s.owner_num = n.simnum
+               LEFT JOIN nso_dummy_db as rg ON n.nsonum = rg.nsonum
+     WHERE n.simnum = '$simnum'";
      $result = mysqli_query($conn,$query);
 
        if (mysqli_num_rows($result) > 0) {
          // if there is a result
          foreach ($result as $row) {
-           ?>
+  ?>
          <!-- FIRST ROW -->
          <div class="row">
 
@@ -236,12 +248,12 @@ if (empty($_SESSION['AdminEmail'])){
        <div class="row srow">
          <div class="col-6 infodiv">
            <label class="Bday">Shop Name</label>
-           <input id="address" type="text" name="shop_name" value="add row value here" class="form-control" required>
+           <input id="address" type="text" name="shop_name" value="<?php echo  $row['shop_name']; ?>" class="form-control" required>
          </div>
 
          <div class="col-6 infodiv">
            <label class="Bday">Shop Email</label>
-           <input id="address" type="text" name="selleremail" value="add row value here" class="form-control" required>
+           <input id="address" type="text" name="selleremail" value="<?php echo  $row['selleremail']; ?>" class="form-control" required>
          </div>
 
        </div>
@@ -251,12 +263,12 @@ if (empty($_SESSION['AdminEmail'])){
 
          <div class="col-6 infodiv">
            <label class="Bday">Business Permit #</label>
-           <input id="" type="text" name="num_permit" value="add row value here" class="form-control" required>
+           <input id="" type="text" name="num_permit" value="<?php echo  $row['business_permit']; ?>" class="form-control" required>
          </div>
 
          <div class="col-6 infodiv">
            <label class="Bday">SIM Shop Address</label>
-           <input id="address" type="text" name="company_address" value="add row value here" class="form-control" required>
+           <input id="address" type="text" name="shop_address" value="<?php echo  $row['business_address']; ?>" class="form-control" required>
          </div>
 
 
@@ -265,7 +277,7 @@ if (empty($_SESSION['AdminEmail'])){
        <div class="row srow">
          <div class="col-2 infodiv">
            <label class="Bday">SIM Limit</label>
-           <input id="" type="number" name="Sim_Limit" value="5" class="form-control" required>
+           <input id="" type="number" name="Sim_Limit" value="<?php echo  $row['simcard_limit']; ?>" class="form-control" required>
          </div>
 
          <div class="col-md-10 infodiv">
@@ -274,7 +286,7 @@ if (empty($_SESSION['AdminEmail'])){
            <div class="input-group-prepend">
              <div class="input-group-text">+63</div>
            </div>
-           <input type="tel" class="form-control" id="simnum" value="add row value here" name="simnum" required>
+           <input type="tel" class="form-control" id="simnum" value="<?php echo  $row['owner_num']; ?>" name="simnum" disabled>
          </div>
          </div>
 
@@ -285,7 +297,7 @@ if (empty($_SESSION['AdminEmail'])){
 
          <div class="col-12 infodiv">
            <label class="Bday">Owner's Address</label>
-           <input id="" type="text" name="owneraddress" value="add row value here" class="form-control" required>
+           <input id="" type="text" name="address" value="<?php echo  $row['address']; ?>" class="form-control" required>
          </div>
 
 

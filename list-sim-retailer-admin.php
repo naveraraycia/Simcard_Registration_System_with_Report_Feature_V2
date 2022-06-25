@@ -189,13 +189,15 @@
           }
               while($row = mysqli_fetch_assoc($result)):
                 $selleremail = $row['selleremail'];
+                $simnum      = $row['owner_num'];
+                $throw       = trim($simnum,"+");
         ?>
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-retailer-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
           <tr>
           <!-- hito sa echo below sa simnum=   , ilagay mo ung $row['simcardnumbercolumnname'] -->
           <td class="text-truncate"><a href="includes/delete-retailer.php?sellemail=<?php echo  $selleremail; ?>" class="btn btn-danger">Delete</a></td>
-          <td class="text-truncate"><a href="admin-edit-seller.php?sellemail=<?php //echo  $selleremail; ?>" class="btn btn-success">Update</a></td>
+          <td class="text-truncate"><a href="admin-edit-seller.php?simnum=<?php echo  $throw; ?>" class="btn btn-success">Update</a></td>
           <td class="text-truncate"><?php echo $row['Shop_Name']; ?></th>
           <td class="text-truncate"><?php echo $selleremail; ?></th>
           <td class="text-truncate"><?php echo $row['lastname']; ?></th>
@@ -209,7 +211,7 @@
           <td class="text-truncate"><?php echo $row['link_nsopass_pic']; ?></th>
           <td class="text-truncate"><?php echo $row['link_id_pic']; ?></th>
           <td class="text-truncate"><?php echo $row['address']; ?></th>
-          <td class="text-truncate"><?php echo $row['owner_num']; ?></th>
+          <td class="text-truncate"><?php echo  $simnum; ?></th>
           <td class="text-truncate"><?php echo $row['dateofreg']; ?></td>
 
 

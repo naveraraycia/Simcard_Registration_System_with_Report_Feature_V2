@@ -7,12 +7,14 @@
     if(isset($_POST['register'])){
             $simnum   = mysqli_real_escape_string($conn, $_GET['simnum']);
             $simnum = '+'.$simnum;
-            $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth,
-                        n.gender as gender, n.nsonum as nsonum, l.simcard as simcard, l.simnum as simnum, l.services as services, l.ban_start as ban_start,
-                        l.ban_end as ban_end, l.address as address, l.sim_status as sim_status, l.offense_count as offense_count,
-                        l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite, l.link_nsopass_pic as nso_pic, l.link_id_pic as id_pic, l.fingerprint_File_Format as finger
-                     FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON  l.nsonum = n.nsonum
-                     WHERE simnum = '$simnum';";
+     $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth,
+                      n.gender as gender, n.nsonum as nsonum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start,
+                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies,
+                      l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite,
+                      l.link_nso_pic as nso_pic, l.link_id_pic as id_pic, l.link_business_permit as permit_pic, l.link_authletter as letter_pic,
+                      l.business_name as business_name, l.num_permit as num_permit, l.business_address as business_address
+               FROM business_entity_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON  l.nsonum = n.nsonum
+               WHERE simnum = '$simnum'; ";
 
             $result = mysqli_query($conn,$query);
             if (mysqli_num_rows($result) > 0) {
@@ -21,14 +23,14 @@
                         $finger_old = $row['finger'];
                         $id_old     = $row['id_pic'];
                         $nso_old    = $row['nso_pic'];
+                        $letter_old    = $row['letter_pic'];
+                        $permit_old     = $row['permit_pic'];
+
+                        $bussiness_name_old = $row['business_name'];
                         $ban_end_old    = $row['ban_end'];
                         $ban_start_old  = $row['ban_start'];
                         $lastN          = $row['lastname'];
                         $passnum_nsonum = $row['nsonum'];
-                        $sim_status_old = $row['sim_status'];
-                        $penalty_old    = $row['offense_count'];
-                        $address_old    = $row['address'];
-                        $midname        = $row['midname'];
 
                    }
             // ADDED DATA
@@ -39,8 +41,6 @@
             $sim_status    = $_POST['sim_status'];
             $offense_count = $_POST['offense_count'];
             $ban_start     = $_POST['ban_start'];
-            $address       = $_POST['address'];
-
             if(empty($ban_start)){
                 $ban_start = $ban_start_old;
             }
@@ -48,6 +48,10 @@
             if(empty($ban_end)){
                 $ban_end = $ban_end_old;
             }
+            $address       = $_POST['address'];
+            $business_name = $_POST['business_name'];
+            $business_address = $_POST['business_address'];
+            $num_permit       = $_POST['num_permit'];
 
 
 
@@ -115,7 +119,32 @@
                           $FingerName     = $lastN."_Finger_".$passnum_nsonum."_".$timeImg;
                     $FingerExt = ImageCheck($allowed,$fileActualExt,$fileExt,$FingerName,$fileError,$fileSize,  $finger_old);
                               //$FingerExt = Keanu_Finger_01234_3-43.jpg
-                    //GETTING SHOP DATA AND SETTING FIXED DAT
+                    //GETTING SHOP DATA AND SETTING FIXED DATA
+                $Permitfile               = $_FILES['Permitfile'];
+                    $fileName             = $Permitfile["name"];
+                    $fileType             = $Permitfile["type"];
+                    $PermitTempName       = $Permitfile["tmp_name"];
+                    $fileError            = $Permitfile["error"];
+                    $fileSize             = $Permitfile["size"];
+                    $allowed              = array("jpg","jpeg","png","bmp");
+                        //conversion
+                    $fileExt        = explode(".",$fileName);
+                    $fileActualExt  = strtolower(end($fileExt));
+                    $PermitName     = $lastN."_Permit_".$passnum_nsonum.$timeImg;
+                $PermitExt = ImageCheck($allowed,$fileActualExt,$fileExt,$PermitName,$fileError,$fileSize,  $permit_old);
+
+                $Authorfile               = $_FILES['Authorfile'];
+                        $fileName                 = $Authorfile["name"];
+                        $fileType                 = $Authorfile["type"];
+                        $AuthorfileTempName       = $Authorfile["tmp_name"];
+                        $fileError                = $Authorfile["error"];
+                        $fileSize                 = $Authorfile["size"];
+                        $allowed                  = array("jpg","jpeg","png","bmp");
+                        //conversion
+                        $fileExt        = explode(".",$fileName);
+                        $fileActualExt  = strtolower(end($fileExt));
+                        $AuthorName = $lastN."_Author_".$passnum_nsonum.$timeImg;
+                  $AuthorExt = ImageCheck($allowed,$fileActualExt,$fileExt,$AuthorName,$fileError,$fileSize,  $letter_old);
 
                     echo     $sim_status;
                     echo   "<br>";
@@ -135,31 +164,36 @@
 
                     //update local
                     $sql = "UPDATE local_registered_simusers_db
-                    SET sim_status = '$sim_status', offense_count = '$offense_count', ban_start = '$ban_start', ban_end = '$ban_end',
-                        address = '$address', fingerprint_File_Format = '$FingerExt', link_nsopass_pic= '$NSOExt',
-                        link_id_pic = '$IDExt'
-                    WHERE nsonum = '$passnum_nsonum';";
+                            SET sim_status = '$sim_status', offense_count = '$offense_count', ban_start = '$ban_start', ban_end = '$ban_end',
+                                address = '$address', fingerprint_File_Format = '$FingerExt', link_nsopass_pic= '$NSOExt',
+                                link_id_pic = '$IDExt'
+                            WHERE nsonum = '$passnum_nsonum';";
                     mysqli_query($conn,$sql);
 
                     //update related business sims
                     $sql = "UPDATE business_entity_registered_simusers_db
-                    SET sim_status = '$sim_status', offense_count = '$offense_count', ban_start = '$ban_start', ban_end = '$ban_end',
-                        address = '$address', fingerprint_File_Format = '$FingerExt', link_nso_pic= '$NSOExt',
-                        link_id_pic = '$IDExt'
-                    WHERE nsonum = '$passnum_nsonum';";
+                            SET sim_status = '$sim_status', offense_count = '$offense_count', ban_start = '$ban_start', ban_end = '$ban_end',
+                                link_nso_pic= '$NSOExt', link_id_pic = '$IDExt', link_business_permit='$PermitExt' , link_authletter ='$AuthorExt',
+                                address = '$address', business_name = '$business_name', num_permit = '$num_permit', business_address = '$business_address',
+                                fingerprint_File_Format = '$FingerExt'
+                            WHERE nsonum = '$passnum_nsonum';";
                     mysqli_query($conn,$sql);
 
 
                     $FingerfileDestination = '../Fingerprint_Registered_User_Database/'.$FingerExt; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
                     $NSOfileDestination    = '../NSO_User_Database/'.$NSOExt;
                     $IDfileDestination     = '../ID_User_Database/'. $IDExt;
+                    $AuthfileDestination    = '../Endoresement_Database/'.$AuthorExt;
+                    $PermitfileDestination     = '../Permit_Database/'. $PermitExt;
 
                     move_uploaded_file($FingerfileTempName,$FingerfileDestination);  //imomove na yung file to that folder
                     move_uploaded_file($NSOfileTempName,$NSOfileDestination);
                     move_uploaded_file($IDfileTempName,$IDfileDestination);
+                    move_uploaded_file($AuthorfileTempName,$AuthfileDestination);
+                    move_uploaded_file($PermitTempName,$PermitfileDestination);
 
 
-                    header("Location: ../list-local-user-admin.php?updated");
+                    header("Location: ../list-busent-user-admin.php?updated");
               }
 
         }
