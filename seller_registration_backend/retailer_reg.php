@@ -208,9 +208,9 @@ if(isset($_POST['register'])){
              //   $result = mysqli_stmt_get_result($stmt);
 
                 //MOVING FILES
-                $NSOfileDestination        = '../retailer_documents/Retailer_NSO_User_Database/'.$NSOExt;
-                $IDfileDestination         = '../retailer_documents/Retailer_ID_User_Database/'. $IDExt;
-                $PermitfileDestination     = '../retailer_documents/Retailer_Permit_Database/'. $PermitExt;
+                $NSOfileDestination        = '../NSO_User_Database/'.$NSOExt;
+                $IDfileDestination         = '../ID_User_Database/'. $IDExt;
+                $PermitfileDestination     = '../Permit_Database/'. $PermitExt;
                 move_uploaded_file($NSOfileTempName,$NSOfileDestination);
                 move_uploaded_file($IDfileTempName,$IDfileDestination);
                 move_uploaded_file($PermitTempName,$PermitfileDestination);

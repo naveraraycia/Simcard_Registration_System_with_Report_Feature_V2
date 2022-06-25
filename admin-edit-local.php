@@ -1,12 +1,15 @@
 <?php
   require 'includes/dbh.inc.php';
-
+  $simnum = mysqli_real_escape_string($conn, $_GET['simnum']);
+  $simnum = '+'.$simnum;
 ?>
 <?php
 session_start();
 if (empty($_SESSION['AdminEmail'])){
   header("Location: index.php");
   exit();
+
+
 }
 ?>
 <!-- register-users-local.php?nsonum=3864&button= -->
@@ -163,8 +166,7 @@ if (empty($_SESSION['AdminEmail'])){
    <form class="" action="seller_registration_backend/retailer_reg.php" method="post" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
-     $nso = $_SESSION['nsonumber1'];
-     $query = "SELECT * FROM nso_dummy_db WHERE nsonum =  '$nso'; ";
+     $query = "SELECT * FROM local_registered_simusers_db WHERE simnum =  '$simnum'; ";
      $result = mysqli_query($conn,$query);
 
        if (mysqli_num_rows($result) > 0) {

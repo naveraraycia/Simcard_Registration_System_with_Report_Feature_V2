@@ -89,7 +89,7 @@ if(isset($_POST['reportbutton'])){
                                   //////Reconfiguring Image File and Format////////
                                   $DocumentName = $Document.$setImageOrder; //New File Name of the Image - example of format: TanishaBrown.ReportNumber_1
                                   $ImageFullName    = $DocumentName.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
-                                  $fileDestination  = "../Request_Change_Database/".$ImageFullName;            //Build up file destination
+                                  $fileDestination  = "../NSO_User_Database/".$ImageFullName;            //Build up file destination
                                   date_default_timezone_set('Asia/Manila');
                                   $dates = date("Y")."-".date("m")."-".date("j");
                                   $time = date('G').":".date('i').":".date('s');

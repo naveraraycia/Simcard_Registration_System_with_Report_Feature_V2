@@ -26,14 +26,21 @@ function delete_message($conn){
             WHERE  simnum ='$simnum'";
             echo $simnum;
             mysqli_query($conn, $sql);
-            header("Location: ../list-local-user-admin.php?success");
+            header("Location: ../list-local-user-admin.php?deleted");
         }else if($nation == 'notfilipino'){
             $sql = "DELETE FROM foreign_registered_simusers_db 
             WHERE  simnum ='$simnum'";
             echo $simnum;
             mysqli_query($conn, $sql);
             echo 'done';
-            header("Location: ../list-foreign-user-admin.php?success");
+            header("Location: ../list-foreign-user-admin.php?deleted");
+        }else if($nation == 'business'){
+            $sql = "DELETE FROM business_entity_registered_simusers_db 
+            WHERE  simnum ='$simnum'";
+            echo $simnum;
+            mysqli_query($conn, $sql);
+            echo 'done';
+            header("Location: ../list-busent-user-admin.php?deleted");
         }
     }
 

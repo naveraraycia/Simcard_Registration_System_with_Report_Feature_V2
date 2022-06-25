@@ -252,7 +252,7 @@ if(isset($_POST['register'])){
                 $NSOfileDestination    = '../NSO_User_Database/'.$NSOExt;
                 $IDfileDestination     = '../ID_User_Database/'. $IDExt;
                 $PermitfileDestination     = '../Permit_Database/'. $PermitExt;
-                $AuthorfileDestination     = '../Author_Database/'. $AuthorExt;
+                $AuthorfileDestination     = '../Auth_Letter_Database/'. $AuthorExt;
                 move_uploaded_file($FingerfileTempName,$FingerfileDestination);  //imomove na yung file to that folder
                 move_uploaded_file($NSOfileTempName,$NSOfileDestination);
                 move_uploaded_file($IDfileTempName,$IDfileDestination);
