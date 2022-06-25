@@ -295,7 +295,7 @@ $(document).ready(function() {
     ],
     dom: 'Bfrtip',
     buttons: [
-      'pageLength','copy', 'csv', 'excel', 'pdf',
+      'pageLength', 'csv', 'excel',
       {
       extend: "print",
       customize: function(win)

@@ -1,19 +1,19 @@
 <?php
   require 'includes/dbh.inc.php';
-   $sql = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name , 
-   COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name, 
-               COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num, 
+   $sql = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name ,
+   COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name,
+               COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num,
                COALESCE(d.lastname,NULL,e.lastname) AS Complainant_first_name,
                COALESCE(d.firstname,NULL,e.firstname) AS Complainant_last_name,
                r.reported_number as reported_number, r.report_id as report_id,
                       r.remarks as remarks, r.sent_at as sent_at
-    FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum 
-    LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum 
-                  LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum 
-                  LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum 
-                  LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum 
+    FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum
+    LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum
+                  LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
+                  LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum
+                  LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum
                   LEFT JOIN foreign_registered_simusers_db as b ON r.user_mobile_num = b.simnum
-                  LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum 
+                  LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum
                   LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum;";
    $result = mysqli_query($conn, $sql);
 
@@ -138,21 +138,21 @@
         if (empty($end_date)){
           $end_date = '9999-12-30';}
 
-          $FirstOff = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name , 
-          COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name, 
-                      COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num, 
+          $FirstOff = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name ,
+          COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name,
+                      COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num,
                       COALESCE(d.lastname,NULL,e.lastname) AS Complainant_first_name,
                       COALESCE(d.firstname,NULL,e.firstname) AS Complainant_last_name,
                       r.reported_number as reported_number, r.report_id as report_id,
                       r.remarks as remarks, r.sent_at as sent_at
-           FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum 
-           LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum 
-                         LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum 
-                         LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum 
-                         LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum 
+           FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum
+           LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum
+                         LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
+                         LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum
+                         LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum
                          LEFT JOIN foreign_registered_simusers_db as b ON r.user_mobile_num = b.simnum
-                         LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum 
-                         LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum 
+                         LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum
+                         LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum
        WHERE r.sent_at BETWEEN '$start_date' AND '$end_date'";
          $result = mysqli_query($conn,$FirstOff);
       //
@@ -177,7 +177,7 @@
       </tr>
 
 
-    <?php endwhile; ?> 
+    <?php endwhile; ?>
 
 
 
@@ -216,7 +216,7 @@ $("#example").DataTable({
   ],
   dom: 'Bfrtip',
   buttons: [
-    'pageLength','copy', 'csv', 'excel', 'pdf',
+    'pageLength','csv', 'excel', 'pdf',
     {
     extend: "print",
     customize: function(win)

@@ -7,8 +7,8 @@
   //   header("Location: index.php");
   //   exit();
   // }
-     $sql = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
-                  rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+     $sql = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
+                  rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                   n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
                   n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                   rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
@@ -118,8 +118,8 @@
     <table class="table table-striped" id="example">
       <thead>
         <tr>
-          <th class="f-column text-truncate" scope="col" ></th>
-          <th class="f-column text-truncate" scope="col" ></th>
+          <th class="f-column text-truncate notexport" scope="col" ></th>
+          <th class="f-column text-truncate notexport" scope="col" ></th>
           <th class="f-column text-truncate" scope="col" >User Status</th>
           <th class="f-column text-truncate" scope="col" >Penalty</th>
           <th class="f-column text-truncate" scope="col" >Date blocked</th>
@@ -184,26 +184,26 @@
                 case "All":
                    $querytype = 'B';
                    break;
-          
+
            };
            if ($querytype=='A'){
-             
+
 
              // first offense
-             $FirstOff = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
-                                  rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+             $FirstOff = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
+                                  rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                                   n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
                                   n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                   rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
                          FROM foreign_registered_simusers_db AS rg LEFT JOIN foreign_passport_db as n ON rg.passnum = n.passnum
-                         WHERE sim_status = 'Active Status' 
+                         WHERE sim_status = 'Active Status'
                          ORDER BY n.lastname ASC;";
 
-                         
+
            }else if($querytype=='B'){
-            
-            $FirstOff = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
-                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+
+            $FirstOff = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
+                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                                 n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
                                 n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                 rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
@@ -212,9 +212,9 @@
 
 
            }else if($querytype=='C'){
-            
-            $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
-                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+
+            $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
+                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                                 n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
                                 n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                 rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
@@ -223,9 +223,9 @@
                                (rg.sim_status = N'First offense' OR rg.sim_status = N'Second offense' OR rg.sim_status = N'Permanent ban'))  or rg.sim_status = 'Permanent ban'
                          ORDER BY n.lastname ASC;";
            }else if($querytype=='D'){
-             
-             $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
-                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+
+             $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
+                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                                 n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
                                 n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                 rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
@@ -234,9 +234,9 @@
                                 (rg.sim_status = N'$data'))
                           ORDER BY n.lastname ASC;";
             }else if($querytype=='E'){
-             
-             $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end, 
-                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname, 
+
+             $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
+                                rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                                 n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
                                 n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                 rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
@@ -245,9 +245,9 @@
                                 (rg.sim_status = N'Permanent ban'))
                           ORDER BY n.lastname ASC;";
             }
-       
+
            $result = mysqli_query($conn,$FirstOff);
-       
+
            $resultCheck = mysqli_num_rows($result);
           }
               while($row = mysqli_fetch_assoc($result)):
@@ -285,7 +285,7 @@
         </tr>
 
 
-<?php endwhile; ?> 
+<?php endwhile; ?>
 
 
       </tbody>
@@ -325,35 +325,31 @@
           ],
           dom: 'Bfrtip',
           buttons: [
-            'pageLength','copy', 'csv', 'excel', 'pdf',
-            {
-            extend: "print",
-            customize: function(win)
-            {
-
-                var last = null;
-                var current = null;
-                var bod = [];
-
-                var css = '@page { size: landscape; }',
-                    head = win.document.head || win.document.getElementsByTagName('head')[0],
-                    style = win.document.createElement('style');
-
-                style.type = 'text/css';
-                style.media = 'print';
-
-                if (style.styleSheet)
+                'pageLength',
                 {
-                  style.styleSheet.cssText = css;
-                }
-                else
+                  extend: 'excel',
+                  exportOptions: {
+                    columns: ':not(.notexport)'
+                  }
+                },
                 {
-                  style.appendChild(win.document.createTextNode(css));
+                  extend: 'csv',
+                  exportOptions: {
+                    columns: ':not(.notexport)'
+                  }
+                },
+                {
+                  extend: 'pdf',
+                  exportOptions: {
+                    columns: ':not(.notexport)'
+                  }
+                },
+                {
+                  extend: 'print',
+                  exportOptions: {
+                    columns: ':not(.notexport)'
+                  }
                 }
-
-                head.appendChild(style);
-         }
-      }
             ]
         });
 

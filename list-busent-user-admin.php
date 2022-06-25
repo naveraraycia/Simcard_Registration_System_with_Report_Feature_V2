@@ -113,8 +113,8 @@
     <table class="table table-striped" id="example">
       <thead>
         <tr>
-          <th class="f-column text-truncate" scope="col" ></th>
-          <th class="f-column text-truncate" scope="col" ></th>
+          <th class="f-column text-truncate notexport" scope="col" ></th>
+          <th class="f-column text-truncate notexport" scope="col" ></th>
           <th class="f-column text-truncate" scope="col" >SIM Status</th>
           <th class="f-column text-truncate" scope="col" >Penalty</th>
           <th class="f-column text-truncate" scope="col" >Date blocked</th>
@@ -277,35 +277,31 @@
           ],
           dom: 'Bfrtip',
           buttons: [
-            'pageLength','copy', 'csv', 'excel', 'pdf',
-            {
-            extend: "print",
-            customize: function(win)
-            {
-
-                var last = null;
-                var current = null;
-                var bod = [];
-
-                var css = '@page { size: landscape; }',
-                    head = win.document.head || win.document.getElementsByTagName('head')[0],
-                    style = win.document.createElement('style');
-
-                style.type = 'text/css';
-                style.media = 'print';
-
-                if (style.styleSheet)
+                'pageLength',
                 {
-                  style.styleSheet.cssText = css;
-                }
-                else
+                  extend: 'excel',
+                  exportOptions: {
+                    columns: ':not(.notexport)'
+                  }
+                },
                 {
-                  style.appendChild(win.document.createTextNode(css));
+                  extend: 'csv',
+                  exportOptions: {
+                    columns: ':not(.notexport)'
+                  }
+                },
+                {
+                  extend: 'pdf',
+                  exportOptions: {
+                    columns: ':not(.notexport)'
+                  }
+                },
+                {
+                  extend: 'print',
+                  exportOptions: {
+                    columns: ':not(.notexport)'
+                  }
                 }
-
-                head.appendChild(style);
-         }
-      }
             ]
         });
 

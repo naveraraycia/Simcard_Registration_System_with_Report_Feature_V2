@@ -119,8 +119,8 @@
         <table class="table table-striped" id="example">
           <thead>
             <tr>
-              <th class="f-column text-truncate" scope="col" ></th>
-              <th class="f-column text-truncate" scope="col" >ID</th>
+              <th class="f-column text-truncate notexport" scope="col" ></th>
+              <!-- <th class="f-column text-truncate" scope="col" >ID</th> -->
               <th class="f-column text-truncate" scope="col" >Last Name</th>
               <th class="f-column text-truncate" scope="col" >First Name</th>
               <th class="f-column text-truncate" scope="col" >Middle Name</th>
@@ -140,7 +140,7 @@
 
             <tr>
               <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo $row['nsonum']; ?>" class="btn btn-danger">Delete</a></td>
-              <th scope="row" class="text-truncate"><?php ?></th>
+              <!-- <th scope="row" class="text-truncate"><?php ?></th> -->
               <td class="text-truncate"><?php echo $row['lastname']; ?></td>
               <td class="text-truncate"><?php echo $row['firstname']; ?></td>
               <td class="text-truncate"><?php echo $row['midname']; ?></td>
@@ -190,7 +190,31 @@
         ],
         dom: 'Bfrtip',
         buttons: [
-              'pageLength','copy', 'csv', 'excel', 'pdf', 'print'
+              'pageLength',
+              {
+                extend: 'excel',
+                exportOptions: {
+                  columns: ':not(.notexport)'
+                }
+              },
+              {
+                extend: 'csv',
+                exportOptions: {
+                  columns: ':not(.notexport)'
+                }
+              },
+              {
+                extend: 'pdf',
+                exportOptions: {
+                  columns: ':not(.notexport)'
+                }
+              },
+              {
+                extend: 'print',
+                exportOptions: {
+                  columns: ':not(.notexport)'
+                }
+              }
           ]
       });
 

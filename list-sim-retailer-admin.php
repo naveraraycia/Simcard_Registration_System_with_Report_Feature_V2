@@ -129,8 +129,8 @@
 
 
         <tr>
-          <th class="f-column text-truncate" scope="col" ></th>
-          <th class="f-column text-truncate" scope="col" ></th>
+          <th class="f-column text-truncate notexport" scope="col" ></th>
+          <th class="f-column text-truncate notexport" scope="col" ></th>
             <th class="f-column text-truncate" scope="col">Shop Name</th>
             <th class="f-column text-truncate" scope="col">Shop Email</th>
             <th class="f-column text-truncate" scope="col">Last Name</th>
@@ -257,7 +257,31 @@
       ],
       dom: 'Bfrtip',
       buttons: [
-            'pageLength','copy', 'csv', 'excel', 'print'
+            'pageLength',
+            {
+              extend: 'excel',
+              exportOptions: {
+                columns: ':not(.notexport)'
+              }
+            },
+            {
+              extend: 'csv',
+              exportOptions: {
+                columns: ':not(.notexport)'
+              }
+            },
+            {
+              extend: 'pdf',
+              exportOptions: {
+                columns: ':not(.notexport)'
+              }
+            },
+            {
+              extend: 'print',
+              exportOptions: {
+                columns: ':not(.notexport)'
+              }
+            }
         ]
     });
 

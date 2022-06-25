@@ -154,9 +154,9 @@ if (empty($_SESSION['AdminEmail'])){
         elseif(strpos($fulUrl, "error=simlimitinvalid") == true){
           echo "<p class= 'nsoexist'>ENTER NUMBERS ON SIM LIMIT ONLY</p>";
         }
-        
-        
-      
+
+
+
 ?>
 
 
@@ -249,18 +249,6 @@ if (empty($_SESSION['AdminEmail'])){
 
        </div>
 
-       <div class="row srow">
-         <div class="col-6 infodiv">
-           <label class="Bday">Business Owner Unique Key</label>
-           <input id="address" type="text" name="owner_key" class="form-control" required>
-         </div>
-
-         <div class="col-6 infodiv">
-           <label class="Bday">Business Owner Confirm Unique Key</label>
-           <input id="address" type="password" name="confirm_owner_key" class="form-control" required>
-         </div>
-
-       </div>
 
        <div class="row srow">
          <div class="col-6 infodiv">

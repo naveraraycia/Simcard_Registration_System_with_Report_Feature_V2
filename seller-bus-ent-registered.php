@@ -6,11 +6,11 @@
     exit();
   }
   $businessaddress = $_SESSION['Business_Address'];
-  $sql = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+  $sql = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services,
                   f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
-                  n.lastname as lastname, 
-                  n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
-                  f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                  n.lastname as lastname,
+                  n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum,
+                  f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg,
                   f.sim_retailer as sim_retailer
   FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
   WHERE regisite='$businessaddress' ORDER BY lastname ASC;";
@@ -201,47 +201,47 @@
 
            if ($querytype=='A'){
              // first offense NO ISSUE. NO CHANGES NEEED
-            $FirstOff = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+            $FirstOff = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services,
                   f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
-                  n.lastname as lastname, 
-                  n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
-                  f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                  n.lastname as lastname,
+                  n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum,
+                  f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg,
                   f.sim_retailer as sim_retailer
   FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
   WHERE ((dateofreg between'$start_date' and '$end_date') AND
                          (sim_status = 'Active Status')) AND regisite='$businessaddress' ORDER BY lastname ASC;";
            //NO ISSUE
           }else if($querytype=='B'){
-           $FirstOff = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+           $FirstOff = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services,
                               f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
-                              n.lastname as lastname, 
-                              n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
-                              f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                              n.lastname as lastname,
+                              n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum,
+                              f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg,
                               f.sim_retailer as sim_retailer
                       FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
                       WHERE (dateofreg between'$start_date' and '$end_date') AND regisite='$businessaddress' ORDER BY lastname ASC;";
 
          }else if($querytype=='C'){
-      
+
            //((ban_start between'$start_date' and '$end_date') and (ban_end between '$start_date'AND '$end_date') AND (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))
            //THIS QUERY IS FOR BAN DATES
-           $FirstOff ="SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+           $FirstOff ="SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services,
                               f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
-                              n.lastname as lastname, 
-                              n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
-                              f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                              n.lastname as lastname,
+                              n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum,
+                              f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg,
                               f.sim_retailer as sim_retailer
                       FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
            WHERE ((dateofreg between'$start_date' and '$end_date')AND
            (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban')) AND regisite='$businessaddress'  ORDER BY lastname ASC;";
           }else if($querytype=='D'){
-        
+
              // first offense NO ISSUE. NO CHANGES NEEED
-            $FirstOff = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+            $FirstOff = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services,
                               f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
-                              n.lastname as lastname, 
-                              n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
-                              f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                              n.lastname as lastname,
+                              n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum,
+                              f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg,
                               f.sim_retailer as sim_retailer
                       FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
             WHERE (sim_status = N'Permanent ban') AND regisite='$businessaddress'  ORDER BY lastname ASC;";
@@ -317,7 +317,7 @@ $(document).ready(function() {
     ],
     dom: 'Bfrtip',
     buttons: [
-      'pageLength','copy', 'csv', 'excel', 'pdf',
+      'pageLength','csv', 'excel',
       {
       extend: "print",
       customize: function(win)
