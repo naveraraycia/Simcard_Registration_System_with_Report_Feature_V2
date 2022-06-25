@@ -99,7 +99,7 @@ include_once 'includes/dbh.inc.php';
 
         <div class='infodiv'>
           <p class='labelings'>Shop Email</p>
-          <p class='information'><?php echo $_SESSION['SellerEmail']  ?></p>
+          <p class='information'><?php echo $_SESSION['SellerEmail'];  ?></p>
         </div>
 
         <div class='infodiv'>

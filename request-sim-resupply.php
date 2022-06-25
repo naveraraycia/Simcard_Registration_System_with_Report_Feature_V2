@@ -1,14 +1,16 @@
 <?php
   // require "navbar.php";
   include_once 'includes/dbh.inc.php';
-
+  session_start();
+  $selleremail = $_SESSION['SellerEmail'];
+ //
+ //  $sql = "SELECT s.Shop_Name AS Shop_Name,
+ //  s.selleremail AS selleremail
+ //  FROM seller as s LEFT JOIN resupply_requests as n ON s.selleremail = n.sim_amount_requested
+ //  WHERE n.selleremail = s.sim_amount_requested";
+ // $result = mysqli_query($conn, $sql);
   ?>
 
-  <?php
-
-    session_start();
-
-  ?>
   <!DOCTYPE html>
   <html lang="en" dir="ltr">
   <head>
@@ -84,19 +86,44 @@
     <h2>Request for Resupply of SIM card</h2>
     </div>
 
-    <?php
-      //INSERT ERROR HANDLERS HERE
-     ?>
+    <form class="" action="request-sim-resupply.php" method="GET">
+<?php
+  $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+  if(strpos($fulUrl, "signup=success") == true){
+    echo "<p class= 'regsuccess'>REQUEST SUCCESSFUL</p>";
+  }
+  elseif(strpos($fulUrl, "error=already-requested") == true){
+    echo "<p class= 'nsoexist'>YOU ALREADY REQUESTED, PLEASE WAIT UNTIL YOUR PREVIOUS REQUEST IS APPROVED BY ADMIN</p>";
+  }
+?>
+</form>
 
      <br><br>
-         <form class='' id='form' action='UserprofileBackEnd/BackEnd_Report.php' method='post' enctype='multipart/form-data'>
+         <form class='' id='form' action='request-sim-resupply-backend.php' method='post' enctype='multipart/form-data'>
          <div class='row'>
            <div class='col-md-2 iconn'>
              <!-- COLUMN 1 -->
+             <?php
+             // $first = "SELECT s.Shop_Name AS Shop_Name,
+             // s.selleremail AS selleremail
+             // FROM seller as s LEFT JOIN resupply_requests as n ON s.selleremail = n.sim_amount_requested
+             // WHERE n.selleremail = s.sim_amount_requested";
+             //
+             // $result = mysqli_query($conn,$first);
+             //
+             // // $resultCheck = mysqli_num_rows($result);
+             // //
+             // //    while($_SESSION = mysqli_fetch_assoc($result)):
+             // //      $selleremail = $_SESSION['selleremail'];
+             //
+
+              ?>
+
 
                <div class='infodiv1'>
                  <p class='labelings'>Amount of SIM</p>
-                 <input type='number' name='VictName' value='<?php //$FirstName $LastName $MiddleName $Suffix ?> 'id='usernamee' class='form-control' required>
+                 <input type='number' name='sim_amount_requested' value='<?php //$FirstName $LastName $MiddleName $Suffix ?> 'id='usernamee' class='form-control' required>
 
                </div>
            </div>
@@ -105,7 +132,7 @@
          </div>
          <div class='row'>
          <div class='col-md-12'>
-           <button type='submit' name='reportbutton' class='send-btn submit_btn' style='display: flex; justify-content: center; align-items: center;'>Send</button>
+           <button type='submit' name='sendbutton' class='send-btn submit_btn' style='display: flex; justify-content: center; align-items: center;'>Send</button>
          </div>
 
 
