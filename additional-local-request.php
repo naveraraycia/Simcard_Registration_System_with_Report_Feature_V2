@@ -1,7 +1,9 @@
 <?php
   require 'includes/dbh.inc.php';
-  // $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
-  // $result = mysqli_query($conn, $sql);
+   $sql = "SELECT * FROM request_reg_db
+   WHERE nationality = N'Filipino'
+   ORDER BY lastname ASC";
+   $result = mysqli_query($conn, $sql);
 ?>
 <?php
   // session_start();
@@ -133,90 +135,57 @@
     </thead>
     <tbody>
 
-      <?php
-      // if (isset($_GET['filters'])){
+    <?php
+       if (isset($_GET['filters'])){
         // include 'Joiningtable.inc.php';
 
-         // switch($_GET['operator']){
-         //     case "No offense at present":
-         //         $data = 'Active Status';
-         //         $querytype = 'A';
-         //         break;
-         //     case "With offense":
-         //         $data = 'offense';
-         //         $querytype = 'C';
-         //         break;
-         //     case "First offense":
-         //         $data = 'First offense';
-         //         $querytype = 'A';
-         //         break;
-         //     case "Second offense":
-         //         $data = 'Second offense';
-         //         $querytype = 'A';
-         //         break;
-         //     case "Third offense":
-         //         $data = 'Permanent ban';
-         //         $querytype = 'A';
-         //         break;
-         //      case "All":
-         //         $querytype = 'B';
-         //         break;
-         //
-         // };
-         // if ($querytype=='A'){
-         //   $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+        $start_date = $_GET['start_date'];
+        $end_date   = $_GET['end_date'];
+        if (empty($start_date)){
+          $start_date = '0000-00-00';}
+        if (empty($end_date)){
+          $end_date = '9999-12-30';}
 
-            // first offense
-      //      $FirstOff = "SELECT * FROM registered_simusers_db WHERE sim_status = N'$data' AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-      //      OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-      //    }else if($querytype=='B'){
-      //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-      //     $FirstOff = "SELECT * FROM registered_simusers_db WHERE lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%' OR simcard LIKE '%$searchInput%' OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%' ORDER BY lastname ASC; ";
-      //    }else if($querytype=='C'){
-      //     $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
-      //     $FirstOff ="SELECT * FROM registered_simusers_db WHERE (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban') AND (lastname LIKE '%$searchInput%' OR firstname LIKE '%$searchInput%' OR midname LIKE '%$searchInput%' OR suffix LIKE '%$searchInput%' OR dateofbirth LIKE '%$searchInput%' OR gender LIKE '%$searchInput%' OR passnum_nsonum LIKE '%$searchInput%' OR address LIKE '%$searchInput%' OR nationality LIKE '%$searchInput%'
-      //     OR simcard LIKE '%$searchInput%'  OR simnum LIKE '%$searchInput%' OR regisite LIKE '%$searchInput%' OR dateofregis LIKE '%$searchInput%' OR time LIKE '%$searchInput%')  ORDER BY lastname ASC;";
-      //    }
-      //
-      //    $result = mysqli_query($conn,$FirstOff);
-      //
-      //    $resultCheck = mysqli_num_rows($result);
-      //   }
-      //       while($row = mysqli_fetch_assoc($result)):
-      //
+          $sql = "SELECT * FROM request_reg_db
+          WHERE nationality = N'Filipino' AND dateofregis BETWEEN '$start_date' AND '$end_date'
+          ORDER BY lastname ASC";
+          $result = mysqli_query($conn, $sql);
+          $resultCheck = mysqli_num_rows($result);
+        }
+             while($row = mysqli_fetch_assoc($result)):
+                   $simnum = $row['simnum'];
+                   $simnum = trim($simnum,"+");
       // ?>
 
       <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
       <tr>
-        <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td> -->
-        <td class="text-truncate"><a href="#ConfirmAdditionalLocalBackendHere" class="btn btn-success">Approve</a></td>
-        <td class="text-truncate"><a href="#DenyAdditionalLocalBackendHere" class="btn btn-danger">Deny</a></td>
-        <td class="f-column text-truncate">Molina</th>
-        <td class="f-column text-truncate">Aaron</th>
-        <td class="f-column text-truncate">Hakeem</th>
-        <td class="f-column text-truncate">III</th>
-        <td class="f-column text-truncate">new prepaid user</th>
-        <td class="f-column text-truncate">+639120000000</th>
-        <td class="f-column text-truncate">DITO</th>
-        <td class="f-column text-truncate">I would like to take have another SIM with the same provider since I would be giving this one for my son.</th>
-        <td class="f-column text-truncate">1234-TEST-NSO-#</th>
-        <td class="text-truncate">Blk 16, 15th Ave, Disney Drive</th>
-        <td class="f-column text-truncate">M</th>
-        <td class="f-column text-truncate">1999-08-08</th>
-        <td class="f-column text-truncate">Imus Cavite</th>
-        <td class="f-column text-truncate">SIM Nations</th>
-        <td class="f-column text-truncate">Karen Reyes</th>
-        <td class="f-column text-truncate">PutDate-here</th>
-        <td class="f-column text-truncate">Put-time-here</th>
-        <td class="f-column text-truncate">Fingerprint.s3.link</th>
-        <td class="f-column text-truncate">NSO.s3.link</th>
-        <td class="f-column text-truncate">ID.s3.link</th>
+        <td class="text-truncate"><a href="additional_approve/approve_local.php?request=<?php echo $simnum;?>" class="btn btn-success">Approve</a></td>
+        <td class="text-truncate"><a href="additional_approve/delete.php?request=<?php echo  $simnum; ?>" class="btn btn-danger">Deny</a></td>
+        <td class="f-column text-truncate"><?php echo $row['lastname'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['firstname'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['midname'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['suffix'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['simcard'] ?></th>
+        <td class="f-column text-truncate"><?php echo $simnum ?></th>
+        <td class="f-column text-truncate"><?php echo $row['services'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['remarks'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['passnum_nsonum'] ?></th>
+        <td class="text-truncate"><?php echo $row['address'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['gender'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['dateofbirth'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['regisite'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['sim_shop'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['sim_retailer'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['dateofregis'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['time'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['fingerprint_File_Format'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['link_nsopass_pic'] ?></th>
+        <td class="f-column text-truncate"><?php echo $row['link_id_pic'] ?></th>
 
 
       </tr>
 
-
-    <!-- <?php //endwhile; ?> -->
+<?php endwhile; ?> 
 
 
 
