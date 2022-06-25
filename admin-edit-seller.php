@@ -1,6 +1,8 @@
 <?php
   require 'includes/dbh.inc.php';
-
+  $simnum = mysqli_real_escape_string($conn, $_GET['simnum']);
+  $throw  = $simnum;
+  $simnum = '+'.$simnum;
 ?>
 <?php
 session_start();

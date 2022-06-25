@@ -1,7 +1,10 @@
 <?php
   require 'includes/dbh.inc.php';
-
+  $simnum = mysqli_real_escape_string($conn, $_GET['simnum']);
+  $throw  = $simnum;
+  $simnum = '+'.$simnum;
 ?>
+
 <?php
 session_start();
 if (empty($_SESSION['AdminEmail'])){
@@ -159,16 +162,31 @@ if (empty($_SESSION['AdminEmail'])){
 
 ?>
 
-<form class="" action="#" method="post" enctype="multipart/form-data">
+<form class="" action="admin_edit_selected_user/admin_back_foreign_user.php?simnum=<?php echo $throw ?>" method="POST" enctype="multipart/form-data">
   <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
   <?php
-  $passport = $_SESSION['passportnumber'];
-  $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
+  $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth, 
+                      n.gender as gender, n.passnum as passnum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start, 
+                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies, 
+                      l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite, 
+                      l.fingerprint_File_Format as finger_pic, l.link_passport_pic as passport_pic, n.nationality as nationality
+               FROM foreign_registered_simusers_db AS l LEFT JOIN foreign_passport_db as n ON  l.passnum = n.passnum
+              WHERE l.simnum = '$simnum'; ";
   $result = mysqli_query($conn,$query);
 
     if (mysqli_num_rows($result) > 0) {
-      // if there is a result
-      foreach ($result as $row) {
+         // if there is a result
+         foreach ($result as $row) {
+          if($row['ban_start'] == '--'){
+                $ban_start = '2000-00-00';
+          }else{
+            $ban_start = $row['ban_start'];
+          }
+          if($row['ban_end'] =='--'){
+            $ban_end = '2050-12-25';
+          }else{
+            $ban_end = $row['ban_end'];
+          }
         ?>
         <div class="row">
           <div class="col-md-3">
@@ -209,7 +227,7 @@ if (empty($_SESSION['AdminEmail'])){
        <div class="row srow">
          <div class="col-md-12 ">
            <label class="">Passport Number</label>
-           <input type="text" required name="passnum" class="form-control" value="<?php echo $_SESSION['passportnumber']; ?>" disabled>
+           <input type="text" required name="passnum" class="form-control" value="<?= $row['passnum'] ?>" disabled>
          </div>
        </div>
 
@@ -222,24 +240,24 @@ if (empty($_SESSION['AdminEmail'])){
 
   ?>
 
-  <div class="row srow">
-    <div class="col-md-3 infodiv">
-      <label class="Bday">SIM Status</label>
-      <input id="" type="text" name="" class="form-control" value="edit row here" required>
-    </div>
-    <div class="col-md-3 infodiv">
-      <label class="Bday">Penalty</label>
-      <input id="" type="text" name="" class="form-control" value="edit row here" required>
-    </div>
-    <div class="col-md-3 infodiv">
-      <label class="Bday">Date Blocked</label>
-      <input id="" type="date" name="" class="form-control" value="2021-05-18" required>
-    </div>
-    <div class="col-md-3 infodiv">
-      <label class="Bday">End of block Period</label>
-      <input id="" type="date" name="" class="form-control" value="2021-05-18" required>
-    </div>
-  </div>
+     <div class="row srow">
+       <div class="col-md-3 infodiv">
+         <label class="Bday">SIM Status</label>
+         <input id="" type="text" name="sim_status" class="form-control" value="<?= $row['sim_status'] ?>" required>
+       </div>
+       <div class="col-md-3 infodiv">
+         <label class="Bday">Penalty</label>
+         <input id="" type="text" name="offense_count" class="form-control" value="<?= $row['offense_count'] ?>" required>
+       </div>
+       <div class="col-md-3 infodiv">
+         <label class="Bday">Date Blocked</label>
+         <input id="" type="date" name="ban_start" class="form-control" value="<?= $row['ban_start']; ?>" >
+       </div>
+       <div class="col-md-3 infodiv">
+         <label class="Bday">End of block Period</label>
+         <input id="" type="date" name="ban_end" class="form-control" value="<?= $row['ban_end'] ?>">
+       </div>
+     </div>
 
 
     <div class="row srow">
@@ -256,7 +274,7 @@ if (empty($_SESSION['AdminEmail'])){
     <div class="row srow">
       <div class="col-12 infodiv">
         <label class="Bday">Address</label>
-        <input id="address" type="text" name="address" value="edit row here" class="form-control" required>
+        <input id="address" type="text" name="address" value="<?= $row['address'] ?>" class="form-control" required>
       </div>
     </div>
 
@@ -264,7 +282,7 @@ if (empty($_SESSION['AdminEmail'])){
       <div class="col-md-4">
         <label class="labelings">Type of Sim Card user</label>
         <select class="form-control" name="simcard" disabled>
-          <option value="<?php echo 'EDIT COLUMN HERE'; ?>" selected><?php echo 'existing prepaid user'; ?></option>
+        <option value="<?php echo 'EDIT COLUMN HERE'; ?>" selected><?php echo  $row['simcard']; ?></option>
         </select>
       </div>
       <div class="col-md-4 infodiv">
@@ -273,41 +291,41 @@ if (empty($_SESSION['AdminEmail'])){
         <div class="input-group-prepend">
           <div class="input-group-text">+63</div>
         </div>
-        <input type="tel" class="form-control" id="simnum" name="simnum" value="9170000000" required disabled>
-      </div>
-      </div>
-      <div class="col-md-4">
-        <label class="labelings">SIM Telco</label>
-        <select class="form-control" name="services" disabled>
-          <option value="<?php echo 'EDIT COLUMN HERE'; ?>"selected><?php echo 'Globe/TM'; ?></option>
-        </select>
-      </div>
-    </div>
+           <input type="tel" class="form-control" id="simnum" name="simnum" value="<?= $row['simnum'] ?>" required disabled>
+         </div>
+         </div>
+         <div class="col-md-4">
+           <label class="labelings">SIM Telco</label>
+           <select class="form-control" name="services" disabled>
+             <option value="<?php echo $row['servies']; ?>"selected><?php echo $row['servies']; ?></option>
+           </select>
+         </div>
+       </div>
 
     <!-- FIFTH ROW -->
     <div class="row srow">
-      <div class="col-md-4 infodiv">
-        <label class="labelings">Date of Registration</label>
-        <input id="dateregis"type="date" name="dateofregis" class="form-control" value="2022-03-03" disabled required>
-      </div>
+         <div class="col-md-4 infodiv">
+           <label class="labelings">Date of Registration</label>
+           <input id="dateregis"type="date" name="dateofregis" class="form-control" value="<?php echo $row['dateofreg']; ?>" disabled required>
+         </div>
 
-      <div class="col-md-4 infodiv">
-        <label class="labelings">Name of SIM retailer</label>
-        <input id="regisite" type="text" name="retailer" class="form-control" value="Alicia Uy" disabled required>
-      </div>
+         <div class="col-md-4 infodiv">
+           <label class="labelings">Name of SIM retailer</label>
+           <input id="regisite" type="text" name="retailer" class="form-control" value="<?php echo $row['sim_retailer']; ?>" disabled required>
+         </div>
 
-      <div class="col-md-4 infodiv">
-        <label class="labelings">SIM Shop</label>
-        <input id="regisite" type="text" name="retailer" class="form-control" value="Cavite SIM Shop" disabled required>
-      </div>
+         <div class="col-md-4 infodiv">
+           <label class="labelings">SIM Shop</label>
+           <input id="regisite" type="text" name="sim_shop" class="form-control" value="<?php echo $row['sim_shop']; ?>" disabled required>
+         </div>
 
-    </div>
+       </div>
 
     <div class="row srow">
 
       <div class="col-md-12 infodiv">
         <label class="labelings">Registration Site</label>
-        <input id=""type="text" name="" class="form-control" value="Aguinaldo Highway, Dasmarinas, Cavite" disabled required>
+        <input id=""type="text" name="regisite" class="form-control" value="<?php echo $row['regisite']; ?>" disabled required>
       </div>
 
     </div>

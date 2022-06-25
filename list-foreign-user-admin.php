@@ -258,7 +258,7 @@
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
         <tr>
           <td class="text-truncate"><a href="Admin_Table_Backend/userdelete.php?click=delete&simnum=<?php echo $thrownum ."&nation=notfilipino"; ?>" class="btn btn-danger">Delete</a></td>
-            <td class="text-truncate"><a href="admin-edit-foreign.php?simnum=<?php //echo  $selleremail; ?>" class="btn btn-success">Update</a></td>
+          <td class="text-truncate"><a href="admin-edit-foreign.php?simnum=<?php echo $thrownum; ?>" class="btn btn-success">Update</a></td>
             <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['offense_count'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['ban_start'] ?></th>
