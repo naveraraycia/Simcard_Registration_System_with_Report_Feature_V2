@@ -20,6 +20,33 @@ if(isset($_POST['reportbutton'])){
   $Name     = $LastName.", ".$FirstName." ".$Middle." ".$UserSuffix;
   $Document = $LastName."-".$FirstName."_".$Middle;
   $SimCardNumber        = $SimCardNumber;
+
+  if($_SESSION['UserNationality'] == 'Filipino'||$_SESSION['UserNationality'] == 'filipino'){
+    $sql = "SELECT simnum, sim_status FROM local_registered_simusers_db
+    WHERE simnum ='$SimCardNumber';";
+    $result = mysqli_query($conn,$sql);
+    $resultCheck = mysqli_num_rows($result);
+    while ($row = mysqli_fetch_assoc($result)):
+        $sim_status = $row['sim_status'];
+    endwhile;
+    if($sim_status <> 'Active Status'){
+      header("Location:../end-user-update-data-request.php?error=ban");
+    }
+    exit();
+  }else{
+    $sql = "SELECT simnum, sim_status FROM foreign_registered_simusers_db
+    WHERE simnum ='$SimCardNumber';";
+    $result = mysqli_query($conn,$sql);
+    $resultCheck = mysqli_num_rows($result);
+    while ($row = mysqli_fetch_assoc($result)):
+        $sim_status = $row['sim_status'];
+    endwhile;
+    if($sim_status <> 'Active Status'){
+      header("Location:../end-user-update-data-request.php?error=ban");
+      echo 'here';
+      exit();
+    }
+  }
    ///////////////////////////////// GETTING IMAGE DETAILS  /////////////////////////////////
   //getting the file information into $file Array
   $file = $_FILES['file'];

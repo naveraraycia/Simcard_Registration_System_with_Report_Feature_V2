@@ -1,14 +1,23 @@
 <?php
   require 'includes/dbh.inc.php';
-  $sql = "SELECT * FROM registered_simusers_db ORDER BY lastname ASC";
-  $result = mysqli_query($conn, $sql);
-?>
-<?php
   session_start();
   if (empty($_SESSION['SellerFirstName'])){
     header("Location: index.php");
     exit();
   }
+  $businessaddress = $_SESSION['Business_Address'];
+  $sql = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+                  f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
+                  n.lastname as lastname, 
+                  n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
+                  f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                  f.sim_retailer as sim_retailer
+  FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
+  WHERE regisite='$businessaddress' ORDER BY lastname ASC;";
+  $result = mysqli_query($conn, $sql);
+?>
+<?php
+
 
 
 ?>
@@ -127,7 +136,7 @@
     <table class="table table-striped" id="example">
       <thead>
         <tr>
-          <th class="f-column text-truncate" scope="col" >SIM status</th>
+          <th class="f-column text-truncate" scope="col" >User status</th>
           <th class="f-column text-truncate" scope="col" >SIM Card #</th>
           <th class="f-column text-truncate" scope="col" >Provider</th>
           <th class="f-column text-truncate" scope="col" >Business Name</th>
@@ -148,7 +157,7 @@
       </thead>
       <tbody>
 
-        <?php
+      <?php
         if (isset($_GET['filters'])){
           // include 'Joiningtable.inc.php';
           $start_date = $_GET['start_date'];
@@ -191,24 +200,54 @@
            };
 
            if ($querytype=='A'){
-              // first offense NO ISSUE. NO CHANGES NEEED
-             $FirstOff = "SELECT * FROM registered_simusers_db WHERE (dateofregis between'$start_date' and '$end_date') AND sim_status = N'$data' ORDER BY lastname ASC;";
-            //NO ISSUE
-           }else if($querytype=='B'){
-            $FirstOff = "SELECT * FROM registered_simusers_db WHERE (dateofregis between'$start_date' and '$end_date')  ORDER BY lastname ASC; ";
+             // first offense NO ISSUE. NO CHANGES NEEED
+            $FirstOff = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+                  f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
+                  n.lastname as lastname, 
+                  n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
+                  f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                  f.sim_retailer as sim_retailer
+  FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
+  WHERE ((dateofreg between'$start_date' and '$end_date') AND
+                         (sim_status = 'Active Status')) AND regisite='$businessaddress' ORDER BY lastname ASC;";
+           //NO ISSUE
+          }else if($querytype=='B'){
+           $FirstOff = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+                              f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
+                              n.lastname as lastname, 
+                              n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
+                              f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                              f.sim_retailer as sim_retailer
+                      FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
+                      WHERE (dateofreg between'$start_date' and '$end_date') AND regisite='$businessaddress' ORDER BY lastname ASC;";
 
-          }else if($querytype=='C'){
-            //((ban_start between'$start_date' and '$end_date') and (ban_end between '$start_date'AND '$end_date') AND (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))
-            //THIS QUERY IS FOR BAN DATES
-            $FirstOff ="SELECT * FROM registered_simusers_db WHERE ((dateofregis between'$start_date' and '$end_date')AND
-            (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))  ORDER BY lastname ASC;";
-           }else if($querytype=='D'){
-              // first offense NO ISSUE. NO CHANGES NEEED
-             $FirstOff = "SELECT * FROM registered_simusers_db WHERE ((dateofregis between'$start_date' and '$end_date') AND
-             (sim_status = N'$data'))ORDER BY lastname ASC;";
+         }else if($querytype=='C'){
+      
+           //((ban_start between'$start_date' and '$end_date') and (ban_end between '$start_date'AND '$end_date') AND (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))
+           //THIS QUERY IS FOR BAN DATES
+           $FirstOff ="SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+                              f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
+                              n.lastname as lastname, 
+                              n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
+                              f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                              f.sim_retailer as sim_retailer
+                      FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
+           WHERE ((dateofreg between'$start_date' and '$end_date')AND
+           (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban')) AND regisite='$businessaddress'  ORDER BY lastname ASC;";
+          }else if($querytype=='D'){
+        
+             // first offense NO ISSUE. NO CHANGES NEEED
+            $FirstOff = "SELECT f.sim_status as sim_status, f.simnum as simnum, f.services as services, 
+                              f.business_name as business_name, f.business_address as business_address, f.num_permit as num_permit,
+                              n.lastname as lastname, 
+                              n.firstname as firstname, n.midname as  midname, n.suffix as suffix,   f.nsonum   as nsonum, 
+                              f.simcard as simcard, f.address   as address,   f.simcard as simcard,f.offense_count as offense_count, f.dateofreg as dateofreg, 
+                              f.sim_retailer as sim_retailer
+                      FROM business_entity_registered_simusers_db AS f LEFT JOIN nso_dummy_db as n ON f.nsonum = n.nsonum
+            WHERE (sim_status = N'Permanent ban') AND regisite='$businessaddress'  ORDER BY lastname ASC;";
 
 
-           }
+          }
 
            $result = mysqli_query($conn,$FirstOff);
 
@@ -217,24 +256,23 @@
               while($row = mysqli_fetch_assoc($result)):
 
         ?>
-
         <!-- <tr class="canHov" onclick="window.location='<?php echo "reported-message-content.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
         <tr>
           <th class="text-truncate"><?php echo $row['sim_status']?></th>
           <td class="text-truncate"><?php echo $row['simnum']; ?></td>
           <td class="text-truncate"><?php echo $row['services']; ?></td>
-          <td class="text-truncate"><?php echo 'EDIT THIS' ?></td>
-          <td class="text-truncate"><?php echo 'EDIT THIS' ?></td>
-          <td class="text-truncate"><?php echo 'EDIT THIS' ?></td>
+          <td class="text-truncate"><?php echo $row['business_name'] ?></td>
+          <td class="text-truncate"><?php echo $row['business_address'] ?></td>
+          <td class="text-truncate"><?php echo $row['num_permit'] ?></td>
           <td class="text-truncate"><?php echo $row['lastname']; ?></th>
           <td class="text-truncate"><?php echo $row['firstname']; ?></td>
           <td class="text-truncate"><?php echo $row['midname']; ?></td>
           <td class="text-truncate"><?php echo $row['suffix']; ?></td>
-          <td class="text-truncate"><?php echo $row['passnum_nsonum']; ?></td>
+          <td class="text-truncate"><?php echo $row['nsonum']; ?></td>
           <td class="text-truncate"><?php echo $row['simcard']; ?></td>
           <td class="text-truncate"><?php echo $row['address']; ?></td>
           <td class="text-truncate"><?php echo $row['offense_count'] ?></td>
-          <td class="text-truncate"><?php echo $row['dateofregis']; ?></td>
+          <td class="text-truncate"><?php echo $row['dateofreg']; ?></td>
           <td class="text-truncate"><?php echo $row['sim_retailer']; ?></td>
 
         </tr>

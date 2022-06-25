@@ -165,6 +165,9 @@
             elseif(strpos($fulUrl, "error=imageformaterror") == true){
               echo "<p class= 'nsoexist'>ENTER JPG, PNG, OR BMP ONLY</p>";
             }
+            elseif(strpos($fulUrl, "error=ban") == true){
+              echo "<p class= 'nsoexist'>THIS USER IS UNDER BAN AND CANNOT CHANGE UNTIL BAN IS LIFTED</p>";
+            }
     ?>
   </form>
 

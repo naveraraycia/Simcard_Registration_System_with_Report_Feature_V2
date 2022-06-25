@@ -35,8 +35,8 @@ if(isset($_POST['register'])){
         $services = $_POST['services'];                                 // services
         $regisite  = $_SESSION['Business_Address'];                     // regisite
         $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis'])); // dateofregis
-        $time  = date('G')."_".date('i')."_".date('s');                 // time
-        $timeImg = $time;
+        $timeImg  = date('G')."_".date('i')."_".date('s');                 // time
+        $timeImg = $timeImg.date('Y-m-d');
         $sim_retailer =$_POST['retailer'];                              // sim_retailer
         $sim_shop = $_SESSION['Shop_Name'];                             // sim_shop
         $sim_status = "Active Status";                                  // sim_status
@@ -58,14 +58,15 @@ if(isset($_POST['register'])){
                     business_name, business_address, num_permit, business_permit, 
                     link_business_permit, regisite, dateofreg, offense_count, 
                     ban_start, ban_end, nso_pic, link_nso_pic, id_pic, 
-                    link_id_pic,  fingerprint_File_Format, fingerprint_File_Name)
+                    link_id_pic,  fingerprint_File_Format, fingerprint_File_Name,authletter,link_authletter)
                  VALUES(
                      ?,?,?,?,
                      ?,?,?,?,
                      ?,?,?,?,
                      ?,?,?,?,
                      ?,?,?,?,
-                     ?,?,?,?
+                     ?,?,?,?,
+                     ?,?
                  
                  );";
 
@@ -139,7 +140,19 @@ if(isset($_POST['register'])){
                         $fileActualExt  = strtolower(end($fileExt));
                         $IDName = $lastN."_ID_".$passnum_nsonum.$timeImg;
                   $IDExt = ImageCheck($allowed,$fileActualExt,$fileExt,$IDName,$fileError,$fileSize);
-                  
+                
+                  $Authorfile               = $_FILES['Authorfile'];
+                        $fileName                 = $Authorfile["name"];
+                        $fileType                 = $Authorfile["type"];
+                        $AuthorfileTempName       = $Authorfile["tmp_name"];
+                        $fileError                = $Authorfile["error"];
+                        $fileSize                 = $Authorfile["size"];
+                        $allowed                  = array("jpg","jpeg","png","bmp");
+                        //conversion
+                        $fileExt        = explode(".",$fileName);
+                        $fileActualExt  = strtolower(end($fileExt));
+                        $AuthorName = $lastN."_Author_".$passnum_nsonum.$timeImg;
+                  $AuthorExt = ImageCheck($allowed,$fileActualExt,$fileExt,$AuthorName,$fileError,$fileSize);
                 /// IMAGE FINGERPRINT
                 $Fingerfile                 = $_FILES['Fingerfile'];
                       $fileName             = $Fingerfile["name"];
@@ -165,7 +178,7 @@ if(isset($_POST['register'])){
                         //conversion
                     $fileExt        = explode(".",$fileName);
                     $fileActualExt  = strtolower(end($fileExt));
-                    $PermitName     = $lastN."_Finger_".$passnum_nsonum.$timeImg;
+                    $PermitName     = $lastN."_Permit_".$passnum_nsonum.$timeImg;
                 $PermitExt = ImageCheck($allowed,$fileActualExt,$fileExt,$PermitName,$fileError,$fileSize);
 
 
@@ -222,13 +235,13 @@ if(isset($_POST['register'])){
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt, $sql);
                 $simnum = "+63". $simnum; 
-                mysqli_stmt_bind_param($stmt,"ssssssssssssssssssssssss",
+                mysqli_stmt_bind_param($stmt,"ssssssssssssssssssssssssss",
                                         $simnum, $sim_status, $passnum_nsonum, $address, 
                                         $simcard, $services, $sim_shop, $sim_retailer,
                                         $business_name, $company_address, $num_permit, $PermitName,
                                         $PermitExt, $regisite, $dateofregis, $offense_count, 
                                         $ban_start, $ban_end, $NSOName, $NSOExt,
-                                        $IDName, $IDExt, $FingerExt, $FingerName);
+                                        $IDName, $IDExt, $FingerExt, $FingerName, $AuthorName, $AuthorExt);
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //
                 $result = mysqli_stmt_get_result($stmt);
 
@@ -239,10 +252,12 @@ if(isset($_POST['register'])){
                 $NSOfileDestination    = '../NSO_User_Database/'.$NSOExt;
                 $IDfileDestination     = '../ID_User_Database/'. $IDExt;
                 $PermitfileDestination     = '../Permit_Database/'. $PermitExt;
+                $AuthorfileDestination     = '../Author_Database/'. $AuthorExt;
                 move_uploaded_file($FingerfileTempName,$FingerfileDestination);  //imomove na yung file to that folder
                 move_uploaded_file($NSOfileTempName,$NSOfileDestination);
                 move_uploaded_file($IDfileTempName,$IDfileDestination);
                 move_uploaded_file($PermitTempName,$PermitfileDestination);
+                move_uploaded_file($AuthorfileTempName,$AuthorfileDestination);
 
                 //IF NEW PREPAID, DECREASE SIM RETAILER STOCK
                 if($simcard == "new prepaid user"){

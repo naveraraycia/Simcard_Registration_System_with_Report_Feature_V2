@@ -8,6 +8,7 @@ if(isset($_POST['register'])){
 
        date_default_timezone_set('Asia/Manila');
         $timeImg  = date('G')."_".date('i')."_".date('s');
+        $timeImg = $timeImg.date('Y-m-d');
 
         $simnum   = mysqli_real_escape_string($conn, $_POST['simnum']);
         $passportnumber = $_SESSION['passportnumber'];
