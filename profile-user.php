@@ -1,12 +1,63 @@
 <?php
   require "navbar.php";
   include_once 'includes/dbh.inc.php';
-   //if (empty($_SESSION['UserNumber'])){
-   //  header("Location: index.php");
-   //  exit();
-   // }
-
+  date_default_timezone_set('Asia/Manila');
+  $today = date("Y-m-d");
 $SimCardNumber = $_SESSION['UserNumber'] ;
+$Type          = $_SESSION['Type'];
+
+          if($Type == 'Filipino'){
+            $sql = " SELECT n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix, 
+                            n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum, 
+                            r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard, 
+                            r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start, 
+                            r.ban_end as ban_end, r.sim_retailer as sim_retailer, r.nsonum as nsopass_num
+                    FROM local_registered_simusers_db as r LEFT JOIN nso_dummy_db as n ON r.nsonum = n.nsonum
+                    WHERE r.simnum = ?;";
+          }else if($Type == 'NotFilipino'){
+            $sql = "SELECT n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix, 
+                            n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum, 
+                            r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard, 
+                            r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start, 
+                            r.ban_end as ban_end, r.sim_retailer as sim_retailer, n.nationality as nationality, r.nsonum as nsopass_num
+                    FROM foreign_registered_simusers_db as r LEFT JOIN foreign_passport_db as n ON r.passnum = n.passnum
+                    WHERE r.simnum = ?;";
+          }
+          $stmt = mysqli_stmt_init($conn);
+          mysqli_stmt_prepare($stmt,$sql);
+          mysqli_stmt_bind_param($stmt,"s",$SimCardNumber);
+          mysqli_stmt_execute($stmt);
+          $result = mysqli_stmt_get_result($stmt);
+          if($row = mysqli_fetch_assoc($result)){
+            $_SESSION['UserLast']        = $row['lastname'];
+            $_SESSION['UserFirst']       = $row['firstname'];
+            $_SESSION['UserMiddleName']  = $row['midname'];
+            $_SESSION['UserSuffix']      = $row['suffix'];
+            $_SESSION['UserBirthdate']   = $row['dateofbirth'];
+            $_SESSION['UserGender']      = $row['gender'];
+            $_SESSION['UserAddress']     = $row['address'];
+            $_SESSION['nsopass_num']     = $row['nsopass_num'];
+            if($Type == 'NotFilipino'){
+              $_SESSION['UserNationality']= $row['nationality'];
+              $usertype                   = 'NotFilipino';
+            }else{
+              $_SESSION['UserNationality']= 'Filipino';
+              $usertype                   = 'Filipino';
+            }
+            $_SESSION['UserType']      = 'Filipino';
+            $_SESSION['UserSimCard']     = $row['simcard'];
+            $_SESSION['UserNumber']      = $row['simnum'];
+            $_SESSION['UserRegSite']     = $row['regisite'];
+            $_SESSION['UserDatReg']      = $row['dateofregis'];
+            $_SESSION['services']        = $row['services'];
+            $_SESSION['retailer']        = $row['sim_retailer'];
+            $_SESSION['Banstart']        = $row['ban_start'];
+            $_SESSION['Banend']          = $row['ban_end'];
+            $_SESSION['sim_status']      = $row['sim_status'];
+            $_SESSION['offense_count']   = $row['offense_count'];
+      }
+
+
 $LastName      = $_SESSION['UserLast']  ;
 $FirstName     = $_SESSION['UserFirst']  ;
 $Gender        = $_SESSION['UserGender']  ;
@@ -24,6 +75,7 @@ $RegSite       = $_SESSION['UserRegSite'] ;
 $SimCard       = $_SESSION['UserSimCard']  ;
 $SimStatus     = $_SESSION['sim_status'];
 $SimPenality   = $_SESSION['offense_count'];
+$num           = $_SESSION['nsopass_num'];
 switch($SimPenality){
   case "0":
     $penalty = 'None';
@@ -40,6 +92,33 @@ switch($SimPenality){
 };
 $BanStart      = $_SESSION['Banstart'];
 $BanEnd        = $_SESSION['Banend'];
+
+if ($usertype == 'Filipino'){
+  if($today > $BanEnd){
+      $localsql = "UPDATE local_registered_simusers_db
+              SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+              WHERE nsonum = '$num';";
+       mysqli_query($conn, $localsql);
+
+       $businesssql = "UPDATE business_entity_registered_simusers_db
+              SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+              WHERE nsonum = '$num';";
+       mysqli_query($conn, $businesssql);
+
+       $BanStart = '--';
+       $BanEnd   = '--';
+  }
+}else if($usertype == 'NotFilipino'){
+  if($today > $ban_end){
+      $foreignsql = "UPDATE foreign_registered_simusers_db
+            SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+            WHERE passnum = '$num';";
+      mysqli_query($conn, $foreignsql);
+      $BanStart = '--';
+      $BanEnd   = '--';
+  }
+}
+
 $Sim_Ret       = $_SESSION['retailer'];
 $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
 $Suffix        = " ".$_SESSION['UserSuffix']." ";

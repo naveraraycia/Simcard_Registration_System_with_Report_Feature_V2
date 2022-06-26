@@ -2,7 +2,8 @@
 include_once "../includes/dbh.inc.php";
 
 if(isset($_POST['reportbutton'])){
-
+  date_default_timezone_set('Asia/Manila');
+  $today = date("Y-m-d");
   $update         = mysqli_real_escape_string($conn, $_POST['update']);
   $Message        = mysqli_real_escape_string($conn, $_POST['Remarks']);
   $operator       = $_POST['operator'];
@@ -12,8 +13,10 @@ if(isset($_POST['reportbutton'])){
   $SimCardNumber = $_SESSION['UserNumber'] ;
   $LastName      = $_SESSION['UserLast']  ;
   $FirstName     = $_SESSION['UserFirst']  ;
+  $ban_end       = $_SESSION['Banend'];
   $UserMiddlename    = $_SESSION['UserMiddleName'];
   $UserSuffix        = $_SESSION['UserSuffix'];
+  $num               = $_SESSION['nsopass_num'];
   $UserSuffix_B      = ", ".$UserSuffix;
   $Middle            = substr($UserMiddlename,0,1);
   $User_Name       = $LastName.", ".$FirstName." ".$Middle." ".$UserSuffix_B;
@@ -29,10 +32,22 @@ if(isset($_POST['reportbutton'])){
     while ($row = mysqli_fetch_assoc($result)):
         $sim_status = $row['sim_status'];
     endwhile;
-    if($sim_status <> 'Active Status'){
+    if($sim_status == 'Permanent ban'){
       header("Location:../end-user-update-data-request.php?error=ban");
+      exit();
+    }else if($today > $ban_end){
+      $localsql = "UPDATE local_registered_simusers_db
+              SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+              WHERE nsonum = '$num';";
+       mysqli_query($conn, $localsql);
+       $businesssql = "UPDATE business_entity_registered_simusers_db
+              SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+              WHERE pnsonum = '$num';";
+       mysqli_query($conn, $businesssql);
+    }else{
+      header("Location:../end-user-update-data-request.php?error=ban");
+      exit();
     }
-    exit();
   }else{
     $sql = "SELECT simnum, sim_status FROM foreign_registered_simusers_db
     WHERE simnum ='$SimCardNumber';";
@@ -41,9 +56,16 @@ if(isset($_POST['reportbutton'])){
     while ($row = mysqli_fetch_assoc($result)):
         $sim_status = $row['sim_status'];
     endwhile;
-    if($sim_status <> 'Active Status'){
+    if($sim_status == 'Permanent ban'){
       header("Location:../end-user-update-data-request.php?error=ban");
-      echo 'here';
+      exit();
+    }else if($today > $ban_end){
+      $foreignsql = "UPDATE foreign_registered_simusers_db
+              SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+              WHERE passnum = '$num';";
+       mysqli_query($conn, $foreignsql);
+    }else{
+      header("Location:../end-user-update-data-request.php?error=ban");
       exit();
     }
   }

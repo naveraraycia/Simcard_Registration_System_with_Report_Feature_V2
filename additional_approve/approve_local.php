@@ -56,6 +56,13 @@ include_once "../includes/dbh.inc.php";
     $sql = "DELETE FROM request_reg_db
     WHERE simnum = '$simnum';";
     mysqli_query($conn, $sql);
+    date_default_timezone_set('Asia/Manila');
+    $today = date("Y-m-d");
+    $remark = "The simcard you requested has been approved";
+    $notificationsql = "INSERT INTO notification_db(
+                        simnum, status, remark, shop_name, date_approve, nsonum, service)
+                VALUES('$simnum','approved','$remark','$sim_shop','$today','$nsonum','$services');";
+    mysqli_query($conn, $notificationsql);         
     header("Location: ../additional-local-request.php?localapproved");
 
 } else {

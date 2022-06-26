@@ -1,20 +1,131 @@
 <?php
   include_once 'includes/dbh.inc.php';
-   //if (empty($_SESSION['UserNumber'])){
-   //  header("Location: index.php");
-   //  exit();
-   // }
+   if (empty($_SESSION['UserNumber'])){
+     header("Location: index.php");
+     exit();
+    }
 ?>
 
   <?php
 
     session_start();
-    $LastName      = $_SESSION['UserLast']  ;
-    $FirstName     = $_SESSION['UserFirst']  ;
-    $Suffix        = " ".$_SESSION['UserSuffix']." ";
-    $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
-    $SimCardNumber = $_SESSION['UserNumber'] ;
-    $FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
+    date_default_timezone_set('Asia/Manila');
+    $today = date("Y-m-d");
+    $SimCardNumber  = $_SESSION['UserNumber'];
+    $sql = "SELECT  n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix, 
+                    n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum, 
+                    r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard, 
+                    r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start, 
+                    r.ban_end as ban_end, r.sim_retailer as sim_retailer, r.business_name as business_name, 
+                    r.business_address as business_address, r.num_permit as num_permit, r.nsonum as nsopass_num
+            FROM business_entity_registered_simusers_db as r LEFT JOIN nso_dummy_db as n ON r.nsonum = n.nsonum
+            WHERE r.simnum = ?;";
+       $stmt = mysqli_stmt_init($conn);
+       mysqli_stmt_prepare($stmt,$sql);
+       mysqli_stmt_bind_param($stmt,"s",$SimCardNumber);
+       mysqli_stmt_execute($stmt);
+       $result = mysqli_stmt_get_result($stmt);
+       if($row = mysqli_fetch_assoc($result)){
+         $_SESSION['UserLast']        = $row['lastname'];
+         $_SESSION['UserFirst']       = $row['firstname'];
+         $_SESSION['UserMiddleName']  = $row['midname'];
+         $_SESSION['UserSuffix']      = $row['suffix'];
+         $_SESSION['UserBirthdate']   = $row['dateofbirth'];
+         $_SESSION['UserGender']      = $row['gender'];
+         $_SESSION['UserAddress']     = $row['address'];
+         $_SESSION['UserNationality'] = 'Filipino';
+         $usertype                    = 'Filipino';
+         $_SESSION['UserType']        = 'Filipino';
+         $_SESSION['UserSimCard']     = $row['simcard'];
+         $_SESSION['UserNumber']      = $row['simnum'];
+         $_SESSION['UserRegSite']     = $row['regisite'];
+         $_SESSION['UserDatReg']      = $row['dateofregis'];
+         $_SESSION['services']        = $row['services'];
+         $_SESSION['retailer']        = $row['sim_retailer'];
+         $_SESSION['Banstart']        = $row['ban_start'];
+         $_SESSION['Banend']          = $row['ban_end'];
+         $_SESSION['sim_status']      = $row['sim_status'];
+         $_SESSION['offense_count']   = $row['offense_count'];
+         $_SESSION['business_name']   = $row['business_name'];
+         $_SESSION['business_address']= $row['business_address'];
+         $_SESSION['num_permit']      = $row['num_permit'];
+         $_SESSION['nsonum']          = $row['nsopass_num'];
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$LastName      = $_SESSION['UserLast']  ;
+$FirstName     = $_SESSION['UserFirst']  ;
+$Gender        = $_SESSION['UserGender']  ;
+$Birthdate     = $_SESSION['UserBirthdate'];
+$Address       = $_SESSION['UserAddress']  ;
+$Nationality   = $_SESSION['UserNationality'];
+if ($Nationality == "Filipino" || $Nationality == "filipino"){
+$Type = "Local";
+}else{
+$Type = "Foreign";
+};
+$TypeofUser    = $_SESSION['UserType'] ;
+$DateofRegist  = $_SESSION['UserDatReg'];
+$RegSite       = $_SESSION['UserRegSite'] ;
+$SimCard       = $_SESSION['UserSimCard']  ;
+$SimStatus     = $_SESSION['sim_status'];
+$SimPenality   = $_SESSION['offense_count'];
+switch($SimPenality){
+case "0":
+ $penalty = 'None';
+ break;
+case "1":
+ $penalty = '1st offense';
+ break;
+case "2":
+ $penalty = '2nd offense';
+ break;
+case "3":
+ $penalty = 'Permanently Ban';
+ break;
+};
+$BanStart      = $_SESSION['Banstart'];
+$BanEnd        = $_SESSION['Banend'];
+$num           = $_SESSION['nsonum'];
+if($today > $BanEnd){
+  $localsql = "UPDATE local_registered_simusers_db
+          SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+          WHERE nsonum = '$num';";
+   mysqli_query($conn, $localsql);
+
+   $businesssql = "UPDATE business_entity_registered_simusers_db
+          SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+          WHERE nsonum = '$num';";
+   mysqli_query($conn, $businesssql);
+
+   $BanStart = '--';
+   $BanEnd   = '--';
+}
+
+
+$Sim_Ret       = $_SESSION['retailer'];
+$MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
+$Suffix        = " ".$_SESSION['UserSuffix']." ";
+$MiddleName    = $MiddleName.".";
+$FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
+$service       = $_SESSION['services'];
+$business_name = $_SESSION['business_name'];
+$business_address = $_SESSION['business_address'];
+$num_permit       = $_SESSION['num_permit'];
   ?>
   <!DOCTYPE html>
   <html lang="en" dir="ltr">
@@ -88,64 +199,6 @@
         </nav>
       </header>
 
-<?php
-   $user = $_SESSION['UserNumber'];
-   $sql  = "SELECT * FROM working_sim_db WHERE simnum=?;";
-   $stmt = mysqli_stmt_init($conn);
-   if (mysqli_stmt_prepare($stmt,$sql)){
-     mysqli_stmt_bind_param($stmt,"s",$user);
-     mysqli_stmt_execute($stmt);
-     $result = mysqli_stmt_get_result($stmt);
-     // session_start();
-     if($row = mysqli_fetch_assoc($result)){
-            $_SESSION['company_address'] = $row['company_address'];
-       }else{
-        $_SESSION['company_address'] = "--";
-       }
-      }
-$SimCardNumber = $_SESSION['UserNumber'] ;
-$LastName      = $_SESSION['UserLast']  ;
-$FirstName     = $_SESSION['UserFirst']  ;
-$Gender        = $_SESSION['UserGender']  ;
-$Birthdate     = $_SESSION['UserBirthdate'];
-$Address       = $_SESSION['UserAddress']  ;
-$Nationality   = $_SESSION['UserNationality'];
-if ($Nationality == "Filipino" || $Nationality == "filipino"){
-$Type = "Local";
-}else{
-$Type = "Foreign";
-};
-$TypeofUser    = $_SESSION['UserType'] ;
-$DateofRegist  = $_SESSION['UserDatReg'];
-$TimeofReg     = $_SESSION['UserTimeReg'];
-$RegSite       = $_SESSION['UserRegSite'] ;
-$SimCard       = $_SESSION['UserSimCard']  ;
-$SimStatus     = $_SESSION['sim_status'];
-$SimPenality   = $_SESSION['offense_count'];
-switch($SimPenality){
-  case "0":
-    $penalty = 'None';
-    break;
-  case "1":
-    $penalty = '1st offense';
-    break;
-  case "2":
-    $penalty = '2nd offense';
-    break;
-  case "3":
-    $penalty = 'Permanently Ban';
-    break;
-};
-$BanStart      = $_SESSION['Banstart'];
-$BanEnd        = $_SESSION['Banend'];
-$Sim_Ret       = $_SESSION['retailer'];
-$MiddleName    = substr($_SESSION['UserMiddleName'],0,1);
-$Suffix        = " ".$_SESSION['UserSuffix']." ";
-$MiddleName    = $MiddleName.".";
-$FullName      = $FirstName." ".$MiddleName." ".$LastName." ".$Suffix;
-$company_address = $_SESSION['company_address'];
-$service       = $_SESSION['services'];
-?>
 
 
 <!-- BODY PART -->
@@ -266,17 +319,17 @@ $service       = $_SESSION['services'];
 
         <div class='infodiv'>
           <p class='labelings'>Business Name</p>
-          <p class='information'>EDIT THIS</p>
+          <p class='information'>$business_name</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Address</p>
-          <p class='information'>EDIT THIS</p>
+          <p class='information'>$business_address</p>
         </div>
 
         <div class='infodiv'>
           <p class='labelings'>Business Permit Number</p>
-          <p class='information'>EDIT THIS</p>
+          <p class='information'>$num_permit</p>
         </div>
 
         <div class='infodiv'>

@@ -9,6 +9,11 @@ if(isset($_POST['reportbutton'])){
 
   ///////////////////////////////// GETTING END USER INFORMATION USING SESSION /////////////////////////////////
   session_start();
+  if ($_SESSION['Type']== 'Business'){
+    $Type = 'Business';
+  }else{
+    $Type = 'NotBusiness';
+  }
   $SimCardNumber = $_SESSION['UserNumber'] ;
   $LastName      = $_SESSION['UserLast']  ;
   $FirstName     = $_SESSION['UserFirst']  ;
@@ -36,7 +41,7 @@ if(isset($_POST['reportbutton'])){
   $fileName =$file["name"];
   $fileType =$file["type"];
   $fileTempName =$file["tmp_name"]; //temporary name = current name of the file when uploaded to a website
-  $fileError =$file["error"]; //if the file is working or not
+  $fileError =$file["error"]; //if the file is working or 
   $fileSize =$file["size"];
 
   $allowed = array("jpg","jpeg","png","bmp");
@@ -48,15 +53,37 @@ if(isset($_POST['reportbutton'])){
                              //////////////////////  TEXT ERRORS   /////////////////////
 
           if(empty($Reported_Num)){
-            header("Location: ../profile-user.php?reportPage&ReportStatus=empty");
-            exit();
-          }else{
-              if(!preg_match('/^[0-9]*$/',$Reported_Num)){ //ERROR HANDLERS FOR NOT INTEGER/NUMBER
-                header("Location:../profile-user.php?reportPage&ReportStatus=InvalidFormat");
+            switch ($Type){
+                case 'Business': 
+                      header("Location: ../bus-ent-profile.php?reportPage&ReportStatus=empty");
+                      break;
+                default:
+                      header("Location: ../profile-user.php?reportPage&ReportStatus=empty");
+                      break;
                 exit();
+            }
+          }else{
+              if(!preg_match('/^[0-9]*$/',$Reported_Num)){ //ERROR HANDLERS FOR  INTEGER/NUMBER
+                switch ($Type){
+                  case 'Business': 
+                        header("Location: ../bus-ent-profile.php?reportPage&ReportStatus=InvalidFormat");
+                        break;
+                  default:
+                        header("Location: ../profile-user.php?reportPage&ReportStatus=InvalidFormat");
+                        break;
+                  exit();
+                 }
               }else{
                 if(empty($Message)){
-                  header("Location: ../profile-user.php?reportPage&ReportStatus=NoMessage");
+                  switch ($Type){
+                    case 'Business': 
+                          header("Location: ../bus-ent-profile.php?reportPage&ReportStatus=NoMessage");
+                          break;
+                    default:
+                          header("Location: ../profile-user.php?reportPage&ReportStatus=NoMessage");
+                          break;
+                    exit();
+                   }
                 }else{
                 $numbercount = strlen($Reported_Num);
                 if($numbercount == 10){  //ERROR HANDLERS FOR INCORRECT DIGITS/CHARACTERS LENGTH
@@ -65,18 +92,31 @@ if(isset($_POST['reportbutton'])){
                   //enter image error handlers
                   //////////////////////  IMAGE ERRORS  /////////////////////
                   if($fileSize==0){   //ERROR 404 for no file added
-                    header("Location:../profile-user.php?reportPage&ReportStatus=imageempty");
-                    exit();
+                    switch ($Type){
+                      case 'Business': 
+                            header("Location:../bus-ent-profile.php?reportPage&ReportStatus=imageempty");
+                            break;
+                      default:
+                            header("Location: ../profile-user.php?reportPage&ReportStatus=imageempty");
+                            break;
+                      exit();
+                    }
                   }else{
                     if(in_array($fileActualExt,$allowed)){   //IF FILE IS JPG,PNG,JPEG
                           if($fileError === 0){                  //IF FILE HAS A PROBLEM
-                              if($fileSize<20000000){              // IF FILE SIZE IS NOT LARGE
+                              if($fileSize<20000000){              // IF FILE SIZE IS  LARGE
                   //////////////////////////////////////// INITIALIZING THE INPUTS TO DATABASE  ////////////////////////////////////////
                   //Check how many items are there in Database
                               $sql  = "SELECT * FROM report_messages_db;";
                               $stmt = mysqli_stmt_init($conn);
                               if(!mysqli_stmt_prepare($stmt,$sql)){  //ERROR 404 for connection database error
-                                  header("Location:../profile-user.php?reportPage&ReportStatus=imagedatabaseerror");
+                                switch ($Type){
+                                  case 'Business': 
+                                        header("Location:../bus-ent-profile.php?reportPage&ReportStatus=imagedatabaseerror");
+                                  default:
+                                        header("Location: ../profile-user.php?reportPage&ReportStatus=imagedatabaseerror");
+                                  exit();
+                                }
                               }else{
                                   mysqli_stmt_execute($stmt); //execute
                                   $result   = mysqli_stmt_get_result($stmt);
@@ -98,7 +138,15 @@ if(isset($_POST['reportbutton'])){
                                           VALUES(?,?,?,?,?,?,?);";
 
                                   if(!mysqli_stmt_prepare($stmt,$sql)){ //ERROR 404 for unable to upload
-                                      header("Location:../profile-user.php?reportPage&ReportStatus=uploaderror");
+                                    switch ($Type){
+                                      case 'Business': 
+                                            header("Location: ../bus-ent-profile.php?reportPage&ReportStatus=uploaderror");
+                                            break;
+                                      default:
+                                            header("Location: ../profile-user.php?reportPage&ReportStatus=uploaderror");
+                                            break;
+                                      exit();
+                                     }
                                   }else{
                                       $Reported_Num = "+63". $Reported_Num;
                                       //uploading the Data
@@ -114,25 +162,61 @@ if(isset($_POST['reportbutton'])){
                                       $resultup = mysqli_query($conn, $update);
 
 
-                                      header("Location:../profile-user.php?reportPage&ReportStatus=success");
+                                      switch ($Type){
+                                        case 'Business': 
+                                              header("Location: ../bus-ent-profile.php?reportPage&ReportStatus=success");
+                                              break;
+                                        default:
+                                              header("Location: ../profile-user.php?reportPage&ReportStatus=success");
+                                              break;
+                                        exit();
+                                       }
                                     }
                                   }
                                 }else{
-                                  header("Location:../profile-user.php?reportPage&ReportStatus=imagelarge");
-                                  exit();
+                                  switch ($Type){
+                                    case 'Business': 
+                                          header("Location: ../bus-ent-profile.php?reportPage&ReportStatus=imagelarge");
+                                          break;
+                                    default:
+                                          header("Location: ../profile-user.php?reportPage&ReportStatus=imagelarge");
+                                          break;
+                                    exit();
+                                   }
                                 }
                               }else{
-                                header("Location:../profile-user.php?reportPage&ReportStatus=imageerror");
-                                exit();
+                                switch ($Type){
+                                  case 'Business': 
+                                        header("Location: ../bus-ent-profile.php?reportPage&ReportStatus=imageerror");
+                                        break;
+                                  default:
+                                        header("Location: ../profile-user.php?reportPage&ReportStatus=imageerror");
+                                        break;
+                                  exit();
+                                 }
                               }
                             }else{
-                              header("Location:../profile-user.php?reportPage&ReportStatus=imageformaterror");
-                              exit();
+                              switch ($Type){
+                                case 'Business': 
+                                      header("Location: ../bus-ent-profile.php?reportPage&ReportStatus=imageformaterror");
+                                      break;
+                                default:
+                                      header("Location: ../profile-user.php?reportPage&ReportStatus=imageformaterror");
+                                      break;
+                                exit();
+                               }
                             }
                           }
                         }else{
-                          header("Location:../profile-user.php?reportPage&ReportStatus=numberlength");
-                          exit();
+                          switch ($Type){
+                            case 'Business': 
+                                  header("Location: ../bus-ent-profile.php?reportPage&ReportStatus=numberlength");
+                                  break;
+                            default:
+                                  header("Location: ../profile-user.php?reportPage&ReportStatus=numberlength");
+                                  break;
+                            exit();
+                           }
                         } //line 123 end
                       }
                       } //line 62 end

@@ -45,9 +45,6 @@
             $address       = $_POST['address'];
 
 
-                    
-
-
     
                       //FUNCTION ERROR HANDLERS FOR IMAGE                         //Keanu_NSO_01234_3-43
                               function ImageCheck($allowed,$fileActualExt,$fileExt,$FullName,$fileError,$fileSize,$type){

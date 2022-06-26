@@ -1,13 +1,16 @@
 <?php
   // require "navbar.php";
+  session_start();
+  
   include_once 'includes/dbh.inc.php';
-  // $sql = "SELECT * FROM nso_dummy_db ORDER BY lastname ASC";
+  $nsonum = $_SESSION['nsopass_num'];
+
   // $result = mysqli_query($conn, $sql);
   ?>
 
   <?php
 
-    session_start();
+
 
   ?>
   <!DOCTYPE html>
@@ -100,21 +103,27 @@
       <tbody>
 
         <?php
-              // while($row = mysqli_fetch_assoc($result)):
+                  $nsonum = $_SESSION['nsopass_num'];
+                  $sql = "SELECT simnum, status,remark, shop_name, date_approve, nsonum, service
+                   FROM notification_db
+                   WHERE nsonum ='$nsonum'";
+                   $result = mysqli_query($conn,$sql);
+                   $resultCheck = mysqli_num_rows($result);
+              while($row = mysqli_fetch_assoc($result)):  
         ?>
 
         <tr>
 
-          <th scope="row" class="text-truncate"><?php echo 'Globe' ?></th>
-          <td class="text-truncate"><?php echo '+639175647890'?></td>
-          <td class="text-truncate"><?php echo 'Approved' ?></td>
-          <td class="text-truncate"><?php echo 'You can now pick up your SIM' ?></td>
-          <td class="text-truncate"><?php echo 'Cavite SIM Shop' ?></td>
-          <td class="text-truncate"><?php echo '2022-01-31' ?></td>
+          <th scope="row" class="text-truncate"><?php echo $row['service'] ?></th>
+          <td class="text-truncate"><?php echo $row['simnum']?></td>
+          <td class="text-truncate"><?php echo $row['status'] ?></td>
+          <td class="text-truncate"><?php echo $row['remark'] ?></td>
+          <td class="text-truncate"><?php echo $row['shop_name']?></td>
+          <td class="text-truncate"><?php echo $row['date_approve'] ?></td>
 
         </tr>
 
-      <!-- <?php //endwhile; ?> -->
+       <?php endwhile; ?> 
 
 
       </tbody>

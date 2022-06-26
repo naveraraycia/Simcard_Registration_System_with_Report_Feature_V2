@@ -141,7 +141,9 @@
                     echo   "<br>";
                     echo     $NSOExt;
                     
-                    //update local                                   
+                    
+
+                    if()
                     $sql = "UPDATE seller 
                     SET Shop_Name = '$shop_name', selleremail = '$selleremail', Business_Permit = '$num_permit', Business_Address = '$shop_address',
                         Simcard_Limit = '$sim_limit', address = '$address', link_nsopass_pic = '$NSOExt', link_id_pic = '$IDExt', link_permit_pic = '$PermitExt'

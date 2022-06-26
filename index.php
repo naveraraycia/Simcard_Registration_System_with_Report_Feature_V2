@@ -1,5 +1,23 @@
 <?php
     session_start();
+    date_default_timezone_set('Asia/Manila');
+    $today = date("Y-m-d");
+    include 'includes/dbh.inc.php';
+    $sql = "UPDATE local_registered_simusers_db
+            SET ban_start = '--', ban_end = '--', sim_status = 'Active Status'
+            WHERE '$today' > ban_end;";
+    mysqli_query($conn, $sql);
+
+    $sql = "UPDATE business_entity_registered_simusers_db
+            SET ban_start = '--', ban_end = '--', sim_status = 'Active Status'
+            WHERE '$today' > ban_end;";
+    mysqli_query($conn, $sql);
+
+  
+    $sql = "UPDATE foreign_registered_simusers_db
+            SET ban_start = '--', ban_end = '--', sim_status = 'Active Status'
+            WHERE '$today' > ban_end;";
+    mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
