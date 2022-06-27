@@ -243,7 +243,6 @@ if (empty($_SESSION['AdminEmail'])){
      <div class="row srow">
        <div class="col-md-3 infodiv">
          <label class="Bday">SIM Status</label>
-<<<<<<< HEAD
        <select class="custom-select mr-sm-2" id="name1" name ="sim_status">
          <option>Active Status</option>
         <option >First offense</option>
@@ -256,10 +255,6 @@ if (empty($_SESSION['AdminEmail'])){
         document.getElementById('name1').value = "<?php echo $row['sim_status'];?>";
       </script>
     </div>
-=======
-         <input id="" type="text" name="sim_status" class="form-control" value="<?= $row['sim_status'] ?>" required>
-       </div>
->>>>>>> 12dac04641fba378ed2b92a2e15ad861f36cfd56
        <div class="col-md-3 infodiv">
          <label class="Bday">Penalty</label>
          <input id="" type="text" name="offense_count" class="form-control" value="<?= $row['offense_count'] ?>" required>
