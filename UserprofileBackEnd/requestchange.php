@@ -42,7 +42,7 @@ if(isset($_POST['reportbutton'])){
        mysqli_query($conn, $localsql);
        $businesssql = "UPDATE business_entity_registered_simusers_db
               SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
-              WHERE pnsonum = '$num';";
+              WHERE nsonum = '$num';";
        mysqli_query($conn, $businesssql);
     }else{
       header("Location:../end-user-update-data-request.php?error=ban");

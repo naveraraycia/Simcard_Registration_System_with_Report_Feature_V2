@@ -65,7 +65,7 @@ require '../includes/dbh.inc.php';
             SET address = '$type_address',  link_passport_pic = '$nso_link', passport_pic = '$nso_link'
             WHERE passnum = '$passnum'";
             mysqli_query($conn, $sql);
-            $delete_request = "DELETE FROM update_user_db WHERE  user_id ='$user_id";
+            $delete_request = "DELETE FROM update_user_db WHERE  user_id ='$user_id'";
              mysqli_query($conn, $delete_request);
             header("Location: ../info-upd-foreign.php?successforeign");
             exit();
