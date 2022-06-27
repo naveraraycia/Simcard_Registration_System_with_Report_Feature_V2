@@ -278,7 +278,7 @@
 
          <div class="col-md-6 infodiv">
            <label class="labelings">Name of SIM retailer</label>
-           <input id="regisite" type="text" name="retailer" class="form-control" placeholder="ex: Cavite" required>
+           <input id="regisite" type="text" name="retailer" class="form-control" required>
          </div>
 
        </div>

@@ -105,26 +105,48 @@
       <form action="" method="GET">
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
-        <div class="col-md-3">
-          <label class="labelings">Offense</label>
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
-              <option selected >All</option>
-              <option >No offense at present</option>
-              <option >With offense</option>
-              <option >First offense</option>
-              <option>Second offense</option>
-              <option>Third offense</option>
-            </select>
+          <div class="col-md-3">
+            <label class="labelings">Offense</label>
+              <select class="custom-select mr-sm-2" id="name1" name ="operator">
+                <option>All</option>
+               <option >No offense at present</option>
+               <option >With offense</option>
+               <option >First offense</option>
+               <option>Second offense</option>
+               <option>Third offense</option>
+
+             </select>
+             <script type="text/javascript">
+               document.getElementById('name1').value = "<?php echo $_GET['operator'];?>";
+             </script>
+
         </div>
 
-        <div class="col-md-3">
-          <label class="labelings">Start date</label>
-          <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+        <?php
+        if (isset($_GET['start_date']) OR isset($_GET['end_date'])){
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Start date</label>
+            <input class="form-control" value="<?php echo $_GET['start_date'] ?>" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End date</label>
+            <input class="form-control" value="<?php echo $_GET['end_date'] ?>" type="date" name="end_date" style="width:100%!important;">
         </div>
-        <div class="col-md-3">
-          <label class="labelings">End date</label>
-          <input class="form-control" type="date" name="end_date" style="width:100%!important;">
-      </div>
+          <?php
+        } else {
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Start date</label>
+            <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End date</label>
+            <input class="form-control" type="date" name="end_date" style="width:100%!important;">
+        </div>
+           <?php
+        }
+         ?>
         </div>
 
         <div class="row" style="display:flex;margin-top:1rem;">

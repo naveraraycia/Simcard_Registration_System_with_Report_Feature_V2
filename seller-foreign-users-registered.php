@@ -100,26 +100,48 @@
       <form action="" method="GET">
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
-        <div class="col-md-3">
-          <label class="labelings">Offense</label>
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
-              <option selected >All</option>
-              <option >No offense at present</option>
-              <option >With offense</option>
-              <option >First offense</option>
-              <option>Second offense</option>
-              <option>Third offense</option>
-            </select>
+          <div class="col-md-3">
+            <label class="labelings">Offense</label>
+              <select class="custom-select mr-sm-2" id="name1" name ="operator">
+                <option>All</option>
+               <option >No offense at present</option>
+               <option >With offense</option>
+               <option >First offense</option>
+               <option>Second offense</option>
+               <option>Third offense</option>
+
+             </select>
+             <script type="text/javascript">
+               document.getElementById('name1').value = "<?php echo $_GET['operator'];?>";
+             </script>
         </div>
 
-        <div class="col-md-3">
-          <label class="labelings">Start date</label>
-          <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+        <?php
+        if (isset($_GET['start_date']) OR isset($_GET['end_date'])){
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Start date</label>
+            <input class="form-control" value="<?php echo $_GET['start_date'] ?>" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End date</label>
+            <input class="form-control" value="<?php echo $_GET['end_date'] ?>" type="date" name="end_date" style="width:100%!important;">
         </div>
-        <div class="col-md-3">
-          <label class="labelings">End date</label>
-          <input class="form-control" type="date" name="end_date" style="width:100%!important;">
-      </div>
+          <?php
+        } else {
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Start date</label>
+            <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End date</label>
+            <input class="form-control" type="date" name="end_date" style="width:100%!important;">
+        </div>
+           <?php
+        }
+         ?>
+
         </div>
 
         <div class="row" style="display:flex;margin-top:1rem;">
@@ -131,7 +153,7 @@
     <table class="table table-striped" id="example">
       <thead>
         <tr>
-          <th class="f-column text-truncate" scope="col" >SIM status</th>
+          <th class="f-column text-truncate" scope="col" >User status</th>
           <th class="f-column text-truncate" scope="col" >SIM Card #</th>
           <th class="f-column text-truncate" scope="col" >Provider</th>
           <th class="f-column text-truncate" scope="col" >Last Name</th>
@@ -217,13 +239,12 @@
            WHERE ((dateofreg between'$start_date' and '$end_date')AND
            (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban')) AND regisite='$businessaddress'  ORDER BY lastname ASC;";
           }else if($querytype=='D'){
-           $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
              // first offense NO ISSUE. NO CHANGES NEEED
             $FirstOff = "SELECT f.sim_status, f.simnum, f.services, n.lastname, n.firstname, n.midname, n.suffix, f.passnum, f.address,n.nationality,
             f.simcard, f.address, f.offense_count, f.dateofreg, f.sim_retailer
             FROM foreign_registered_simusers_db AS f LEFT JOIN foreign_passport_db as n ON f.passnum = n.passnum
             WHERE ((dateofreg between'$start_date' and '$end_date')AND
-            (sim_status = N'Permanent ban')) AND regisite='$businessaddress'  ORDER BY lastname ASC;";
+            (sim_status = N'$data')) AND regisite='$businessaddress'  ORDER BY lastname ASC;";
 
 
           }
