@@ -35,6 +35,10 @@ if($sim_amount < $Max_Limit_Assign){
               SET Simcard_Limit = '$sim_amount'
               WHERE selleremail ='$selleremail';";
        $result = mysqli_query($conn, $sql);
+       $sqldel = "DELETE FROM resupply_requests
+              WHERE request_id = '$id' ";
+        mysqli_query($conn, $sqldel);
+
    header("Location: ../admin-resupply-request.php?done=resupply");
    exit();
 
@@ -46,12 +50,15 @@ if($sim_amount < $Max_Limit_Assign){
               SET Simcard_Limit = '$simtotal'
               WHERE selleremail ='$selleremail';";
        $result = mysqli_query($conn, $sql);
+       $sqldel = "DELETE FROM resupply_requests
+              WHERE request_id = '$id' ";
+        mysqli_query($conn, $sqldel);
   //  mysqli_query($conn, $sql);
    header("Location: ../admin-resupply-request.php?done=resupply");
    exit();
 }
 
-//DELETE
+// DELETE
 // $sql = "DELETE FROM resupply_requests
 //        WHERE sim_amount_requested = '$id' ";
 //  mysqli_query($conn, $sql);
