@@ -5,7 +5,6 @@ include_once "../includes/dbh.inc.php";
 	if(isset($_GET['request'])) {
 
   $simnum = $_GET['request'];
-  $thrownum = trim($simnum, ' ');
   $simnum = '+'.$simnum;
     $sql = "SELECT * FROM request_reg_db
     WHERE simnum = '$simnum';";     
@@ -50,8 +49,8 @@ include_once "../includes/dbh.inc.php";
     }
     $offense_count = "0";
     $sim_status    = "Active Status";
-    $ban_start     = "0000-00-00";
-    $ban_end       = "0000-00-00";
+    $ban_start     = "--";
+    $ban_end       = "--";
 
 
    $checkstatus = "SELECT sim_status, ban_start, ban_end, offense_count, nsonum
@@ -80,16 +79,16 @@ include_once "../includes/dbh.inc.php";
     mysqli_query($conn, $sql);
 
     //DELETE THAT  REQUEST
-   // $sql = "DELETE FROM request_reg_db
-   // WHERE simnum = '$simnum';";
-   // mysqli_query($conn, $sql);
-   // date_default_timezone_set('Asia/Manila');
-   // $today = date("Y-m-d");
-   // $remark = "The simcard you requested has been approved";
-   // $notificationsql = "INSERT INTO notification_db(
-   //                     simnum, status, remark, shop_name, date_approve, nsonum, service)
-   //             VALUES('$simnum','approved','$remark','$sim_shop','$today','$nsonum','$services');";
-   // mysqli_query($conn, $notificationsql);         
+    $sql = "DELETE FROM request_reg_db
+    WHERE simnum = '$simnum';";
+    mysqli_query($conn, $sql);
+    date_default_timezone_set('Asia/Manila');
+    $today = date("Y-m-d");
+    $remark = "The simcard you requested has been approved";
+    $notificationsql = "INSERT INTO notification_db(
+                        simnum, status, remark, shop_name, date_approve, nsonum, service)
+                VALUES('$simnum','approved','$remark','$sim_shop','$today','$nsonum','$services');";
+    mysqli_query($conn, $notificationsql);         
     header("Location: ../additional-local-request.php?localapproved");
 
 } else {

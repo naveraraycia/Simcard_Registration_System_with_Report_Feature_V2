@@ -169,8 +169,8 @@
       <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
       <tr>
         <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td> -->
-        <td class="text-truncate"><a href="additional_approve/approve_foreign.php?request=<?php echo  $noplussimnum;?>" class="btn btn-success">Approve</a></td>
-        <td class="text-truncate"><a href="additional_approve/delete.php?request=<?php echo   $noplussimnum; ?>" class="btn btn-danger">Deny</a></td>
+        <td class="text-truncate"><a href="additional_approve/approve_foreign.php?request=<?php echo  $thrownum;?>" class="btn btn-success">Approve</a></td>
+        <td class="text-truncate"><a href="additional_approve/delete.php?request=<?php echo   $thrownum; ?>" class="btn btn-danger">Deny</a></td>
         <td class="text-truncate"><a href="foreign-content.php?simnum=<?php echo $thrownum."&user=request" ?>" class="btn btn-primary">View</a></td>
         <td class="f-column text-truncate"><?php echo $row['lastname'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['firstname'] ?></th>

@@ -35,10 +35,38 @@ include_once "../includes/dbh.inc.php";
         
         
     endwhile;
-    $sim_status = "Active Status";
-    $ban_start = "--";
-    $ban_end = "--";
-    $offense_count ="0";
+
+    
+    $sql ="SELECT COUNT(passnum) as cout FROM foreign_registered_simusers_db WHERE passnum = '$passnum';";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_num_rows($result);
+    foreach($result as $row){
+           $counts = $row['cout'];
+    }
+    if(($counts)>=5){
+      header("Location: ../additional-foreign-request.php?alreadyexceed");
+      exit();
+   }
+
+   $offense_count = "0";
+   $sim_status    = "Active Status";
+   $ban_start     = "--";
+   $ban_end       = "--";
+
+
+      $checkstatus = "SELECT sim_status, ban_start, ban_end, offense_count, passnum
+           FROM foreign_registered_simusers_db
+           WHERE passnum = '$passnum';";
+    $result = mysqli_query($conn,$checkstatus);
+    $resultCheck = mysqli_num_rows($result);
+    while($row = mysqli_fetch_assoc($result)):
+           $passnum =      $row['passnum']; 
+           $ban_end =   $row['ban_end'];
+           $ban_start   =   $row['ban_start'];
+           $offense_count = $row['offense_count'];
+           $sim_status = $row['sim_status'];
+    endwhile;
+
     $stmt = mysqli_stmt_init($conn);
 
     $sql = "INSERT INTO foreign_registered_simusers_db (
@@ -52,6 +80,7 @@ include_once "../includes/dbh.inc.php";
             '$offense_count', '$ban_start', '$ban_end');";
     mysqli_query($conn, $sql);
 
+
     //DELETE THAT  REQUEST
      $sql = "DELETE FROM request_reg_db WHERE simnum = '$simnum';";
      mysqli_query($conn, $sql);
@@ -61,7 +90,7 @@ include_once "../includes/dbh.inc.php";
      $remark = "The simcard you requested has been approved";
      $notificationsql = "INSERT INTO notification_db(
                         simnum, status, remark, shop_name, date_approve, nsonum, service)
-                VALUES('$simnum','approved','$remark','$sim_shop','$today','$nsonum','$services');";
+                VALUES('$simnum','approved','$remark','$sim_shop','$today','$passnum','$services');";
      mysqli_query($conn, $notificationsql);         
     header("Location: ../additional-foreign-request.php?foreignapproved");
 
