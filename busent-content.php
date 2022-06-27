@@ -269,7 +269,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="Fingerprint-img">
+                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="Fingerprint-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -290,7 +290,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="NSO-img">
+                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="NSO-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -311,7 +311,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="valid-id-img">
+                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="valid-id-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -332,7 +332,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="business-permit-img">
+                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="business-permit-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -353,7 +353,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="author-letter-img">
+                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="author-letter-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

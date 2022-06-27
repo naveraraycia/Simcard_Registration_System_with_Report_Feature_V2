@@ -283,7 +283,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'Fingerprint_Registered_User_Database/'.$finger_link;     ?>" alt="Fingerprint-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'Fingerprint_Registered_User_Database/'.$finger_link;     ?>" alt="Fingerprint-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -304,7 +304,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'NSO_User_Database/'.$nso_link;     ?>" alt="NSO-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'NSO_User_Database/'.$nso_link;     ?>" alt="passport-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -13,9 +13,9 @@
    $simnum = '+'.$simnum;
 
    if($user=='filipino'){
-         $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth, 
-                      n.gender as gender, n.nsonum as nsonum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start, 
-                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as services, 
+         $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth,
+                      n.gender as gender, n.nsonum as nsonum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start,
+                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as services,
                       l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite,
                       l.fingerprint_File_Format as finger_pic, l.link_nsopass_pic as nso_pic, l.link_id_pic as id_pic
                FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON  l.nsonum = n.nsonum
@@ -291,7 +291,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'Fingerprint_Registered_User_Database/'.$finger_link;     ?>" alt="Fingerprint-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'Fingerprint_Registered_User_Database/'.$finger_link;     ?>" alt="Fingerprint-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -312,7 +312,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'NSO_User_Database/'.$nso_link;     ?>" alt="NSO-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'NSO_User_Database/'.$nso_link;     ?>" alt="NSO-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -333,7 +333,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'ID_User_Database/'.$id_link;    ?>" alt="valid-id-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'ID_User_Database/'.$id_link;    ?>" alt="valid-id-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
