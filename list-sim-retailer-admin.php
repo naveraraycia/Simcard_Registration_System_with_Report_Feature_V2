@@ -95,14 +95,31 @@
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
 
 
-        <div class="col-md-4">
-          <label class="labelings">Registration date start range</label>
-          <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
-        </div>
-        <div class="col-md-4">
-          <label class="labelings">End range</label>
-          <input class="form-control" type="date" name="end_date" style="width:100%!important;">
-      </div>
+          <?php
+          if (isset($_GET['start_date']) OR isset($_GET['end_date'])){
+            ?>
+            <div class="col-md-4">
+              <label class="labelings">Registration date start range</label>
+              <input class="form-control" value="<?php echo $_GET['start_date'] ?>" type="date" name="start_date" style="width:100%!important;" >
+            </div>
+            <div class="col-md-4">
+              <label class="labelings">End range</label>
+              <input class="form-control" value="<?php echo $_GET['end_date'] ?>" type="date" name="end_date" style="width:100%!important;">
+          </div>
+            <?php
+          } else {
+            ?>
+            <div class="col-md-4">
+              <label class="labelings">Registration date start range</label>
+              <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+            </div>
+            <div class="col-md-4">
+              <label class="labelings">End range</label>
+              <input class="form-control" type="date" name="end_date" style="width:100%!important;">
+          </div>
+             <?php
+          }
+           ?>
         </div>
 
         <div class="row" style="display:flex;margin-top:1rem;">
@@ -132,9 +149,6 @@
             <th class="f-column text-truncate" scope="col">Business Permit #</th>
             <th class="f-column text-truncate" scope="col">Shop Address</th>
             <th class="f-column text-truncate" scope="col">SIM Limit</th>
-            <th class="f-column text-truncate" scope="col">Business Permit</th>
-            <th class="f-column text-truncate" scope="col">NSO</th>
-            <th class="f-column text-truncate" scope="col">Valid ID</th>
             <th class="f-column text-truncate" scope="col">Owner's Address</th>
             <th class="f-column text-truncate" scope="col">Owner's SIM #</th>
             <th class="f-column text-truncate" scope="col">Registration Date</th>
@@ -200,9 +214,6 @@
           <td class="text-truncate"><?php echo $row['Business_Permit']; ?></th>
           <td class="text-truncate"><?php echo $row['Business_Address']; ?></th>
           <td class="text-truncate"><?php echo $row['simcard_limit']; ?></th>
-          <td class="text-truncate"><?php echo $row['link_permit_pic']; ?></th>
-          <td class="text-truncate"><?php echo $row['link_nsopass_pic']; ?></th>
-          <td class="text-truncate"><?php echo $row['link_id_pic']; ?></th>
           <td class="text-truncate"><?php echo $row['address']; ?></th>
           <td class="text-truncate"><?php echo  $simnum; ?></th>
           <td class="text-truncate"><?php echo $row['dateofreg']; ?></td>

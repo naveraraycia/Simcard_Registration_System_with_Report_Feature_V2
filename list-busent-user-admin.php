@@ -96,15 +96,31 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
               <option>Third offense</option>
             </select>
         </div>
-
-        <div class="col-md-3">
-          <label class="labelings">Marked as Malicious SIMs from</label>
-          <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+        <?php
+        if (isset($_GET['start_date']) OR isset($_GET['end_date'])){
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Marked as Malicious SIMs from</label>
+            <input class="form-control" value="<?php echo $_GET['start_date'] ?>" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End range</label>
+            <input class="form-control" value="<?php echo $_GET['end_date'] ?>" type="date" name="end_date" style="width:100%!important;">
         </div>
-        <div class="col-md-3">
-          <label class="labelings">End range</label>
-          <input class="form-control" type="date" name="end_date" style="width:100%!important;">
-      </div>
+          <?php
+        } else {
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Marked as Malicious SIMs from</label>
+            <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End range</label>
+            <input class="form-control" type="date" name="end_date" style="width:100%!important;">
+        </div>
+           <?php
+        }
+         ?>
         </div>
 
         <div class="row" style="display:flex;margin-top:1rem;">
@@ -141,11 +157,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
           <th class="f-column text-truncate" scope="col" >Registration Site</th>
           <th class="f-column text-truncate" scope="col" >SIM Retailer</th>
           <th class="f-column text-truncate" scope="col" >Registration Date</th>
-          <th class="f-column text-truncate" scope="col" >Fingerprint</th>
-          <th class="f-column text-truncate" scope="col" >Business Permit</th>
-          <th class="f-column text-truncate" scope="col" >NSO</th>
-          <th class="f-column text-truncate" scope="col" >Valid ID</th>
-          <th class="f-column text-truncate" scope="col" >Authorization Letter</th>
+
 
 
         </tr>
@@ -291,11 +303,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
             <td class="f-column text-truncate"><?php echo $row['regisite'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['sim_retailer'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['dateofreg'] ?></th>
-            <td class="f-column text-truncate"><?php echo $row['fingerprint_File_Format'] ?></th>
-            <td class="f-column text-truncate"> <?php echo $row['business_permit'] ?></th>
-            <td class="f-column text-truncate"><?php echo $row['link_nso_pic'] ?></th>
-            <td class="f-column text-truncate"><?php echo $row['link_id_pic'] ?></th>
-            <td class="f-column text-truncate"><?php echo $row['link_authletter'] ?></th>
+
 
         </tr>
 

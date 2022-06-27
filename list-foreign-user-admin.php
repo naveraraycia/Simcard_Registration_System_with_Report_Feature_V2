@@ -96,14 +96,31 @@
             </select>
         </div>
 
-        <div class="col-md-3">
-          <label class="labelings">Marked as Malicious SIMs from</label>
-          <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+        <?php
+        if (isset($_GET['start_date']) OR isset($_GET['end_date'])){
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Marked as Malicious SIMs from</label>
+            <input class="form-control" value="<?php echo $_GET['start_date'] ?>" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End range</label>
+            <input class="form-control" value="<?php echo $_GET['end_date'] ?>" type="date" name="end_date" style="width:100%!important;">
         </div>
-        <div class="col-md-3">
-          <label class="labelings">End range</label>
-          <input class="form-control" type="date" name="end_date" style="width:100%!important;">
-      </div>
+          <?php
+        } else {
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Marked as Malicious SIMs from</label>
+            <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End range</label>
+            <input class="form-control" type="date" name="end_date" style="width:100%!important;">
+        </div>
+           <?php
+        }
+         ?>
         </div>
 
         <div class="row" style="display:flex;margin-top:1rem;">
@@ -138,8 +155,6 @@
           <th class="f-column text-truncate" scope="col" >Registration Site</th>
           <th class="f-column text-truncate" scope="col" >SIM Retailer</th>
           <th class="f-column text-truncate" scope="col" >Registration Date</th>
-          <th class="f-column text-truncate" scope="col" >Fingerprint</th>
-          <th class="f-column text-truncate" scope="col" >Passport</th>
 
 
         </tr>
@@ -278,8 +293,6 @@
           <td class="f-column text-truncate"><?php echo $row['regisite'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['sim_retailer'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['dateofreg'] ?></th>
-          <td class="f-column text-truncate"><?php echo $row['finger_link'] ?></th>
-          <td class="f-column text-truncate"><?php echo $row['pass_link'] ?></th>
 
         </tr>
 
