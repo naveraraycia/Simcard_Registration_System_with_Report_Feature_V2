@@ -80,10 +80,6 @@
     <form action="" method="GET">
         <!-- INPUT FIELD ROW -->
       <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
-      <div class="col-md-4">
-        <label class="labelings">Search</label>
-        <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
-      </div>
 
       <div class="col-md-4">
         <label class="labelings">Received from</label>

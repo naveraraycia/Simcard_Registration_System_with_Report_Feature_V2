@@ -10,11 +10,11 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
    $result = mysqli_query($conn, $sql);
 ?>
 <?php
-  // session_start();
-  // if (empty($_SESSION['SellerFirstName'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+   session_start();
+   if (empty($_SESSION['AdminEmail'])){
+    header("Location: index.php");
+    exit();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -84,10 +84,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
       <form action="" method="GET">
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
-        <div class="col-md-3">
-          <label class="labelings">Search</label>
-          <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
-        </div>
+
         <div class="col-md-3">
           <label class="labelings">Offense</label>
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">

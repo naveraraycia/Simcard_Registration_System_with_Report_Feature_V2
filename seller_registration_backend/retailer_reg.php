@@ -182,10 +182,10 @@ if(isset($_POST['register'])){
                 $simnum = "+63". $simnum; 
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 $sql = "INSERT INTO seller( seller_nso, selleremail, sellerpassword, Shop_Name, Business_Permit, 
-                Simcard_Limit, Business_Address, admin_reg, owner_num, 
+                Simcard_Limit, Max_Limit_Assign, Business_Address, admin_reg, owner_num, 
                  nsopass_pic, link_nsopass_pic, id_pic, 
                 link_id_pic, permit_pic, link_permit_pic, dateofreg, address) 
-              VALUES ( '$passnum_nsonum','$selleremail', '$sellerpassword','$shop_name','$num_permit','$sim_limit','$company_address','$admin_reg','$simnum','$NSOName','$NSOExt','$PermitName','$PermitExt','$IDName','$IDExt','$dateofregis','$owneraddress');";
+              VALUES ( '$passnum_nsonum','$selleremail', '$sellerpassword','$shop_name','$num_permit','$sim_limit','$sim_limit','$company_address','$admin_reg','$simnum','$NSOName','$NSOExt','$PermitName','$PermitExt','$IDName','$IDExt','$dateofregis','$owneraddress');";
                 // mysqli_stmt_bind_param($stmt,'ssssisssssssssss', $selleremail, $sellerpassword, $shop_name, $num_permit, $sim_limit, $company_address, $admin_reg,$simnum, $owner_key, $NSOName, $NSOExt, $PermitName, $PermitExt, $IDName, $IDExt, $dateofregis);
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt, $sql);
