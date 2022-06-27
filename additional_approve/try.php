@@ -18,19 +18,21 @@ if($today > $ban_end){
 $
 
 
-75  =        65       +        10
-add = requested_stock + Simcard_Limit
+80 =        70       +        10
+$add = requested_stock + Simcard_Limit
 
 
-    75         70
+    80         60
 if add < max_limit_assign{
     query(simcardLimit, add);
 
+            80> 60
 }else if( add > max_limit_assign){
      resupply =   max_limit_assign - simcard_limit 
-        60    =           70       -      10
-Simcard_Limit =   Simcard_Limit + resupply
-     70       =        10       + 60
+        50    =           60       -      10
+newsupply =   Simcard_Limit + resupply
+     60       =        10       + 50
+     query(simcardLimit, newsupply);
 }
 
 
