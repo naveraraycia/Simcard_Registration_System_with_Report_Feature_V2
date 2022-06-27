@@ -1,46 +1,65 @@
 <?php
   require 'includes/dbh.inc.php';
   //
-  // $id = mysqli_real_escape_string($conn, $_GET['id']);
-  // $sql = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name ,
-  // COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name,
-  //             COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num,
-  //             COALESCE(d.lastname,NULL,e.lastname) AS Complainant_first_name,
-  //             COALESCE(d.firstname,NULL,e.firstname) AS Complainant_last_name,
-  //             COALESCE(n.nsonum,NULL, f.passnum) AS num_serial,
-  //             r.reported_number as reported_number, r.report_id as report_id,
-  //             r.remarks as remarks, r.sent_at as sent_at, r.Report_Screenshot as Report_Screenshot
-  //  FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum
-  //  LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum
-  //                LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
-  //                LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum
-  //                LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum
-  //                LEFT JOIN foreign_registered_simusers_db as b ON r.user_mobile_num = b.simnum
-  //                LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum
-  //                LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum
-  //  WHERE r.report_id = '$id';";
-  //      $result = mysqli_query($conn,$sql);
-  //
-  //      while($row = mysqli_fetch_assoc($result)):
-  //       $report_id = $row['report_id'];
-  //       $data = $row['sent_at'];
-  //       $username = $row['Complainant_first_name']." ".$row['Complainant_last_name'];
-  //       $simnum = $row['Complainant_sim_num'];
-  //       $reportednum = $row['reported_number'];
-  //       $reportedname =  $row['Reported_First_Name']." ".$row['Reported_Last_Name'];
-  //       $remarks = $row['remarks'];
-  //       $sent_at = $row['sent_at'];
-  //       $viewscreenshot = $row['Report_Screenshot'];
-  //       $serial = $row['num_serial'];
-  //       $picture = $row['Report_Screenshot'];
-  //      endwhile;
-  //     if (empty($serial)|| $serial == ''){
-  //       $reportedname = 'THIS NUMBER IS NOT REGISTERED';
-  //       $reportedtrue = 'notexist';
-  //
-  //     }else{
-  //       $reportedtrue = 'exist';
-  //     }
+  session_start();
+  if (empty($_SESSION['AdminEmail'])){
+    header("Location: index.php");
+    exit();
+  }
+
+   $simnum = mysqli_real_escape_string($conn, $_GET['simnum']);
+   $user = mysqli_real_escape_string($conn, $_GET['user']);
+   $throw  = $simnum;
+   $simnum = '+'.$simnum;
+
+   if($user=='filipino'){
+         $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth, 
+                      n.gender as gender, n.nsonum as nsonum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start, 
+                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as services, 
+                      l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite,
+                      l.fingerprint_File_Format as finger_pic, l.link_nsopass_pic as nso_pic, l.link_id_pic as id_pic
+               FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON  l.nsonum = n.nsonum
+               WHERE l.simnum = '$simnum';";
+   }else if($user== 'request'){
+         $query = "SELECT * FROM request_reg_db
+               WHERE nationality = N'Filipino' AND  simnum = '$simnum'; ";
+   }
+   $result = mysqli_query($conn, $query);
+   $resultCheck = mysqli_num_rows($result);
+
+   while($row = mysqli_fetch_assoc($result)):
+          $fullname = $row['firstname']. " ". $row['midname']." ".$row['lastname']." ".$row['suffix'];
+          $dateofbirth = $row['dateofbirth'];
+          $gender = $row['gender'];
+          $address =$row['address'];
+          $simcard = $row['simcard'];
+          $sim_status = $row['sim_status'];
+          $offense_count = $row['offense_count'];
+          $ban_start = $row['ban_start'];
+          $ban_end = $row['ban_end'];
+          $simcard = $row['simcard'];
+          $services = $row['services'];
+          $sim_shop = $row['sim_shop'];
+          $regisite = $row['regisite'];
+          $sim_retailer = $row['sim_retailer'];
+
+          if($user == 'request'){
+            $remark = $row['remarks'];
+            $finger_link = $row['fingerprint_File_Format'];
+            $nso_link = $row['link_nsopass_pic'];
+            $id_link     = $row['link_id_pic'];
+            $passnso_num = $row['passnum_nsonum'];
+            $dateofreg = $row['dateofregis'];
+          }else{
+            $finger_link = $row['finger_pic'];
+            $nso_link = $row['nso_pic'];
+            $nationality = 'Filipino';
+            $id_link = $row['id_pic'];
+            $dateofreg = $row['dateofreg'];
+            $passnso_num = $row['nsonum'];
+          }
+
+    endwhile;
 
 ?>
 <!-- <?php
@@ -153,57 +172,57 @@ p{
 
             <div class="col-md-6">
               <div class="infolabels">
-                <p class="nameLabel">User's Full Name: <span>Pa concat nalang tenks - Keanu Paga Berches</span></p>
+                <p class="nameLabel">User's Full Name: <span><?php echo $fullname ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Birthdate: <span>1999-01-01</span></p>
+                <p class="nameLabel">Birthdate: <span><?php echo $dateofbirth ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Gender: <span>M</span></p>
+                <p class="nameLabel">Gender: <span><?php echo $gender ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Address: <span>Planet Earth</span></p>
+                <p class="nameLabel">Address: <span><?php echo $address ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">NSO #: <span>TEST-1234-NSO</span></p>
+                <p class="nameLabel">NSO #: <span><?php echo $passnso_num ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Registration Date: <span>2022-06-23</span></p>
+                <p class="nameLabel">Registration Date: <span><?php echo $dateofreg ?></span></p>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="infolabels">
-                <p class="nameLabel">SIM Card #: <span>+639175900000</span></p>
+                <p class="nameLabel">SIM Card #: <span><?php echo $simnum ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">SIM Type: <span>new prepaid user</span></p>
+                <p class="nameLabel">SIM Type: <span><?php echo $simcard ?></span></p>
               </div>
 
               <?php
-            if (isset($_GET['additionalLocal'])) {
+            if ($user == 'request') {
               ?>
               <div class="infolabels">
-                <p class="nameLabel">Provider Requested: <span>Smart</span></p>
+                <p class="nameLabel">Provider Requested: <span><?php echo $services ?></span></p>
               </div>
               <?php
             } else {
               ?>
               <div class="infolabels">
-                <p class="nameLabel">Provider: <span>Globe</span></p>
+                <p class="nameLabel">Provider: <span><?php echo $services ?></span></p>
               </div>
               <?php
             }
                ?>
 
               <div class="infolabels">
-                <p class="nameLabel">SIM shop: <span>Maria SIM shop</span></p>
+                <p class="nameLabel">SIM shop: <span><?php echo $sim_shop ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">SIM Retailer: <span>Jasmin Duenas</span></p>
+                <p class="nameLabel">SIM Retailer: <span><?php echo $sim_retailer ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">SIM shop's location: <span>Mabuhay Homes 2000, Cavite, Philippines</span></p>
+                <p class="nameLabel">SIM shop's location: <span><?php echo $regisite ?></span></p>
               </div>
             </div>
           </div>
@@ -211,35 +230,35 @@ p{
           <div class="row">
             <div class="col-md-4" style="text-align:left;">
               <div class="infolabels">
-                <p class="nameLabel">User Status: <span>Active Status</span></p>
+                <p class="nameLabel">User Status: <span><?php echo $sim_status ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Penalty: <span>0</span></p>
-              </div>
-            </div>
-
-            <div class="col-md-4" style="text-align:left;">
-              <div class="infolabels">
-                <p class="nameLabel">Date blocked: <span>--</span></p>
+                <p class="nameLabel">Penalty: <span><?php echo $offense_count ?></span></p>
               </div>
             </div>
 
             <div class="col-md-4" style="text-align:left;">
               <div class="infolabels">
-                <p class="nameLabel">End of block period: <span>--</span></p>
+                <p class="nameLabel">Date blocked: <span><?php echo $ban_start ?></span></p>
+              </div>
+            </div>
+
+            <div class="col-md-4" style="text-align:left;">
+              <div class="infolabels">
+                <p class="nameLabel">End of block period: <span><?php echo $ban_end ?></span></p>
               </div>
             </div>
           </div>
 
 
           <?php
-        if (isset($_GET['additionalLocal'])) {
+        if ($user == 'request') {
           ?>
           <div class="row">
             <div class="col-md-12">
               <div class="infolabels">
                 <br>
-                <p class="nameLabel">Reason for acquiring additional SIM to similar provider: <span style="display:block;">This is the reason.....</span></p>
+                <p class="nameLabel">Reason for acquiring additional SIM to similar provider: <span style="display:block;"><?php echo $remark?></span></p>
               </div>
             </div>
           </div>
@@ -272,7 +291,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="Fingerprint-img">
+                <img class="screenshot-img" src="<?php echo 'Fingerprint_Registered_User_Database/'.$finger_link;     ?>" alt="Fingerprint-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -293,7 +312,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="NSO-img">
+                <img class="screenshot-img" src="<?php echo 'NSO_User_Database/'.$nso_link;     ?>" alt="NSO-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -314,7 +333,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="valid-id-img">
+                <img class="screenshot-img" src="<?php echo 'ID_User_Database/'.$id_link;    ?>" alt="valid-id-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

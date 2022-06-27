@@ -260,7 +260,7 @@
         <tr>
           <td class="text-truncate"><a href="Admin_Table_Backend/userdelete.php?click=delete&simnum=<?php echo $thrownum ."&nation=filipino"; ?>" class="btn btn-danger">Delete</a></td>
           <td class="text-truncate"><a href="admin-edit-local.php?simnum=<?php echo $thrownum; ?>" class="btn btn-success">Update</a></td>
-          <td class="text-truncate"><a href="local-content.php?simnum=<?php //echo  $throw; ?>" class="btn btn-primary">View</a></td>
+          <td class="text-truncate"><a href="local-content.php?simnum=<?php echo $thrownum."&user=filipino" ?>" class="btn btn-primary">View</a></td>
           <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['offense_count'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['ban_start'] ?></th>
