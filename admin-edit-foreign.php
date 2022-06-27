@@ -165,10 +165,10 @@ if (empty($_SESSION['AdminEmail'])){
 <form class="" action="admin_edit_selected_user/admin_back_foreign_user.php?simnum=<?php echo $throw ?>" method="POST" enctype="multipart/form-data">
   <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
   <?php
-  $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth, 
-                      n.gender as gender, n.passnum as passnum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start, 
-                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies, 
-                      l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite, 
+  $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth,
+                      n.gender as gender, n.passnum as passnum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start,
+                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies,
+                      l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite,
                       l.fingerprint_File_Format as finger_pic, l.link_passport_pic as passport_pic, n.nationality as nationality
                FROM foreign_registered_simusers_db AS l LEFT JOIN foreign_passport_db as n ON  l.passnum = n.passnum
               WHERE l.simnum = '$simnum'; ";
@@ -243,8 +243,18 @@ if (empty($_SESSION['AdminEmail'])){
      <div class="row srow">
        <div class="col-md-3 infodiv">
          <label class="Bday">SIM Status</label>
-         <input id="" type="text" name="sim_status" class="form-control" value="<?= $row['sim_status'] ?>" required>
-       </div>
+         <select class="custom-select mr-sm-2" id="name1" name ="operator">
+           <option>Active Status</option>
+          <option >First offense</option>
+          <option>Second offense</option>
+          <option>Third offense</option>
+          <option>Permanent ban</option>
+
+        </select>
+        <script type="text/javascript">
+          document.getElementById('name1').value = "<?php echo $row['sim_status'];?>";
+        </script>
+      </div>
        <div class="col-md-3 infodiv">
          <label class="Bday">Penalty</label>
          <input id="" type="text" name="offense_count" class="form-control" value="<?= $row['offense_count'] ?>" required>

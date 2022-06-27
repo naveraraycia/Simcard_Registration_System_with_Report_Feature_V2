@@ -167,9 +167,9 @@ if (empty($_SESSION['AdminEmail'])){
    <form class="" action="admin_edit_selected_user/admin_back_local_user.php?simnum=<?php echo $throw ?>" method="POST" enctype="multipart/form-data">
      <!-- INITIAL = NOT YET PRESSING BUTTON SEARCH DATABASE : EMPTY FIELD -->
      <?php
-     $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth, 
-                      n.gender as gender, n.nsonum as nsonum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start, 
-                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies, 
+     $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth,
+                      n.gender as gender, n.nsonum as nsonum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start,
+                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies,
                       l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite
                FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON  l.nsonum = n.nsonum
                WHERE l.simnum = '$simnum';";
@@ -243,7 +243,18 @@ if (empty($_SESSION['AdminEmail'])){
      <div class="row srow">
        <div class="col-md-3 infodiv">
          <label class="Bday">SIM Status</label>
-         <input id="" type="text" name="sim_status" class="form-control" value="<?= $row['sim_status'] ?>" required>
+         <select class="custom-select mr-sm-2" id="name1" name ="operator">
+           <option>Active Status</option>
+          <option >First offense</option>
+          <option>Second offense</option>
+          <option>Third offense</option>
+          <option>Permanent ban</option>
+
+        </select>
+        <script type="text/javascript">
+          document.getElementById('name1').value = "<?php echo $row['sim_status'];?>";
+        </script>
+
        </div>
        <div class="col-md-3 infodiv">
          <label class="Bday">Penalty</label>

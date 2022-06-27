@@ -89,24 +89,18 @@
 
         <div class="col-md-3">
           <label class="labelings">Offense</label>
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
-              <!-- <?php if(isset($_GET['operator'])){
-                ?>
-                <option selected ><?php echo $_GET['operator']; ?></option>
+            <select class="custom-select mr-sm-2" id="name1" name ="operator">
+              <option>All</option>
+             <option >No offense at present</option>
+             <option >With offense</option>
+             <option >First offense</option>
+             <option>Second offense</option>
+             <option>Third offense</option>
 
-                <?php
-              } else {
-                ?>
-                <option selected >All</option>
-                 <?php
-              }
-               ?> -->
-               <option selected >All</option>
-              <option >No offense at present</option>
-              <option >With offense</option>
-              <option >First offense</option>
-              <option>Second offense</option>
-              <option>Third offense</option>
+           </select>
+           <script type="text/javascript">
+             document.getElementById('name1').value = "<?php echo $_GET['operator'];?>";
+           </script>
 
             </select>
         </div>
@@ -229,16 +223,26 @@
 
 
             }else if($querytype=='B'){
-
-             $FirstOff = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
+              //ALL
+             //  if(isset($_GET['start_date']) OR isset($_GET['end_date'])){
+             // $FirstOff = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
+             //                      rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
+             //                      n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
+             //                      n.nsonum as nsonum, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
+             //                      rg.fingerprint_File_Format as finger_link, rg.link_nsopass_pic as nso_link, rg.link_id_pic as id_link
+             //                FROM local_registered_simusers_db AS rg LEFT JOIN nso_dummy_db as n ON rg.nsonum = n.nsonum
+             //                WHERE (rg.ban_start between'$start_date' and '$end_date')
+             //                ORDER BY n.lastname ASC;";
+             //
+             //    } else {
+                $FirstOff = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
                                   rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                                   n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
                                   n.nsonum as nsonum, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                   rg.fingerprint_File_Format as finger_link, rg.link_nsopass_pic as nso_link, rg.link_id_pic as id_link
-                            FROM local_registered_simusers_db AS rg LEFT JOIN nso_dummy_db as n ON rg.nsonum = n.nsonum
-                            ORDER BY n.lastname ASC;";
-
-
+                              FROM local_registered_simusers_db AS rg LEFT JOIN nso_dummy_db as n ON rg.nsonum = n.nsonum
+                              ORDER BY n.lastname ASC;";
+              // }
             }else if($querytype=='C'){
 
              $FirstOff ="SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
