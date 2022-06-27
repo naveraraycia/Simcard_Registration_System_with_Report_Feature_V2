@@ -90,8 +90,8 @@
                                 $sim_status    = $row['sim_status'];
                             }
                             $ban_end   = ban_adjust($offense_count, $ban_end);
-                            if($ban_end <> '--'){$ban_start = date('Y-m-d');
-                            }else{$ban_start = '--';}
+                            if($ban_end <> '9999-12-30'){$ban_start = date('Y-m-d');
+                            }else{$ban_start = '0000-00-00';}
                             $sim_status = status_adjust($offense_count);
                             if($offense_count >= 3){ $offense_count = 3;
                             }else{$offense_count = $offense_count + 1;}
@@ -118,8 +118,8 @@
                                 $sim_status    = $row['sim_status'];
                             }
                             $ban_end   = ban_adjust($offense_count, $ban_end);
-                            if($ban_end <> '--'){$ban_start = date('Y-m-d');
-                            }else{$ban_start = '--';}
+                            if($ban_end <> '9999-12-30'){$ban_start = date('Y-m-d');
+                            }else{$ban_start = '0000-00-00';}
                             $sim_status = status_adjust($offense_count);
                             if($offense_count >= 3){ $offense_count = 3;
                             }else{$offense_count = $offense_count + 1;}
@@ -151,8 +151,8 @@
                     $sim_status    = $row['sim_status'];
                 }
                 $ban_end   = ban_adjust($offense_count, $ban_end);
-                if($ban_end <> '--'){$ban_start = date('Y-m-d');
-                }else{$ban_start = '--';}
+                if($ban_end <> '9999-12-30'){$ban_start = date('Y-m-d');
+                }else{$ban_start = '0000-00-00';}
                 $sim_status = status_adjust($offense_count);
                 if($offense_count >= 3){ $offense_count = 3;
                 }else{$offense_count = $offense_count + 1;}

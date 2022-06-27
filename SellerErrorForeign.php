@@ -42,7 +42,7 @@
                             $ban_end4  = substr($ban_end, 8, 2);
 
                             if($datetoday > $ban_end4){
-                              $updateban = "UPDATE foreign_registered_simusers_db SET ban_start='--', ban_end='--', sim_status='Active Status' WHERE passnum='$passport';"; 
+                              $updateban = "UPDATE foreign_registered_simusers_db SET ban_start='0000-00-00', ban_end='9999-12-30', sim_status='Active Status' WHERE passnum='$passport';"; 
                               mysqli_query($conn,$updateban); 
                               return "notban";
                             }else{

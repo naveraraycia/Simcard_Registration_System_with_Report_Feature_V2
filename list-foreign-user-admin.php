@@ -266,6 +266,15 @@
               while($row = mysqli_fetch_assoc($result)):
                  $simnum = $row['simnum'];
                  $thrownum = trim($simnum,"+");
+                 $ban_start = $row['ban_start'];
+                 $ban_end   = $row['ban_end'];
+                 echo "$ban_end";
+                 if($ban_start == '0000-00-00'){
+                   $ban_start = '---';
+                 }
+                 if($ban_end == '9999-12-30'){
+                   $ban_end = '---';
+                 }
         ?>
 
         <!-- <tr class="canHov" onclick="window.location='<?php echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
@@ -275,8 +284,8 @@
           <td class="text-truncate"><a href="foreign-content.php?simnum=<?php echo $thrownum."&user=notfilipino" ?>" class="btn btn-primary">View</a></td>
           <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['offense_count'] ?></th>
-          <td class="f-column text-truncate"><?php echo $row['ban_start'] ?></th>
-          <td class="f-column text-truncate"><?php echo $row['ban_end'] ?></th>
+          <td class="f-column text-truncate"><?php echo $ban_start ?></th>
+          <td class="f-column text-truncate"><?php echo $ban_end ?></th>
           <td class="f-column text-truncate"><?php echo $simnum ?></th>
           <td class="f-column text-truncate"><?php echo $row['simcard'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['services'] ?></th>

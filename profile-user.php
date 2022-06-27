@@ -96,26 +96,26 @@ $BanEnd        = $_SESSION['Banend'];
 if ($usertype == 'Filipino'){
   if($today > $BanEnd){
       $localsql = "UPDATE local_registered_simusers_db
-              SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+              SET ban_end = '9999-12-30', ban_start = '0000-00-00', sim_status = 'Active Status'
               WHERE nsonum = '$num';";
        mysqli_query($conn, $localsql);
 
        $businesssql = "UPDATE business_entity_registered_simusers_db
-              SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+              SET ban_end = '9999-12-30', ban_start = '0000-00-00', sim_status = 'Active Status'
               WHERE nsonum = '$num';";
        mysqli_query($conn, $businesssql);
 
-       $BanStart = '--';
-       $BanEnd   = '--';
+       $BanStart = '0000-00-00';
+       $BanEnd   = '9999-12-30';
   }
 }else if($usertype == 'NotFilipino'){
   if($today > $ban_end){
       $foreignsql = "UPDATE foreign_registered_simusers_db
-            SET ban_end = '--', ban_start = '--', sim_status = 'Active Status'
+            SET ban_end = '9999-12-30', ban_start = '0000-00-00', sim_status = 'Active Status'
             WHERE passnum = '$num';";
       mysqli_query($conn, $foreignsql);
-      $BanStart = '--';
-      $BanEnd   = '--';
+      $BanStart = '0000-00-00';
+      $BanEnd   = '9999-12-30';
   }
 }
 

@@ -178,13 +178,13 @@ if (empty($_SESSION['AdminEmail'])){
        if (mysqli_num_rows($result) > 0) {
          // if there is a result
          foreach ($result as $row) {
-          if($row['ban_start'] == '--'){
-                $ban_start = '2000-00-00';
+          if($row['ban_start'] == '0000-00-00'){
+                $ban_start = '0000-00-00';
           }else{
             $ban_start = $row['ban_start'];
           }
-          if($row['ban_end'] =='--'){
-            $ban_end = '2050-12-25';
+          if($row['ban_end'] =='9999-12-30'){
+            $ban_end = '9999-12-30';
           }else{
             $ban_end = $row['ban_end'];
           }

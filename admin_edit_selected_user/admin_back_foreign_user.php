@@ -43,7 +43,10 @@
                 $ban_end = $ban_end_old;
             }
             $address       = $_POST['address'];
-
+            if ($sim_status == 'Active Status' || $sim_status == 'Permanent ban' ){
+              $ban_start = "0000-00-00";
+              $ban_end   = "9999-12-30";
+            }
 
     
                       //FUNCTION ERROR HANDLERS FOR IMAGE                         //Keanu_NSO_01234_3-43

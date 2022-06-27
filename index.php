@@ -4,18 +4,18 @@
     $today = date("Y-m-d");
     include 'includes/dbh.inc.php';
     $sql = "UPDATE local_registered_simusers_db
-            SET ban_start = '--', ban_end = '--', sim_status = 'Active Status'
+            SET ban_start = '0000-00-00', ban_end = '9999-12-30', sim_status = 'Active Status'
             WHERE '$today' > ban_end AND sim_status <> 'Permanent ban';";
     mysqli_query($conn, $sql);
 
     $sql = "UPDATE business_entity_registered_simusers_db
-            SET ban_start = '--', ban_end = '--', sim_status = 'Active Status'
+            SET ban_start = '0000-00-00', ban_end = '9999-12-30', sim_status = 'Active Status'
             WHERE '$today' > ban_end AND sim_status <> 'Permanent ban';";
     mysqli_query($conn, $sql);
 
   
     $sql = "UPDATE foreign_registered_simusers_db
-            SET ban_start = '--', ban_end = '--', sim_status = 'Active Status'
+            SET ban_start = '0000-00-00', ban_end = '9999-12-30', sim_status = 'Active Status'
             WHERE '$today' > ban_end AND sim_status <> 'Permanent ban';";
     mysqli_query($conn, $sql);
 ?>

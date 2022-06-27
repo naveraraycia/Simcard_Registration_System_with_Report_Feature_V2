@@ -55,7 +55,7 @@
                             $ban_end4  = substr($ban_end, 8, 2);
 
                             if($datetoday > $ban_end4){
-                              $updateban = "UPDATE business_entity_registered_simusers_db SET ban_start='--', ban_end='--', sim_status='Active Status' WHERE nsonum='$nso_pass';"; 
+                              $updateban = "UPDATE business_entity_registered_simusers_db SET ban_start='0000-00-00', ban_end='9999-12-30', sim_status='Active Status' WHERE nsonum='$nso_pass';"; 
                               mysqli_query($conn,$updateban); 
                               return "notban";
                             }else{
@@ -105,7 +105,7 @@
                             $ban_end4  = substr($ban_end, 8, 2);
 
                             if($datetoday > $ban_end4){
-                              $updateban = "UPDATE local_registered_simusers_db SET ban_start='--', ban_end='--', sim_status='Active Status' WHERE nsonum='$nso_pass';"; 
+                              $updateban = "UPDATE local_registered_simusers_db SET ban_start='0000-00-00', ban_end='9999-12-30', sim_status='Active Status' WHERE nsonum='$nso_pass';"; 
                               mysqli_query($conn,$updateban); 
                               return "notban";
                             }else{

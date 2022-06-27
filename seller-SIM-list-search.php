@@ -180,6 +180,14 @@
                    $resultCheck = mysqli_num_rows($result);
                   }
                       while($row = mysqli_fetch_assoc($result)):
+                        $ban_start = $row['ban_start'];
+                        $ban_end   = $row['ban_end'];
+                        if($ban_start == '0000-00-00'){
+                          $ban_start = '---';
+                        }
+                        if($ban_end == '9999-12-30'){
+                          $ban_end = '---';
+                        }
                 ?>
 
 
@@ -199,8 +207,8 @@
             <td class="text-truncate"><?php echo $row['simnum']; ?></td>
             <th class="text-truncate"><?php echo $row['sim_status']?></th>
             <td class="text-truncate"><?php echo $row['offense_count'] ?></td>
-            <td class="text-truncate"><?php echo $row['ban_start']?></td>
-            <td class="text-truncate"><?php echo $row['ban_end']?></td>
+            <td class="text-truncate"><?php echo  $ban_start?></td>
+            <td class="text-truncate"><?php echo $ban_end?></td>
             <td class="text-truncate"><?php echo $row['lastname']; ?></th>
             <td class="text-truncate"><?php echo $row['firstname']; ?></td>
             <td class="text-truncate"><?php echo $row['midname']; ?></td>

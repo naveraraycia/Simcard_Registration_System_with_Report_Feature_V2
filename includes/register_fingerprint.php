@@ -152,8 +152,8 @@ if(isset($_POST['register'])){
                 $sim_shop = $_SESSION['Shop_Name'];
                 $sim_status = "Active Status";
                 $regisite  = $_SESSION['Business_Address'];
-                $ban_start = "--";
-                $ban_end = "--";
+                $ban_start = "0000-00-00";
+                $ban_end = "9999-12-30";
                 $offense_count ="0";
                 $simnum = "+63". $simnum;
                                                    

@@ -49,8 +49,8 @@ include_once "../includes/dbh.inc.php";
     }
     $offense_count = "0";
     $sim_status    = "Active Status";
-    $ban_start     = "--";
-    $ban_end       = "--";
+    $ban_start     = "0000-00-00";
+    $ban_end       = "9999-12-30";
 
 
    $checkstatus = "SELECT sim_status, ban_start, ban_end, offense_count, nsonum

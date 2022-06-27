@@ -38,9 +38,13 @@
             $time  = date('G').":".date('i').":".date('s');
             $timeImg  = date('G')."_".date('i')."_".date('s')."_".date('Y-m-d');
             echo $timeImg;
+            
             $sim_status    = $_POST['sim_status'];
             $offense_count = $_POST['offense_count'];
             $ban_start     = $_POST['ban_start'];
+            
+            echo $ban_start;
+            exit();
             if(empty($ban_start)){
                 $ban_start = $ban_start_old;
             }
