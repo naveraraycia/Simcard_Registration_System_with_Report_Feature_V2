@@ -9,13 +9,6 @@
   //   header("Location: index.php");
   //   exit();
   // }
-  $sql = "SELECT s.Shop_Name as Shop_Name, s.business_owner as business_owner, s.owner_num as owner_num, s.Business_Address as Business_Address,
-                s.Simcard_Limit as Simcard_Limit, r.sim_amount_requested as sim_amount_requested
-          FROM seller AS s LEFT JOIN resupply_requests as r ON s.owner_num = r.request_id";
-  $result = mysqli_query($conn, $sql);
-
-  $nso = "SELECT * FROM nso_dummy_db";
-  $resultnso = mysqli_query($conn, $nso);
 ?>
 
 <!DOCTYPE html>
@@ -82,8 +75,18 @@
     <form action="" method="GET">
 
 
+
     </form>
+
   <div class="table-responsive" style="margin-top: 2rem!important;">
+    <form class="" action="admin-resupply-request.php" method="GET">
+      <?php
+      $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+      if(strpos($fulUrl, "done=resupply") == true){
+        echo "<p class= 'regsuccess'>SUCCESS RESUPPLY</p>";
+      }
+        ?>
+      </form>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -105,18 +108,13 @@
        WHERE r.sim_amount_requested AND n.nsonum;";
       $result = mysqli_query($conn, $sql);
       while($row = mysqli_fetch_assoc($result)):
-        $owner_num = $row['owner_num'];
+        // $thrownum = trim($simnum,"+");
         $sim_amount_requested = $row['sim_amount_requested'];
-        $firstname = $row['firstname'];
-        $lastname = $row['lastname'];
-        $midname = $row['midname'];
-
         ?>
 
       <!-- <tr class="canHov" onclick="window.location='<?php //echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
       <tr>
-        <!-- <td class="text-truncate"><a href="includes/delete-end-user.php?del_id=<?php echo ''; ?>" class="btn btn-danger">Delete</a></td> -->
-        <td class="text-truncate"><a href="admin-edit-local.php?simnum=<?php echo $thrownum; ?>" class="btn btn-success">Resupply</a></td>
+        <td class="text-truncate"><a href="Admin_Table_Backend/resupply_sim.php?resupply=<?php echo $row['sim_amount_requested']; ?>" class="btn btn-success">Resupply</a></td>
         <td class="f-column text-truncate"><?php echo $row['Shop_Name'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['firstname']." ". $row['midname']." ". $row['lastname'] ?></th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
         <td class="f-column text-truncate"><?php echo $row['owner_num'] ?></th>

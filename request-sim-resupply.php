@@ -2,7 +2,7 @@
   // require "navbar.php";
   include_once 'includes/dbh.inc.php';
   session_start();
-  $selleremail = $_SESSION['SellerEmail'];
+  // $selleremail = $_SESSION['SellerEmail'];
  //
  //  $sql = "SELECT s.Shop_Name AS Shop_Name,
  //  s.selleremail AS selleremail
