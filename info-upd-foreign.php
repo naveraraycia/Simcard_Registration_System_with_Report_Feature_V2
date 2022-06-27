@@ -83,14 +83,31 @@
         <!-- INPUT FIELD ROW -->
       <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
 
-      <div class="col-md-4">
-        <label class="labelings">Received from</label>
-        <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
-      </div>
-      <div class="col-md-4">
-        <label class="labelings">End range</label>
-        <input class="form-control" type="date" name="end_date" style="width:100%!important;">
-    </div>
+        <?php
+        if (isset($_GET['start_date']) OR isset($_GET['end_date'])){
+          ?>
+          <div class="col-md-4">
+            <label class="labelings">Received from</label>
+            <input class="form-control" value="<?php echo $_GET['start_date'] ?>" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-4">
+            <label class="labelings">End range</label>
+            <input class="form-control" value="<?php echo $_GET['end_date'] ?>" type="date" name="end_date" style="width:100%!important;">
+        </div>
+          <?php
+        } else {
+          ?>
+          <div class="col-md-4">
+            <label class="labelings">Received from</label>
+            <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-4">
+            <label class="labelings">End range</label>
+            <input class="form-control" type="date" name="end_date" style="width:100%!important;">
+        </div>
+           <?php
+        }
+         ?>
 
       </div>
 
@@ -108,6 +125,7 @@
         <th class="f-column text-truncate" scope="col" >SIM #</th>
         <th class="f-column text-truncate" scope="col" >Requested new address</th>
         <th class="f-column text-truncate" scope="col" >Reason</th>
+        <th class="f-column text-truncate" scope="col" >Date received</th>
 
       </tr>
     </thead>
@@ -144,6 +162,7 @@
         <td class="f-column text-truncate"><?php echo $row['simnum']?></th>
         <td class="f-column text-truncate"><?php echo $row['update_req']?></th>
         <td class="f-column text-truncate"><?php echo $row['message']?></th>
+        <td class="f-column text-truncate"><?php echo $row['dates']?></th>
 
 
 

@@ -96,14 +96,31 @@
             </select>
         </div>
 
-        <div class="col-md-3">
-          <label class="labelings">Marked as Malicious SIMs from</label>
-          <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+        <?php
+        if (isset($_GET['start_date']) OR isset($_GET['end_date'])){
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Marked as Malicious SIMs from</label>
+            <input class="form-control" value="<?php echo $_GET['start_date'] ?>" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End range</label>
+            <input class="form-control" value="<?php echo $_GET['end_date'] ?>" type="date" name="end_date" style="width:100%!important;">
         </div>
-        <div class="col-md-3">
-          <label class="labelings">End range</label>
-          <input class="form-control" type="date" name="end_date" style="width:100%!important;">
-      </div>
+          <?php
+        } else {
+          ?>
+          <div class="col-md-3">
+            <label class="labelings">Marked as Malicious SIMs from</label>
+            <input class="form-control" type="date" name="start_date" style="width:100%!important;" >
+          </div>
+          <div class="col-md-3">
+            <label class="labelings">End range</label>
+            <input class="form-control" type="date" name="end_date" style="width:100%!important;">
+        </div>
+           <?php
+        }
+         ?>
         </div>
 
         <div class="row" style="display:flex;margin-top:1rem;">
