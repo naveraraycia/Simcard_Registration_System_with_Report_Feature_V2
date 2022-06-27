@@ -92,17 +92,7 @@
       <form action="" method="GET">
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
-        <!-- <div class="col-md-3">
-          <label class="labelings">Offense</label>
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">
-              <option selected >All</option>
-              <option >No offense at present</option>
-              <option >With offense</option>
-              <option >First offense</option>
-              <option>Second offense</option>
-              <option>Third offense</option>
-            </select>
-        </div> -->
+
 
         <div class="col-md-4">
           <label class="labelings">Registration date start range</label>
@@ -129,6 +119,7 @@
 
 
         <tr>
+          <th class="f-column text-truncate notexport" scope="col" ></th>
           <th class="f-column text-truncate notexport" scope="col" ></th>
           <th class="f-column text-truncate notexport" scope="col" ></th>
             <th class="f-column text-truncate" scope="col">Shop Name</th>
@@ -198,6 +189,7 @@
           <!-- hito sa echo below sa simnum=   , ilagay mo ung $row['simcardnumbercolumnname'] -->
           <td class="text-truncate"><a href="includes/delete-retailer.php?sellemail=<?php echo  $selleremail; ?>" class="btn btn-danger">Delete</a></td>
           <td class="text-truncate"><a href="admin-edit-seller.php?simnum=<?php echo  $throw; ?>" class="btn btn-success">Update</a></td>
+          <td class="text-truncate"><a href="seller-content.php?simnum=<?php //echo  $throw; ?>" class="btn btn-primary">View</a></td>
           <td class="text-truncate"><?php echo $row['Shop_Name']; ?></th>
           <td class="text-truncate"><?php echo $selleremail; ?></th>
           <td class="text-truncate"><?php echo $row['lastname']; ?></th>

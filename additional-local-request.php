@@ -108,6 +108,7 @@
       <tr>
         <th class="f-column text-truncate" scope="col" ></th>
         <th class="f-column text-truncate" scope="col" ></th>
+        <th class="f-column text-truncate" scope="col" ></th>
         <th class="f-column text-truncate" scope="col" >Last Name</th>
         <th class="f-column text-truncate" scope="col" >First Name</th>
         <th class="f-column text-truncate" scope="col" >Middle Name</th>
@@ -124,7 +125,7 @@
         <th class="f-column text-truncate" scope="col" >SIM Shop</th>
         <th class="f-column text-truncate" scope="col" >Registered by</th>
         <th class="f-column text-truncate" scope="col" >Registration Date</th>
-        <th class="f-column text-truncate" scope="col" >Registration Time</th>
+        <!-- <th class="f-column text-truncate" scope="col" >Registration Time</th> -->
         <th class="f-column text-truncate" scope="col" >Fingerprint</th>
         <th class="f-column text-truncate" scope="col" >NSO</th>
         <th class="f-column text-truncate" scope="col" >Valid ID</th>
@@ -161,6 +162,7 @@
       <tr>
         <td class="text-truncate"><a href="additional_approve/approve_local.php?request=<?php echo $simnum;?>" class="btn btn-success">Approve</a></td>
         <td class="text-truncate"><a href="additional_approve/delete.php?request=<?php echo  $simnum; ?>" class="btn btn-danger">Deny</a></td>
+        <td class="text-truncate"><a href="local-content.php?additionalLocal" class="btn btn-primary">View</a></td>
         <td class="f-column text-truncate"><?php echo $row['lastname'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['firstname'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['midname'] ?></th>
@@ -177,7 +179,7 @@
         <td class="f-column text-truncate"><?php echo $row['sim_shop'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['sim_retailer'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['dateofregis'] ?></th>
-        <td class="f-column text-truncate"><?php echo $row['time'] ?></th>
+        <!-- <td class="f-column text-truncate"><?php echo $row['time'] ?></th> -->
         <td class="f-column text-truncate"><?php echo $row['fingerprint_File_Format'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['link_nsopass_pic'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['link_id_pic'] ?></th>
@@ -185,7 +187,7 @@
 
       </tr>
 
-<?php endwhile; ?> 
+<?php endwhile; ?>
 
 
 

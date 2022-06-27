@@ -120,6 +120,7 @@
         <tr>
           <th class="f-column text-truncate notexport" scope="col" ></th>
           <th class="f-column text-truncate notexport" scope="col" ></th>
+          <th class="f-column text-truncate notexport" scope="col" ></th>
           <th class="f-column text-truncate" scope="col" >User Status</th>
           <th class="f-column text-truncate" scope="col" >Penalty</th>
           <th class="f-column text-truncate" scope="col" >Date blocked</th>
@@ -259,7 +260,8 @@
         <tr>
           <td class="text-truncate"><a href="Admin_Table_Backend/userdelete.php?click=delete&simnum=<?php echo $thrownum ."&nation=notfilipino"; ?>" class="btn btn-danger">Delete</a></td>
           <td class="text-truncate"><a href="admin-edit-foreign.php?simnum=<?php echo $thrownum; ?>" class="btn btn-success">Update</a></td>
-            <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
+          <td class="text-truncate"><a href="foreign-content.php?simnum=<?php //echo  $throw; ?>" class="btn btn-primary">View</a></td>
+          <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['offense_count'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['ban_start'] ?></th>
           <td class="f-column text-truncate"><?php echo $row['ban_end'] ?></th>

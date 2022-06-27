@@ -3,7 +3,7 @@ $servername = "localhost";
 $dbUsername = "root";
 $dbpassword = "";
 // name of database
-$dbName= "hello";
+$dbName= "simcardregistrationform";
 
 // CREATE CONNECTION (DATABASE)
 $conn = mysqli_connect($servername, $dbUsername,$dbpassword,$dbName);
