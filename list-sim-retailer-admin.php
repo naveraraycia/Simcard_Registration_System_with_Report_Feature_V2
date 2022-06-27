@@ -132,9 +132,6 @@
             <th class="f-column text-truncate" scope="col">Business Permit #</th>
             <th class="f-column text-truncate" scope="col">Shop Address</th>
             <th class="f-column text-truncate" scope="col">SIM Limit</th>
-            <th class="f-column text-truncate" scope="col">Business Permit</th>
-            <th class="f-column text-truncate" scope="col">NSO</th>
-            <th class="f-column text-truncate" scope="col">Valid ID</th>
             <th class="f-column text-truncate" scope="col">Owner's Address</th>
             <th class="f-column text-truncate" scope="col">Owner's SIM #</th>
             <th class="f-column text-truncate" scope="col">Registration Date</th>
@@ -200,9 +197,6 @@
           <td class="text-truncate"><?php echo $row['Business_Permit']; ?></th>
           <td class="text-truncate"><?php echo $row['Business_Address']; ?></th>
           <td class="text-truncate"><?php echo $row['simcard_limit']; ?></th>
-          <td class="text-truncate"><?php echo $row['link_permit_pic']; ?></th>
-          <td class="text-truncate"><?php echo $row['link_nsopass_pic']; ?></th>
-          <td class="text-truncate"><?php echo $row['link_id_pic']; ?></th>
           <td class="text-truncate"><?php echo $row['address']; ?></th>
           <td class="text-truncate"><?php echo  $simnum; ?></th>
           <td class="text-truncate"><?php echo $row['dateofreg']; ?></td>

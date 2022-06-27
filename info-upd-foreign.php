@@ -108,7 +108,6 @@
         <th class="f-column text-truncate" scope="col" >SIM #</th>
         <th class="f-column text-truncate" scope="col" >Requested new address</th>
         <th class="f-column text-truncate" scope="col" >Reason</th>
-        <th class="f-column text-truncate" scope="col" >Proof</th>
 
       </tr>
     </thead>
@@ -129,10 +128,10 @@
             FROM update_user_db AS q LEFT JOIN foreign_registered_simusers_db AS l ON q.simnum = l.simnum
             LEFT JOIN foreign_passport_db AS n ON l.passnum = n.passnum
             WHERE l.simnum IS NOT NULL AND q.dates between '$start_date' AND'$end_date'";
-      
-      
+
+
        $result = mysqli_query($conn,$FirstOff);
-      
+
           $resultCheck = mysqli_num_rows($result);
        }
            while($row = mysqli_fetch_assoc($result)):
@@ -145,7 +144,6 @@
         <td class="f-column text-truncate"><?php echo $row['simnum']?></th>
         <td class="f-column text-truncate"><?php echo $row['update_req']?></th>
         <td class="f-column text-truncate"><?php echo $row['message']?></th>
-        <td class="f-column text-truncate"><?php echo $row['nso_link']?></th>
 
 
 

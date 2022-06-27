@@ -141,11 +141,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
           <th class="f-column text-truncate" scope="col" >Registration Site</th>
           <th class="f-column text-truncate" scope="col" >SIM Retailer</th>
           <th class="f-column text-truncate" scope="col" >Registration Date</th>
-          <th class="f-column text-truncate" scope="col" >Fingerprint</th>
-          <th class="f-column text-truncate" scope="col" >Business Permit</th>
-          <th class="f-column text-truncate" scope="col" >NSO</th>
-          <th class="f-column text-truncate" scope="col" >Valid ID</th>
-          <th class="f-column text-truncate" scope="col" >Authorization Letter</th>
+
 
 
         </tr>
@@ -291,11 +287,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
             <td class="f-column text-truncate"><?php echo $row['regisite'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['sim_retailer'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['dateofreg'] ?></th>
-            <td class="f-column text-truncate"><?php echo $row['fingerprint_File_Format'] ?></th>
-            <td class="f-column text-truncate"> <?php echo $row['business_permit'] ?></th>
-            <td class="f-column text-truncate"><?php echo $row['link_nso_pic'] ?></th>
-            <td class="f-column text-truncate"><?php echo $row['link_id_pic'] ?></th>
-            <td class="f-column text-truncate"><?php echo $row['link_authletter'] ?></th>
+    
 
         </tr>
 

@@ -122,9 +122,6 @@
         <th class="f-column text-truncate" scope="col" >SIM Shop</th>
         <th class="f-column text-truncate" scope="col" >Registered by</th>
         <th class="f-column text-truncate" scope="col" >Registration Date</th>
-        <!-- <th class="f-column text-truncate" scope="col" >Registration Time</th> -->
-        <th class="f-column text-truncate" scope="col" >Fingerprint</th>
-        <th class="f-column text-truncate" scope="col" >Passport</th>
 
 
 
@@ -176,9 +173,6 @@
         <td class="f-column text-truncate"><?php echo $row['sim_shop'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['sim_retailer'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['dateofregis'] ?></th>
-        <!-- <td class="f-column text-truncate"><?php echo $row['time'] ?></th> -->
-        <td class="f-column text-truncate"><?php echo $row['fingerprint_File_Format'] ?></th>
-        <td class="f-column text-truncate"><?php echo $row['link_nsopass_pic'] ?></th>
 
 
       </tr>
