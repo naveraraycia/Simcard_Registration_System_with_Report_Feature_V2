@@ -7,18 +7,18 @@ $SimCardNumber = $_SESSION['UserNumber'] ;
 $Type          = $_SESSION['Type'];
 
           if($Type == 'Filipino'){
-            $sql = " SELECT n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix, 
-                            n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum, 
-                            r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard, 
-                            r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start, 
+            $sql = " SELECT n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix,
+                            n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum,
+                            r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard,
+                            r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start,
                             r.ban_end as ban_end, r.sim_retailer as sim_retailer, r.nsonum as nsopass_num
                     FROM local_registered_simusers_db as r LEFT JOIN nso_dummy_db as n ON r.nsonum = n.nsonum
                     WHERE r.simnum = ?;";
           }else if($Type == 'NotFilipino'){
-            $sql = "SELECT n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix, 
-                            n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum, 
-                            r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard, 
-                            r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start, 
+            $sql = "SELECT n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix,
+                            n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum,
+                            r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard,
+                            r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start,
                             r.ban_end as ban_end, r.sim_retailer as sim_retailer, n.nationality as nationality, r.nsonum as nsopass_num
                     FROM foreign_registered_simusers_db as r LEFT JOIN foreign_passport_db as n ON r.passnum = n.passnum
                     WHERE r.simnum = ?;";
@@ -212,7 +212,7 @@ $service       = $_SESSION['services'];
     <div class='col-md-6'>
     <div class='form-group'>
       <label for='exampleFormControlFile1' class='labelings'>Submit Screenshot of Message</label>
-        <input type='file' name='file' class='form-control-file' id='exampleFormControlFile1'>
+        <input type='file' name='file' class='form-control-file' id='exampleFormControlFile1' required>
     </div>
     </div>
 

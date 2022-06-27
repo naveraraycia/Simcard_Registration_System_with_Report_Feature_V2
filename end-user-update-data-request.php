@@ -163,7 +163,7 @@
          <div class='col-md-6'>
          <div class='form-group'>
            <label for='exampleFormControlFile1' class='labelings'>Submit Valid ID with address details</label>
-             <input type='file' name='file' class='form-control-file' id='exampleFormControlFile1'>
+             <input type='file' name='file' class='form-control-file' id='exampleFormControlFile1' required>
          </div>
          </div>
 

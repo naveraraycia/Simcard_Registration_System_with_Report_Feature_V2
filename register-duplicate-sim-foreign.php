@@ -285,7 +285,7 @@
 
          <div class="col-md-6 infodiv">
            <label class="labelings">Name of SIM retailer</label>
-           <input id="regisite" type="text" name="retailer" class="form-control" placeholder="ex: Cavite" required>
+           <input id="regisite" type="text" name="retailer" class="form-control" required>
          </div>
 
        </div>
@@ -295,7 +295,7 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="exampleFormControlFile1">Attach Fingerprint Image</label>
-             <input type="file" name='Fingerfile' class="form-control-file" id="exampleFormControlFile1">
+             <input type="file" name='Fingerfile' class="form-control-file" id="exampleFormControlFile1" required>
            </div>
          </div>
 

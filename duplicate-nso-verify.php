@@ -118,7 +118,7 @@
           echo "<p class= 'nsoexist'>THIS USER IS UNDER BAN</p>";
         }
         if(strpos($fulUrl, "signup=success") == true){
-          echo "<p class= 'regsuccess'>YOUR REQUEST FOR HAS BEEN SENT</p>";
+          echo "<p class= 'regsuccess'>YOUR REQUEST HAS BEEN SENT</p>";
         }
         elseif(strpos($fulUrl, "permanentban") == true){
           echo "<p class= 'nsoexist'>THIS PERSON HAS BEEN PERMNANENTLY BAN TO REGISTRATER SIM</p>";
