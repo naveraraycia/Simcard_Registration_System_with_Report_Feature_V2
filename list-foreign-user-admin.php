@@ -2,11 +2,11 @@
   require 'includes/dbh.inc.php';
 ?>
 <?php
-  // session_start();
-  // if (empty($_SESSION['SellerFirstName'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+   session_start();
+   if (empty($_SESSION['AdminEmail'])){
+    header("Location: index.php");
+    exit();
+  }
      $sql = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
                   rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                   n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
@@ -83,10 +83,7 @@
       <form action="" method="GET">
           <!-- INPUT FIELD ROW -->
         <div class="row" style="margin-bottom: 2px; margin-top: 2rem!important; padding-left:2rem!important;padding-right:2rem!important;">
-        <div class="col-md-3">
-          <label class="labelings">Search</label>
-          <input class="form-control search-input" type="search" placeholder="Search" aria-label="Search" name="input-search" style="width:100%!important;">
-        </div>
+
         <div class="col-md-3">
           <label class="labelings">Offense</label>
             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name ="operator">

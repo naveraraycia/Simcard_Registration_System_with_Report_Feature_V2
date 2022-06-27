@@ -5,10 +5,10 @@
 ?>
 <?php
    session_start();
-  // if (empty($_SESSION['SellerFirstName'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+   if (empty($_SESSION['AdminEmail'])){
+    header("Location: index.php");
+    exit();
+  }
   $sql = "SELECT rg.sim_status as sim_status, rg.offense_count as offense_count, rg.ban_start as ban_start, rg.ban_end as ban_end,
                   rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                   n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,

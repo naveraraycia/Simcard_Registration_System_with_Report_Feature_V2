@@ -36,6 +36,8 @@ include_once "../includes/dbh.inc.php";
         $IDExt            =        $row['link_id_pic'];
     endwhile;
 
+    $sql = "SELECT sim_status = "
+
     $sim_status = "Active Status";
     $ban_start = "--";
     $ban_end = "--";

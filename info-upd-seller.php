@@ -4,11 +4,11 @@
   // $result = mysqli_query($conn, $sql);
 ?>
 <?php
-  // session_start();
-  // if (empty($_SESSION['SellerFirstName'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+  session_start();
+  if (empty($_SESSION['AdminEmail'])){
+    header("Location: index.php");
+    exit();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

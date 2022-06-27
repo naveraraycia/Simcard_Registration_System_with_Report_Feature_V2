@@ -4,10 +4,10 @@
   $sql = "SELECT * FROM nso_dummy_db ORDER BY lastname ASC";
   $result = mysqli_query($conn, $sql);
   session_start();
-  // if (empty($_SESSION['AdminEmail'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
+  if (empty($_SESSION['AdminEmail'])){
+    header("Location: index.php");
+    exit();
+  }
 
 ?>
 
