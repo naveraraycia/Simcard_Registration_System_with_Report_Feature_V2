@@ -247,7 +247,6 @@ if (empty($_SESSION['AdminEmail'])){
            <option>Active Status</option>
           <option >First offense</option>
           <option>Second offense</option>
-          <option>Third offense</option>
           <option>Permanent ban</option>
 
         </select>
