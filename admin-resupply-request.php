@@ -103,9 +103,9 @@
     <tbody>
       <?php
       $sql = "SELECT s.Shop_Name as Shop_Name,n.firstname as firstname,n.lastname as lastname, n.midname as midname, s.owner_num as owner_num, s.Business_Address as Business_Address, s.Simcard_Limit as Simcard_Limit,
-       r.sim_amount_requested as sim_amount_requested
-       FROM resupply_requests AS r LEFT JOIN seller as s ON r.selleremail = s.selleremail LEFT JOIN nso_dummy_db as n ON n.nsonum = s.seller_nso
-       WHERE r.sim_amount_requested AND n.nsonum;";
+      r.sim_amount_requested as sim_amount_requested, r.request_id as request_id
+      FROM resupply_requests AS r RIGHT JOIN seller as s ON r.selleremail = s.selleremail RIGHT JOIN nso_dummy_db as n ON n.nsonum = s.seller_nso
+      WHERE r.sim_amount_requested AND n.nsonum;";
       $result = mysqli_query($conn, $sql);
       while($row = mysqli_fetch_assoc($result)):
         // $thrownum = trim($simnum,"+");
@@ -114,7 +114,7 @@
 
       <!-- <tr class="canHov" onclick="window.location='<?php //echo "update-end-user-info.php?id=".$row['passnum_nsonum']."&sent=".$row['lastname']."";?>';"> -->
       <tr>
-        <td class="text-truncate"><a href="Admin_Table_Backend/resupply_sim.php?resupply=<?php echo $row['sim_amount_requested']; ?>" class="btn btn-success">Resupply</a></td>
+        <td class="text-truncate"><a href="Admin_Table_Backend/resupply_sim.php?resupply=<?php echo $row['request_id']; ?>" class="btn btn-success">Resupply</a></td>
         <td class="f-column text-truncate"><?php echo $row['Shop_Name'] ?></th>
         <td class="f-column text-truncate"><?php echo $row['firstname']." ". $row['midname']." ". $row['lastname'] ?></th>  <!-- pa-concat nalang ng $row['firstname'] and $row['lastname'] -->
         <td class="f-column text-truncate"><?php echo $row['owner_num'] ?></th>
