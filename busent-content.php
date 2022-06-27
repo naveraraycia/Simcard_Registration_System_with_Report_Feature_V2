@@ -1,46 +1,58 @@
 <?php
   require 'includes/dbh.inc.php';
-  //
-  // $id = mysqli_real_escape_string($conn, $_GET['id']);
-  // $sql = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name ,
-  // COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name,
-  //             COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num,
-  //             COALESCE(d.lastname,NULL,e.lastname) AS Complainant_first_name,
-  //             COALESCE(d.firstname,NULL,e.firstname) AS Complainant_last_name,
-  //             COALESCE(n.nsonum,NULL, f.passnum) AS num_serial,
-  //             r.reported_number as reported_number, r.report_id as report_id,
-  //             r.remarks as remarks, r.sent_at as sent_at, r.Report_Screenshot as Report_Screenshot
-  //  FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum
-  //  LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum
-  //                LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
-  //                LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum
-  //                LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum
-  //                LEFT JOIN foreign_registered_simusers_db as b ON r.user_mobile_num = b.simnum
-  //                LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum
-  //                LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum
-  //  WHERE r.report_id = '$id';";
-  //      $result = mysqli_query($conn,$sql);
-  //
-  //      while($row = mysqli_fetch_assoc($result)):
-  //       $report_id = $row['report_id'];
-  //       $data = $row['sent_at'];
-  //       $username = $row['Complainant_first_name']." ".$row['Complainant_last_name'];
-  //       $simnum = $row['Complainant_sim_num'];
-  //       $reportednum = $row['reported_number'];
-  //       $reportedname =  $row['Reported_First_Name']." ".$row['Reported_Last_Name'];
-  //       $remarks = $row['remarks'];
-  //       $sent_at = $row['sent_at'];
-  //       $viewscreenshot = $row['Report_Screenshot'];
-  //       $serial = $row['num_serial'];
-  //       $picture = $row['Report_Screenshot'];
-  //      endwhile;
-  //     if (empty($serial)|| $serial == ''){
-  //       $reportedname = 'THIS NUMBER IS NOT REGISTERED';
-  //       $reportedtrue = 'notexist';
-  //
-  //     }else{
-  //       $reportedtrue = 'exist';
-  //     }
+  session_start();
+  if (empty($_SESSION['AdminEmail'])){
+   header("Location: index.php");
+   exit();
+ }
+ $simnum = '639214425914';
+ $simnum = mysqli_real_escape_string($conn, $_GET['simnum']);
+ $user = mysqli_real_escape_string($conn, $_GET['user']);
+ $throw  = $simnum;
+ $simnum = '+'.$simnum;
+ 
+
+   $sql = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum,
+                  b.simcard as simcard, b.services as services, b.business_name as business_name, b.business_permit as business_permit, n.lastname as lastname,
+                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth,
+                  b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
+                  b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.link_business_permit as link_business_permit, b.num_permit as num_permit,
+                  b.link_id_pic as link_id_pic,b.link_authletter as link_authletter,b.link_nso_pic as link_nso_pic
+   FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON b.nsonum = n.nsonum ORDER BY lastname ASC";
+
+
+   $result = mysqli_query($conn, $sql);
+   while($row = mysqli_fetch_assoc($result)):
+    $business_name = $row['business_name'];
+    $business_address = $row['business_address'];
+    $num_permit = $row['num_permit'];
+    $fullname = $row['firstname']. " ". $row['midname']." ".$row['lastname']." ".$row['suffix'];
+    $dateofbirth = $row['dateofbirth'];
+    $gender = $row['gender'];
+    $address =$row['address'];
+    $simcard = $row['simcard'];
+    $sim_status = $row['sim_status'];
+    $offense_count = $row['offense_count'];
+    $ban_start = $row['ban_start'];
+    $ban_end = $row['ban_end'];
+    $simcard = $row['simcard'];
+    $services = $row['services'];
+    $sim_shop = $row['sim_shop'];
+    $regisite = $row['regisite'];
+    $dateofreg = $row['dateofreg'];
+    $nationality = 'Filipino';
+    $passnso_num = $row['nsonum'];
+    $sim_retailer = $row['sim_retailer'];
+    $finger_link = $row['fingerprint_File_Format'];
+    $nso_link = $row['link_nso_pic'];
+    $id_link     = $row['link_id_pic'];
+    $authletter_link = $row['link_authletter'];
+    $business_permit_link = $row['link_business_permit'];
+
+
+
+
+endwhile;
 
 ?>
 <!-- <?php
@@ -153,61 +165,61 @@ p{
 
             <div class="col-md-4">
               <div class="infolabels">
-                <p class="nameLabel">Representative's Full Name: <span>Pa concat nalang tenks - Keanu Paga Berches</span></p>
+                <p class="nameLabel">Representative's Full Name: <span><?php echo $fullname ?></span></p>
+                </div>
+              <div class="infolabels">
+                <p class="nameLabel">Birthdate: <span><?php echo $dateofbirth ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Birthdate: <span>1999-01-01</span></p>
+                <p class="nameLabel">Gender: <span><?php echo $gender ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Gender: <span>M</span></p>
+                <p class="nameLabel">Representative's Address: <span><?php echo $address ?></span></p>
+                </div>
+              <div class="infolabels">
+                <p class="nameLabel">NSO #: <span><?php echo $passnso_num ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Representative's Address: <span>Planet Earth</span></p>
-              </div>
-              <div class="infolabels">
-                <p class="nameLabel">NSO #: <span>1234-NSO</span></p>
-              </div>
-              <div class="infolabels">
-                <p class="nameLabel">Registration Date: <span>2022-06-23</span></p>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="infolabels">
-                <p class="nameLabel">SIM Card #: <span>+639175900000</span></p>
-              </div>
-              <div class="infolabels">
-                <p class="nameLabel">SIM Type: <span>new prepaid user</span></p>
-              </div>
-
-
-              <div class="infolabels">
-                <p class="nameLabel">Provider: <span>Globe</span></p>
-              </div>
-
-
-              <div class="infolabels">
-                <p class="nameLabel">SIM shop: <span>Maria SIM shop</span></p>
-              </div>
-              <div class="infolabels">
-                <p class="nameLabel">SIM Retailer: <span>Jasmin Duenas</span></p>
-              </div>
-              <div class="infolabels">
-                <p class="nameLabel">SIM shop's location: <span>Mabuhay Homes 2000, Cavite, Philippines</span></p>
+                <p class="nameLabel">Registration Date: <span><?php echo $dateofreg ?></span></p>
               </div>
             </div>
 
             <div class="col-md-4">
               <div class="infolabels">
-                <p class="nameLabel">Business Name: <span>Keanu Corporation</span></p>
+                <p class="nameLabel">SIM Card #: <span><?php echo $simnum ?></span></p>
+              </div>
+              <div class="infolabels">
+                <p class="nameLabel">SIM Type: <span><?php echo $simcard ?></span></p>
+              </div>
+
+
+              <div class="infolabels">
+                <p class="nameLabel">Provider: <span><?php echo $services ?></span></p>
+              </div>
+
+
+              <div class="infolabels">
+                <p class="nameLabel">SIM shop: <span><?php echo $sim_shop ?></span></p>
+              </div>
+              <div class="infolabels">
+                <p class="nameLabel">SIM Retailer: <span><?php echo $sim_retailer ?></span></p>
+              </div>
+              <div class="infolabels">
+                <p class="nameLabel">SIM shop's location: <span><?php echo $regisite ?></span></p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="infolabels">
+                <p class="nameLabel">Business Name: <span><?php echo $business_name ?></span></p>
               </div>
 
               <div class="infolabels">
-                <p class="nameLabel">Business Permit #: <span>1234-BUSPERMIT</span></p>
+                <p class="nameLabel">Business Permit #: <span><?php echo $num_permit ?></span></p>
               </div>
 
               <div class="infolabels">
-                <p class="nameLabel">Business Address: <span>Manila</span></p>
+                <p class="nameLabel">Business Address: <span><?php echo $business_address ?></span></p>
               </div>
             </div>
           </div>
@@ -215,22 +227,22 @@ p{
           <div class="row">
             <div class="col-md-4" style="text-align:left;">
               <div class="infolabels">
-                <p class="nameLabel">User Status: <span>Active Status</span></p>
+                <p class="nameLabel">User Status: <span><?php echo $sim_status ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Penalty: <span>0</span></p>
-              </div>
-            </div>
-
-            <div class="col-md-4" style="text-align:left;">
-              <div class="infolabels">
-                <p class="nameLabel">Date blocked: <span>--</span></p>
+                <p class="nameLabel">Penalty: <span><?php echo $offense_count ?></span></p>
               </div>
             </div>
 
             <div class="col-md-4" style="text-align:left;">
               <div class="infolabels">
-                <p class="nameLabel">End of block period: <span>--</span></p>
+                <p class="nameLabel">Date blocked: <span><?php echo $ban_start ?></span></p>
+              </div>
+            </div>
+
+            <div class="col-md-4" style="text-align:left;">
+              <div class="infolabels">
+                <p class="nameLabel">End of block period: <span><?php echo $ban_end ?></span></p>
               </div>
             </div>
           </div>
@@ -269,7 +281,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="Fingerprint-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'Fingerprint_Registered_User_Database/'.$finger_link;     ?>" alt="Fingerprint-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -290,7 +302,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="NSO-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'NSO_User_Database/'.$nso_link;     ?>" alt="NSO-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -311,7 +323,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="valid-id-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'ID_User_Database/'.$id_link;    ?>" alt="valid-id-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -332,7 +344,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="business-permit-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'Permit_Database/'.$business_permit_link;    ?>" alt="business-permit-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -353,7 +365,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img img-fluid" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="author-letter-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'Endoresement_Database/'.$authletter_link;    ?>" alt="author-letter-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
