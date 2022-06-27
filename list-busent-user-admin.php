@@ -1,8 +1,8 @@
 <?php
   require 'includes/dbh.inc.php';
-   $sql = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum, 
+   $sql = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum,
                   b.simcard as simcard, b.services as services, b.business_name as business_name, b.business_permit as business_permit, n.lastname as lastname,
-                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
+                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth,
                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
                   b.link_id_pic as link_id_pic,b.link_authletter as link_authletter,b.link_nso_pic as link_nso_pic
@@ -118,6 +118,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
         <tr>
           <th class="f-column text-truncate notexport" scope="col" ></th>
           <th class="f-column text-truncate notexport" scope="col" ></th>
+          <th class="f-column text-truncate notexport" scope="col" ></th>
           <th class="f-column text-truncate" scope="col" >User Status</th>
           <th class="f-column text-truncate" scope="col" >Penalty</th>
           <th class="f-column text-truncate" scope="col" >Date blocked</th>
@@ -193,9 +194,9 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
 
 
               // first offense
-              $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum, 
+              $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum,
                                   b.simcard as simcard, b.services as services, b.business_name as business_name, b.business_permit as business_permit, n.lastname as lastname,
-                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
+                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth,
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
                                   b.link_id_pic as link_id_pic, b.link_authletter as link_authletter, b.link_nso_pic as link_nso_pic
@@ -206,9 +207,9 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
 
             }else if($querytype=='B'){
 
-             $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum, 
+             $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum,
                                   b.simcard as simcard, b.services as services, b.business_name as business_name, b.business_permit as business_permit, n.lastname as lastname,
-                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
+                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth,
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
                                   b.link_id_pic as link_id_pic, b.link_authletter as link_authletter, b.link_nso_pic as link_nso_pic
@@ -218,9 +219,9 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
 
             }else if($querytype=='C'){
 
-             $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum, 
+             $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum,
                                   b.simcard as simcard, b.services as services, b.business_name as business_name, b.business_permit as business_permit, n.lastname as lastname,
-                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
+                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth,
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
                                   b.link_id_pic as link_id_pic, b.link_authletter as link_authletter, b.link_nso_pic as link_nso_pic
@@ -230,9 +231,9 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
                           ORDER BY n.lastname ASC;";
             }else if($querytype=='D'){
 
-              $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum, 
+              $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum,
                                   b.simcard as simcard, b.services as services, b.business_name as business_name, b.business_permit as business_permit, n.lastname as lastname,
-                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
+                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth,
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
                                   b.link_id_pic as link_id_pic, b.link_authletter as link_authletter, b.link_nso_pic as link_nso_pic
@@ -242,9 +243,9 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
                            ORDER BY n.lastname ASC;";
              }else if($querytype=='E'){
 
-              $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum, 
+              $FirstOff = "SELECT b.sim_status as sim_status, b.offense_count as offense_count , b.ban_start as ban_start, b.ban_end as ban_end, b.simnum as simnum,
                                   b.simcard as simcard, b.services as services, b.business_name as business_name, b.business_permit as business_permit, n.lastname as lastname,
-                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, 
+                                  n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth,
                                   b.business_address as business_address, b.address as address, n.nsonum as nsonum, b.sim_shop as sim_shop, b.regisite as regisite,
                                   b.sim_retailer as sim_retailer, b.dateofreg as dateofreg, b.fingerprint_File_Format as fingerprint_File_Format, b.business_permit as business_permit, b.num_permit as num_permit,
                                   b.link_id_pic as link_id_pic, b.link_authletter as link_authletter,b.link_nso_pic as link_nso_pic
@@ -267,6 +268,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
         <tr>
           <td class="text-truncate"><a href="Admin_Table_Backend/userdelete.php?click=delete&simnum=<?php echo $thrownum ."&nation=business"; ?>" class="btn btn-danger">Delete</a></td>
             <td class="text-truncate"><a href="admin-edit-busent.php?simnum=<?php echo $thrownum; ?>" class="btn btn-success">Update</a></td>
+            <td class="text-truncate"><a href="busent-content.php?simnum=<?php //echo  $throw; ?>" class="btn btn-primary">View</a></td>
             <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['offense_count'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['ban_start'] ?></th>
