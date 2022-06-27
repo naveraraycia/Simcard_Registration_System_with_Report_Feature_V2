@@ -288,7 +288,7 @@
          <div class="col-md-6">
            <div class="form-group">
              <label for="exampleFormControlFile1">Attach Fingerprint Image</label>
-             <input type="file" name='Fingerfile' class="form-control-file" id="exampleFormControlFile1">
+             <input type="file" name='Fingerfile' class="form-control-file" id="exampleFormControlFile1" required>
            </div>
          </div>
 
