@@ -91,13 +91,13 @@
           <p class='information' style="line-height: 200%;color:black!important;">We also allow people to modify, erase, reduce or correct data contained in our databases in line with their rights under the law. We will have provisions in cases of lost or corrupted data.
           </p>
 
-          <p class='information' style="line-height: 200%;color:black!important;">For protection, our officers and employees will be trained in online privacy and data security and will establish data protection practices (secure locks, data encryption, access authorization, etc.). In addition, security measures will be built through a secure network to protect data from cyber attacks.
+          <p class='information' style="line-height: 200%;color:black!important;">For protection, our officers and employees will be trained in online privacy and data security and will establish data protection practices.
           </p>
 
-          <p class='information' style="line-height: 200%;color:black!important;">We may change this Policy from time to time without any advance notice. Should there be material changes to the Policy, you shall be promptly notified via e-mail and/or in-app. You are strongly recommended to regularly review and read this Policy. Any changes in this Policy will be effective immediately upon posting in the Site, with an updated effective date. In case of any inconsistency with any other policy of SimCardRegistrationSystem regarding data, information and system security measures, this Privacy Policy will govern.
+          <p class='information' style="line-height: 200%;color:black!important;">We may change this Policy from time to time without any advance notice. You are strongly recommended to regularly review and read this Policy. Any changes in this Policy will be effective immediately upon posting in the Site, with an updated effective date. In case of any inconsistency with any other policy of SimCardRegistrationSystem regarding data, information and system security measures, this Privacy Policy will govern.
           </p>
 
-          <p class='information' style="line-height: 200%;color:black!important;">This Policy applies to all information collected through our Site (which, as described above, includes our SimCardRegistrationSystem App), as well as any related services, sales, marketing or events.
+          <p class='information' style="line-height: 200%;color:black!important;">This Policy applies to all information collected through our Site, as well as any related services, sales, marketing or events.
           </p>
 
           <p class='information' style="line-height: 200%;color:black!important;">Please read this Policy carefully as it will help you understand what we do with the information that we collect. Thank you for using SimCardRegistrationSystem!
@@ -129,22 +129,26 @@
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>1.	WHY DO WE COLLECT YOUR INFORMATION?</h2>
-          <p class='information' style="line-height: 200%;color:black!important;">In Short:  We collect your information to enable us to provide our Services to you.
+          <p class='information' style="line-height: 200%;color:black!important;">We collect your information to enable us to provide our Services to you.
           </p>
-          <p class="information" style="line-height: 200%;color:black!important;">We are a company duly organized and existing under the laws of the British Virgin Islands and have our registered office at 3/F ML Bldg. 336 Molino-Zapote Road. Molino 3 City of Bacoor Cavite. Pursuant to this, you may register in our Site and, subject to our Terms and Conditions and User Agreement, be eligible to use our Services. To do this, we will need to collect your personal information to the extent needed for you to access and for us to provide to you our Services.
-          </p>
+
+          <p class="information" style="line-height: 200%;color:black!important;">We shall use your personal information to provide you services pursuant to the mandate of SIM Card Registration in the Philippines.</p>
+          <p class="information" style="line-height: 200%;color:black!important;">Under Section 11 of RA 10173, the processing of personal information shall be allowed, subject to compliance with the requirements of the Act and other laws allowing disclosure of information to the public and adherence to the principles of transparency, legitimate purpose and proportionality.</p>
+          <p class="information" style="line-height: 200%;color:black!important;">Under the Section 12 od RA 10173, the processing of personal information shall be permitted when the data subject has given his or her consent. Similarly, under Section 13 of RA 10173, the processing of sensitive personal information is permitted when the data subject has given his or her consent, specific to the purpose prior to the processing of information.
+          <p class="information" style="line-height: 200%;color:black!important;">With regards to that, by accessing the website and availing our services carried out by the registered SIM Retailers and/or Service Providers in the country through the SimCardRegistrationSystem website, you consent to the processing and collection of your personal information and sensitive personal information in accordance with the Data Privacy Act of 2012, also known as RA 10173.</p>
+
+
         </div>
 
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>2.	WHAT INFORMATION DO WE COLLECT?</h2>
-          <p class='information' style="line-height: 200%;color:black!important;">Personal information you disclose to us
+          <p class='information' style="line-height: 200%;color:black!important;">We collect personal information and sensitive personal information you disclose to us.
           </p>
-          <p class='information' style="line-height: 200%;color:black!important;">In Short:  We collect information that you provide to us.
+
+          <p class='information' style="line-height: 200%;color:black!important;">We collect personal information and sensitive personal information that you voluntarily provide to us when you are registered on the Site, and when you participate in activities on the Site.
           </p>
-          <p class='information' style="line-height: 200%;color:black!important;">We collect personal information that you voluntarily provide to us when you register on the Site, express an interest in obtaining information about us or our Services, when you participate in activities on the Site, or otherwise when you contact us.
-          </p>
-          <p class="information" style="line-height: 200%;color:black!important;">The personal information that we collect depends on the context of your interactions with us and the Site, the choices you make and the products and features you use. The personal information we collect may include the following:
+          <p class="information" style="line-height: 200%;color:black!important;">The information that we collect depends on the context of your interactions with us and the Site, the choices you make and the features you use. The personal information we collect may include the following:
           </p>
 
           <ul style="display:block;">
@@ -153,34 +157,28 @@
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">date of birth;</li>
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">present and permanent address;</li>
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">phone numbers;</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">government I.D.;</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">photo (selfie); and</li>
+            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">government-issued I.D.;</li>
+            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">identification documents like birth certificate and passport;</li>
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">other similar information.</li>
           </ul>
 
-          <p class='information' style="line-height: 200%;color:black!important;">All personal information that you provide to us must be true, complete and accurate, and you must notify us of any changes to such personal information.
-          </p>
-          <p class='information' style="line-height: 200%;color:black!important;">Information collected through our Site
-          </p>
-          <p class='information' style="line-height: 200%;color:black!important;">In Short:  We collect information regarding your mobile device, push notifications, device behavioral data, device storage data, calendar behavioral data, telecommunications usage data when you use our Site.
-          </p>
-          <p class='information' style="line-height: 200%;color:black!important;">If you use our Site, we also collect the following information:
+          <p class="information" style="line-height: 200%;color:black!important;">Fof the sensitive personal information, we collect the following:
           </p>
 
           <ul style="display:block;">
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">•	Mobile Device Access. We may request access or permission to certain features from your mobile device, including your mobile device's contacts, and other features. If you wish to change our access or permissions, you may do so in your device's settings.</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">•	Contacts Data.  We may request access or permission to your contact data so as to allow us to collect numerical aggregations based on your contact details and the corresponding attributes of each contact such as number of contacts, consistency in how contacts are formatted and the completeness of the contact fields.</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">•	SMS Usage Data. We may request access or permission to your SMS usage data so that we may collect numerical aggregations based on your SMS and the corresponding attributes such as number of messages sent, number of messages received and the unique number of correspondents.</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">•	Storage Data. We may request access or permission to your storage data so as to collect file metadata such as file name, file path, file size, file type, last modified date of the file. We will also collect numerical aggregations based on your files and the corresponding attributes such as the number of photos, number of documents, number of files modified in a given time frame. Data collection is limited to file metadata and we will not collect the files.</li>
+            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">Fingerprint image;</li>
+            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">Business Permit;</li>
+            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">Business Permit Number.</li>
           </ul>
-          <p class='information' style="line-height: 200%;color:black!important;">The information is needed to maintain the security and operation of our Site, for troubleshooting and for our internal analytics and reporting purposes. Such is also collected for purposes of fraud prevention.
+
+          <p class='information' style="line-height: 200%;color:black!important;">All personal information and sensitive personal information that you provide to us must be true, complete and accurate, and you must notify us of any changes to such personal information through the Service Providers or administrators.
           </p>
+
           <p class='information' style="line-height: 200%;color:black!important;">Information collected from other sources
           </p>
-          <p class='information' style="line-height: 200%;color:black!important;">In Short:  We may collect limited data from public databases, marketing partners, and other outside sources.
+          <p class='information' style="line-height: 200%;color:black!important;">We may collect limited data from public databases, marketing partners, and other outside sources.
           </p>
-          <p class='information' style="line-height: 200%;color:black!important;">To the extent permitted by law, in order to enhance our ability to provide relevant marketing, offers and services to you and update our records, we may obtain information about you from other sources, such as public databases, joint marketing partners, affiliate programs, data providers, as well as from other third parties. This information includes mailing addresses, job titles, email addresses, phone numbers, intent data (or user behavior data), Internet Protocol (IP) addresses, social media profiles, social media URLs and custom profiles, for purposes of targeted advertising and event promotion.
-          </p>
+          <p class='information' style="line-height: 200%;color:black!important;">To the extent permitted by law, in order to enhance our ability to provide relevant marketing, offers and services to you and update our records, we may obtain information about you from other sources, such as public databases, joint marketing partners, affiliate programs, data providers, as well as from other third parties. This information includes identity details from your official birth certificate record or passport.
           <p class='information' style="line-height: 200%;color:black!important;">When collecting information from third-party sources, SimCardRegistrationSystem ensures that the third-party provider has secured the users’ or your consent to the sharing of their data for marketing purposes. This will be made as a representation and warranty of the third-party provider under the relevant Data Sharing/Outsourcing Agreement between the third parties and us.
           </p>
         </div>
@@ -188,7 +186,7 @@
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>3.	HOW DO WE PROCESS YOUR INFORMATION?</h2>
-          <p class="information" style="line-height: 200%;color:black!important;">In Short:  We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and/or for other purposes such as fraud prevention and administration of our Services with your consent.
+          <p class="information" style="line-height: 200%;color:black!important;">We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and/or for other purposes such as fraud prevention and administration of our Services with your consent.
           </p>
           <p class="information" style="line-height: 200%;color:black!important;">We use personal information collected via our Site for a variety of business purposes described below. We process your personal information for these purposes in reliance on our legitimate business interests, in order to enter into or perform a contract with you, with your consent, and/or for compliance with our legal obligations. We indicate the specific processing grounds we rely on next to each purpose listed below
           </p>
@@ -197,10 +195,9 @@
 
           <ul style="display:block;">
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">a.	To perform our Know-Your-Customer and Verification procedures. In order to provide to you our Services, we will need to collect your personal information and verify your identity as our user.</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">b.	To administer our business. We may disclose your personal information to third party service providers solely for the purpose of rendering services to us in the administration of our business and improvement of our Services.</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">c.	To post testimonials. We post testimonials on our Site that may contain personal information. Prior to posting a testimonial, we will obtain your consent to use your name and the consent of the testimonial. If you wish to update, or delete your testimonial, please contact us at privacy@SimCardRegistrationSystem.gg and be sure to include your name, testimonial location, and contact information. </li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">d.	To request feedback. We may use your information to request feedback and to contact you about your use of our Site.</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">e.	To enable user-to-user communications. We may use your information in order to enable user-to-user communications with each user’s consent.</li>
+            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">b.	To administer our business. We may disclose your personal information to third party service providers solely for the purpose of rendering services to us in the administration of our business and to comply with the law in case the police would need a copy of the confirmed malicious SIM users.</li>
+
+
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">f.	To manage user accounts. We may use your information for the purposes of managing our account and keeping it in working order.</li>
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">g.	To protect our Site. We may use your information as part of our efforts to keep our Site safe and secure (for example, for fraud monitoring and prevention).</li>
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">h.	To enforce our terms, conditions and policies for business purposes, to comply with legal and regulatory requirements or in connection with our contract.</li>
@@ -213,16 +210,16 @@
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>4.	WILL YOUR INFORMATION BE SHARED WITH ANYONE?</h2>
-          <p class="information" style="line-height: 200%;color:black!important;">In Short:   We only process your personal information when we believe it is necessary and we have a valid legal reason (i.e., legal basis) to do so under applicable law, like with your consent, to comply with laws, to provide you with services to enter into or fulfill our contractual obligations, to protect your rights, or to fulfill our legitimate business interests.
+          <p class="information" style="line-height: 200%;color:black!important;">We only disclose your personal information and senstivie personal information when we believe it is necessary and we have a valid legal reason (i.e., legal basis) to do so under applicable law, like with your consent, to comply with laws, to provide you with services to enter into or fulfill our contractual obligations, to protect your rights, or to fulfill our legitimate business interests.
           </p>
-          <p class="information" style="line-height: 200%;color:black!important;">The Company acknowledges its role and responsibilities under the law, subject to the provisions of this Policy. In providing our Services to you, you consent to our outsourcing of our data processing activities within and among SimCardRegistrationSystem and its subsidiaries and affiliates.
+          <p class="information" style="line-height: 200%;color:black!important;">SimCard RegistrationSystem acknowledges its role and responsibilities under the law, subject to the provisions of this Policy. In providing our Services to you, you consent to our outsourcing of our data processing activities within and among SimCardRegistrationSystem and its subsidiaries and affiliates.
           </p>
           <p class="information" style="line-height: 200%;color:black!important;">We may also process or share your data that we hold based on the following legal basis:
           </p>
 
           <ul style="display:block;">
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">a.	Consent. We may process your information if you have given us specific consent to use your personal information for a specific purpose. You can withdraw your consent at any time.</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">b.	Performance of a Contract. Where we have entered into a contract with you, we may process your personal information to fulfill the terms of our contract, including third party data processors necessary to perform such contractual services (ex. cloud providers).</li>
+            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">a.	Consent. We may process your information if you have given us specific consent to use your information for a specific purpose.</li>
+
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">c.	Legitimate Business Interests. We may process your information when we believe it is reasonably necessary to achieve our legitimate business interests and those interests do not outweigh your interests and fundamental rights and freedoms. For example, we may process your personal information for some of the purposes described in order to:<ul>
               <li style="list-style:none; margin-bottom:10px; line-height: 200%;">•	Analyze how our services are used so we can improve them to engage and retain users;</li>
               <li style="list-style:none; margin-bottom:10px; line-height: 200%;">•	Diagnose problems and/or prevent fraudulent activities; and</li>
@@ -234,9 +231,8 @@
           <p class="information" style="line-height: 200%;color:black!important;">More specifically, subject to the requirements of the applicable law/s, we may also need to process your data or share your personal information in the following situations:
           </p>
           <ul style="display:block;">
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">a.	Business Transfers. We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li>
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">b.	Affiliates. We may share your information with our affiliates, in which case we will require those affiliates to honor this Policy. Affiliates, if any, include our parent company and subsidiaries, joint venture partners or other companies that we control or that are under common control with us.</li>
-            <li style="list-style:none; margin-bottom:10px; line-height: 200%;">c.	Business Partners. We may share your information with our business partners to offer you certain products, services or promotions.</li>
+
           </ul>
           <p class="information" style="line-height: 200%;color:black!important;">Any data transfer/sharing to outside parties will be covered by a Data Sharing/Outsourcing Agreement, when applicable.
           </p>
@@ -245,13 +241,13 @@
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>5.	HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
-          <p class="information" style="line-height: 200%;color:black!important;">In Short:  We keep your information for as long as necessary to fulfill the purposes outlined in this Policy unless otherwise required by law.
+          <p class="information" style="line-height: 200%;color:black!important;">We keep your information for as long as necessary to fulfill the purposes outlined in this Policy unless otherwise required by law.
           </p>
           <p class='information' style="line-height: 200%;color:black!important;">We will only keep your personal information for as long as it is necessary for the purposes set out in this Policy, and in the case of account termination, for an archiving period of twelve (12) months to allow for ease of account revival, unless a longer retention period is required or permitted by law (such as tax, accounting, anti-money laundering or other legal requirements).
           </p>
           <p class='information' style="line-height: 200%;color:black!important;">When we have no ongoing legitimate business need to process your personal information, we will either irreversibly delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.
           </p>
-          <p class='information' style="line-height: 200%;color:black!important;">You understand that you are, at any time, free to unsubscribe from our newsletters, delete your account, uninstall our Site from your devices, and/or submit an official request for deletion of your data, subject to this Policy. Should you wish to have your personal information deleted and destroyed or you wish to withdraw your consent in the processing of your personal information, you may do so by contacting us.
+          <p class='information' style="line-height: 200%;color:black!important;">You understand that you are, at any time, free to delete your account. Should you wish to have your personal information deleted and destroyed or you wish to withdraw your consent in the processing of your personal information, you may do so by contacting us.
           </p>
           <p class='information' style="line-height: 200%;color:black!important;">The deletion of your personal data shall be honored within a reasonable time from request and as long as it will not compromise, damage, injure, or make inefficient the entirety, integrity, confidentiality, and security of the Site and/or Services, and shall be performed within such reasonable time from the time of your request to do so.
           </p>
@@ -260,7 +256,7 @@
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>6.	HOW DO WE KEEP YOUR INFORMATION SAFE?</h2>
-          <p class="information" style="line-height: 200%;color:black!important;">In Short:  We aim to protect your personal information through a system of physical, organizational, and technical security measures.</p>
+          <p class="information" style="line-height: 200%;color:black!important;">We aim to protect your personal information through a system of physical, organizational, and technical security measures.</p>
           <p class='information' style="line-height: 200%;color:black!important;">We have implemented appropriate physical, organizational, and technical security measures designed to protect the security of any personal information we process subject to the requirements of the law and of commercially acceptable standards for data protection.
           </p>
           <p class='information' style="line-height: 200%;color:black!important;">We will develop and implement measures to ensure that all our staff who have access to any personal information will strictly process such data in compliance with applicable laws and regulations. These measures may include drafting new or updated relevant policies of SimCardRegistrationSystem and conducting or sponsoring training programs to educate our stockholders, directors, officers, employees, agents and other interested parties on data privacy-related concerns. A continuing obligation of confidentiality is also imposed on our stockholders, directors, officers, employees, agents or other interested parties in connection with such personal information that they may encounter during the period of which they are such. This obligation will still apply after they cease to work with SimCardRegistrationSystem for whatever reason.
@@ -284,16 +280,15 @@
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>7.	DO WE COLLECT INFORMATION FROM MINORS?</h2>
-          <p class="information" style="line-height: 200%;color:black!important;">In Short:  We do not knowingly collect data from or market to children under 18 years of age.
+          <p class="information" style="line-height: 200%;color:black!important;">Yes, we do collect and process personal and sensitive personal information from minors for the sake of keeping records with regards to the identification link to SIM cards.
           </p>
-          <p class="information" style="line-height: 200%;color:black!important;">We do not knowingly solicit data from or market to minors, being individuals under 18 years of age. By using the Site, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Site. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at proo.bonno@gmail.com.
-          </p>
+
         </div>
 
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>8.	WHAT ARE YOUR PRIVACY RIGHTS?</h2>
-          <p class="information" style="line-height: 200%;color:black!important;">In Short:  You may review, change, or terminate your account at any time. </p>
+          <p class="information" style="line-height: 200%;color:black!important;">You may review, change, or terminate your account at any time. </p>
           <p class="information" style="line-height: 200%;color:black!important;">Under the law, you are entitled to the following data privacy rights:</p>
           <ul style="display:block;">
             <li style="list-style:none; margin-bottom:10px; line-height: 200%;">a.	the right to be informed whether your personal information shall be, are being, or have been processed;</li>
@@ -316,36 +311,38 @@
           </ul>
             <p class="information" style="line-height: 200%;color:black!important;">If you would at any time like to review or change the information in your account or terminate your account on our Site, you can:</p>
             <ul style="display:block;">
-              <li style="list-style:none; margin-bottom:10px; line-height: 200%;">•	Log in to your account settings and update your user account; or</li>
-              <li style="list-style:none; margin-bottom:10px; line-height: 200%;">•	Contact us at proo.bonno@gmail.com. </li>
+              <li style="list-style:none; margin-bottom:10px; line-height: 200%;">•	Go to the respective Service Provider Administrator of your Registered SIM</li>
             </ul>
-            <p class="information" style="line-height: 200%;color:black!important;">Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our Terms and Conditions and User Agreement and/or comply with applicable legal requirements.</p>
+            <p class="information" style="line-height: 200%;color:black!important;">Upon your request to terminate your account, you agree that you shall also widthraw the linked SIM card to the service provider administrator and we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our Terms and Conditions and User Agreement and/or comply with applicable legal requirements.</p>
         </div>
 
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>9.	DO WE MAKE UPDATES TO THIS POLICY?</h2>
-          <p class="information" style="line-height: 200%;color:black!important;">In Short:  Yes, we will update this Policy as necessary to stay compliant with relevant laws.</p>
-          <p class="information" style="line-height: 200%;color:black!important;">We may update this Policy from time to time. The updated version will be indicated by an updated “Revised” date and the updated version will be effective as soon as it is accessible. If we make material changes to this Policy, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this Policy frequently to be informed of how we are protecting your information.</p>
+          <p class="information" style="line-height: 200%;color:black!important;">Yes, we will update this Policy as necessary to stay compliant with relevant laws.</p>
+          <p class="information" style="line-height: 200%;color:black!important;">We may update this Policy from time to time. The updated version will be effective as soon as it is accessible. We encourage you to review this Policy frequently to be informed of how we are protecting your information.</p>
         </div>
 
           <br>
           <div class="" style="display:flex;flex-direction:column;">
           <h2>10.	HOW CAN YOU CONTACT US ABOUT THIS POLICY?</h2>
           <p class="information" style="line-height: 200%;color:black!important;">If you have questions or comments about this Policy, you may contact us by email at proo.bonno@gmail.com.</p>
-          <p class="information" style="line-height: 200%;color:black!important;">You have the right to request access to the personal information we collect from you, change that information, or delete it in some circumstances. To request to review, update, or delete your personal information, please email us at proo.bonno@gmail.com.</p>
+          <p class="information" style="line-height: 200%;color:black!important;">You have the right to request access to the personal information we collect from you, change that information, or delete it in some circumstances. To request to review, update, or delete your personal information, please proceed to your respective service provider administrator utilizing this website.</p>
       </div>
 
         <br>
         <div class="" style="display:flex;flex-direction:column;">
         <h2>11.	YOUR ACKNOWLEDGMENT AND CONSENT</h2>
-        <p class="information" style="line-height: 200%;color:black!important;">In Short:  Yes, you acknowledge and consent to our data processing activities as described in this Policy.</p>
+        <p class="information" style="line-height: 200%;color:black!important;">Yes, you acknowledge and consent to our data processing activities as described in this Policy.</p>
         <p class="information" style="line-height: 200%;color:black!important;">By communicating with us using the Site and our Services, you acknowledge that you have read and understood this Policy and agree and consent to the use, processing and/or transfer of your personal information by us as described in this Policy.</p>
         <p class="information" style="line-height: 200%;color:black!important;">You agree that we may use your personal data and other Information for automated processing, automated decision-making, and profiling in connection with your registration, establishment, maintenance, cancellation and/or closure of your account and your relationship with us including our provision of our Services and your use of the Site and our Services.</p>
-        <p class="information" style="line-height: 200%;color:black!important;">From time to time we may update or amend the terms of this Privacy Policy by placing the updated Policy on our Site. The effective date of such modifications, updates or amendments will be noted at the start of the Policy. You should therefore review it periodically so that you are up to date on our most current policies and practices. If we make material changes to our practices regarding the processing and/or use of your personal information, your personal information will continue to be governed by the version of the Policy to which such personal information was subject (prior to those changes), unless you have been provided notice of, and have not objected to, the changes. By continuing to communicate with us, by continuing to use our Site and Services or by your continued engagement with us following the modifications, updates or amendments to this Policy, such actions shall signify your acceptance of such modifications, updates or amendments; provided, we shall secure your express consent when so required by the law.</p>
+        <p class="information" style="line-height: 200%;color:black!important;">From time to time we may update or amend the terms of this Privacy Policy by placing the updated Policy on our Site. You should therefore review it periodically so that you are up to date on our most current policies and practices. If we make material changes to our practices regarding the processing and/or use of your personal information, your personal information will continue to be governed by the version of the Policy to which such personal information was subject (prior to those changes), unless you have been provided notice of, and have not objected to, the changes. By continuing to communicate with us, by continuing to use our Site and Services or by your continued engagement with us following the modifications, updates or amendments to this Policy, such actions shall signify your acceptance of such modifications, updates or amendments; provided, we shall secure your express consent when so required by the law.</p>
         <p class="information" style="line-height: 200%;color:black!important;">By submitting the required personal information to us, you consent to such collection, disclosure, processing and use thereof. You hereby expressly waive and release us from any and all liability, claims, causes of action or damages arising from our legitimate use of personal information submitted by you. </p>
 
       </div>
         </div>
 
       </div>
+
+    </body>
+    </html>
