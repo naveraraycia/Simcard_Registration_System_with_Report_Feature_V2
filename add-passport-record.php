@@ -135,7 +135,7 @@
                    </div>
                    <div class="col-md-3">
                      <label class="labelings">Middle Name</label>
-                     <input type="text" name="midname" class="form-control"  required>
+                     <input type="text" name="midname" class="form-control">
                    </div>
                    <div class="col-md-3">
                      <label class="labelings">Suffix</label>

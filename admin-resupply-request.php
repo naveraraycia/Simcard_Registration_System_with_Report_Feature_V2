@@ -83,7 +83,7 @@
       <?php
       $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
       if(strpos($fulUrl, "done=resupply") == true){
-        echo "<p class= 'regsuccess'>SUCCESS RESUPPLY</p>";
+        echo "<p class= 'regsuccess'>SHOP HAS BEEN SUCCESSFULLY RESUPPLIED</p>";
       }
         ?>
       </form>

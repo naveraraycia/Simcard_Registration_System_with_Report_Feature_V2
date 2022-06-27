@@ -2,22 +2,22 @@
   require 'includes/dbh.inc.php';
 
   $id = mysqli_real_escape_string($conn, $_GET['id']);
-  $sql = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name , 
-  COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name, 
-              COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num, 
+  $sql = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name ,
+  COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name,
+              COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num,
               COALESCE(d.lastname,NULL,e.lastname) AS Complainant_first_name,
               COALESCE(d.firstname,NULL,e.firstname) AS Complainant_last_name,
               COALESCE(n.nsonum,NULL, f.passnum) AS num_serial,
               r.reported_number as reported_number, r.report_id as report_id,
               r.remarks as remarks, r.sent_at as sent_at, r.Report_Screenshot as Report_Screenshot
-   FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum 
-   LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum 
-                 LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum 
-                 LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum 
-                 LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum 
+   FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum
+   LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum
+                 LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
+                 LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum
+                 LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum
                  LEFT JOIN foreign_registered_simusers_db as b ON r.user_mobile_num = b.simnum
-                 LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum 
-                 LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum 
+                 LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum
+                 LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum
    WHERE r.report_id = '$id';";
        $result = mysqli_query($conn,$sql);
 
@@ -37,11 +37,11 @@
       if (empty($serial)|| $serial == ''){
         $reportedname = 'THIS NUMBER IS NOT REGISTERED';
         $reportedtrue = 'notexist';
-        
+
       }else{
         $reportedtrue = 'exist';
       }
-      
+
 ?>
 <!-- <?php
 
@@ -156,7 +156,7 @@ p{
             // $user = mysqli_real_escape_string($conn, $_GET['user']);
 
           //
-            
+
             // SELECT STATEMENT
             // $sql = "SELECT * FROM report_messages_db WHERE report_id = '$repId' AND sent_at = '$sentAt' AND user_name = '$user';";
             // $result = mysqli_query($conn, $sql);
@@ -260,7 +260,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="Reported-Screenshot-Place-Here">
+                <img class="screenshot-img img-fluid" src="<?php echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="Reported-Screenshot-Place-Here">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
