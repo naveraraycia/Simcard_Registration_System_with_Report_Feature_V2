@@ -27,7 +27,6 @@
 
                 case '2':
                     $return = '0000-00-00';
-                    exit();
                     echo $return."herse";
                     break;
             }
@@ -44,10 +43,13 @@
             case '1':
                 $status = 'Second offense';
                 break;
-            case '3':
+            case '2':
                 $status = 'Permanent ban';
                 break;
+            default:
+               $status = 'Permanent ban';
         }
+
         return $status;
     }
 
@@ -160,11 +162,13 @@
                 $sim_status = status_adjust($offense_count);
                 if($offense_count >= 3){ $offense_count = 3;
                 }else{$offense_count = $offense_count + 1;}
+
                 $sql = "UPDATE foreign_registered_simusers_db
                         SET sim_status = '$sim_status', ban_start = '$ban_start', ban_end = '$ban_end', offense_count = '$offense_count'
                         WHERE passnum = '$serial';";
                 mysqli_query($conn, $sql);
-                delete_message($conn);
+               delete_message($conn);
+
                 header("Location:../admin-report-list.php?success2");
                 exit();
         }

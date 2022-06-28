@@ -19,6 +19,8 @@ $id = mysqli_real_escape_string($conn, $_GET['id']);
                       $message = $row['message'];
                       $nso_link= $row['nso_link'];
        endwhile;  
+       $Adminfullname = $_SESSION['AdminFirstName']." ". $_SESSION['AdminLastName'];
+
 ?> -->
 
 <!DOCTYPE html>
@@ -91,7 +93,7 @@ p{
             <nav class="navbar navbar-expand-lg">
               <a class="div1 navbar-brand" href="admin-home.php">
                   <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
-                  <span class="brandname">Administrator: Globe Telecomms</span>
+                  <span class="brandname">Administrator: <?php echo $Adminfullname; ?></span>
                 </a>
 
               <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -184,7 +186,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'Request_Change_Database/'.$nso_link;    ?>" alt="Proof-for-update-place-URL-here">
+                <img class="screenshot-img" src="<?php echo 'NSO_User_Database/'.$nso_link;    ?>" alt="Proof-for-update-place-URL-here">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
