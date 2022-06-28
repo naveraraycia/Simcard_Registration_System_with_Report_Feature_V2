@@ -17,6 +17,8 @@
           FROM local_registered_simusers_db AS rg LEFT JOIN nso_dummy_db as n ON rg.nsonum = n.nsonum
           ";
   $result = mysqli_query($conn, $sql);
+  $Adminfullname = $_SESSION['AdminFirstName']." ". $_SESSION['AdminLastName'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -54,7 +56,7 @@
     <nav class="navbar navbar-expand-lg">
       <a class="div1 navbar-brand" href="admin-home.php">
           <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
-          <span class="brandname">Administrator: Globe Telecomms</span>
+          <span class="brandname">Administrator: <?php echo $Adminfullname; ?></span>
         </a>
 
       <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
