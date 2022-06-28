@@ -10,10 +10,13 @@ if(isset($_POST['sendbutton'])){
   // $nsonum   = mysqli_real_escape_string($conn, $_POST['nsonum']);
   //$query = mysqli_query("SELECT * FROM seller as s RIGHT JOIN resupply_requests as r ON s.selleremail = r.selleremail");
   $sim_amount_requested = $_POST ['sim_amount_requested'];
+
+  if($sim_amount_requested <=0){
+    header("Location: request-sim-resupply.php?error=invalidRequest");
+    exit();
+  }
+
   $selleremail = $_SESSION['SellerEmail'];
-
-
-
 
 
   $sql = "SELECT SellerEmail FROM resupply_requests WHERE SellerEmail = '$selleremail';";

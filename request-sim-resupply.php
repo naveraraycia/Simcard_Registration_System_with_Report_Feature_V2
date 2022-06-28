@@ -95,6 +95,8 @@
   }
   elseif(strpos($fulUrl, "error=already-requested") == true){
     echo "<p class= 'nsoexist'>YOU ALREADY REQUESTED, PLEASE WAIT UNTIL YOUR PREVIOUS REQUEST IS APPROVED BY ADMIN</p>";
+  } elseif (strpos($fulUrl, "error=invalidRequest") == true){
+    echo "<p class= 'nsoexist'>YOUR REQUESTED AMOUNT IS INVALID</p>";
   }
 ?>
 </form>

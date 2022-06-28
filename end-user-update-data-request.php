@@ -90,7 +90,7 @@
     <div class='row header'>
     <h2>Request for Update of Personal Information</h2>
     </div>
-    <div class="row"style="display: flex!important; justify-content:center!important; margin-top:5px;font-size: 18px;color: #18CC5D;">
+    <div class="row"style="display: flex!important; justify-content:center!important; margin-top:5px;font-size: 18px;color: grey;">
       <p class="">Your request for update of personal information may take a couple of days to process</p>
 
     </div>
@@ -114,6 +114,8 @@
                     echo "<p class= 'regsuccess'>THERE WAS A PROBLEM IN YOUR IMAGE</p>";
                   }elseif(strpos($fulUrl, "error=imageformaterror") == true){
                     echo "<p class= 'nsoexist'>ENTER JPG, PNG, OR BMP ONLY</p>";
+                  }elseif(strpos($fulUrl, "error=ban") == true){
+                    echo "<p class= 'nsoexist'>YOU ARE CURRENTLY BANNED. YOU CANNOT CHANGE YOUR INFO</p>";
                   };
      ?>
      <br><br>
