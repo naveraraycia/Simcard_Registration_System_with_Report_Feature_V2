@@ -1,42 +1,42 @@
 <?php
 
 include_once "../includes/dbh.inc.php";
-
+//
 	if(isset($_GET['request'])) {
 
   $simnum = $_GET['request'];
   $simnum = '+'.$simnum;
     $sql = "SELECT * FROM request_reg_db
-    WHERE simnum = '$simnum';";     
+    WHERE simnum = '$simnum';";
     $result = mysqli_query($conn,$sql);
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     while($row = mysqli_fetch_assoc($result)):
         $simnum =      $row['simnum'];
-        $lastname =    $row['lastname']; 
-        $firstname =   $row['firstname']; 
-        $midname =     $row['midname']; 
-        $suffix =      $row['suffix']; 
-        $simcard =     $row['simcard']; 
-        $services =    $row['services'];  
-        $passnum =      $row['passnum_nsonum']; 
-        $address =     $row['address']; 
-        $gender =      $row['gender']; 
-        $dateofbirth = $row['dateofbirth']; 
-        $regisite =    $row['regisite']; 
-        $sim_shop =    $row['sim_shop']; 
-        $sim_retailer= $row['sim_retailer']; 
-        $dateofregis = $row['dateofregis']; 
-        $time =        $row['time']; 
+        $lastname =    $row['lastname'];
+        $firstname =   $row['firstname'];
+        $midname =     $row['midname'];
+        $suffix =      $row['suffix'];
+        $simcard =     $row['simcard'];
+        $services =    $row['services'];
+        $passnum =      $row['passnum_nsonum'];
+        $address =     $row['address'];
+        $gender =      $row['gender'];
+        $dateofbirth = $row['dateofbirth'];
+        $regisite =    $row['regisite'];
+        $sim_shop =    $row['sim_shop'];
+        $sim_retailer= $row['sim_retailer'];
+        $dateofregis = $row['dateofregis'];
+        $time =        $row['time'];
         $FingerName  =             $row['fingerprint_File_Name'];
-        $FingerExt   =             $row['fingerprint_File_Format']; 
+        $FingerExt   =             $row['fingerprint_File_Format'];
         $NSOName          =        $row['nsopass_pic'];
-        $NSOExt           =        $row['link_nsopass_pic']; 
-        
-        
+        $NSOExt           =        $row['link_nsopass_pic'];
+
+
     endwhile;
 
-    
+
     $sql ="SELECT COUNT(passnum) as cout FROM foreign_registered_simusers_db WHERE passnum = '$passnum';";
     $result = mysqli_query($conn,$sql);
     $row = mysqli_num_rows($result);
@@ -60,7 +60,7 @@ include_once "../includes/dbh.inc.php";
     $result = mysqli_query($conn,$checkstatus);
     $resultCheck = mysqli_num_rows($result);
     while($row = mysqli_fetch_assoc($result)):
-           $passnum =      $row['passnum']; 
+           $passnum =      $row['passnum'];
            $ban_end =   $row['ban_end'];
            $ban_start   =   $row['ban_start'];
            $offense_count = $row['offense_count'];
@@ -72,10 +72,10 @@ include_once "../includes/dbh.inc.php";
     $sql = "INSERT INTO foreign_registered_simusers_db (
         sim_status, simnum, simcard, services, dateofreg, address,
         sim_retailer, sim_shop, regisite, fingerprint_File_Format, fingerprint_File_Name,
-        passnum, passport_pic, link_passport_pic,  
+        passnum, passport_pic, link_passport_pic,
         offense_count, ban_start,  ban_end)
-    VALUES ('$sim_status', '$simnum', ' $simcard', '$services', '$dateofregis', '$address', 
-            '$sim_retailer', '$sim_shop', '$regisite', '$FingerExt', '$FingerName', 
+    VALUES ('$sim_status', '$simnum', ' $simcard', '$services', '$dateofregis', '$address',
+            '$sim_retailer', '$sim_shop', '$regisite', '$FingerExt', '$FingerName',
             '$passnum', '$NSOName', '$NSOExt',
             '$offense_count', '$ban_start', '$ban_end');";
     mysqli_query($conn, $sql);
@@ -91,7 +91,7 @@ include_once "../includes/dbh.inc.php";
      $notificationsql = "INSERT INTO notification_db(
                         simnum, status, remark, shop_name, date_approve, nsonum, service)
                 VALUES('$simnum','approved','$remark','$sim_shop','$today','$passnum','$services');";
-     mysqli_query($conn, $notificationsql);         
+     mysqli_query($conn, $notificationsql);
     header("Location: ../additional-foreign-request.php?foreignapproved");
 
 } else {

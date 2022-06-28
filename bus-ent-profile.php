@@ -246,7 +246,7 @@ $num_permit       = $_SESSION['num_permit'];
 
           <div class='infodiv1'>
             <p class='labelings'>Authorized Representative's Name</p>
-            <input type='text' name='VictName' value='$FirstName $LastName $MiddleName $Suffix 'id='usernamee' class='form-control' required disabled>
+            <input type='text' name='VictName' value='$FullName 'id='usernamee' class='form-control' required disabled>
 
           </div>
 
