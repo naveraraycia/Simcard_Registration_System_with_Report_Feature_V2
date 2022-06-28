@@ -1,5 +1,6 @@
 <?php
   include_once 'includes/dbh.inc.php';
+  session_start();
    if (empty($_SESSION['UserNumber'])){
      header("Location: index.php");
      exit();
@@ -12,11 +13,11 @@
     date_default_timezone_set('Asia/Manila');
     $today = date("Y-m-d");
     $SimCardNumber  = $_SESSION['UserNumber'];
-    $sql = "SELECT  n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix, 
-                    n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum, 
-                    r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard, 
-                    r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start, 
-                    r.ban_end as ban_end, r.sim_retailer as sim_retailer, r.business_name as business_name, 
+    $sql = "SELECT  n.firstname as firstname, n.lastname as lastname, n.midname as midname, n.suffix as suffix,
+                    n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum,
+                    r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard,
+                    r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start,
+                    r.ban_end as ban_end, r.sim_retailer as sim_retailer, r.business_name as business_name,
                     r.business_address as business_address, r.num_permit as num_permit, r.nsonum as nsopass_num
             FROM business_entity_registered_simusers_db as r LEFT JOIN nso_dummy_db as n ON r.nsonum = n.nsonum
             WHERE r.simnum = ?;";

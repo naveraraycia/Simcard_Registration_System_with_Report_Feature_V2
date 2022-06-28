@@ -360,12 +360,6 @@
                   }
                 },
                 {
-                  extend: 'pdf',
-                  exportOptions: {
-                    columns: ':not(.notexport)'
-                  }
-                },
-                {
                   extend: 'print',
                   exportOptions: {
                     columns: ':not(.notexport)'

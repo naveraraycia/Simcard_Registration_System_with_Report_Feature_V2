@@ -172,7 +172,7 @@ $service       = $_SESSION['services'];
 
           <div class='infodiv1'>
             <p class='labelings'>Name</p>
-            <input type='text' name='VictName' value='$FirstName $LastName $MiddleName $Suffix 'id='usernamee' class='form-control' required disabled>
+            <input type='text' name='VictName' value='$FullName 'id='usernamee' class='form-control' required disabled>
 
           </div>
 
