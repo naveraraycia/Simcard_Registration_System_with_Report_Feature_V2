@@ -31,7 +31,7 @@ if(isset($_POST['register'])){
                     $passnum_nsonum = $row['nsonum'];                   // passnum_nsonum
                     $nationality = 'Filipino';                          // nationality
                }
-        // ADDED DATA        
+        // ADDED DATA
                                        // address
         $selleremail = mysqli_real_escape_string($conn, $_POST['selleremail']);                       //seller email
         $sellerpassword = $_POST['sellerpassword'];                     //sellerpassword
@@ -40,21 +40,21 @@ if(isset($_POST['register'])){
           echo header("Location: ../admin-register-retailer.php?error=notmatchpass");
           exit();
         }
-        
 
-        $shop_name = mysqli_real_escape_string($conn, $_POST['shop_name']);      
+
+        $shop_name = mysqli_real_escape_string($conn, $_POST['shop_name']);
         $num_permit = $_POST['num_permit'];
         $sim_limit = (int)$_POST['Sim_Limit'];
         $company_address  = $_POST['company_address'];
-        $owneraddress = $_POST['owneraddress'];    
+        $owneraddress = $_POST['owneraddress'];
 
-        
+
         $simnum = $_POST['simnum'];                                     // register number
         $dateofregis = date('Y-m-d', strtotime($_POST['dateofregis'])); // dateofregis
         $time  = date('G')."_".date('i')."_".date('s')." ".date('Y-m-d');                 // time
         $timeImg = $time;
         $admin_reg = $_POST['admin_reg'];
-        
+
                            // sim_shop
         $sim_status = "Active Status";                                  // sim_status
         $ban_start = "0000-00-00";                                              // ban_start
@@ -67,21 +67,21 @@ if(isset($_POST['register'])){
         $resultsCheck = mysqli_num_rows($result);
         if($resultsCheck == 0){ //check
                 header("Location: ../admin-register-retailer.php?error=simnum-not-regis");
-        }else{ 
-             
-                $sql = "INSERT INTO seller( seller_nso, selleremail, sellerpassword, Shop_Name, Business_Permit, 
-                  Simcard_Limit, Business_Address, admin_reg, owner_num, 
-                   nsopass_pic, link_nsopass_pic, id_pic, 
-                  link_id_pic, permit_pic, link_permit_pic, dateofregis, address) 
+        }else{
+
+                $sql = "INSERT INTO seller( seller_nso, selleremail, sellerpassword, Shop_Name, Business_Permit,
+                  Simcard_Limit, Business_Address, admin_reg, owner_num,
+                   nsopass_pic, link_nsopass_pic, id_pic,
+                  link_id_pic, permit_pic, link_permit_pic, dateofregis, address)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
-                
+
                   //CHECKING FOR NON-INT
-                  if(!preg_match("/^[0-9]*$/", $simnum)){ 
+                  if(!preg_match("/^[0-9]*$/", $simnum)){
                         header("Location: ../admin-register-retailer.php?error=wrongchars");
                         exit();
                   }
-                  if(!preg_match("/^[0-9]*$/", $sim_limit)){ 
+                  if(!preg_match("/^[0-9]*$/", $sim_limit)){
                     header("Location: ../admin-register-retailer.php?error=simlimitinvalid");
                     exit();
               }
@@ -124,14 +124,14 @@ if(isset($_POST['register'])){
                                       header("Location: ../admin-register-retailer.php?imagelarge");
                                       exit();
                                     }else if($fileError !== 0){
-                                      header("Location: ../admin-register-retailer.php?imageerror"); 
+                                      header("Location: ../admin-register-retailer.php?imageerror");
                                     }else{
                                       $ImageFullName = $FullName.".".$fileActualExt;
                                       return $ImageFullName;
                                     }
                           }
-                
-                    
+
+
                 /// NSO Image Process
                   $NSOfile              = $_FILES['NSOfile'];
                         $fileName       = $NSOfile["name"];
@@ -145,7 +145,7 @@ if(isset($_POST['register'])){
                         $fileActualExt     = strtolower(end($fileExt));
                         $NSOName       = $lastN."_SELLER_NSO_".$passnum_nsonum.$timeImg;
                   $NSOExt = ImageCheck($allowed,$fileActualExt,$fileExt,$NSOName,$fileError,$fileSize);
-    
+
                 /// VALID ID
                   $IDfile               = $_FILES['IDfile'];
                         $fileName       = $IDfile["name"];
@@ -159,7 +159,7 @@ if(isset($_POST['register'])){
                         $fileActualExt  = strtolower(end($fileExt));
                         $IDName = $lastN."_SELLER_ID_".$passnum_nsonum.$timeImg;
                   $IDExt = ImageCheck($allowed,$fileActualExt,$fileExt,$IDName,$fileError,$fileSize);
-                  
+
 
                 //PERMIT LETTER
                 $Permitfile               = $_FILES['Permitfile'];
@@ -179,13 +179,13 @@ if(isset($_POST['register'])){
 
                 //sending to REGISTRATION DB
 
-                $simnum = "+63". $simnum; 
+                $simnum = "+63". $simnum;
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                $sql = "INSERT INTO seller( seller_nso, selleremail, sellerpassword, Shop_Name, Business_Permit, 
-                Simcard_Limit, Max_Limit_Assign, Business_Address, admin_reg, owner_num, 
-                 nsopass_pic, link_nsopass_pic, id_pic, 
-                link_id_pic, permit_pic, link_permit_pic, dateofreg, address) 
-              VALUES ( '$passnum_nsonum','$selleremail', '$sellerpassword','$shop_name','$num_permit','$sim_limit','$sim_limit','$company_address','$admin_reg','$simnum','$NSOName','$NSOExt','$PermitName','$PermitExt','$IDName','$IDExt','$dateofregis','$owneraddress');";
+                $sql = "INSERT INTO seller( seller_nso, selleremail, sellerpassword, Shop_Name, Business_Permit,
+                Simcard_Limit, Max_Limit_Assign, Business_Address, admin_reg, owner_num,
+                 nsopass_pic, link_nsopass_pic, id_pic,
+                link_id_pic, permit_pic, link_permit_pic, dateofreg, address)
+              VALUES ( '$passnum_nsonum','$selleremail', '$sellerpassword','$shop_name','$num_permit','$sim_limit','$sim_limit','$company_address','$admin_reg','$simnum','$NSOName','$NSOExt','$IDName','$IDExt','$PermitName','$PermitExt','$dateofregis','$owneraddress');";
                 // mysqli_stmt_bind_param($stmt,'ssssisssssssssss', $selleremail, $sellerpassword, $shop_name, $num_permit, $sim_limit, $company_address, $admin_reg,$simnum, $owner_key, $NSOName, $NSOExt, $PermitName, $PermitExt, $IDName, $IDExt, $dateofregis);
                 $stmt = mysqli_stmt_init($conn);
                 mysqli_stmt_prepare($stmt, $sql);
@@ -200,12 +200,11 @@ if(isset($_POST['register'])){
                 move_uploaded_file($NSOfileTempName,$NSOfileDestination);
                 move_uploaded_file($IDfileTempName,$IDfileDestination);
                 move_uploaded_file($PermitTempName,$PermitfileDestination);
-         
+
                 //IF NEW PREPAID, DECREASE SIM RETAILER STOCK
                 //UNSET NSO
                 unset($_SESSION['nsonumber']);
                 header("Location: ../verify-seller-nso.php?signup=success");
-          }  
+          }
       }
     }
-  
