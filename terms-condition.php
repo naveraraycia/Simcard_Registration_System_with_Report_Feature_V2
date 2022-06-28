@@ -173,12 +173,12 @@ You agree to notify SimCardRegistrationSystem immediately of any unauthorized us
   </p>
 </div>
 
-  <br><br>
-  <div class="" style="display:flex;flex-direction:column;">
-  <h2>13. Age Requirement</h2>
-  <p class="information" style="line-height: 200%;color:black!important;">You hereby confirm and warrant that you are above the age of minority and you are capable of understanding and accepting this Terms of Use Agreement. If you are a minor, you may use the SimCardRegistrationSystem website only with the permission of a parent or guardian. Please have your parent or legal guardian read these terms with you.
+<br><br>
+<div class="" style="display:flex;flex-direction:column;">
+<h2>13. Age Requirement</h2>
+<p class="information" style="line-height: 200%;color:black!important;">You hereby confirm and warrant that you are above the age of 12 and you are capable of understanding and accepting this Terms of Use Agreement. If you are above the age of 12 but below the age of 18 Please have your parent or legal guardian read these terms with you.
 <br>
-In the event that such personal data of a minor is disclosed at the SimCardRegistrationSystem website, you, as a parent or legal guardian, hereby consent to the processing of the minor’s personal data and accept and agree to be bound by this Agreement and take responsibility for his or her actions.
+In the event that such personal data of an individual above the age of 12 but below the age of 18 is disclosed at the SimCardRegistrationSystem website, you, as a parent or legal guardian, hereby consent to the processing of that individual's personal data and accept and agree to be bound by this Agreement and take responsibility for his or her actions.
 </p>
 </div>
 
