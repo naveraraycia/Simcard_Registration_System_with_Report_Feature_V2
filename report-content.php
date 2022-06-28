@@ -43,10 +43,11 @@
       }
 
 ?>
-<!-- <?php
+<?php
+session_start();
    $Adminfullname = $_SESSION['AdminFirstName']." ". $_SESSION['AdminLastName'];
 
-?> -->
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

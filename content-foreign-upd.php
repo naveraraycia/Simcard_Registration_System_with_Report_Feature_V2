@@ -18,7 +18,8 @@ $id = mysqli_real_escape_string($conn, $_GET['id']);
                       $update  = $row['update_req'];
                       $message = $row['message'];
                       $nso_link= $row['nso_link'];
-       endwhile;  
+       endwhile;
+       session_start();
        $Adminfullname = $_SESSION['AdminFirstName']." ". $_SESSION['AdminLastName'];
 
 ?> -->
@@ -124,7 +125,7 @@ p{
         <div class="container" style="background-color:#f3f3f3;">
           <div class="row" style="margin-bottom:1rem;">
             <?php
-         
+
 
             ?>
 
