@@ -114,7 +114,7 @@
 <?php
         $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        if(strpos($fulUrl, "stillban") == true){
+        if(strpos($fulUrl, "ban") == true){
           echo "<p class= 'nsoexist'>THIS USER IS UNDER BAN</p>";
         }
         if(strpos($fulUrl, "signup=success") == true){
@@ -142,11 +142,19 @@
 // BUTTON CLICKED : WITH RESULTS
   if(isset($_GET['passnum'])){
     $passport = $_GET['passnum'];
+    include 'SellerErrorForeign.php';
     $query = "SELECT * FROM foreign_passport_db WHERE passnum =  '$passport'; ";
     $result = mysqli_query($conn,$query);
-
+    $checkbanstat= checkban($conn,$passport);
+    if($checkbanstat ==  "ban"){
+      header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/duplicate-sim-passport-verify.php?stillban");
+      exit();
+    }else if($checkbanstat == "permanentban"){
+      header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/duplicate-sim-passport-verify.php?permanentban");
+      exit();
+    }
       if (mysqli_num_rows($result) > 0) {
-        include 'SellerErrorForeign.php';
+     
         $exceed= checkPenalty($conn,$passport);
         if($exceed == true){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/duplicate-sim-passport-verify.php?exceed");

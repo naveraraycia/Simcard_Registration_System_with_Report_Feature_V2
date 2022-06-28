@@ -220,7 +220,7 @@ p{
                 <p class="lighFontOnly"><?php echo $remarks ?></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Sent: <span class="lightColFont">2022-05-06<?php //echo $row['sent_at'] ?></span></p>
+                <p class="nameLabel">Sent: <span class="lightColFont"><?php echo $sent_at ?></span></p>
               </div>
 
               <div class="row" style="margin-bottom:1rem;display:flex;justify-content:flex-start;">

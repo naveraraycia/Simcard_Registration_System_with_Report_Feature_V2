@@ -153,7 +153,7 @@
         if (empty($start_date)){
           $start_date = '0000-00-00';}
         if (empty($end_date)){
-          $end_date = '9999-12-30';}
+          $end_date = '0000-00-00';}
 
           $FirstOff = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name ,
           COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name,

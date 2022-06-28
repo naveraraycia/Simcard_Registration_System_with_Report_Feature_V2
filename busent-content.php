@@ -7,7 +7,6 @@
  }
  $simnum = '639214425914';
  $simnum = mysqli_real_escape_string($conn, $_GET['simnum']);
- $user = mysqli_real_escape_string($conn, $_GET['user']);
  $throw  = $simnum;
  $simnum = '+'.$simnum;
  

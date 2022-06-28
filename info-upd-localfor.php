@@ -139,7 +139,7 @@
           $start_date = '0000-00-00';
         }
         if (empty($end_date)){
-          $end_date = '9999-12-30';
+          $end_date = '0000-00-00';
         }
             $FirstOff ="SELECT  q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates,
                                l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_nsopass_pic as nso_link

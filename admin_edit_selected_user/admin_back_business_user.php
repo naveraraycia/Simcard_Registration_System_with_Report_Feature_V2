@@ -12,7 +12,8 @@
                       l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies,
                       l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite,
                       l.link_nso_pic as nso_pic, l.link_id_pic as id_pic, l.link_business_permit as permit_pic, l.link_authletter as letter_pic,
-                      l.business_name as business_name, l.num_permit as num_permit, l.business_address as business_address
+                      l.business_name as business_name, l.num_permit as num_permit, l.business_address as business_address,
+                      l.fingerprint_File_Format as finger
                FROM business_entity_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON  l.nsonum = n.nsonum
                WHERE simnum = '$simnum'; ";
 
@@ -43,8 +44,6 @@
             $offense_count = $_POST['offense_count'];
             $ban_start     = $_POST['ban_start'];
             
-            echo $ban_start;
-            exit();
             if(empty($ban_start)){
                 $ban_start = $ban_start_old;
             }

@@ -1,46 +1,54 @@
 <?php
   require 'includes/dbh.inc.php';
-  //
-  // $id = mysqli_real_escape_string($conn, $_GET['id']);
-  // $sql = "SELECT r.reported_number as reported_number, COALESCE(p.lastname,NULL, n.lastname ) AS Reported_Last_Name ,
-  // COALESCE(p.firstname,NULL, n.firstname ) AS Reported_First_Name,
-  //             COALESCE(a.simnum, NULL , b.simnum) AS Complainant_sim_num,
-  //             COALESCE(d.lastname,NULL,e.lastname) AS Complainant_first_name,
-  //             COALESCE(d.firstname,NULL,e.firstname) AS Complainant_last_name,
-  //             COALESCE(n.nsonum,NULL, f.passnum) AS num_serial,
-  //             r.reported_number as reported_number, r.report_id as report_id,
-  //             r.remarks as remarks, r.sent_at as sent_at, r.Report_Screenshot as Report_Screenshot
-  //  FROM report_messages_db as r LEFT JOIN local_registered_simusers_db as l ON r.reported_number = l.simnum
-  //  LEFT JOIN foreign_registered_simusers_db as f ON r.reported_number = f.simnum
-  //                LEFT JOIN nso_dummy_db as n ON l.nsonum = n.nsonum
-  //                LEFT JOIN foreign_passport_db as p ON f.passnum = p.passnum
-  //                LEFT JOIN local_registered_simusers_db as a ON r.user_mobile_num = a.simnum
-  //                LEFT JOIN foreign_registered_simusers_db as b ON r.user_mobile_num = b.simnum
-  //                LEFT JOIN nso_dummy_db as d ON a.nsonum = d.nsonum
-  //                LEFT JOIN foreign_passport_db as e ON b.passnum = e.passnum
-  //  WHERE r.report_id = '$id';";
-  //      $result = mysqli_query($conn,$sql);
-  //
-  //      while($row = mysqli_fetch_assoc($result)):
-  //       $report_id = $row['report_id'];
-  //       $data = $row['sent_at'];
-  //       $username = $row['Complainant_first_name']." ".$row['Complainant_last_name'];
-  //       $simnum = $row['Complainant_sim_num'];
-  //       $reportednum = $row['reported_number'];
-  //       $reportedname =  $row['Reported_First_Name']." ".$row['Reported_Last_Name'];
-  //       $remarks = $row['remarks'];
-  //       $sent_at = $row['sent_at'];
-  //       $viewscreenshot = $row['Report_Screenshot'];
-  //       $serial = $row['num_serial'];
-  //       $picture = $row['Report_Screenshot'];
-  //      endwhile;
-  //     if (empty($serial)|| $serial == ''){
-  //       $reportedname = 'THIS NUMBER IS NOT REGISTERED';
-  //       $reportedtrue = 'notexist';
-  //
-  //     }else{
-  //       $reportedtrue = 'exist';
-  //     }
+  session_start();
+  if (empty($_SESSION['AdminEmail'])){
+    header("Location: index.php");
+    exit();
+  }
+  $simnum = mysqli_real_escape_string($conn, $_GET['simnum']);
+  $throw  = $simnum;
+  $simnum = '+'.$simnum;
+
+  $sql = "SELECT s.Shop_Name AS Shop_Name,
+  s.selleremail AS selleremail,
+  rg.lastname as lastname, rg.firstname as firstname, rg.midname as midname,
+  rg.suffix as suffix,
+  s.Business_Permit as Business_Permit,
+  s.Business_Address as Business_Address,
+  s.Simcard_Limit AS simcard_limit,
+  s.link_permit_pic AS link_permit_pic,
+  s.link_nsopass_pic as link_nsopass_pic, s.address as address,
+  s.link_id_pic as link_id_pic, s.owner_num as owner_num,
+  s.dateofreg as dateofreg,
+  s.Shop_Name as Shop_Name,
+  s.selleremail as selleremail
+  FROM seller as s LEFT JOIN local_registered_simusers_db as n ON s.owner_num = n.simnum
+            LEFT JOIN nso_dummy_db as rg ON n.nsonum = rg.nsonum
+  WHERE s.owner_num = '$simnum'";
+ $result = mysqli_query($conn, $sql);
+   $resultCheck = mysqli_num_rows($result);
+   while($row = mysqli_fetch_assoc($result)):
+    $fullname = $row['firstname']. " ". $row['midname']." ".$row['lastname']." ".$row['suffix'];
+    $address =$row['address'];
+    $owner_num      = $row['owner_num'];
+    $selleremail    = $row['selleremail'];
+    $shop_name      = $row['Shop_Name'];
+    $Business_Permit = $row['Business_Permit'];
+    $Business_Address = $row['Business_Address'];
+    $Simcard_Limit    = $row['simcard_limit'];
+    $permit_link = $row['link_permit_pic'];
+    $nso_link = $row['link_nsopass_pic'];
+    $id_link     = $row['link_id_pic'];
+  
+    $nso_link = $row['link_nsopass_pic'];
+    $nationality = 'Filipino';
+    $id_link = $row['link_id_pic'];
+    $dateofreg = $row['dateofreg'];
+    $owner_num = $row['owner_num'];
+  
+
+endwhile;
+
 
 ?>
 <!-- <?php
@@ -153,34 +161,34 @@ p{
 
             <div class="col-md-6">
               <div class="infolabels">
-                <p class="nameLabel">Shop Name: <span>Keanu SIM shop</span></p>
+                <p class="nameLabel">Shop Name: <span><?php echo $shop_name ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Shop Email: <span>berches@gmail.com</span></p>
+                <p class="nameLabel">Shop Email: <span><?php echo $selleremail ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Owner's Full Name: <span>Pa concat nalang tenks - Keanu Paga Berches</span></p>
+                <p class="nameLabel">Owner's Full Name: <span><?php echo $fullname ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Owner's SIM #: <span>+639120000000</span></p>
+                <p class="nameLabel">Owner's SIM #: <span><?php echo $simnum ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Owner's Address: <span>Earth, Cavite</span></p>
+                <p class="nameLabel">Owner's Address: <span><?php echo $address?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Registration Date: <span>2021-01-01</span></p>
+                <p class="nameLabel">Registration Date: <span><?php echo $dateofreg ?></span></p>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="infolabels">
-                <p class="nameLabel">Business Permit #: <span>123-TEST-BUSINESS-PER</span></p>
+                <p class="nameLabel">Business Permit #: <span><?php echo $Business_Permit?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">Shop Address: <span>Earth, 15th Planet, Cavite</span></p>
+                <p class="nameLabel">Shop Address: <span><?php echo $Business_Address?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">SIM Limit: <span>32</span></p>
+                <p class="nameLabel">SIM Limit: <span><?php echo $Simcard_Limit?></span></p>
               </div>
             </div>
           </div>
@@ -210,7 +218,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="Business-permit-img">
+                <img class="screenshot-img" src="<?php  echo 'Permit_Database/'.$permit_link;   ?>" alt="Business-permit-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -231,7 +239,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="NSO-img">
+                <img class="screenshot-img" src="<?php echo 'NSO_User_Database/'.$nso_link;    ?>" alt="NSO-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -252,7 +260,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php //echo 'Image_Report_Database/'.$viewscreenshot;    ?>" alt="valid-id-img">
+                <img class="screenshot-img" src="<?php echo 'ID_User_Database/'.$id_link;    ?>" alt="valid-id-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

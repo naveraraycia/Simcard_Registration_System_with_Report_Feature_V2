@@ -19,7 +19,7 @@ $Type          = $_SESSION['Type'];
                             n.gender as gender, n.dateofbirth as dateofbirth, r.address as address, r.simnum as simnum,
                             r.dateofreg as dateofregis, r.regisite as regisite, r.services as services, r.simcard as simcard,
                             r.sim_status as sim_status, r.offense_count as offense_count, r.ban_start as ban_start,
-                            r.ban_end as ban_end, r.sim_retailer as sim_retailer, n.nationality as nationality, r.nsonum as nsopass_num
+                            r.ban_end as ban_end, r.sim_retailer as sim_retailer, n.nationality as nationality, r.passnum as nsopass_num
                     FROM foreign_registered_simusers_db as r LEFT JOIN foreign_passport_db as n ON r.passnum = n.passnum
                     WHERE r.simnum = ?;";
           }
@@ -91,31 +91,31 @@ switch($SimPenality){
     break;
 };
 $BanStart      = $_SESSION['Banstart'];
-$BanEnd        = $_SESSION['Banend'];
+$BanEnd      = $_SESSION['Banend'];
 
 if ($usertype == 'Filipino'){
   if($today > $BanEnd){
       $localsql = "UPDATE local_registered_simusers_db
-              SET ban_end = '9999-12-30', ban_start = '0000-00-00', sim_status = 'Active Status'
+              SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
               WHERE nsonum = '$num';";
        mysqli_query($conn, $localsql);
 
        $businesssql = "UPDATE business_entity_registered_simusers_db
-              SET ban_end = '9999-12-30', ban_start = '0000-00-00', sim_status = 'Active Status'
+              SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
               WHERE nsonum = '$num';";
        mysqli_query($conn, $businesssql);
 
        $BanStart = '0000-00-00';
-       $BanEnd   = '9999-12-30';
+       $BanEnd   = '0000-00-00';
   }
 }else if($usertype == 'NotFilipino'){
-  if($today > $ban_end){
+  if($today > $BanEnd){
       $foreignsql = "UPDATE foreign_registered_simusers_db
-            SET ban_end = '9999-12-30', ban_start = '0000-00-00', sim_status = 'Active Status'
+            SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
             WHERE passnum = '$num';";
       mysqli_query($conn, $foreignsql);
-      $BanStart = '0000-00-00';
-      $BanEnd   = '9999-12-30';
+      $BanStart = '---';
+      $BanEnd   = '---';
   }
 }
 

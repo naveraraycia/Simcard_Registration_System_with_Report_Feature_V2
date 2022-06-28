@@ -153,7 +153,7 @@
         if (empty($start_date)){
           $start_date = '0000-00-00';}
         if (empty($end_date)){
-          $end_date = '9999-12-30';}
+          $end_date = '0000-00-00';}
 
           $sql = "SELECT * FROM request_reg_db
           WHERE nationality = N'Filipino' AND dateofregis BETWEEN '$start_date' AND '$end_date'

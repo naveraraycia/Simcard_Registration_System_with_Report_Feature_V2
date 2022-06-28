@@ -37,11 +37,11 @@ if(isset($_POST['reportbutton'])){
       exit();
     }else if($today > $ban_end){
       $localsql = "UPDATE local_registered_simusers_db
-              SET ban_end = '9999-12-30', ban_start = '0000-00-00', sim_status = 'Active Status'
+              SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
               WHERE nsonum = '$num';";
        mysqli_query($conn, $localsql);
        $businesssql = "UPDATE business_entity_registered_simusers_db
-              SET ban_end = '9999-12-30', ban_start = '0000-00-00', sim_status = 'Active Status'
+              SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
               WHERE nsonum = '$num';";
        mysqli_query($conn, $businesssql);
     }else{
@@ -61,7 +61,7 @@ if(isset($_POST['reportbutton'])){
       exit();
     }else if($today > $ban_end){
       $foreignsql = "UPDATE foreign_registered_simusers_db
-              SET ban_end = '9999-12-30', ban_start = '0000-00-00', sim_status = 'Active Status'
+              SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
               WHERE passnum = '$num';";
        mysqli_query($conn, $foreignsql);
     }else{

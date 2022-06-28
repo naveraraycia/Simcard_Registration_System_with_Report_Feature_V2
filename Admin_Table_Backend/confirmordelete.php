@@ -4,27 +4,31 @@
     $today = date('Y-m-d');
     function ban_adjust($offense_count, $ban_end){
         if ($offense_count >= 3){
-            $return = '--';
+            $return = '0000-00-00';
         }else{
             switch ($offense_count){
                 case '0':     // FIRST OFFENSE
-                    if($ban_end == '--'){
+                    if($ban_end == '0000-00-00'){
                         $return = date('Y-m-d',(strtotime("+3 months")));
                     }else{
                         $return = date('Y-m-d',strtotime("+3 months", strtotime($ban_end)));
+
                     }
                     break;
 
                 case '1':
-                    if($ban_end == '--'){
+                    if($ban_end == '0000-00-00'){
                         $return = date('Y-m-d',(strtotime("+6 months")));
                     }else{
                         $return = date('Y-m-d',strtotime("+6 months", strtotime($ban_end)));
+
                     }
                     break;
 
                 case '2':
-                    $return = '--';
+                    $return = '0000-00-00';
+                    exit();
+                    echo $return."herse";
                     break;
             }
         }
@@ -90,7 +94,7 @@
                                 $sim_status    = $row['sim_status'];
                             }
                             $ban_end   = ban_adjust($offense_count, $ban_end);
-                            if($ban_end <> '9999-12-30'){$ban_start = date('Y-m-d');
+                            if($ban_end <> '0000-00-00'){$ban_start = date('Y-m-d');
                             }else{$ban_start = '0000-00-00';}
                             $sim_status = status_adjust($offense_count);
                             if($offense_count >= 3){ $offense_count = 3;
@@ -118,7 +122,7 @@
                                 $sim_status    = $row['sim_status'];
                             }
                             $ban_end   = ban_adjust($offense_count, $ban_end);
-                            if($ban_end <> '9999-12-30'){$ban_start = date('Y-m-d');
+                            if($ban_end <> '0000-00-00'){$ban_start = date('Y-m-d');
                             }else{$ban_start = '0000-00-00';}
                             $sim_status = status_adjust($offense_count);
                             if($offense_count >= 3){ $offense_count = 3;
@@ -151,7 +155,7 @@
                     $sim_status    = $row['sim_status'];
                 }
                 $ban_end   = ban_adjust($offense_count, $ban_end);
-                if($ban_end <> '9999-12-30'){$ban_start = date('Y-m-d');
+                if($ban_end <> '0000-00-00'){$ban_start = date('Y-m-d');
                 }else{$ban_start = '0000-00-00';}
                 $sim_status = status_adjust($offense_count);
                 if($offense_count >= 3){ $offense_count = 3;

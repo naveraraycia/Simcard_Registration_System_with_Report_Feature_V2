@@ -25,7 +25,7 @@
             $ban_start     = $row['ban_start'];
             $ban_end       = $row['ban_end'];
 
-            if($offense_count < 2){
+            if($offense_count == 3|| $offense_count <=3){
                 if($sim_status == "Active Status"){
                     return false;
                 }else{
@@ -42,18 +42,18 @@
                             $ban_end4  = substr($ban_end, 8, 2);
 
                             if($datetoday > $ban_end4){
-                              $updateban = "UPDATE foreign_registered_simusers_db SET ban_start='0000-00-00', ban_end='9999-12-30', sim_status='Active Status' WHERE passnum='$passport';"; 
+                              $updateban = "UPDATE foreign_registered_simusers_db SET ban_start='0000-00-00', ban_end='0000-00-00', sim_status='Active Status' WHERE passnum='$passport';"; 
                               mysqli_query($conn,$updateban); 
                               return "notban";
                             }else{
 
-                                return "secban";
+                                return "ban";
                             }
                         }else{
-                            return "thban";
+                            return "ban";
                         }
                     }else{
-                        return "fsban";
+                        return "ban";
                   }
                 }
             }else{

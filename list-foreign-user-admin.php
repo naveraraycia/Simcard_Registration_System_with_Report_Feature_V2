@@ -221,6 +221,7 @@
                                 n.passnum as passnum, n.nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
                                 rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
                            FROM foreign_registered_simusers_db AS rg LEFT JOIN foreign_passport_db as n ON rg.passnum = n.passnum
+                           WHERE (rg.ban_start between'$start_date' and '$end_date')
                            ORDER BY n.lastname ASC;";
 
 
@@ -268,11 +269,10 @@
                  $thrownum = trim($simnum,"+");
                  $ban_start = $row['ban_start'];
                  $ban_end   = $row['ban_end'];
-                 echo "$ban_end";
                  if($ban_start == '0000-00-00'){
                    $ban_start = '---';
                  }
-                 if($ban_end == '9999-12-30'){
+                 if($ban_end == '0000-00-00'){
                    $ban_end = '---';
                  }
         ?>

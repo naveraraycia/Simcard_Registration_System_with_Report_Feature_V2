@@ -37,7 +37,7 @@ if(isset($_POST['register'])){
         $sim_shop = $_SESSION['Shop_Name'];                             // sim_shop
         $sim_status = "Active Status";                                  // sim_status
         $ban_start = "0000-00-00";                                              // ban_start
-        $ban_end = "9999-12-30";                                                // ban_end
+        $ban_end = "0000-00-00";                                                // ban_end
         $offense_count ="0";                                            // offense_count
         $num_permit = $_POST['num_permit'];                             // num_permit
         $company_address = $_POST['companyaddress'];                    // companyaddress

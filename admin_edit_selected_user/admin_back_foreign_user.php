@@ -45,7 +45,7 @@
             $address       = $_POST['address'];
             if ($sim_status == 'Active Status' || $sim_status == 'Permanent ban' ){
               $ban_start = "0000-00-00";
-              $ban_end   = "9999-12-30";
+              $ban_end   = "0000-00-00";
             }
 
     

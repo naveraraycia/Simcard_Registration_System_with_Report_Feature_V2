@@ -182,8 +182,8 @@ if (empty($_SESSION['AdminEmail'])){
           }else{
             $ban_start = $row['ban_start'];
           }
-          if($row['ban_end'] =='9999-12-30'){
-            $ban_end = '9999-12-30';
+          if($row['ban_end'] =='0000-00-00'){
+            $ban_end = '0000-00-00';
           }else{
             $ban_end = $row['ban_end'];
           }

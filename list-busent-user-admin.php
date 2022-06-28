@@ -276,10 +276,10 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
                 $thrownum = trim($simnum,"+");
                 $ban_start = $row['ban_start'];
                 $ban_end   = $row['ban_end'];
-                if($ban_start = '0000-00-00'){
+                if($ban_start == '0000-00-00'){
                   $ban_start = '---';
                 }
-                if($ban_end == '9999-12-30'){
+                if($ban_end == '0000-00-00'){
                   $ban_end = '---';
                 }
          ?>
@@ -288,7 +288,7 @@ FROM business_entity_registered_simusers_db as b LEFT JOIN nso_dummy_db as n ON 
         <tr>
           <td class="text-truncate"><a href="Admin_Table_Backend/userdelete.php?click=delete&simnum=<?php echo $thrownum ."&nation=business"; ?>" class="btn btn-danger">Delete</a></td>
             <td class="text-truncate"><a href="admin-edit-busent.php?simnum=<?php echo $thrownum; ?>" class="btn btn-success">Update</a></td>
-            <td class="text-truncate"><a href="busent-content.php?simnum=<?php //echo  $throw; ?>" class="btn btn-primary">View</a></td>
+            <td class="text-truncate"><a href="busent-content.php?simnum=<?php echo $thrownum; ?>" class="btn btn-primary">View</a></td>
             <td class="f-column text-truncate"><?php echo $row['sim_status'] ?></th>
             <td class="f-column text-truncate"><?php echo $row['offense_count'] ?></th>
             <td class="f-column text-truncate"><?php echo $ban_start ?></th>

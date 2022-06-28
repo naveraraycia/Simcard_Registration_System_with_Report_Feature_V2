@@ -167,7 +167,7 @@
             $start_date = '0000-00-00';
           }
           if (empty($end_date)){
-            $end_date = '9999-12-30';
+            $end_date = '0000-00-00';
           }
          // echo $start_date;
          // echo "<br>";
@@ -204,7 +204,7 @@
           <!-- hito sa echo below sa simnum=   , ilagay mo ung $row['simcardnumbercolumnname'] -->
           <td class="text-truncate"><a href="includes/delete-retailer.php?sellemail=<?php echo  $selleremail; ?>" class="btn btn-danger">Delete</a></td>
           <td class="text-truncate"><a href="admin-edit-seller.php?simnum=<?php echo  $throw; ?>" class="btn btn-success">Update</a></td>
-          <td class="text-truncate"><a href="seller-content.php?simnum=<?php //echo  $throw; ?>" class="btn btn-primary">View</a></td>
+          <td class="text-truncate"><a href="seller-content.php?simnum=<?php echo $throw; ?>" class="btn btn-primary">View</a></td>
           <td class="text-truncate"><?php echo $row['Shop_Name']; ?></th>
           <td class="text-truncate"><?php echo $selleremail; ?></th>
           <td class="text-truncate"><?php echo $row['lastname']; ?></th>

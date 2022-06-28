@@ -177,7 +177,7 @@
           $start_date = $_GET['start_date'];
           $end_date   = $_GET['end_date'];
           if (empty($start_date)){
-            $start_date = '2000-11-11';
+            $start_date = '0000-00-00';
           }
           if (empty($end_date)){
             $end_date = '9999-12-30';
