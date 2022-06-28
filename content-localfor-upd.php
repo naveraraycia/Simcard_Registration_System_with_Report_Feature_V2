@@ -18,7 +18,7 @@ $id = mysqli_real_escape_string($conn, $_GET['id']);
                       $update  = $row['update_req'];
                       $message = $row['message'];
                       $nso_link= $row['nso_link'];
-       endwhile;  
+       endwhile;
        $thrownum = trim($simnum,"+");
 ?> -->
 
@@ -187,7 +187,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'Request_Change_Database/'.$nso_link;    ?>" alt="Proof-for-update-place-URL-here">
+                <img class="screenshot-img img-fluid" src="<?php echo 'NSO_User_Database/'.$nso_link;    ?>" alt="Proof-for-update-place-URL-here">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

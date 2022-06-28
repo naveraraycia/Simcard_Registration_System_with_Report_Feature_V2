@@ -277,15 +277,15 @@
           </p>
       </div>
 
-          <br>
-          <div class="" style="display:flex;flex-direction:column;">
-          <h2>7.	DO WE COLLECT INFORMATION FROM MINORS?</h2>
-          <p class="information" style="line-height: 200%;color:black!important;">We do not knowingly collect data from or market to children under 12 years of age.
-          </p>
-          <p class="information" style="line-height: 200%;color:black!important;">We do not knowingly solicit data from or market to individuals under 12 years of age. By using the Site, you represent that you are at least 12 or that you are the parent or guardian of such individual and consent to such individual dependent’s use of the Site. If we learn that personal information from users less than 12 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records.
-          </p>
+      <br>
+      <div class="" style="display:flex;flex-direction:column;">
+      <h2>7.	DO WE COLLECT INFORMATION FROM MINORS?</h2>
+      <p class="information" style="line-height: 200%;color:black!important;">We do not knowingly collect data from or market to children under 16 years of age.
+      </p>
+      <p class="information" style="line-height: 200%;color:black!important;">We do not knowingly solicit data from or market to individuals under 16 years of age. By using the Site, you represent that you are at least 16. If we learn that personal information from users less than 16 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records.
+      </p>
 
-        </div>
+    </div>
 
           <br>
           <div class="" style="display:flex;flex-direction:column;">
