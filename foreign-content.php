@@ -263,11 +263,14 @@ p{
 
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <button type="button" name="fpbutton" class="send-btn replybtn" data-toggle="modal" data-target="#fingerprintmodal">View Fingerprint</button>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <button type="button" name="passbutton" class="send-btn replybtn" data-toggle="modal" data-target="#passportmodal">View Passport</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" name="IDbutton" class="send-btn replybtn" data-toggle="modal" data-target="#IDmodal">View Address Document</button>
             </div>
         </div>
 
@@ -305,6 +308,27 @@ p{
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
                 <img class="screenshot-img img-fluid" src="<?php echo 'NSO_User_Database/'.$nso_link;     ?>" alt="passport-img">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ID MODAL -->
+        <div class="modal fade" id="IDmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Submitted Document with Address details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- ATTACH THE IMAGE LINK HERE -->
+                <img class="screenshot-img img-fluid" src="<?php echo 'Fingerprint_Registered_User_Database/'.$finger_link;     ?>" alt="Address-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
