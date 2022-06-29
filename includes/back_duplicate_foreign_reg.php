@@ -41,8 +41,8 @@ if(isset($_POST['register'])){
         $ban_start = "0000-00-00";                                              // ban_start
         $ban_end = "0000-00-00";                                                // ban_end
         $offense_count ="0";   
-
-
+ 
+        $simnumber = "+63".$simnum;
         //CHECK IF DATA EXIST AND SIMTYPE IS ALREADY EXIST)
         $sqlnso = "SELECT simnum FROM foreign_registered_simusers_db WHERE simnum = '$simnumber';";
         $result = mysqli_query($conn, $sqlnso);
@@ -129,8 +129,19 @@ if(isset($_POST['register'])){
 
 
                 //SET -- to ID since Foreigner has no ID
-                $IDName = "--";
-                $IDExt  = "--";
+                  $IDfile               = $_FILES['IDfile'];
+                        $fileName       = $IDfile["name"];
+                        $fileType       = $IDfile["type"];
+                        $IDfileTempName   = $IDfile["tmp_name"];
+                        $fileError      = $IDfile["error"];
+                        $fileSize       = $IDfile["size"];
+                        $allowed        = array("jpg","jpeg","png","bmp");
+                        //conversion
+                        $fileExt        = explode(".",$fileName);
+                        $fileActualExt  = strtolower(end($fileExt));
+                        $IDName = $lastN."_ID_".$passnum_nsonum.$timeImg;
+                  $IDExt = ImageCheck($allowed,$fileActualExt,$fileExt,$IDName,$fileError,$fileSize);
+
                 /// IMAGE FINGERPRINT
                 $Fingerfile                 = $_FILES['Fingerfile'];
                       $fileName             = $Fingerfile["name"];
@@ -144,7 +155,10 @@ if(isset($_POST['register'])){
                       $fileActualExt        = strtolower(end($fileExt));
                       $FingerName           = $lastN."_Finger_".$passnum_nsonum.$timeImg;
                 $FingerExt = ImageCheck($allowed,$fileActualExt,$fileExt,$FingerName,$fileError,$fileSize);
-                $simnum = "+63". $simnum;   //DAPAT ANDITO LANG TONG SIMNUM+63 PARA DI MAGERROR HANDLER                                   
+                $simnum = "+63". $simnum;   //DAPAT ANDITO LANG TONG SIMNUM+63 PARA DI MAGERROR HANDLER        
+                
+
+
                 mysqli_stmt_bind_param($stmt,"ssssssssssssssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $services, $remarks, $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$Passportname,$PassportExt,$IDName,$IDExt);
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //
                 $result = mysqli_stmt_get_result($stmt);
@@ -152,9 +166,10 @@ if(isset($_POST['register'])){
                 //MOVING FILES
                 $FingerfileDestination = '../Fingerprint_Registered_User_Database/'.$FingerExt; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
                 $NSOfileDestination    = '../NSO_User_Database/'.$PassportExt;
+                $IDfileDestination     = '../ID_User_Database/'. $IDExt;
                 move_uploaded_file($FingerfileTempName,$FingerfileDestination);  //imomove na yung file to that folder
                 move_uploaded_file($PassportfileTempName,$NSOfileDestination);
-
+                move_uploaded_file($IDfileTempName,$IDfileDestination);
 
                 //IF NEW PREPAID, DECREASE SIM RETAILER STOCK
                 if($simcard == "new prepaid user"){

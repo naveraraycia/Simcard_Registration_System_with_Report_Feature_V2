@@ -60,8 +60,8 @@ if(isset($_POST['register'])){
                     sim_status, simnum, simcard, services, dateofreg, address,
                     sim_retailer, sim_shop, regisite, fingerprint_File_Format, fingerprint_File_Name,
                     passnum, passport_pic, link_passport_pic, 
-                    offense_count, ban_start,  ban_end)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                    offense_count, link_id_pic, ban_start,  ban_end)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
                 
                 $sqlservice = "SELECT passnum, services FROM foreign_registered_simusers_db WHERE services = '$services' AND passnum = '$nso';";
@@ -150,6 +150,23 @@ if(isset($_POST['register'])){
                 $FingerExt = ImageCheck($allowed,$fileActualExt,$fileExt,$FingerName,$fileError,$fileSize);
                          //$FingerExt = Keanu_Finger_01234_3-43.jpg
                 //GETTING SHOP DATA AND SETTING FIXED DATA
+
+                  $IDfile               = $_FILES['IDfile'];
+                        $fileName       = $IDfile["name"];
+                        $fileType       = $IDfile["type"];
+                        $IDfileTempName   = $IDfile["tmp_name"];
+                        $fileError      = $IDfile["error"];
+                        $fileSize       = $IDfile["size"];
+                        $allowed        = array("jpg","jpeg","png","bmp");
+                        //conversion
+                        $fileExt        = explode(".",$fileName);
+                        $fileActualExt  = strtolower(end($fileExt));
+                        $IDName = $lastN."_ID_".$nso.$timeImg;
+                  $IDExt = ImageCheck($allowed,$fileActualExt,$fileExt,$IDName,$fileError,$fileSize);
+
+
+
+                  
                 $sim_shop = $_SESSION['Shop_Name'];
                 $sim_status = "Active Status";
                 $regisite  = $_SESSION['Business_Address'];
@@ -157,12 +174,25 @@ if(isset($_POST['register'])){
                 $ban_end = "0000-00-00";
                 $offense_count ="0";
                 $simnum = "+63". $simnum;
+
+                $checkstatus = "SELECT sim_status, ban_start, ban_end, offense_count, passnum
+                                FROM foreign_registered_simusers_db
+                                WHERE passnum = '$nso';";
+                $result = mysqli_query($conn,$checkstatus);
+                $resultCheck = mysqli_num_rows($result);
+                while($row = mysqli_fetch_assoc($result)):
+                      $passnum =      $row['passnum'];
+                      $ban_end =   $row['ban_end'];
+                      $ban_start   =   $row['ban_start'];
+                      $offense_count = $row['offense_count'];
+                      $sim_status = $row['sim_status'];
+                endwhile;
                                                    
-                mysqli_stmt_bind_param($stmt,"sssssssssssssssss",
+                mysqli_stmt_bind_param($stmt,"ssssssssssssssssss",
                                         $sim_status, $simnum, $simcard, $services, $dateofregis, $address,
                                         $sim_retailer, $sim_shop, $regisite, $FingerExt, $FingerName, 
                                         $passnum_passnum, $Passportname, $PassportExt, 
-                                        $offense_count, $ban_start, $ban_end 
+                                        $offense_count, $IDExt, $ban_start, $ban_end 
                                         );
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //
                 $result = mysqli_stmt_get_result($stmt);
@@ -170,10 +200,16 @@ if(isset($_POST['register'])){
                 //MOVING FILES
                 $FingerfileDestination = '../Fingerprint_Registered_User_Database/'.$FingerExt; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
                 $NSOfileDestination    = '../NSO_User_Database/'.$PassportExt;
+                $IDfileDestination     = '../ID_User_Database/'. $IDExt;
                 move_uploaded_file($FingerfileTempName,$FingerfileDestination);  //imomove na yung file to that folder
                 move_uploaded_file($PassportfileTempName,$NSOfileDestination);
+                move_uploaded_file($IDfileTempName,$IDfileDestination);
 
 
+                $updatesql = "UPDATE foreign_registered_simusers_db
+                              SET fingerprint_File_Format = '$FingerExt', link_passport_pic = '$PassportExt', link_id_pic = '$IDExt', address = '$address'
+                              WHERE passnum = '$nso';";
+                mysqli_query($conn, $updatesql);
                 //IF NEW PREPAID, DECREASE SIM RETAILER STOCK
                 if($simcard == "new prepaid user"){
                       $Reduce = $_SESSION['Simcard_Limit']; //9

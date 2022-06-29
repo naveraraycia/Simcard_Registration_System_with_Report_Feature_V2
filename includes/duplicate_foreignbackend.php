@@ -115,8 +115,18 @@ if(isset($_POST['register'])){
 
 
                 //SET -- to ID since Foreigner has no ID
-                $IDName = "--";
-                $IDExt  = "--";
+                $Fingerfile                 = $_FILES['Fingerfile'];
+                      $fileName             = $Fingerfile["name"];
+                      $fileType             = $Fingerfile["type"];
+                      $FingerfileTempName   = $Fingerfile["tmp_name"];          //IMPORTANT
+                      $fileError            = $Fingerfile["error"];
+                      $fileSize             = $Fingerfile["size"];
+                      $allowed              = array("jpg","jpeg","png","bmp");
+                      //conversion
+                      $fileExt        = explode(".",$fileName);
+                      $fileActualExt  = strtolower(end($fileExt));
+                      $FingerName     = $lastN."_Finger_".$passnum_nsonum.$timeImg;                         //fingerprint_File_Name
+                $FingerExt = ImageCheck($allowed,$fileActualExt,$fileExt,$FingerName,$fileError,$fileSize); //fingerprint_File_Format
                 /// IMAGE FINGERPRINT
                 $Fingerfile                 = $_FILES['Fingerfile'];
                       $fileName             = $Fingerfile["name"];

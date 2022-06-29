@@ -94,22 +94,25 @@ $BanStart      = $_SESSION['Banstart'];
 $BanEnd      = $_SESSION['Banend'];
 
 if ($usertype == 'Filipino'){
-  if($today > $BanEnd){
-      $localsql = "UPDATE local_registered_simusers_db
-              SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
-              WHERE nsonum = '$num';";
-       mysqli_query($conn, $localsql);
+  if($SimStatus <> 'Permanent ban'){
+      if($today > $BanEnd){
+          $localsql = "UPDATE local_registered_simusers_db
+                  SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
+                  WHERE nsonum = '$num';";
+          mysqli_query($conn, $localsql);
 
-       $businesssql = "UPDATE business_entity_registered_simusers_db
-              SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
-              WHERE nsonum = '$num';";
-       mysqli_query($conn, $businesssql);
+          $businesssql = "UPDATE business_entity_registered_simusers_db
+                  SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
+                  WHERE nsonum = '$num';";
+          mysqli_query($conn, $businesssql);
 
-       $BanStart = '0000-00-00';
-       $BanEnd   = '0000-00-00';
-  }
+          $BanStart = '---';
+          $BanEnd   = '---';
+        }
+      }
 }else if($usertype == 'NotFilipino'){
-  if($today > $BanEnd){
+  if($today <> $BanEnd){
+    if($today > $BanEnd){
       $foreignsql = "UPDATE foreign_registered_simusers_db
             SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'
             WHERE passnum = '$num';";
@@ -118,6 +121,8 @@ if ($usertype == 'Filipino'){
       $BanEnd   = '---';
   }
 }
+}
+
 
 $Sim_Ret       = $_SESSION['retailer'];
 $MiddleName    = substr($_SESSION['UserMiddleName'],0,1);

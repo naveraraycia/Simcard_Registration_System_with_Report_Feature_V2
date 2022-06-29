@@ -24,10 +24,10 @@ include_once "../includes/dbh.inc.php";
         $gender =      $row['gender'];
         $dateofbirth = $row['dateofbirth'];
         $regisite =    $row['regisite'];
-        $sim_shop =    $row['sim_shop'];
-        $sim_retailer= $row['sim_retailer'];
-        $dateofregis = $row['dateofregis'];
-        $time =        $row['time'];
+        $sim_shop =      $row['sim_shop'];
+        $sim_retailer=             $row['sim_retailer'];
+        $dateofregis =             $row['dateofregis'];
+        $time =                    $row['time'];
         $FingerName  =             $row['fingerprint_File_Name'];
         $FingerExt   =             $row['fingerprint_File_Format'];
         $NSOName          =        $row['nsopass_pic'];
@@ -78,6 +78,10 @@ include_once "../includes/dbh.inc.php";
             '$offense_count', '$ban_start', '$ban_end');";
     mysqli_query($conn, $sql);
 
+    $updatesql = "UPDATE local_registered_simusers_db
+                  SET fingerprint_File_Format = '$FingerExt', link_nsopass_pic = '$NSOExt', link_id_pic = '$IDExt', address = '$address'
+                  WHERE nsonum = '$nsonum';";
+    mysqli_query($conn, $updatesql);
     //DELETE THAT  REQUEST
     $sql = "DELETE FROM request_reg_db
     WHERE simnum = '$simnum';";
@@ -93,6 +97,6 @@ include_once "../includes/dbh.inc.php";
 
 } else {
 
-  //
+
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
   require 'includes/dbh.inc.php';
    $sql = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates,
-                  l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_nsopass_pic as nso_link
+                  l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_id_pic as nso_link
            FROM update_user_db AS q LEFT JOIN local_registered_simusers_db AS l ON q.simnum = l.simnum
            LEFT JOIN nso_dummy_db AS n ON l.nsonum = n.nsonum
            WHERE l.simnum IS NOT NULL";
@@ -133,7 +133,7 @@ $Adminfullname = $_SESSION['AdminFirstName']." ". $_SESSION['AdminLastName'];
           $end_date = '0000-00-00';
         }
             $FirstOff ="SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates,
-                               l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_nsopass_pic as nso_link
+                               l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_id_pic as nso_link
                          FROM update_user_db AS q LEFT JOIN local_registered_simusers_db AS l ON q.simnum = l.simnum
                          LEFT JOIN nso_dummy_db AS n ON l.nsonum = n.nsonum
                         WHERE l.simnum IS NOT NULL AND q.dates between '$start_date' AND'$end_date'";

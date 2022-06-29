@@ -6,7 +6,7 @@
 
   if($nation == 'filipino'){
               $sql = "SELECT q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates,
-                         l.simnum as simnum, q.update_req as update_req, q.message as message, q.nsopass_pic as nso_link
+                         l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_id_pic as nso_link
                       FROM update_user_db AS q LEFT JOIN local_registered_simusers_db AS l ON q.simnum = l.simnum
                       LEFT JOIN nso_dummy_db AS n ON l.nsonum = n.nsonum
                       WHERE l.simnum IS NOT NULL AND q.user_id ='$id';";
@@ -27,7 +27,7 @@
     }elseif($nation == 'notfilipino' ){
 
               $sql ="SELECT q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates, l.passnum,
-                            l.simnum as simnum, q.update_req as update_req, q.message as message, q.nsopass_pic as nso_link
+                            l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_id_pic as nso_link
                      FROM update_user_db AS q LEFT JOIN foreign_registered_simusers_db AS l ON q.simnum = l.simnum
                      LEFT JOIN foreign_passport_db AS n ON l.passnum = n.passnum
                      WHERE l.simnum IS NOT NULL AND q.user_id ='$id';";

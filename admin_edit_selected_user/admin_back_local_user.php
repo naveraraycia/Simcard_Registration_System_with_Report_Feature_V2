@@ -29,7 +29,6 @@
                         $penalty_old    = $row['offense_count'];
                         $address_old    = $row['address'];
                         $midname        = $row['midname'];
-
                    }
             // ADDED DATA
             date_default_timezone_set('Asia/Manila');

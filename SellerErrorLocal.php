@@ -39,7 +39,7 @@
                 $ban_start     = $row['ban_start'];
                 $ban_end       = $row['ban_end'];
     
-                if($offense_count == 3 || $offense_count <= 3){
+                if($sim_status <> 'Permanent ban'){
                     if($sim_status == "Active Status"){
                         return false;
                     }else{
@@ -88,7 +88,7 @@
             $ban_start     = $row['ban_start'];
             $ban_end       = $row['ban_end'];
 
-            if($offense_count == 3 || $offense_count <= 3){
+            if($sim_status <> 'Permanent ban'){
                 if($sim_status == "Active Status"){
                     return false;
                 }else{

@@ -16,7 +16,7 @@
                   rg.simnum as simnum, rg.simcard as simcard, rg.services as services, n.lastname as lastname, n.firstname as firstname,
                   n.midname as midname, n.suffix as suffix, n.gender as gender, n.dateofbirth as dateofbirth, rg.address as address,
                   n.passnum as passnum, n.nationality as nationality, rg.sim_shop as sim_shop, rg.regisite as regisite, rg.sim_retailer as sim_retailer, rg.dateofreg as dateofreg,
-                  rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link
+                  rg.fingerprint_File_Format as finger_link, rg.link_passport_pic as pass_link, rg.link_id_pic as link_id_pic
           FROM foreign_registered_simusers_db AS rg LEFT JOIN foreign_passport_db as n ON rg.passnum = n.passnum
           WHERE rg.simnum = '$simnum';";
            $result = mysqli_query($conn, $query);
@@ -50,12 +50,14 @@
     $nso_link = $row['link_nsopass_pic'];
     $passnso_num = $row['passnum_nsonum'];
     $dateofreg = $row['dateofregis'];
+    $id_link = $row['link_id_pic'];
   }else{
     $finger_link = $row['finger_link'];
     $nso_link = $row['pass_link'];
     $nationality = $row['nationality'];
     $dateofreg = $row['dateofreg'];
     $passnso_num = $row['passnum'];
+    $id_link = $row['link_id_pic'];
   }
 endwhile;
 ?>
@@ -329,7 +331,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img img-fluid" src="<?php echo 'Fingerprint_Registered_User_Database/'.$finger_link;     ?>" alt="Address-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'ID_User_Database/'.$id_link;     ?>" alt="Address-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

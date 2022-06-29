@@ -10,7 +10,7 @@ require '../includes/dbh.inc.php';
     if($nation == 'filipino'){
   //UPDATE LOCAL DATABASE
                 $sql = " SELECT  q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates,
-                                l.simnum as simnum, q.update_req as update_req, q.message as message, q.nsopass_pic as nso_link, l.nsonum as nsonum
+                                l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_id_pic as nso_link, l.nsonum as nsonum
                         FROM update_user_db AS q LEFT JOIN local_registered_simusers_db AS l ON q.simnum = l.simnum
                         LEFT JOIN nso_dummy_db AS n ON l.nsonum = n.nsonum
                         WHERE l.simnum IS NOT NULL AND q.user_id ='$id';";
@@ -27,7 +27,7 @@ require '../includes/dbh.inc.php';
                             endwhile;  
 
                             $sql = "UPDATE local_registered_simusers_db
-                            SET address = '$type_address',  link_nsopass_pic = '$nso_link'
+                            SET address = '$type_address', link_id_pic= '$nso_link'
                             WHERE nsonum = '$nsonum'";
                             mysqli_query($conn, $sql);
 
@@ -46,7 +46,7 @@ require '../includes/dbh.inc.php';
     }elseif($nation=='notfilipino'){
             //UPDATE FOREIGN
             $FirstOff ="SELECT q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates, l.passnum as passnum,
-                               l.simnum as simnum, q.update_req as update_req, q.message as message, q.nsopass_pic as nso_link
+                               l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_id_pic as nso_link
                         FROM update_user_db AS q LEFT JOIN foreign_registered_simusers_db AS l ON q.simnum = l.simnum
                         LEFT JOIN foreign_passport_db AS n ON l.passnum = n.passnum
                         WHERE l.simnum IS NOT NULL AND q.user_id ='$id';";
@@ -62,7 +62,7 @@ require '../includes/dbh.inc.php';
                       $passnum = $row['passnum'];
             endwhile;  
             $sql = "UPDATE foreign_registered_simusers_db
-            SET address = '$type_address',  link_passport_pic = '$nso_link', passport_pic = '$nso_link'
+            SET address = '$type_address',  link_id_pic = '$nso_link'
             WHERE passnum = '$passnum'";
             mysqli_query($conn, $sql);
             $delete_request = "DELETE FROM update_user_db WHERE  user_id ='$user_id'";

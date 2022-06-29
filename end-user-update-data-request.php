@@ -101,7 +101,7 @@
                 $fulUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
                   if(strpos($fulUrl, "error=success") == true){
-                    echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
+                    echo "<p class= 'regsuccess'>YOUR REQUEST HAS BEEN SENT</p>";
                   }elseif(strpos($fulUrl, "error=nsomnum-already-exist") == true){
                     echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS NSO NUMBER ALREADY EXISTS</p>";
                   }elseif(strpos($fulUrl, "signup=EMPTY") == true){

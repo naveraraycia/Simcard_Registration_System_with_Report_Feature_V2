@@ -111,20 +111,20 @@ if(isset($_POST['reportbutton'])){
                                   //////Reconfiguring Image File and Format////////
                                   $DocumentName = $Document.$setImageOrder; //New File Name of the Image - example of format: TanishaBrown.ReportNumber_1
                                   $ImageFullName    = $DocumentName.".".$fileActualExt;                  //Complete Fille Name of the Image - example of format: TanishaBrown.ReportNumber_1.jpg
-                                  $fileDestination  = "../NSO_User_Database/".$ImageFullName;            //Build up file destination
+                                  $fileDestination  = "../ID_User_Database/".$ImageFullName;            //Build up file destination
                                   date_default_timezone_set('Asia/Manila');
                                   $dates = date("Y")."-".date("m")."-".date("j");
                                   $time = date('G').":".date('i').":".date('s');
                                   $DateTime = $dates." ".$time;
                                   //Preparing Query for Inserting Data in the Database
-                                  $sql = "INSERT INTO update_user_db(update_type, update_req, simnum, message, nsopass_pic, link_nsopass_pic, clock, dates)
+                                  $sql = "INSERT INTO update_user_db(update_type, update_req, simnum, message, id_pic, link_id_pic, clock, dates)
                                           VALUES(?,?,?,?,?,?,?,?);";
 
                                   if(!mysqli_stmt_prepare($stmt,$sql)){ //ERROR 404 for unable to upload
                                       header("Location:../end-user-update-data-request.php?error=connection");
                                   }else{
 
-                                      mysqli_stmt_bind_param($stmt,"ssssssss", $operator, $update, $SimCardNumber, $Message, $ImageFullName, $DocumentName, $time, $dates);
+                                      mysqli_stmt_bind_param($stmt,"ssssssss", $operator, $update, $SimCardNumber, $Message, $DocumentName, $ImageFullName, $time, $dates);
                                       mysqli_stmt_execute($stmt); //FILE SENT
                                       move_uploaded_file($fileTempName,$fileDestination); //moving the file
                                       // UPDATE ID INCREMENT

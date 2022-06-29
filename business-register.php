@@ -4,10 +4,11 @@
 ?>
 <?php
   session_start();
-  if (empty($_SESSION['SellerFirstName'])){
+  if (empty( $_SESSION['SellerEmail'] )){
     header("Location: index.php");
     exit();
   }
+  $shopname = " ".$_SESSION['Shop_Name'];
   if(empty($_SESSION['nsonumber'])){
     header("Location: register_fingerprint.php?EnterNSO");
   }
@@ -70,7 +71,7 @@
     <nav class="navbar navbar-expand-lg">
       <a class="div1 navbar-brand" href="seller-home.php">
           <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
-          <span class="brandname">SIM shop: Cavite SIM Shop</span>
+          <span class="brandname"><?php echo $shopname ?></span>
         </a>
 
       <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

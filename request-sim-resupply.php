@@ -2,13 +2,12 @@
   // require "navbar.php";
   include_once 'includes/dbh.inc.php';
   session_start();
-  // $selleremail = $_SESSION['SellerEmail'];
- //
- //  $sql = "SELECT s.Shop_Name AS Shop_Name,
- //  s.selleremail AS selleremail
- //  FROM seller as s LEFT JOIN resupply_requests as n ON s.selleremail = n.sim_amount_requested
- //  WHERE n.selleremail = s.sim_amount_requested";
- // $result = mysqli_query($conn, $sql);
+  if (empty( $_SESSION['SellerEmail'] )){
+    header("Location: index.php");
+    exit();
+  }
+  $shopname = " ".$_SESSION['Shop_Name'];
+
   ?>
 
   <!DOCTYPE html>
@@ -43,7 +42,7 @@
       <nav class="navbar navbar-expand-lg">
         <a class="div1 navbar-brand" href="seller-home.php">
             <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
-            <span class="brandname">SIM shop: Cavite SIM Shop</span>
+            <span class="brandname">SIM shop: <?php echo $shopname ?></span>
           </a>
 
         <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

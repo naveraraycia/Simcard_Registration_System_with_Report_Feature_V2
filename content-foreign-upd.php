@@ -5,7 +5,7 @@
 <!-- <?php
 $id = mysqli_real_escape_string($conn, $_GET['id']);
             $FirstOff ="SELECT q.user_id as user_id, n.lastname as lastname, n.firstname as firstname, n.midname as midname, q.dates as dates, l.passnum,
-                               l.simnum as simnum, q.update_req as update_req, q.message as message, q.nsopass_pic as nso_link
+                               l.simnum as simnum, q.update_req as update_req, q.message as message, q.link_id_pic as nso_link
                         FROM update_user_db AS q LEFT JOIN foreign_registered_simusers_db AS l ON q.simnum = l.simnum
                         LEFT JOIN foreign_passport_db AS n ON l.passnum = n.passnum
                         WHERE l.simnum IS NOT NULL AND q.user_id ='$id';";
@@ -187,7 +187,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'NSO_User_Database/'.$nso_link;    ?>" alt="Proof-for-update-place-URL-here">
+                <img class="screenshot-img" src="<?php echo 'ID_User_Database/'.$nso_link;    ?>" alt="Proof-for-update-place-URL-here">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

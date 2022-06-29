@@ -32,7 +32,7 @@ include_once "../includes/dbh.inc.php";
         $FingerExt   =             $row['fingerprint_File_Format'];
         $NSOName          =        $row['nsopass_pic'];
         $NSOExt           =        $row['link_nsopass_pic'];
-
+        $IDExt            =        $row['link_id_pic'];
 
     endwhile;
 
@@ -72,15 +72,18 @@ include_once "../includes/dbh.inc.php";
     $sql = "INSERT INTO foreign_registered_simusers_db (
         sim_status, simnum, simcard, services, dateofreg, address,
         sim_retailer, sim_shop, regisite, fingerprint_File_Format, fingerprint_File_Name,
-        passnum, passport_pic, link_passport_pic,
+        passnum, passport_pic, link_passport_pic, link_id_pic,
         offense_count, ban_start,  ban_end)
     VALUES ('$sim_status', '$simnum', ' $simcard', '$services', '$dateofregis', '$address',
             '$sim_retailer', '$sim_shop', '$regisite', '$FingerExt', '$FingerName',
-            '$passnum', '$NSOName', '$NSOExt',
+            '$passnum', '$NSOName', '$NSOExt','$IDExt',
             '$offense_count', '$ban_start', '$ban_end');";
     mysqli_query($conn, $sql);
 
-
+     $updatesql = "UPDATE foreign_registered_simusers_db
+                   SET fingerprint_File_Format = '$FingerExt', link_passport_pic = '$NSOExt', link_id_pic = '$IDExt', address = '$address'
+                   WHERE passnum = '$passnum';";
+                mysqli_query($conn, $updatesql);
     //DELETE THAT  REQUEST
      $sql = "DELETE FROM request_reg_db WHERE simnum = '$simnum';";
      mysqli_query($conn, $sql);

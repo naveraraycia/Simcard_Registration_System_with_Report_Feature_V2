@@ -11,7 +11,8 @@
                       n.gender as gender, n.passnum as passnum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start, 
                       l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies, 
                       l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite, 
-                      l.fingerprint_File_Format as finger_pic, l.link_passport_pic as passport_pic, n.nationality as nationality
+                      l.fingerprint_File_Format as finger_pic, l.link_passport_pic as passport_pic, n.nationality as nationality,
+                      l.link_id_pic
                FROM foreign_registered_simusers_db AS l LEFT JOIN foreign_passport_db as n ON  l.passnum = n.passnum
               WHERE l.simnum = '$simnum'; ";
 
@@ -25,6 +26,7 @@
                         $ban_start_old  = $row['ban_start'];
                         $lastN          = $row['lastname'];
                         $passnum = $row['passnum'];
+                        $id_old = $row['id_pic'];
                         
                    }
             // ADDED DATA
@@ -80,23 +82,36 @@
                             $fileActualExt     = strtolower(end($fileExt)); //jpg
                             $NSOName       = $lastN."_NSO_".$passnum."_".$timeImg;  //Keanu_NSO_01234_3-43
                       $NSOExt = ImageCheck($allowed,$fileActualExt,$fileExt,$NSOName,$fileError,$fileSize, $nso_old ); 
+
                       //$NSOExt = Keanu_NSO_01234_3-43.jpg;
-        
+                      $IDfile               = $_FILES['IDfile'];
+                            $fileName       = $IDfile["name"];
+                            $fileType       = $IDfile["type"];
+                            $IDfileTempName   = $IDfile["tmp_name"];
+                            $fileError      = $IDfile["error"];
+                            $fileSize       = $IDfile["size"];
+                            $allowed        = array("jpg","jpeg","png","bmp");
+                            //conversion
+                            $fileExt        = explode(".",$fileName);
+                            $fileActualExt  = strtolower(end($fileExt));
+                            $IDName = $lastN."_ID_".$passnum."_".$timeImg;
+                      $IDExt = ImageCheck($allowed,$fileActualExt,$fileExt,$IDName,$fileError,$fileSize, $id_old);
+
                     /// IMAGE FINGERPRINT
-                    $Fingerfile                 = $_FILES['Fingerfile'];
-                          $fileName             = $Fingerfile["name"];
-                          $fileType             = $Fingerfile["type"];
-                          $FingerfileTempName   = $Fingerfile["tmp_name"];
-                          $fileError            = $Fingerfile["error"];
-                          $fileSize             = $Fingerfile["size"];
-                          $allowed              = array("jpg","jpeg","png","bmp");
-                          //conversion
-                          $fileExt        = explode(".",$fileName);
-                          $fileActualExt  = strtolower(end($fileExt));
-                          $FingerName     = $lastN."_Finger_".$passnum."_".$timeImg;
-                    $FingerExt = ImageCheck($allowed,$fileActualExt,$fileExt,$FingerName,$fileError,$fileSize,  $finger_old);
-                              //$FingerExt = Keanu_Finger_01234_3-43.jpg
-                    //GETTING SHOP DATA AND SETTING FIXED DATA
+                      $Fingerfile                 = $_FILES['Fingerfile'];
+                            $fileName             = $Fingerfile["name"];
+                            $fileType             = $Fingerfile["type"];
+                            $FingerfileTempName   = $Fingerfile["tmp_name"];
+                            $fileError            = $Fingerfile["error"];
+                            $fileSize             = $Fingerfile["size"];
+                            $allowed              = array("jpg","jpeg","png","bmp");
+                            //conversion
+                            $fileExt        = explode(".",$fileName);
+                            $fileActualExt  = strtolower(end($fileExt));
+                            $FingerName     = $lastN."_Finger_".$passnum."_".$timeImg;
+                      $FingerExt = ImageCheck($allowed,$fileActualExt,$fileExt,$FingerName,$fileError,$fileSize,  $finger_old);
+                                //$FingerExt = Keanu_Finger_01234_3-43.jpg
+                      //GETTING SHOP DATA AND SETTING FIXED DATA
 
 
                     echo     $sim_status;
@@ -118,7 +133,7 @@
                     //update local                                   
                     $sql = "UPDATE foreign_registered_simusers_db
                     SET sim_status = '$sim_status', offense_count = '$offense_count', ban_start = '$ban_start', ban_end = '$ban_end',
-                        address = '$address', fingerprint_File_Format = '$FingerExt', link_passport_pic= '$NSOExt'
+                        address = '$address', fingerprint_File_Format = '$FingerExt', link_passport_pic= '$NSOExt',link_id_pic = '$IDExt'
                     WHERE passnum = '$passnum';";
                     mysqli_query($conn,$sql);
 

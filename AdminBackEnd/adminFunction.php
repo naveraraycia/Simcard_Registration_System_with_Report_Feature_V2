@@ -5,7 +5,7 @@
     $sql = "SELECT * FROM admin WHERE admin_email = ? AND admin_pwd = ?;";
     $stmt = mysqli_stmt_init($conn);
 
-    //CHECK CONNECTION IF WORKING
+       //CHECK CONNECTION IF WORKING
       if(!mysqli_stmt_prepare($stmt,$sql)){
         header("Location: ../login_sections.php?adminLogin=Error");
         exit();
@@ -19,6 +19,8 @@
       $email          =   $row['admin_email'];
       $AdminFirstName = $row['Admin_First_Name'];
       $AdminLastName  = $row['Admin_Last_Name'];
+  
+
 
       //CASE SENSITIVE CHECKING
       if (($adminPass === $password && $adminLogin === $email)){

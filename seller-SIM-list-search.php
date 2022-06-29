@@ -1,14 +1,13 @@
 <?php
   require 'includes/dbh.inc.php';
   // session_start();
-  // if (empty($_SESSION['AdminEmail'])){
-  //   header("Location: index.php");
-  //   exit();
-  // }
-  // $AdminLName = $_SESSION['AdminLastName'] ;
-  // $AdminFName = $_SESSION['AdminFirstName'];
-  // $AdminEmail = $_SESSION['AdminEmail'];
-  // $AdminPass  = $_SESSION['AdminPassword'];
+  session_start();
+  if (empty( $_SESSION['SellerEmail'] )){
+    header("Location: index.php");
+    exit();
+  }
+  $shopname = " ".$_SESSION['Shop_Name'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -41,7 +40,7 @@
     <nav class="navbar navbar-expand-lg">
       <a class="div1 navbar-brand" href="register-users-local.php">
           <img src="images/logo.png" width="30" height="32" class="d-inline-block align-top" alt="">
-          <span class="brandname">SIM shop: Cavite SIM Shop</span>
+          <span class="brandname">SIM shop: <?php echo $shopname ?></span>
         </a>
 
       <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
