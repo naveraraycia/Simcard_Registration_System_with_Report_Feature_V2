@@ -187,7 +187,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'ID_User_Database/'.$nso_link;    ?>" alt="Proof-for-update-place-URL-here">
+                <img class="screenshot-img img-fluid" src="<?php echo 'ID_User_Database/'.$nso_link;    ?>" alt="Proof-for-update-place-URL-here">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

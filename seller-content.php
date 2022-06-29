@@ -39,13 +39,13 @@
     $permit_link = $row['link_permit_pic'];
     $nso_link = $row['link_nsopass_pic'];
     $id_link     = $row['link_id_pic'];
-  
+
     $nso_link = $row['link_nsopass_pic'];
     $nationality = 'Filipino';
     $id_link = $row['link_id_pic'];
     $dateofreg = $row['dateofreg'];
     $owner_num = $row['owner_num'];
-  
+
 
 endwhile;
 
@@ -218,7 +218,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php  echo 'Permit_Database/'.$permit_link;   ?>" alt="Business-permit-img">
+                <img class="screenshot-img img-fluid" src="<?php  echo 'Permit_Database/'.$permit_link;   ?>" alt="Business-permit-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -239,7 +239,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'NSO_User_Database/'.$nso_link;    ?>" alt="NSO-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'NSO_User_Database/'.$nso_link;    ?>" alt="NSO-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -260,7 +260,7 @@ p{
               </div>
               <div class="modal-body">
                 <!-- ATTACH THE IMAGE LINK HERE -->
-                <img class="screenshot-img" src="<?php echo 'ID_User_Database/'.$id_link;    ?>" alt="valid-id-img">
+                <img class="screenshot-img img-fluid" src="<?php echo 'ID_User_Database/'.$id_link;    ?>" alt="valid-id-img">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
