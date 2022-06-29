@@ -123,6 +123,8 @@
               echo "<p class= 'errormessage'>Connection error. Try again</p>";
           }else if(strpos($fulUrl,"errornumber=wrongLength") == true){
               echo "<p class= 'errormessage'>Incorrect digit length</p>";
+          }else if(strpos($fulUrl,"errornumber=incorrectpwd") == true){
+              echo "<p class= 'errormessage'>Incorrect account credentials</p>";
           };
 
           //Second half of login page
@@ -131,8 +133,9 @@
           <div class='input-group-prepend end-user-log'>
             <div class='input-group-text end-user-p'>+63</div>
           </div>
-          <input type='tel' class='form-control' id='userMobileNum' name='IndexNumber'>
+          <input type='tel' class='form-control' id='userMobileNum' name='IndexNumber' required>
         </div>
+        <input type='password' class='input-retail' name='enduserpass' placeholder='Password' required>
           <button type='Submit' name='indexButton' class='btn submit_btn' style='display: flex; justify-content: center; align-items: center;'>Submit</button>
 
           <div class='edit-margin links-users'>
@@ -160,13 +163,13 @@
 
     </div>
 
-    <script>
+    <!-- <script>
       const submit_btn = document.querySelector('.submit_btn');
       submit_btn.onclick = function () {
         this.innerHTML = "<div class='loader'></div>";
       }
 
-  </script>
+  </script> -->
 
     <!--  <script src="./sim-registration-otp/requestOtp.js"></script> -->
 

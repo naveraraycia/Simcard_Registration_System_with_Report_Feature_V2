@@ -24,7 +24,7 @@
   <!-- CUSTOM CSS FILE  -->
   <link rel="stylesheet" href="styles/userprof.css">
   <!-- FONT AWESOME -->
-  <script src="https://kit.fontawesome.com/207a28b81e.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/57070be855.js" crossorigin="anonymous"></script>
 
 </head>
   <body>

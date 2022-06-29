@@ -3,6 +3,7 @@
   if(isset($_POST['indexButton'])){
 
     $UserLoginNumberPHP = mysqli_real_escape_string($conn, $_POST['IndexNumber']); //Get input
+    $passworduser = mysqli_real_escape_string($conn, $_POST['enduserpass']); //Get input
     require_once 'indexFunction.php';
 
     //ERROR FOR EMPTY BOX !!!CORRECT!!!!!
@@ -24,7 +25,7 @@
 
     //ERROR FOR INVALID CHARACTERS
     //CHECKING THE DATABASE
-    if(CheckNumber($conn,$UserLoginNumberPHP)!== false){ //IF TRUE
+    if(CheckNumber($conn,$UserLoginNumberPHP,$passworduser)!== false){ //IF TRUE
       exit();
     }
   echo"stuck";

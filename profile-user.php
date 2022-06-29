@@ -237,7 +237,7 @@ $service       = $_SESSION['services'];
   } else {
 
 //REPORT PAGE
-    echo "
+  echo "
     <form class='' id='form' action='UserprofileBackEnd/Back_End_User_Profile.php' method='POST'>
     <div class='row'>
 
@@ -336,7 +336,14 @@ $service       = $_SESSION['services'];
         </div>
       </div>
     </div>
-    </form>";
+
+    <div class='row'>
+      <div class='col-md-3'>
+      <p class='' style='margin-bottom: 0px; align-self: flex-start; color: black;'><a href='edit-pass-user.php'
+        >Change Acc Password<a href='edit-pass-user.php'</a></p>
+      </div>
+    </div>
+  </form>";
 
   }
   ?>

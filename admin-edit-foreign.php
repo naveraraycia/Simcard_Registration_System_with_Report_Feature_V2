@@ -272,13 +272,19 @@ $Adminfullname = $_SESSION['AdminFirstName']." ". $_SESSION['AdminLastName'];
 
 
     <div class="row srow">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <div class="form-group">
           <label for="nso-attach">Attach Passport</label>
           <input type="file" name='Passportfile' class="form-control-file" id="nso-attach">
         </div>
       </div>
 
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="nso-attach">Attach Valid ID with address or Hotel Reservation</label>
+          <input type="file" name='IDfile' class="form-control-file" id="nso-attach" required>
+        </div>
+      </div>
 
     </div>
 
@@ -349,6 +355,7 @@ $Adminfullname = $_SESSION['AdminFirstName']." ". $_SESSION['AdminLastName'];
           <input type="file" name='Fingerfile' class="form-control-file" id="exampleFormControlFile1">
         </div>
       </div>
+
 
       <div class="col-md-6">
         <button type="submit" name="register" class="send-btn">Update</button>

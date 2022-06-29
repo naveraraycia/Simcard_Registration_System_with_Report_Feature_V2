@@ -32,12 +32,12 @@ session_start();
  };
 
 //CHECK IF THERE IF THE NUMBER EXIST
- function CheckNumber($conn, $UserLoginNumberPHP){
+ function CheckNumber($conn, $UserLoginNumberPHP, $passworduser){
       include_once "../includes/dbh.inc.php";
       $BUserLoginNumberPHP = '+63'. $UserLoginNumberPHP;
 
       //LOGIN CHECK TO KNOW IF LOCAL
-      $localsql = "SELECT  simnum FROM local_registered_simusers_db WHERE simnum = ?;";
+      $localsql = "SELECT simnum, userpwd FROM local_registered_simusers_db WHERE simnum = ?;";
       $stmt = mysqli_stmt_init($conn);
         mysqli_stmt_prepare($stmt,$localsql);
         mysqli_stmt_bind_param($stmt,"s",$BUserLoginNumberPHP);
@@ -46,12 +46,19 @@ session_start();
         if($row = mysqli_fetch_assoc($result)){
             $_SESSION['UserNumber']      = $row['simnum'];
             $_SESSION['Type']     = "Filipino";
-            header("location:../profile-user.php");
-            exit();
+            $password1 = $row['userpwd'];
+              if($password1 != $passworduser){
+                //if pwd does not match
+                header("Location:../login_sections.php?errornumber=incorrectpwd");
+                exit();
+              }else{
+                header("location:../profile-user.php");
+                exit();
+              }
         }
-        
+
         //LOGIN CHECK TO KNOW IF FOREIGN
-        $foreignsql = "SELECT simnum FROM foreign_registered_simusers_db WHERE simnum = ?;";
+        $foreignsql = "SELECT simnum, userpwd FROM foreign_registered_simusers_db WHERE simnum = ?;";
         $stmt = mysqli_stmt_init($conn);
         mysqli_stmt_prepare($stmt,$foreignsql);
         mysqli_stmt_bind_param($stmt,"s",$BUserLoginNumberPHP);
@@ -60,11 +67,18 @@ session_start();
         if($row = mysqli_fetch_assoc($result)){
             $_SESSION['UserNumber']      = $row['simnum'];
             $_SESSION['Type']     = "NotFilipino";
-            header("location:../profile-user.php");
-            exit();
+            $password1 = $row['userpwd'];
+              if($password1 != $passworduser){
+                //if pwd does not match
+                header("Location:../login_sections.php?errornumber=incorrectpwd");
+                exit();
+              }else{
+                header("location:../profile-user.php");
+                exit();
+              }
         }
-   
-        //LOGIN CHECK TO KNOW IF BUSINESS 
+
+        //LOGIN CHECK TO KNOW IF BUSINESS
         $business_sql = "SELECT simnum FROM business_entity_registered_simusers_db WHERE simnum = ?;";
         $stmt = mysqli_stmt_init($conn);
         mysqli_stmt_prepare($stmt,$business_sql);
@@ -80,7 +94,7 @@ session_start();
 
           header("location:../login_sections.php?errornumber=notexist ");
 
-           
+
 
   }
 ?>
