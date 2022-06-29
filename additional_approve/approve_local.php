@@ -25,6 +25,7 @@ include_once "../includes/dbh.inc.php";
         $dateofbirth = $row['dateofbirth'];
         $regisite =    $row['regisite'];
         $sim_shop =      $row['sim_shop'];
+				$pwd = $row['userpwd'];
         $sim_retailer=             $row['sim_retailer'];
         $dateofregis =             $row['dateofregis'];
         $time =                    $row['time'];
@@ -68,11 +69,11 @@ include_once "../includes/dbh.inc.php";
 
     $stmt = mysqli_stmt_init($conn);
     $sql = "INSERT INTO local_registered_simusers_db (
-        sim_status, simnum, simcard, services, dateofreg, address,
+        sim_status, simnum, userpwd, simcard, services, dateofreg, address,
         sim_retailer, sim_shop, regisite, fingerprint_File_Format, fingerprint_File_Name,
         nsonum, nsopass_pic, link_nsopass_pic, id_pic, link_id_pic,
         offense_count, ban_start,  ban_end)
-    VALUES ('$sim_status', '$simnum', ' $simcard', '$services', '$dateofregis', '$address',
+    VALUES ('$sim_status', '$simnum', '$pwd', ' $simcard', '$services', '$dateofregis', '$address',
             '$sim_retailer', '$sim_shop', '$regisite', '$FingerExt', '$FingerName',
             '$nsonum', '$NSOName', '$NSOExt', '$IDName', '$IDExt',
             '$offense_count', '$ban_start', '$ban_end');";

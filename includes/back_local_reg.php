@@ -39,7 +39,7 @@ if(isset($_POST['register'])){
         $sim_retailer =$_POST['retailer'];
         //CHECK IF DATA EXIST AND SIMTYPE IS ALREADY EXIST)
         $simnumber = "+63".$simnum;
-        $pwd = $nso;
+        $pwd = substr($nso, -7);
 
 
       // CHECKING IF FOREIGN EXIST IN

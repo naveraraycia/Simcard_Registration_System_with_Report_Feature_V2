@@ -40,9 +40,10 @@ if(isset($_POST['register'])){
         $sim_status = "Active Status";                                  // sim_status
         $ban_start = "0000-00-00";                                              // ban_start
         $ban_end = "0000-00-00";                                                // ban_end
-        $offense_count ="0";   
- 
+        $offense_count ="0";
+
         $simnumber = "+63".$simnum;
+        $pwd = substr($passportnumber, -5);
         //CHECK IF DATA EXIST AND SIMTYPE IS ALREADY EXIST)
         $sqlnso = "SELECT simnum FROM foreign_registered_simusers_db WHERE simnum = '$simnumber';";
         $result = mysqli_query($conn, $sqlnso);
@@ -65,8 +66,8 @@ if(isset($_POST['register'])){
                 header("Location: ../register-duplicate-sim-local.php?error=simnum-already-exist");
         }else{
             //PANG SEND NG DATA, ETO YUNG QUERY
-            $sql = "INSERT INTO request_reg_db (lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,address,nationality,simcard,simnum,services, remarks, regisite, dateofregis, time,fingerprint_File_Format,fingerprint_File_Name,sim_retailer,sim_shop,sim_status,ban_start,ban_end,offense_count,nsopass_pic,link_nsopass_pic,id_pic,link_id_pic) 
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            $sql = "INSERT INTO request_reg_db (userpwd, lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,address,nationality,simcard,simnum,services, remarks, regisite, dateofregis, time,fingerprint_File_Format,fingerprint_File_Name,sim_retailer,sim_shop,sim_status,ban_start,ban_end,offense_count,nsopass_pic,link_nsopass_pic,id_pic,link_id_pic)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
                 if($simcard == "new prepaid user"){
                   if($_SESSION['Simcard_Limit'] <= 0){
@@ -155,11 +156,11 @@ if(isset($_POST['register'])){
                       $fileActualExt        = strtolower(end($fileExt));
                       $FingerName           = $lastN."_Finger_".$passnum_nsonum.$timeImg;
                 $FingerExt = ImageCheck($allowed,$fileActualExt,$fileExt,$FingerName,$fileError,$fileSize);
-                $simnum = "+63". $simnum;   //DAPAT ANDITO LANG TONG SIMNUM+63 PARA DI MAGERROR HANDLER        
-                
+                $simnum = "+63". $simnum;   //DAPAT ANDITO LANG TONG SIMNUM+63 PARA DI MAGERROR HANDLER
 
 
-                mysqli_stmt_bind_param($stmt,"ssssssssssssssssssssssssssss",  $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $services, $remarks, $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$Passportname,$PassportExt,$IDName,$IDExt);
+
+                mysqli_stmt_bind_param($stmt,"sssssssssssssssssssssssssssss", $pwd, $lastN, $firstN, $midN, $sfx, $dob, $gndr, $passnum_nsonum,$address,$nationality,$simcard, $simnum, $services, $remarks, $regisite, $dateofregis,$time, $FingerExt , $FingerName,$sim_retailer,$sim_shop,$sim_status,$ban_start,$ban_end,$offense_count,$Passportname,$PassportExt,$IDName,$IDExt);
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //
                 $result = mysqli_stmt_get_result($stmt);
 

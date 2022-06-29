@@ -28,6 +28,7 @@ include_once "../includes/dbh.inc.php";
         $sim_retailer= $row['sim_retailer'];
         $dateofregis = $row['dateofregis'];
         $time =        $row['time'];
+				$pwd =        $row['userpwd'];
         $FingerName  =             $row['fingerprint_File_Name'];
         $FingerExt   =             $row['fingerprint_File_Format'];
         $NSOName          =        $row['nsopass_pic'];
@@ -70,11 +71,11 @@ include_once "../includes/dbh.inc.php";
     $stmt = mysqli_stmt_init($conn);
 
     $sql = "INSERT INTO foreign_registered_simusers_db (
-        sim_status, simnum, simcard, services, dateofreg, address,
+        sim_status, simnum, userpwd, simcard, services, dateofreg, address,
         sim_retailer, sim_shop, regisite, fingerprint_File_Format, fingerprint_File_Name,
         passnum, passport_pic, link_passport_pic, link_id_pic,
         offense_count, ban_start,  ban_end)
-    VALUES ('$sim_status', '$simnum', ' $simcard', '$services', '$dateofregis', '$address',
+    VALUES ('$sim_status', '$simnum', '$pwd', ' $simcard', '$services', '$dateofregis', '$address',
             '$sim_retailer', '$sim_shop', '$regisite', '$FingerExt', '$FingerName',
             '$passnum', '$NSOName', '$NSOExt','$IDExt',
             '$offense_count', '$ban_start', '$ban_end');";

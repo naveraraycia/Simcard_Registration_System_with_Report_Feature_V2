@@ -117,18 +117,13 @@
           </div>
 
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-6">
     <a href="seller-local-users-registered.php"><button type="button" name="button" class="send-btn">Local User List</button></a>
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-6">
     <a href="seller-foreign-users-registered.php"><button type="button" name="button" class="send-btn">Foreign User List</button></a>
   </div>
-
-  <div class="col-md-3">
-    <a href="seller-bus-ent-registered.php"><button type="button" name="button" class="send-btn">Business Entity List</button></a>
-  </div>
-
 
 </div>
 

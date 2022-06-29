@@ -155,7 +155,7 @@
       exit();
     }
       if (mysqli_num_rows($result) > 0) {
-     
+
         $exceed= checkPenalty($conn,$passport);
         if($exceed == true){
           header("Location: ../Simcard_Registration_System_with_Report_Feature_V2/duplicate-sim-passport-verify.php?exceed");
