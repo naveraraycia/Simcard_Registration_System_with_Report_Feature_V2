@@ -132,7 +132,7 @@ p{
         <br>
         <div class="" style="display:flex;flex-direction:column;">
         <h2>2. Copyright</h2>
-        <p class="information" style="line-height: 200%;color:black!important;">The contents, organization, graphics, design, compilation, digital conversion and other matters related to the SimCardRegistrationSystem website are protected under applicable copyrights, trademarks and other proprietary (including but not limited to intellectual property) rights. The copying, redistribution, use, or publication by you of any such matters or any part of the SimCardRegistrationSystem website, except as allowed by Section 4 below, is strictly prohibited. You do not acquire ownership rights to any content, document or other materials viewed through the SimCardRegistrationSystem website. The posting of information or materials on the SimCardRegistrationSystem website does not constitute a waiver of any right of SimCardRegistrationSystem in such information and materials. Some of the contents on the site are the copyrighted work of member government agencies of SimCardRegistrationSystem and SimCardRegistrationSystem’s third party providers.
+        <p class="information" style="line-height: 200%;color:black!important;">The contents, organization, graphics, design, compilation, digital conversion and other matters related to the SimCardRegistrationSystem website are protected under applicable copyrights, trademarks and other proprietary (including but not limited to intellectual property) rights. The copying, redistribution, use, or publication by you of any such matters or any part of the SimCardRegistrationSystem website, except as allowed by Section 4 below, is strictly prohibited. You do not acquire ownership rights to any content, document or other materials viewed through the SimCardRegistrationSystem website. Some of the contents on the site are the copyrighted work of member government agencies of SimCardRegistrationSystem and SimCardRegistrationSystem’s third party providers.
         </p>
       </div>
 
@@ -146,15 +146,15 @@ p{
         <br>
         <div class="" style="display:flex;flex-direction:column;">
         <h2>4. Limited License or Permitted Use</h2>
-        <p class="information" style="line-height: 200%;color:black!important;">You are granted a non-exclusive, non-transferable, revocable license (a) to access and use the SimCardRegistrationSystem website strictly in accordance with this Agreement; (b) to use the SimCardRegistrationSystem website solely for internal, personal, non-commercial purposes; and (c) to print out discrete information from the SIMCARDREGISTRATIONSYSTEM Website solely for internal, personal, non-commercial purposes and provided that you maintain all copyright and other policies contained therein. You may NOT COPY, STORE, EITHER IN HARD COPY OR IN ELECTRONIC RETRIEVAL SYSTEM, TRANSMIT, TRANSFER, PERFORM, BROADCAST, PUBLISH, REPRODUCE, CREATE A DERIVATIVE WORK FROM, DISPLAY, DISTRIBUTE, SELL, LICENSE, RENT, LEASE OR OTHERWISE TRANSFER any of the Contents to any third person, including others in your company or organization, whether for direct commercial or monetary gain or otherwise without prior written consent of SimCardRegistrationSystem website or its third party provider.
+        <p class="information" style="line-height: 200%;color:black!important;">You are granted a non-exclusive, non-transferable, revocable license (a) to access and use the SimCardRegistrationSystem website strictly in accordance with this Agreement; (b) to use the SimCardRegistrationSystem website solely for internal, personal, non-commercial purposes; You may NOT COPY, STORE, EITHER IN HARD COPY OR IN ELECTRONIC RETRIEVAL SYSTEM, TRANSMIT, TRANSFER, PERFORM, BROADCAST, PUBLISH, REPRODUCE, CREATE A DERIVATIVE WORK FROM, DISPLAY, DISTRIBUTE, SELL, LICENSE, RENT, LEASE OR OTHERWISE TRANSFER any of the Contents to any third person, including others in your company or organization, whether for direct commercial or monetary gain or otherwise without prior written consent of SimCardRegistrationSystem website or its third party provider.
         </p>
       </div>
 
         <br>
         <div class="" style="display:flex;flex-direction:column;">
         <h2>5. Forms, Agreements, and Documents</h2>
-        <p class="information" style="line-height: 200%;color:black!important;">SimCardRegistrationSystem may make available through the SimCardRegistrationSystem website forms, and legal documents (collectively, “Documents”) that can be used in your transactions with the SimCardRegistrationSystem. All Documents are provided on a non-exclusive license basis only for your personal one-time use for non-commercial purposes, without any right to re-license, sublicense, distribute, assign or transfer such license. Documents are provided for free and without any representations or warranties, express or implied, as to their suitability, legal effect, completeness, modernity, accuracy, and/or appropriateness.
-    If the Documents on SimCardRegistrationSystem’s official printed documents differs from the information contained on the SimCardRegistrationSystem website, the information on SimCardRegistrationSystem's official printed documents will take precedence.We aim to follow the Data Privacy Act of 2012 (DPA) and fully cooperate with the National Privacy Commission (NPC). Your privacy is important to us. SimCardRegistrationSystem is committed to protecting your personal privacy as well as our genuine and legitimate interests and our ability to fully and effectively carry out our responsibilities as such are met.
+        <p class="information" style="line-height: 200%;color:black!important;">SimCardRegistrationSystem may make available through the SimCardRegistrationSystem website, forms that can be used in your transactions with the SimCardRegistrationSystem. All forms are provided on a non-exclusive license basis only for your personal use for non-commercial purposes, without any right to re-license, sublicense, distribute, assign or transfer such license.
+  SimCardRegistrationSystem is committed to protecting your personal privacy as well as our genuine and legitimate interests and our ability to fully and effectively carry out our responsibilities as such are met.
     </p>
     </div>
 
@@ -165,13 +165,13 @@ p{
 
         <p class="information" style="line-height: 200%;color:black!important;">Each business owner shall take reasonable steps to ensure the reliability of any of its officers, employees, agents, or representatives who have access to Personal Data, including ensuring that they all understand the confidential nature of the Personal Data; that they have received appropriate data protection training prior to their access or Processing of Personal Data; and that they have signed a written undertaking that they understand and will act in accordance with their responsibilities for confidentiality under this Data Processing Agreement.</p>
         </div>
-        <p class="information" style="line-height: 200%;color:black!important;">You agree to notify SimCardRegistrationSystem immediately of any unauthorized use of your account or any other breach of security. SimCardRegistrationSystem will not be liable for any loss that you may incur as a result of someone else using your OTP or account, either with or without your knowledge. However, you could be held liable for losses incurred by SimCardRegistrationSystem or another party due to someone else using your account or OTP. You may not use anyone else’s account at any time, without the permission of the account holder.</p>
+        <p class="information" style="line-height: 200%;color:black!important;">You agree to notify SimCardRegistrationSystem immediately of any unauthorized use of your account or any other breach of security. SimCardRegistrationSystem will not be liable for any loss that you may incur as a result of someone else using your account, either with or without your knowledge. However, you could be held liable for losses incurred by SimCardRegistrationSystem or another party due to someone else using your account. You may not use anyone else’s account at any time, without the permission of the account holder.</p>
         </div><br>
 
         <br>
         <div class="" style="display:flex;flex-direction:column;">
         <h2>7. Errors, Corrections, and Changes</h2>
-        <p class="information" style="line-height: 200%;color:black!important;">SimCardRegistrationSystem does not represent or warrant that the SimCardRegistrationSystem website will be error-free, free of viruses or other harmful components, or that defects will be corrected. We may make changes to the features, functionality or content of the SimCardRegistrationSystem website at any time without any notification in advance. SimCardRegistrationSystem reserves the right in its sole discretion to edit or delete any documents, information or other content appearing on the SimCardRegistrationSystem Website. Also, the SimCardRegistrationSystem's authorized to give access, consider requests for correction or erasure, and respond to objections to process personal data as it appears in the system’s official records are always governed by applicable and relevant laws, as well as the DPA, its IRR, and other NPC issuances.
+        <p class="information" style="line-height: 200%;color:black!important;">SimCardRegistrationSystem does not represent or warrant that the SimCardRegistrationSystem website will be error-free, free of viruses or other harmful components, or that defects will be corrected. We may make changes to the features, functionality or content of the SimCardRegistrationSystem website at any time without any notification in advance. SimCardRegistrationSystem reserves the right in its sole discretion to edit or delete any documents, information or other content appearing on the SimCardRegistrationSystem Website. Also, the SimCardRegistrationSystem is authorized to give access, consider requests for correction or erasure, and respond to objections to process personal data as it appears in the system’s official records are always governed by applicable and relevant laws, as well as the DPA, its IRR, and other NPC issuances.
         </p>
       </div>
 
@@ -191,7 +191,7 @@ p{
         <div class="" style="display:flex;flex-direction:column;">
         <h2>10. Disclaimer</h2>
         <p class="information" style="line-height: 200%;color:black!important;">Due to the number of sources from which the Contents are obtained, and inherent hazards of electronic distribution, there may be delays, omissions, or inaccuracies in the Contents and although the Contents have been obtained from reliable sources, they are provided to you as presented, without warranties of any kind.
-    <br>All responsibility or liability for any damages caused by viruses contained within the electronic file containing the form or document is disclaimed. SimCardRegistrationSystem will not be liable to you for any incidental, special or consequential damages of any kind that may result from use of or inability to use the SimCardRegistrationSystem Website.
+    <br>All responsibility or liability for any damages caused by viruses contained within the electronic file containing the form is disclaimed. SimCardRegistrationSystem will not be liable to you for any incidental, special or consequential damages of any kind that may result from use of or inability to use the SimCardRegistrationSystem Website.
     </p>
     </div>
 
@@ -210,13 +210,12 @@ p{
           <li style="list-style:none; margin-bottom:10px; line-height: 200%;">a. To create, administer and update your account;</li>
           <li style="list-style:none; margin-bottom:10px; line-height: 200%;">b. To verify your identity;</li>
           <li style="list-style:none; margin-bottom:10px; line-height: 200%;">c.	To fill up a user profile or registration forms;</li>
-          <li style="list-style:none; margin-bottom:10px; line-height: 200%;">d.	To perform internal operations necessary to provide SimCardRegistrationSystem services, including troubleshooting software bugs and operational problems, conducting data analysis, testing and research, monitoring and analyzing usage and activity trends;</li>
+          <li style="list-style:none; margin-bottom:10px; line-height: 200%;">d.	To perform internal operations necessary to provide SimCardRegistrationSystem services, including troubleshooting software bugs and operational problems, conducting data analysis, testing and research;</li>
           <li style="list-style:none; margin-bottom:10px; line-height: 200%;">e.	To protect the security or integrity of the SimCardRegistrationSystem website and any facilities or equipment used to make the services available;</li>
           <li style="list-style:none; margin-bottom:10px; line-height: 200%;">f.	To comply with court orders or other legal, governmental or regulatory requirements;</li>
           <li style="list-style:none; margin-bottom:10px; line-height: 200%;">g.	To enforce this Terms of Service or other agreements; and,</li>
           <li style="list-style:none; margin-bottom:10px; line-height: 200%;">h.	To protect SimCardRegistrationSystem’s rights or property in the event of a claim or dispute.</li>
         </ul>
-        If you have questions relating to SimCardRegistrationSystem’s collection, use, and disclosure of your personal data, please contact the Data Protection Officer.
       </p>
     </div>
 
@@ -260,4 +259,5 @@ p{
 
       </div>
 
-    </div>
+  </div>
+</html>
