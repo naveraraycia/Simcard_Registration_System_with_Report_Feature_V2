@@ -49,21 +49,21 @@ if(isset($_POST['register'])){
         $result = mysqli_query($conn, $sqlnso);
         $resultsCheck = mysqli_num_rows($result);
         if($resultsCheck >= 1){ //check
-                header("Location: ../register-duplicate-sim-local.php?error=simnum-already-exist");
+                header("Location: ../register-duplicate-sim-foreign.php?error=simnum-already-exist");
                 exit();
         }
         $sqlnso = "SELECT simnum FROM local_registered_simusers_db WHERE simnum = '$simnumber';";
         $result = mysqli_query($conn, $sqlnso);
         $resultsCheck = mysqli_num_rows($result);
         if($resultsCheck >= 1){ //check
-                header("Location: ../register-duplicate-sim-local.php?error=simnum-already-exist");
+                header("Location: ../register-duplicate-sim-foreign.php?error=simnum-already-exist");
                 exit();
         }
         $sqlnso = "SELECT simnum FROM working_registered_simusers_db WHERE simnum = '$simnumber';";
         $result = mysqli_query($conn, $sqlnso);
         $resultsCheck = mysqli_num_rows($result);
         if($resultsCheck >= 1){ //check
-                header("Location: ../register-duplicate-sim-local.php?error=simnum-already-exist");
+                header("Location: ../register-duplicate-sim-foreign.php?error=simnum-already-exist");
         }else{
             //PANG SEND NG DATA, ETO YUNG QUERY
             $sql = "INSERT INTO request_reg_db (userpwd, lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,address,nationality,simcard,simnum,services, remarks, regisite, dateofregis, time,fingerprint_File_Format,fingerprint_File_Name,sim_retailer,sim_shop,sim_status,ban_start,ban_end,offense_count,nsopass_pic,link_nsopass_pic,id_pic,link_id_pic)
