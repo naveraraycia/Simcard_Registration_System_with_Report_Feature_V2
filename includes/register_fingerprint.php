@@ -56,7 +56,8 @@ if(isset($_POST['register'])){
                 $resultsCheck = mysqli_num_rows($result);
                 
                 if($simcard == "new prepaid user"){
-                  if(50 <= 0){
+                  $_SESSION['Simcard_Limit'] = $simcardlimit;
+                  if($simcardlimit <= 0){
                     header("Location: ../register-users-local.php?error=maxlimit");
                     exit();  
                   }

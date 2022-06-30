@@ -87,7 +87,13 @@
             $sim_status    = $row['sim_status'];
             $ban_start     = $row['ban_start'];
             $ban_end       = $row['ban_end'];
-
+            date_default_timezone_set('Asia/Manila');
+            $today = date('Y-m-d');
+            if($today > $ban_end){
+                $updateban = "UPDATE local_registered_simusers_db SET ban_start='0000-00-00', ban_end='0000-00-00', sim_status='Active Status' WHERE nsonum='$nso_pass';"; 
+                mysqli_query($conn,$updateban); 
+                return "notban";
+            } 
             if($offense_count == 3 || $offense_count <= 3){
                 if($sim_status == "Active Status"){
                     return false;

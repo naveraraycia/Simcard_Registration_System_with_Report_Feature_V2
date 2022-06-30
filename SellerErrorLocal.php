@@ -44,6 +44,13 @@
                         return false;
                     }else{
                         date_default_timezone_set('Asia/Manila');
+                        $today = date('Y-m-d');
+                        if($today > $ban_end){
+                            $updateban = "UPDATE local_registered_simusers_db SET ban_start='0000-00-00', ban_end='0000-00-00', sim_status='Active Status' WHERE nsonum='$nso_pass';"; 
+                            mysqli_query($conn,$updateban); 
+                            return "notban";
+                        } 
+                        date_default_timezone_set('Asia/Manila');
                         $ban_end2 = substr($ban_end, 0,4); // 2022
                         $datetoday = (int)date('Y');
             

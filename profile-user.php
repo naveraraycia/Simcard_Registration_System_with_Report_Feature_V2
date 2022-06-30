@@ -111,7 +111,7 @@ if ($usertype == 'Filipino'){
         }
       }
 }else if($usertype == 'NotFilipino'){
-  if($today <> $BanEnd){
+  if($SimStatus <> 'Permanent ban'){
     if($today > $BanEnd){
       $foreignsql = "UPDATE foreign_registered_simusers_db
             SET ban_end = '0000-00-00', ban_start = '0000-00-00', sim_status = 'Active Status'

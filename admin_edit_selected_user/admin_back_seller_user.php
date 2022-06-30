@@ -29,8 +29,6 @@
                         $id_old     = $row['link_id_pic'];
                         $nso_old    = $row['link_nsopass_pic'];
                         $permit_old = $row['link_permit_pic'];
-                        $ban_end_old    = $row['ban_end'];
-                        $ban_start_old  = $row['ban_start'];
                         $lastN          = $row['lastname'];
                         $passnum_nsonum = $row['seller_nso'];
                         
@@ -40,16 +38,6 @@
             $time  = date('G').":".date('i').":".date('s');
             $timeImg  = date('G')."_".date('i')."_".date('s')."_".date('Y-m-d');
             echo $timeImg;
-            $sim_status    = $_POST['sim_status'];
-            $offense_count = $_POST['offense_count'];
-            $ban_start     = $_POST['ban_start'];
-            if(empty($ban_start)){
-                $ban_start = $ban_start_old;
-            }
-            $ban_end       = $_POST['ban_end'];
-            if(empty($ban_end)){
-                $ban_end = $ban_end_old;
-            }
             $address       = $_POST['address'];
             $shop_name     = $_POST['shop_name'];
             $selleremail   = $_POST['selleremail'];
@@ -125,28 +113,14 @@
                         $PermitName     = $lastN."_Permit_".$passnum_nsonum.$timeImg;
                     $PermitExt = ImageCheck($allowed,$fileActualExt,$fileExt,$PermitName,$fileError,$fileSize, $permit_old);
 
-                    echo     $sim_status;
-                    echo   "<br>";
-                    echo     $offense_count;
-                    echo   "<br>";
-                    echo     $ban_start;
-                    echo   "<br>";
-                    echo     $ban_end;
-                    echo   "<br>";
-                    echo     $address;
-                    echo   "<br>";
-                    echo     $FingerExt;
-                    echo   "<br>";
-                    echo     $IDExt;
-                    echo   "<br>";
-                    echo     $NSOExt;
                     
                     
 
 
                     $sql = "UPDATE seller 
-                    SET Shop_Name = '$shop_name', selleremail = '$selleremail', Business_Permit = '$num_permit', Business_Address = '$shop_address',
-                        Simcard_Limit = '$sim_limit', address = '$address', link_nsopass_pic = '$NSOExt', link_id_pic = '$IDExt', link_permit_pic = '$PermitExt'
+                    SET Shop_Name = '$shop_name', selleremail = '$selleremail', Business_Address = '$shop_address',
+                        Simcard_Limit = '$sim_limit', address = '$address', link_nsopass_pic = '$NSOExt', link_id_pic = '$IDExt', 
+                        link_permit_pic = '$PermitExt'
                     WHERE seller_nso = '$passnum_nsonum';";
 
                     mysqli_query($conn, $sql);

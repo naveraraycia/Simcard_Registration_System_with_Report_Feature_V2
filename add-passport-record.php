@@ -114,7 +114,7 @@
               echo "<p class= 'regsuccess'>USER SUCCESSFULLY REGISTERED</p>";
             }
             elseif(strpos($fulUrl, "error=passnum-already-exist") == true){
-              echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS SIM CARD NUMBER ALREADY EXISTS</p>";
+              echo "<p class= 'nsoexist'>REGISTRATION FAILED: THIS PASSPORT NUMBER ALREADY EXIST</p>";
             }
 
     ?>
