@@ -258,7 +258,7 @@ $Adminfullname = $_SESSION['AdminFirstName']." ". $_SESSION['AdminLastName'];
       </div>
        <div class="col-md-3 infodiv">
          <label class="Bday">Penalty</label>
-         <input id="" type="text" name="offense_count" class="form-control" value="<?= $row['offense_count'] ?>" required>
+         <input id="" type="text" name="offense_count" class="form-control" value="<?= $row['offense_count'] ?>">
        </div>
        <div class="col-md-3 infodiv">
          <label class="Bday">Date Blocked</label>
@@ -282,7 +282,7 @@ $Adminfullname = $_SESSION['AdminFirstName']." ". $_SESSION['AdminLastName'];
       <div class="col-md-6">
         <div class="form-group">
           <label for="nso-attach">Attach Valid ID with address or Hotel Reservation</label>
-          <input type="file" name='IDfile' class="form-control-file" id="nso-attach" required>
+          <input type="file" name='IDfile' class="form-control-file" id="nso-attach">
         </div>
       </div>
 

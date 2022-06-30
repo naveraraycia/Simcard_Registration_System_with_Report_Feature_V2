@@ -13,7 +13,7 @@ include_once "../includes/dbh.inc.php";
   // THIS SHOULD BE THE QUERY: 	"DELETE FROM registered_simusers_db WHERE simnumColumn = $simcardnum"
 
   // HEAD THE USER BACK TO list-sim-retailer-admin.php
-  Header("Location:../additional-local-request.php.php?denied");
+  Header("Location:../additional-foreign-request.php.php?denied");
 } else {
 
   //

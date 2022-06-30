@@ -10,9 +10,6 @@
   }
   $shopname = " ".$_SESSION['Shop_Name'];
 
-  if(empty($_SESSION['nsonumber'])){
-    header("Location: register_fingerprint.php?EnterNSO");
-  }
 
 ?>
 <!-- register-users-local.php?nsonum=3864&button= -->

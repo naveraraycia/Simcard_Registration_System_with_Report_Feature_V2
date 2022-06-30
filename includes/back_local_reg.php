@@ -181,15 +181,37 @@ if(isset($_POST['register'])){
                 $offense_count ="0";
                 $simnum = "+63". $simnum;
 
+
+                $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth,
+                               n.gender as gender, n.nsonum as nsonum, l.simcard as simcard, l.simnum as simnum, l.services as services, l.ban_start as ban_start,
+                               l.ban_end as ban_end, l.address as address, l.sim_status as sim_status, l.offense_count as offense_count,
+                               l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite, l.link_nsopass_pic as nso_pic, l.link_id_pic as id_pic, l.fingerprint_File_Format as finger
+                          FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON  l.nsonum = n.nsonum
+                         WHERE n.nsonum ='$nso';";
+                
+                $result = mysqli_query($conn,$query);
+                if (mysqli_num_rows($result) > 0) {
+                      //  GET DATA OF USER FROM NSO
+                      foreach ($result as $row) {
+                            $offense_count    = $row['offense_count'];
+
+                       }
+                      }
+
                 mysqli_stmt_bind_param($stmt,"ssssssssssssssssssss",
                                         $sim_status, $simnum, $pwd, $simcard, $services, $dateofregis, $address,
                                         $sim_retailer, $sim_shop, $regisite, $FingerExt, $FingerName,
                                         $passnum_nsonum, $NSOName, $NSOExt, $IDName, $IDExt,
-                                        $offense_count, $ban_start, $ban_end
+                                        $offense_count,  $ban_start, $ban_end
                                         );
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //
                 $result = mysqli_stmt_get_result($stmt);
 
+                $sql = "UPDATE local_registered_simusers_db
+                SET offense_count = '$offense_count', address = '$address', fingerprint_File_Format = '$FingerExt', link_nsopass_pic= '$NSOExt',
+                    link_id_pic = '$IDExt'
+                WHERE nsonum = '$nso';";
+                mysqli_query($conn,$sql);
                 //MOVING FILES
                 $FingerfileDestination = '../Fingerprint_Registered_User_Database/'.$FingerExt; //kung saan move yung fingerprint sa folder. dapat same yung folder name. ikaw na bahala
                 $NSOfileDestination    = '../NSO_User_Database/'.$NSOExt;
