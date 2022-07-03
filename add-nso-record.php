@@ -170,7 +170,7 @@
 
               <div class="row srow">
               <div class="col-md-12">
-                <button type="submit" name="register" class="send-btn">Register User</button>
+                <button type="submit" name="register" class="send-btn">Save</button>
               </div>
             </div>
 

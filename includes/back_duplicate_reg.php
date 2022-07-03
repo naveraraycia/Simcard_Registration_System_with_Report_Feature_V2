@@ -72,12 +72,13 @@ if(isset($_POST['register'])){
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
         //ERROR HANDLERS: maxlimit
-                if($simcard == "new prepaid user"){
-                  if($_SESSION['Simcard_Limit'] <= 0){
-                    header("Location: ../register-users-local.php?error=maxlimit");
-                    exit();
-                  }
-                }
+        if($simcard == "new prepaid user"){
+          $simcardlimit = $_SESSION['Simcard_Limit'];
+          if($simcardlimit <= 0){
+            header("Location: ../register-duplicate-sim-local.php?error=maxlimit");
+            exit();
+          }
+        }
 
            $stmt = mysqli_stmt_init($conn);
 

@@ -232,7 +232,7 @@
                    regisite='$businessaddress' ORDER BY lastname ASC; ";
 
           }else if($querytype=='C'){
-            $searchInput = mysqli_real_escape_string($conn, $_GET['input-search']);
+          
             //((ban_start between'$start_date' and '$end_date') and (ban_end between '$start_date'AND '$end_date') AND (sim_status = N'First offense' OR sim_status = N'Second offense' OR sim_status = N'Permanent ban'))
             //THIS QUERY IS FOR BAN DATES
             $FirstOff ="SELECT l.sim_status, l.simnum, l.services, n.lastname, n.firstname, n.midname, n.suffix, l.nsonum,

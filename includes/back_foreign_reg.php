@@ -60,7 +60,7 @@ if(isset($_POST['register'])){
                 $sql = "INSERT INTO foreign_registered_simusers_db (
                     sim_status, simnum, userpwd, simcard, services, dateofreg, address,
                     sim_retailer, sim_shop, regisite, fingerprint_File_Format, fingerprint_File_Name,
-                    passnum, passport_pic, link_passport_pic, 
+                    passnum, passport_pic, link_passport_pic,
                     offense_count, link_id_pic, ban_start,  ban_end)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
@@ -70,7 +70,8 @@ if(isset($_POST['register'])){
                 $resultsCheck = mysqli_num_rows($result);
 
                 if($simcard == "new prepaid user"){
-                  if(50 <= 0){
+                  $simcardlimit = $_SESSION['Simcard_Limit'];
+                  if($simcardlimit <= 0){
                     header("Location: ../register-users-foreign.php?error=maxlimit");
                     exit();
                   }
@@ -170,10 +171,10 @@ if(isset($_POST['register'])){
                 $simnum = "+63". $simnum;
 
                 ///////////////
-  $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth, 
-                      n.gender as gender, n.passnum as passnum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start, 
-                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies, 
-                      l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite, 
+  $query = "SELECT n.lastname as lastname, n.firstname as firstname, n.midname as midname, n.suffix as suffix, n.dateofbirth as dateofbirth,
+                      n.gender as gender, n.passnum as passnum, l.sim_status as sim_status, l.offense_count as offense_count, l.ban_start as ban_start,
+                      l.ban_end as ban_end, l.address as address, l.simcard as simcard, l.simnum as simnum, l.services as servies,
+                      l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite,
                       l.fingerprint_File_Format as finger_pic, l.link_passport_pic as passport_pic, n.nationality as nationality,
                       l.link_id_pic
                FROM foreign_registered_simusers_db AS l LEFT JOIN foreign_passport_db as n ON  l.passnum = n.passnum
@@ -191,7 +192,7 @@ if(isset($_POST['register'])){
                         $passnum = $row['passnum'];
                         $id_old = $row['id_pic'];
                         $offense_count = $row['offense_count'];
-                        
+
                    }
                   }
             // ADDED DATA
@@ -212,7 +213,7 @@ if(isset($_POST['register'])){
                 mysqli_stmt_bind_param($stmt,"sssssssssssssssssss",
                                         $sim_status, $simnum, $pwd, $simcard, $services, $dateofregis, $address,
                                         $sim_retailer, $sim_shop, $regisite, $FingerExt, $FingerName,
-                                        $passnum_passnum, $Passportname, $PassportExt, 
+                                        $passnum_passnum, $Passportname, $PassportExt,
                                         $offense_count, $IDExt, $ban_start, $ban_end
                                         );
                 mysqli_stmt_execute($stmt);                                   //      //      //      //    //    //          //          //        //            //     //        //            //          //     //            //          //          //       //         //         //          //           //     //       //     //

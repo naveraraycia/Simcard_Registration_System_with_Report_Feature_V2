@@ -69,12 +69,13 @@ if(isset($_POST['register'])){
             $sql = "INSERT INTO request_reg_db (userpwd, lastname, firstname, midname, suffix, dateofbirth, gender, passnum_nsonum,address,nationality,simcard,simnum,services, remarks, regisite, dateofregis, time,fingerprint_File_Format,fingerprint_File_Name,sim_retailer,sim_shop,sim_status,ban_start,ban_end,offense_count,nsopass_pic,link_nsopass_pic,id_pic,link_id_pic)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
-                if($simcard == "new prepaid user"){
-                  if($_SESSION['Simcard_Limit'] <= 0){
-                    header("Location: ../register-duplicate-sim-foreign.php?error=maxlimit");
-                    exit();
-                  }
-                }
+            if($simcard == "new prepaid user"){
+              $simcardlimit = $_SESSION['Simcard_Limit'];
+              if($simcardlimit <= 0){
+                header("Location: ../register-duplicate-sim-foreign.php?error=maxlimit");
+                exit();
+              }
+            }
 
                 $stmt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($stmt, $sql)){

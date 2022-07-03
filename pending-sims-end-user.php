@@ -95,7 +95,7 @@
           <th class="f-column text-truncate" scope="col" >SIM #</th>
           <th class="f-column text-truncate" scope="col" >Status</th>
           <th class="f-column text-truncate" scope="col" >Remark</th>
-          <th class="f-column text-truncate" scope="col" >Pick up SIM shop Location</th>
+          <th class="f-column text-truncate" scope="col" >Pick up SIM shop Location(for requested new prepaid)</th>
           <th class="f-column text-truncate" scope="col" >Date Approved</th>
 
         </tr>

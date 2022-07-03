@@ -80,10 +80,10 @@ if(isset($_POST['register'])){
                 $resultsCheck = mysqli_num_rows($result);
 
                 if($simcard == "new prepaid user"){
-                  $_SESSION['Simcard_Limit'] = $simcardlimit;
+                  $simcardlimit = $_SESSION['Simcard_Limit'];
                   if($simcardlimit <= 0){
                     header("Location: ../register-users-local.php?error=maxlimit");
-                    exit();  
+                    exit();
                   }
                 }
                 //CHECK IF USER HAS ALREADY SIMILAR SERVICE
@@ -189,7 +189,7 @@ if(isset($_POST['register'])){
                                l.dateofreg as dateofreg, l.sim_retailer as sim_retailer, l.sim_shop as sim_shop , l.regisite as regisite, l.link_nsopass_pic as nso_pic, l.link_id_pic as id_pic, l.fingerprint_File_Format as finger
                           FROM local_registered_simusers_db AS l LEFT JOIN nso_dummy_db as n ON  l.nsonum = n.nsonum
                          WHERE n.nsonum ='$nso';";
-                
+
                 $result = mysqli_query($conn,$query);
                 if (mysqli_num_rows($result) > 0) {
                       //  GET DATA OF USER FROM NSO

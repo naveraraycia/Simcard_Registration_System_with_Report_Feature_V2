@@ -184,7 +184,7 @@ p{
                 <p class="nameLabel">Address: <span><?php echo $address ?></span></p>
               </div>
               <div class="infolabels">
-                <p class="nameLabel">NSO #: <span><?php echo $passnso_num ?></span></p>
+                <p class="nameLabel">Passport Number: <span><?php echo $passnso_num ?></span></p>
               </div>
               <div class="infolabels">
                 <p class="nameLabel">Registration Date: <span><?php echo $dateofreg ?></span></p>

@@ -5,7 +5,7 @@ $dbUsername = "root";
 $dbpassword = "";
 // name of database
 $dbName= "simcardregistrationform";
-
+//$dbName = "simreg_finaldb";
 // CREATE CONNECTION (DATABASE)
 $conn = mysqli_connect($servername, $dbUsername,$dbpassword,$dbName);
 

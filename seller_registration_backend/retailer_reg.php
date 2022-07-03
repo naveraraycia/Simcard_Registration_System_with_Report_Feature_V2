@@ -85,6 +85,10 @@ if(isset($_POST['register'])){
                     header("Location: ../admin-register-retailer.php?error=simlimitinvalid");
                     exit();
               }
+              $sqlnso = "SELECT * FROM seller";
+              $result = mysqli_query($conn, $sqlnso);
+              $resultsCheck = mysqli_num_rows($result);
+              if($resultsCheck )
                   //COUNTING NUMBER LENGTH
                   $countnumber = strlen($simnum);
                   if($countnumber != 10){
@@ -103,6 +107,15 @@ if(isset($_POST['register'])){
                     header("Location: ../admin-register-retailer.php?email-already-exist");
                     exit();
                   }
+
+                  $sqlnso = "SELECT Business_Permit FROM seller WHERE Business_Permit = '$num_permit'";
+                  $result = mysqli_query($conn, $sqlnso);
+                  $resultsCheck = mysqli_num_rows($result);
+                  if($resultsCheck > 0 ){
+                    header("Location: ../admin-register-retailer.php?business-already-exist");
+                    exit();
+                  }
+
 
                   if(strlen($sellerpassword) < 6){
                     header("Location: ../admin-register-retailer.php?passworderror"); //error for wrong count
